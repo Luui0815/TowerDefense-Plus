@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5ax5kd5vgho7"]
+
+[ext_resource type="Texture2D" uid="uid://11c8mm6e5lsy" path="res://assets/background/Pixle Castle.png" id="1_1kf5k"]
+[ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaSerifBeta-Regular.otf" id="2_arh64"]
+[ext_resource type="Texture2D" uid="uid://b65ebyk86d3k" path="res://assets/button/Stonebutton.png" id="2_nesb7"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background_MainMenu" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1kf5k")
+expand_mode = 2
+
+[node name="Menu_MargCont" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons_VBoxCont" type="VBoxContainer" parent="Menu_MargCont"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureButton1" type="TextureButton" parent="Menu_MargCont/Buttons_VBoxCont"]
+custom_minimum_size = Vector2(350, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_nesb7")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Text1" type="Label" parent="Menu_MargCont/Buttons_VBoxCont/TextureButton1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_arh64")
+theme_override_font_sizes/font_size = 30
+text = "OPTIONS"
+horizontal_alignment = 1
+vertical_alignment = 1
