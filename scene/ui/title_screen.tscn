@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8fnptvsrerqe"]
 
+[ext_resource type="Script" path="res://script/ui/title_screen.cs" id="1_b0cnx"]
 [ext_resource type="FontFile" path="res://Beispielprojekt/.godot/imported/Xolonium-Regular.ttf-bc2981e3069cff4c34dd7c8e2bb73fba.fontdata" id="1_evj6y"]
 [ext_resource type="Texture2D" uid="uid://bb6bt3o23gv8g" path="res://assets/buttons/Turn_OFF_Button.png" id="2_3crev"]
-[ext_resource type="Script" path="res://script/title_screen/Beenden_Button.cs" id="3_3xb0a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uh7ax"]
 font = ExtResource("1_evj6y")
@@ -10,6 +10,7 @@ font_size = 32
 font_color = Color(0, 0, 0, 1)
 
 [node name="Title_Screen" type="Node"]
+script = ExtResource("1_b0cnx")
 metadata/_edit_vertical_guides_ = [-17.0]
 metadata/_edit_horizontal_guides_ = [369.0, 302.0]
 
@@ -63,7 +64,6 @@ offset_bottom = -0.32
 mouse_default_cursor_shape = 2
 action_mode = 0
 icon = ExtResource("2_3crev")
-script = ExtResource("3_3xb0a")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = 97.0
@@ -71,4 +71,4 @@ offset_top = 94.0
 offset_right = 298.0
 offset_bottom = 231.0
 
-[connection signal="pressed" from="Beenden_Button" to="Beenden_Button" method="_on_pressed"]
+[connection signal="pressed" from="Beenden_Button" to="." method="_on_beenden_button_pressed"]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtnt5g41m787u"]
+
+[ext_resource type="Script" path="res://script/ui/confirmation_dialog.cs" id="1_75v05"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0syus"]
+
+[node name="confirmation_dialog" type="Window"]
+initial_position = 2
+size = Vector2i(500, 300)
+min_size = Vector2i(500, 300)
+max_size = Vector2i(500, 300)
+script = ExtResource("1_75v05")
+
+[node name="Text_Label" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 480.0
+offset_bottom = 170.0
+label_settings = SubResource("LabelSettings_0syus")
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="Abbrechen_Button" type="Button" parent="."]
+offset_left = 20.0
+offset_top = 230.0
+offset_right = 120.0
+offset_bottom = 280.0
+text = "Abbrechen"
+
+[node name="Bestaetigen_Button" type="Button" parent="."]
+offset_left = 380.0
+offset_top = 230.0
+offset_right = 480.0
+offset_bottom = 280.0
+text = "Bestätigen"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="Abbrechen_Button" to="." method="_on_abbrechen_button_pressed"]
+[connection signal="pressed" from="Bestaetigen_Button" to="." method="_on_bestaetigen_button_pressed"]
