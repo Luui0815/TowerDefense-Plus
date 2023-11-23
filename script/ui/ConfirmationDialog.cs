@@ -30,6 +30,11 @@ public partial class ConfirmationDialog : Window
 		_interactionFinished = false;
 	}
 
+	public void set_window_size()
+	{
+
+	}
+
 	public override void _Ready()
 	{
 	}
@@ -52,6 +57,14 @@ public partial class ConfirmationDialog : Window
 		get
 		{
 			return _confirmButtonPressed;
+		}
+	}
+
+	public bool user_input
+	{
+		get
+		{
+			return _interactionFinished;
 		}
 	}
 

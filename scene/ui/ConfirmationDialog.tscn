@@ -7,14 +7,13 @@
 [node name="ConfirmationDialog" type="Window"]
 initial_position = 2
 size = Vector2i(500, 300)
-min_size = Vector2i(500, 300)
+min_size = Vector2i(300, 300)
 max_size = Vector2i(500, 300)
 script = ExtResource("1_75v05")
 
 [node name="TextLabel" type="Label" parent="."]
-offset_left = 20.0
 offset_top = 20.0
-offset_right = 480.0
+offset_right = 460.0
 offset_bottom = 170.0
 label_settings = SubResource("LabelSettings_0syus")
 horizontal_alignment = 1
