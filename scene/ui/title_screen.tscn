@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://gc52xnqmilq7"]
 
-[ext_resource type="FontFile" path="res://assets/font/Xolonium-Regular.ttf" id="1_evj6y"]
+[ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaSerifBeta-Regular.otf" id="1_x0id8"]
 [ext_resource type="Texture2D" path="res://assets/buttons/Turn_OFF_Button.png" id="2_3crev"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uh7ax"]
-font = ExtResource("1_evj6y")
-font_size = 32
+font = ExtResource("1_x0id8")
+font_size = 40
 font_color = Color(0, 0, 0, 1)
 
 [node name="Title_Screen" type="Node"]
@@ -22,6 +22,7 @@ offset_bottom = -18.76
 text = "BA TOWER DEFENSE GAME"
 label_settings = SubResource("LabelSettings_uh7ax")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Option_Button" type="Button" parent="."]
 anchors_preset = -1
