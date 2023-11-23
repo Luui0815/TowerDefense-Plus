@@ -1,15 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8fnptvsrerqe"]
+[gd_scene load_steps=4 format=3 uid="uid://tjij4c0kv4o6"]
 
-[ext_resource type="Script" path="res://script/ui/title_screen.cs" id="1_b0cnx"]
-[ext_resource type="FontFile" path="res://Beispielprojekt/.godot/imported/Xolonium-Regular.ttf-bc2981e3069cff4c34dd7c8e2bb73fba.fontdata" id="1_evj6y"]
+[ext_resource type="Script" path="res://script/ui/MainMenu.cs" id="1_b0cnx"]
 [ext_resource type="Texture2D" uid="uid://bb6bt3o23gv8g" path="res://assets/buttons/Turn_OFF_Button.png" id="2_3crev"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uh7ax"]
-font = ExtResource("1_evj6y")
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[node name="Title_Screen" type="Node"]
+[node name="MainMenu" type="Node"]
 script = ExtResource("1_b0cnx")
 metadata/_edit_vertical_guides_ = [-17.0]
 metadata/_edit_horizontal_guides_ = [369.0, 302.0]
@@ -25,7 +23,7 @@ text = "BA TOWER DEFENSE GAME"
 label_settings = SubResource("LabelSettings_uh7ax")
 horizontal_alignment = 1
 
-[node name="Option_Button" type="Button" parent="."]
+[node name="OptionButton" type="Button" parent="."]
 anchors_preset = -1
 anchor_left = 0.064
 anchor_top = 0.421
@@ -39,7 +37,7 @@ mouse_default_cursor_shape = 2
 text = "OPTIONEN"
 metadata/_edit_group_ = true
 
-[node name="Levelauswahl_Button" type="Button" parent="."]
+[node name="LevelSelectionButton" type="Button" parent="."]
 anchors_preset = -1
 anchor_left = 0.239
 anchor_top = 0.418
@@ -53,7 +51,7 @@ mouse_default_cursor_shape = 2
 text = "LEVELAUSWAHL"
 metadata/_edit_group_ = true
 
-[node name="Beenden_Button" type="Button" parent="."]
+[node name="ExitButton" type="Button" parent="."]
 anchors_preset = -1
 anchor_left = 0.955
 anchor_right = 1.0
@@ -71,4 +69,4 @@ offset_top = 94.0
 offset_right = 298.0
 offset_bottom = 231.0
 
-[connection signal="pressed" from="Beenden_Button" to="." method="_on_beenden_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="OnExitButtonPress"]
