@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://i4bi2w7f7ydm"]
+
+[ext_resource type="Script" path="res://script/ui/OptionMenu.cs" id="1_0wsbl"]
+
+[node name="OptionMenu" type="Window"]
+title = "SPIELEINSTELLUNGEN"
+initial_position = 1
+size = Vector2i(1000, 500)
+script = ExtResource("1_0wsbl")
+
+[node name="Sound_ScrollBar" type="HScrollBar" parent="."]
+offset_left = 60.0
+offset_top = 186.0
+offset_right = 361.0
+offset_bottom = 214.0
+value = 75.0
+
+[node name="Lautstärke_Label" type="Label" parent="."]
+offset_left = 66.0
+offset_top = 148.0
+offset_right = 233.0
+offset_bottom = 174.0
+text = "Lautstärke:"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="value_changed" from="Sound_ScrollBar" to="." method="_on_sound_scroll_bar_value_changed"]

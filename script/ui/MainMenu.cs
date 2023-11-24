@@ -4,6 +4,7 @@ using System;
 public partial class MainMenu : Node
 {
 	private ConfirmationDialog _confirmationPopup;
+	private OptionMenu _optionMenu;
 
     public void _init()
 	{
@@ -44,5 +45,11 @@ public partial class MainMenu : Node
             _confirmationPopup.QueueFree();
         }
     }
+
+	public void _on_einstellungen_button_pressed()
+	{
+		_optionMenu = (OptionMenu)GD.Load<PackedScene>("res://scene//ui//OptionMenu.tscn").Instantiate();
+		AddChild(_optionMenu);
+	}
 }
 
