@@ -1,0 +1,23 @@
+{
+    "levels": [
+        {
+            "levelNr": 1,
+            "map": "",
+            "startMoney": 200,
+            "unlocksTower": "",
+            "fields": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            "spawnConfig": [
+                "",
+                "",
+                "",
+                ""
+            ]
+        }
+    ]
+}
