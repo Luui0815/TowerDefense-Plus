@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dup1tmsghfppa"]
 
-[ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaSerifBeta-Regular.otf" id="1_pyibw"]
+[ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="1_pyibw"]
 
 [resource]
 font = ExtResource("1_pyibw")
