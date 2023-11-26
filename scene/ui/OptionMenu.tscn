@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://i4bi2w7f7ydm"]
+[gd_scene load_steps=3 format=3 uid="uid://i4bi2w7f7ydm"]
 
 [ext_resource type="Script" path="res://script/ui/OptionMenu.cs" id="1_0wsbl"]
+[ext_resource type="AudioStream" uid="uid://dhfxgiscvok6q" path="res://sounds/Windows Ding Volumetestsound.wav" id="2_ly56t"]
 
 [node name="OptionMenu" type="Window"]
 title = "SPIELEINSTELLUNGEN"
@@ -22,5 +23,10 @@ offset_right = 233.0
 offset_bottom = 174.0
 text = "Lautstärke:"
 
+[node name="Sound_Test" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ly56t")
+volume_db = 24.0
+
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="scrolling" from="Sound_ScrollBar" to="." method="_on_sound_scroll_bar_scrolling"]
 [connection signal="value_changed" from="Sound_ScrollBar" to="." method="_on_sound_scroll_bar_value_changed"]
