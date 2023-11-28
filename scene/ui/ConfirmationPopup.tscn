@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3gvyqa1558sv"]
 
-[ext_resource type="Script" path="res://script/ui/ConfirmationDialog.cs" id="1_75v05"]
+[ext_resource type="Script" path="res://script/ui/ConfirmationPopup.cs" id="1_75v05"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0syus"]
 
-[node name="ConfirmationDialog" type="Window"]
+[node name="ConfirmationPopup" type="Window"]
 initial_position = 2
 size = Vector2i(500, 300)
 min_size = Vector2i(300, 300)
