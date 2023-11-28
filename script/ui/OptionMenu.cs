@@ -4,29 +4,25 @@ using System;
 public partial class OptionMenu : Window
 {
 	private AudioStreamPlayer _audioPlayer;
-	private double _soundVolume;
-	private bool _testSoundPlayed = false;
+	private Timer _volumeTimer;
+	private double _testSoundLength;
 
 	public override void _Ready()
 	{
-		_audioPlayer = GetNode<AudioStreamPlayer>("Sound_Test");
+		_audioPlayer = GetNode<AudioStreamPlayer>("TestSoundPlayer");
+		_testSoundLength = _audioPlayer.Stream.GetLength();
+		_volumeTimer = GetNode<Timer>("VolumeTimer");
 	}
 
-	public override void _Process(double delta)
-	{
-		if(!_audioPlayer.Playing && !_testSoundPlayed)
-		{
-			_audioPlayer.VolumeDb = Mathf.LinearToDb((float) _soundVolume / 100);
-
-			_audioPlayer.Playing = true;
-			_testSoundPlayed=true;
-		}
-	}
-	
 	private void OnVolumeScrollbarValueChanged(double value)
 	{
-		_soundVolume = value;
-		_testSoundPlayed = false;
+		if (!_audioPlayer.Playing && _volumeTimer.TimeLeft == 0)
+		{
+			_audioPlayer.VolumeDb = Mathf.LinearToDb((float) value / 100);
+			_audioPlayer.Playing = true;
+
+			_volumeTimer.Start(_testSoundLength * 2);
+		}
 	}
 
 	private void OnCloseRequested()

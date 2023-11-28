@@ -23,9 +23,11 @@ offset_right = 233.0
 offset_bottom = 174.0
 text = "Lautstärke:"
 
-[node name="Sound_Test" type="AudioStreamPlayer" parent="."]
+[node name="TestSoundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_wval4")
-volume_db = 24.0
+
+[node name="VolumeTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="close_requested" from="." to="." method="OnCloseRequested"]
 [connection signal="value_changed" from="VolumeScrollbar" to="." method="OnVolumeScrollbarValueChanged"]
