@@ -18,5 +18,10 @@ public partial class MainMenu : Node
 		OptionMenu optionMenu = (OptionMenu)GD.Load<PackedScene>("res://scene//ui//OptionMenu.tscn").Instantiate();
 		AddChild(optionMenu);
 	}
+
+	public void OnLevelSelectionButtonPressed()
+	{
+		//TODO: Implement scene switch
+	}
 }
 
