@@ -6,7 +6,7 @@ public partial class MainMenu : Node
 	private ConfirmationDialog _confirmationPopup;
 	private OptionMenu _optionMenu;
 
-    public void _init()
+	public void _init()
 	{
 
 	}
@@ -20,7 +20,7 @@ public partial class MainMenu : Node
 	{
 		if(_confirmationPopup != null)
 		{
-			check_for_user_input_in_popup();
+			CheckForUserInputInPopup();
 		}
 
 	}
@@ -33,20 +33,20 @@ public partial class MainMenu : Node
 
 	}
 
-	private void check_for_user_input_in_popup()
+	private void CheckForUserInputInPopup()
 	{
-        if (_confirmationPopup.Confirmed == true && _confirmationPopup.user_input == true)
-        {
-            GetTree().Quit();
-        }
+		if (_confirmationPopup.Confirmed == true && _confirmationPopup.user_input == true)
+		{
+			GetTree().Quit();
+		}
 
-        if (_confirmationPopup.Confirmed == true && _confirmationPopup.user_input == true)
-        {
-            _confirmationPopup.QueueFree();
-        }
-    }
+		if (_confirmationPopup.Confirmed == true && _confirmationPopup.user_input == true)
+		{
+			_confirmationPopup.QueueFree();
+		}
+	}
 
-	public void _on_einstellungen_button_pressed()
+	public void OnSettingsButtonPressed()
 	{
 		_optionMenu = (OptionMenu)GD.Load<PackedScene>("res://scene//ui//OptionMenu.tscn").Instantiate();
 		AddChild(_optionMenu);

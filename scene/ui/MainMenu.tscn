@@ -69,5 +69,5 @@ offset_top = 94.0
 offset_right = 298.0
 offset_bottom = 231.0
 
-[connection signal="pressed" from="OptionButton" to="." method="_on_einstellungen_button_pressed"]
+[connection signal="pressed" from="OptionButton" to="." method="OnSettingsButtonPressed"]
 [connection signal="pressed" from="ExitButton" to="." method="OnExitButtonPress"]

@@ -9,14 +9,14 @@ initial_position = 1
 size = Vector2i(1000, 500)
 script = ExtResource("1_0wsbl")
 
-[node name="Sound_ScrollBar" type="HScrollBar" parent="."]
+[node name="VolumeScrollbar" type="HScrollBar" parent="."]
 offset_left = 60.0
 offset_top = 186.0
 offset_right = 361.0
 offset_bottom = 214.0
 value = 75.0
 
-[node name="Lautstärke_Label" type="Label" parent="."]
+[node name="VolumeLabel" type="Label" parent="."]
 offset_left = 66.0
 offset_top = 148.0
 offset_right = 233.0
@@ -27,6 +27,6 @@ text = "Lautstärke:"
 stream = ExtResource("2_wval4")
 volume_db = 24.0
 
-[connection signal="close_requested" from="." to="." method="_on_close_requested"]
-[connection signal="scrolling" from="Sound_ScrollBar" to="." method="_on_sound_scroll_bar_scrolling"]
-[connection signal="value_changed" from="Sound_ScrollBar" to="." method="_on_sound_scroll_bar_value_changed"]
+[connection signal="close_requested" from="." to="." method="OnCloseRequested"]
+[connection signal="scrolling" from="VolumeScrollbar" to="." method="OnVolumeScrollbarScrolling"]
+[connection signal="value_changed" from="VolumeScrollbar" to="." method="OnVolumeScrollbarValueChanged"]
