@@ -71,4 +71,4 @@ offset_bottom = 231.0
 
 [connection signal="pressed" from="OptionButton" to="." method="OnSettingsButtonPressed"]
 [connection signal="pressed" from="LevelSelectionButton" to="." method="OnLevelSelectionButtonPressed"]
-[connection signal="pressed" from="ExitButton" to="." method="OnExitButtonPress"]
+[connection signal="pressed" from="ExitButton" to="." method="OnExitButtonPressed"]

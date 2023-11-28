@@ -3,11 +3,9 @@ using System;
 
 public partial class MainMenu : Node
 {
-	private ConfirmationPopup _confirmationPopup;
-
-	private void OnExitButtonPress()
+	private void OnExitButtonPressed()
 	{
-		_confirmationPopup = (ConfirmationPopup)GD.Load<PackedScene>("res://scene//ui//ConfirmationPopup.tscn").Instantiate();
+		ConfirmationPopup _confirmationPopup = (ConfirmationPopup)GD.Load<PackedScene>("res://scene//ui//ConfirmationPopup.tscn").Instantiate();
 		_confirmationPopup.Init("Willst du wirklich das Spiel verlassen?", "Spiel verlassen");
 		_confirmationPopup.Confirmed += () => GetTree().Quit();
 		AddChild(_confirmationPopup);
