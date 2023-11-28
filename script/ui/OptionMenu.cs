@@ -6,6 +6,8 @@ public partial class OptionMenu : Window
 	private AudioStreamPlayer _audioPlayer;
 	private Timer _volumeTimer;
 	private Label _currentVolumeLabel;
+	private PlayerData _playerData;
+	private int _currentVolume;
 	private double _testSoundLength;
 
 	public override void _Ready()
@@ -14,11 +16,19 @@ public partial class OptionMenu : Window
 		_testSoundLength = _audioPlayer.Stream.GetLength();
 		_volumeTimer = GetNode<Timer>("VolumeTimer");
 		_currentVolumeLabel = GetNode<Label>("CurrentVolumeLabel");
+		_playerData = GetNode<PlayerData>("/root/PlayerData");
+
+		_playerData.Load();
+		HScrollBar volumeScrollbar = GetNode<HScrollBar>("VolumeScrollbar");
+		_currentVolume = _playerData.Volume;
+		volumeScrollbar.SetValueNoSignal(_currentVolume);
+		_currentVolumeLabel.Text = Convert.ToString(_currentVolume);
 	}
 
 	private void OnVolumeScrollbarValueChanged(double value)
 	{
-		_currentVolumeLabel.Text = Convert.ToString((int) value);
+		_currentVolume = (int) value;
+		_currentVolumeLabel.Text = Convert.ToString(_currentVolume);
 
 		if (!_audioPlayer.Playing && _volumeTimer.TimeLeft == 0)
 		{
@@ -31,8 +41,15 @@ public partial class OptionMenu : Window
 
 	private void OnCloseRequested()
 	{
-		//SetSount(value); //Luca
+		_playerData.Volume = _currentVolume;
+		_playerData.Save();
+
 		QueueFree();
+	}
+
+	private void OnCloseButtonPressed()
+	{
+		OnCloseRequested();
 	}
 
 }
