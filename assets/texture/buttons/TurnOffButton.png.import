@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb6bt3o23gv8g"
-path="res://.godot/imported/Turn_OFF_Button.png-cf33653c897ff3ffb89ab39b5abddc53.ctex"
+uid="uid://d3y3aew5mpsuv"
+path="res://.godot/imported/TurnOffButton.png-62ac972e73efae36251497d421196d1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/buttons/Turn_OFF_Button.png"
-dest_files=["res://.godot/imported/Turn_OFF_Button.png-cf33653c897ff3ffb89ab39b5abddc53.ctex"]
+source_file="res://assets/texture/buttons/TurnOffButton.png"
+dest_files=["res://.godot/imported/TurnOffButton.png-62ac972e73efae36251497d421196d1c.ctex"]
 
 [params]
 
