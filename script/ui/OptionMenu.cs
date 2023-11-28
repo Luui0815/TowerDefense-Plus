@@ -6,7 +6,6 @@ public partial class OptionMenu : Window
 	private AudioStreamPlayer _audioPlayer;
 	private double _soundVolume;
 	private bool _testSoundPlayed = false;
-	private bool _scrolling = false;
 
 	public override void _Ready()
 	{
@@ -15,16 +14,15 @@ public partial class OptionMenu : Window
 
 	public override void _Process(double delta)
 	{
-		if(!_audioPlayer.Playing && _soundVolume!=0 && !_testSoundPlayed && !_scrolling)
+		if(!_audioPlayer.Playing && !_testSoundPlayed)
 		{
-			//Lautstaerke berechnen max.24 db
-			_audioPlayer.VolumeDb = (float)_soundVolume * 24 / 100;
+			_audioPlayer.VolumeDb = Mathf.LinearToDb((float) _soundVolume / 100);
 
 			_audioPlayer.Playing = true;
 			_testSoundPlayed=true;
 		}
-		_scrolling = false;
 	}
+	
 	private void OnVolumeScrollbarValueChanged(double value)
 	{
 		_soundVolume = value;
@@ -35,11 +33,6 @@ public partial class OptionMenu : Window
 	{
 		//SetSount(value); //Luca
 		QueueFree();
-	}
-
-	private void OnVolumeScrollbarScrolling()
-	{
-		_scrolling = true;
 	}
 
 }

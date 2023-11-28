@@ -28,5 +28,4 @@ stream = ExtResource("2_wval4")
 volume_db = 24.0
 
 [connection signal="close_requested" from="." to="." method="OnCloseRequested"]
-[connection signal="scrolling" from="VolumeScrollbar" to="." method="OnVolumeScrollbarScrolling"]
 [connection signal="value_changed" from="VolumeScrollbar" to="." method="OnVolumeScrollbarValueChanged"]

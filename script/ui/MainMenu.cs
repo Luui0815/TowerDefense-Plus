@@ -25,12 +25,8 @@ public partial class MainMenu : Node
 	{
 		if (_confirmationPopup.Confirmed)
 		{
-			GetTree().Quit();
-		}
-
-		if (_confirmationPopup.Confirmed)
-		{
 			_confirmationPopup.QueueFree();
+			GetTree().Quit();
 		}
 	}
 
