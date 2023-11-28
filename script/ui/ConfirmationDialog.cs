@@ -3,45 +3,17 @@ using System;
 
 public partial class ConfirmationDialog : Window
 {
-	private bool _cancelButtonPressed;
-	private bool _confirmButtonPressed;
-	private bool _interactionFinished;//sagt aus ob der User ueberhupt was gedrueckt hat
-	private Window _confirmationDialogWindow;
-	private Label _textLabel;
-	private Button _cancelButton;
-	private Button _confirmButton;
+	private bool _cancelButtonPressed = false;
+	private bool _confirmButtonPressed = false;
 
-	
 	public void Init(string message, string boxTitle)
 	{
 		//Titel der MsgBox festlegen
 		Title = boxTitle;
+
 		//angezeigten Text festlegen
-		_textLabel = GetNode<Label>("TextLabel");
-		_textLabel.Text = message;
-
-		//Instanzen der Buttons festlegen
-		_cancelButton = GetNode<Button>("CancelButton");
-		_confirmButton = GetNode<Button>("ConfirmButton");
-
-		//restliche globale Variablen festlegen
-		_cancelButtonPressed = false;
-		_confirmButtonPressed = false;
-		_interactionFinished = false;
-	}
-
-	public void set_window_size()
-	{
-
-	}
-
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+		Label textLabel = GetNode<Label>("TextLabel");
+		textLabel.Text = message;
 	}
 
 	public bool Cancelled
@@ -60,25 +32,15 @@ public partial class ConfirmationDialog : Window
 		}
 	}
 
-	public bool user_input
-	{
-		get
-		{
-			return _interactionFinished;
-		}
-	}
-
 	private void OnCancelButtonPressed()
 	{
 		_cancelButtonPressed = true;
-		_interactionFinished = true;
 		Hide();
 	}
 
 	private void OnConfirmButtonPressed()
 	{
 		_confirmButtonPressed=true;
-		_interactionFinished=true;
 		Hide();
 	}
 
