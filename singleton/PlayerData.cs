@@ -9,6 +9,9 @@ public partial class PlayerData : Node
     private Array<int> _completedLevels = new();
     private Array<string> _unlockedTowers = new();
 
+    /// <summary>
+    /// The volume set by the player
+    /// </summary>
 	public int Volume 
 	{
 		get
@@ -21,6 +24,9 @@ public partial class PlayerData : Node
 		}
 	}
 
+    /// <summary>
+    /// An array containing the numbers of all completed levels
+    /// </summary>
     public Array<int> CompletedLevels
     {
         get
@@ -29,6 +35,9 @@ public partial class PlayerData : Node
         }
     }
 
+    /// <summary>
+    /// An array containing the names of all unlocked towers
+    /// </summary>
     public Array<string> UnlockedTowers
     {
         get
