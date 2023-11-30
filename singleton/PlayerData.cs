@@ -9,8 +9,10 @@ public partial class PlayerData : Node
     private Array<int> _completedLevels = new();
     private Array<string> _unlockedTowers = new();
 
-	public int Volume 
-	{
+    //Um Turmauswahl zu testen, Auskommentierung untere Zeile wegmachen
+    //private Array<string> test = new() { "Archer", "Knight", "Spearman", "Wall", "Catapult" };
+    public int Volume
+    {
 		get
 		{
 			return _volume;
@@ -101,7 +103,10 @@ public partial class PlayerData : Node
         _volume = (int) dataDict["Volume"];
         _completedLevels = (Array<int>) dataDict["CompletedLevels"];
         _unlockedTowers = (Array<string>) dataDict["UnlockedTowers"];
-	}
+        
+        //Um Turmauswahl zu testen, Auskommentierung untere Zeile wegmachen 
+        //_unlockedTowers = test; 
+    }
 
     /// <summary>
     /// Saves the player data to a local data file

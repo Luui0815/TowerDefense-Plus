@@ -5,10 +5,10 @@ public partial class MainMenu : Node
 {
 	private void OnExitButtonPressed()
 	{
-		ConfirmationPopup _confirmationPopup = (ConfirmationPopup)GD.Load<PackedScene>("res://scene//ui//ConfirmationPopup.tscn").Instantiate();
-		_confirmationPopup.Init("Willst du wirklich das Spiel verlassen?", "Spiel verlassen");
-		_confirmationPopup.Confirmed += () => GetTree().Quit();
-		AddChild(_confirmationPopup);
+		ConfirmationPopup confirmationPopup = (ConfirmationPopup)GD.Load<PackedScene>("res://scene//ui//ConfirmationPopup.tscn").Instantiate();
+		confirmationPopup.Init("Willst du wirklich das Spiel verlassen?", "Spiel verlassen");
+		confirmationPopup.Confirmed += () => GetTree().Quit();
+		AddChild(confirmationPopup);
 	}
 
 	public void OnSettingsButtonPressed()
@@ -19,7 +19,6 @@ public partial class MainMenu : Node
 
 	public void OnLevelSelectionButtonPressed()
 	{
-		//TODO: Implement scene switch
 		GetTree().ChangeSceneToFile("res://scene/ui/LevelSelectionMenu.tscn");
 	}
 }
