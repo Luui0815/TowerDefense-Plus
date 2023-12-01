@@ -1,11 +1,15 @@
 using Godot;
 using System;
 
-public partial class MapField : Control
+namespace TowerDefense
 {
-
 	public enum FieldType
 	{
 		Normal
+	}
+	
+	public partial class MapField : Control
+	{
+		
 	}
 }
