@@ -21,7 +21,18 @@ public partial class game_level : Node2D
 	{
 		ConfirmationPopup _confirmationPopup = (ConfirmationPopup)GD.Load<PackedScene>("res://scene//ui//ConfirmationPopup.tscn").Instantiate();
 		_confirmationPopup.Init("Willst du wirklich das Level verlassen?", "Level verlassen");
-		_confirmationPopup.Confirmed += () => GetTree().Quit();
+		_confirmationPopup.Confirmed += () => QueueFree(); 
 		AddChild(_confirmationPopup);
 	}
+
+	private void _on_pause_button_pressed()
+	{
+		//DJs PAuse Screen einbinden
+	}
+
+
+
+
+
+
 }

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://biveug35tr2w1"]
+
+[ext_resource type="Script" path="res://script/map/Dropitem.cs" id="1_q3q7l"]
+[ext_resource type="Texture2D" uid="uid://buc6c5rtfhxgu" path="res://icon.svg" id="2_dbudc"]
+
+[node name="DragItem" type="Control"]
+layout_mode = 3
+anchor_right = 0.107
+anchor_bottom = 0.178
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 0.0399933
+offset_bottom = -0.160004
+script = ExtResource("1_q3q7l")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(69.5, 63)
+scale = Vector2(0.789063, 0.765625)
+texture = ExtResource("2_dbudc")
