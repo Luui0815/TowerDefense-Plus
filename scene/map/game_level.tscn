@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://csgpolhvv8q5k"]
+
+[ext_resource type="Script" path="res://script/map/game_level.cs" id="1_pmkih"]
+[ext_resource type="Texture2D" uid="uid://d3y3aew5mpsuv" path="res://assets/texture/buttons/TurnOffButton.png" id="2_dyttk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5yc3"]
+font_size = 36
+
+[node name="GameLevel" type="Node2D"]
+script = ExtResource("1_pmkih")
+
+[node name="TitelLabel" type="Label" parent="."]
+offset_right = 1279.0
+offset_bottom = 52.0
+text = "LEVEL 1"
+label_settings = SubResource("LabelSettings_j5yc3")
+horizontal_alignment = 1
+
+[node name="PauseButton" type="Button" parent="."]
+offset_left = 1114.0
+offset_top = 3.0
+offset_right = 1216.0
+offset_bottom = 58.0
+text = "Pause
+"
+
+[node name="ExitButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.955
+anchor_right = 1.0
+anchor_bottom = 0.081
+offset_left = 1219.0
+offset_top = 3.0
+offset_right = 1277.0
+offset_bottom = 61.0
+mouse_default_cursor_shape = 2
+action_mode = 0
+button_mask = 5
+icon = ExtResource("2_dyttk")
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exitLevel_button_pressed"]
