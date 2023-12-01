@@ -8,11 +8,11 @@ public partial class game_level : Node2D
 
 	public override void _Ready()
 	{
-		_pauseButton=GetNode<Button>("PauseButton");
-		_exitButton=GetNode<Button>("ExitButton");
+		_pauseButton = GetNode<Button>("PauseButton");
+		_exitButton = GetNode<Button>("ExitButton");
 	}
 
-	
+
 	public override void _Process(double delta)
 	{
 	}
@@ -21,7 +21,7 @@ public partial class game_level : Node2D
 	{
 		ConfirmationPopup _confirmationPopup = (ConfirmationPopup)GD.Load<PackedScene>("res://scene//ui//ConfirmationPopup.tscn").Instantiate();
 		_confirmationPopup.Init("Willst du wirklich das Level verlassen?", "Level verlassen");
-		_confirmationPopup.Confirmed += () => QueueFree(); 
+		_confirmationPopup.Confirmed += () => QueueFree();
 		AddChild(_confirmationPopup);
 	}
 

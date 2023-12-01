@@ -3,8 +3,9 @@ using System;
 
 public partial class MapField : Control
 {
-	
-	public enum FieldType {
+
+	public enum FieldType
+	{
 		Normal
 	}
 }
