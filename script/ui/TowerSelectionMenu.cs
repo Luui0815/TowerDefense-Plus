@@ -53,14 +53,30 @@ public partial class TowerSelectionMenu : Node
             Label towerLabel = new();
             towerLabel.Text = towerLabel.Name = clickedButton.Text;
             _selectedTowersContainer.AddChild(towerLabel);
-            _availableTowerNumberDisplay.Text = "Noch " + (4 - _selectedTowerCount) + " Tuerme auswaehlbar.";
+
+            if (_selectedTowerCount == 3)
+            {
+                _availableTowerNumberDisplay.Text = "Noch 1 Turm auswaehlbar.";
+            }
+            else
+            {
+                _availableTowerNumberDisplay.Text = "Noch " + (4 - _selectedTowerCount) + " Tuerme auswaehlbar.";
+            }
         }
         else
         {
             _selectedTowers.Remove(clickedButton.Text);
             _selectedTowerCount--;
             _selectedTowersContainer.GetNode(clickedButton.Text).QueueFree();
-            _availableTowerNumberDisplay.Text = "Noch " + (4 - _selectedTowerCount) + " Tuerme auswaehlbar.";
+
+            if (_selectedTowerCount == 3)
+            {
+                _availableTowerNumberDisplay.Text = "Noch 1 Turm auswaehlbar.";
+            }
+            else
+            {
+                _availableTowerNumberDisplay.Text = "Noch " + (4 - _selectedTowerCount) + " Tuerme auswaehlbar.";
+            }
         }
 
         CheckStartLevelButton();
