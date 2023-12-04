@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://cpxgq32kry88s"]
+[gd_scene load_steps=2 format=3 uid="uid://cpxgq32kry88s"]
+
+[ext_resource type="Script" path="res://script/map/level/LevelOne.cs" id="1_psca5"]
 
 [node name="LevelOne" type="Node2D"]
+script = ExtResource("1_psca5")
+
+[node name="PauseButton" type="Button" parent="."]
+offset_left = 1172.0
+offset_right = 1280.0
+offset_bottom = 60.0
+text = "PauseButton"
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 1060.0
+offset_right = 1160.0
+offset_bottom = 60.0
+text = "Start"
+
+[node name="TowerItemContainer" type="VBoxContainer" parent="."]
+offset_left = 1062.0
+offset_top = 81.0
+offset_right = 1279.0
+offset_bottom = 719.0
+
+[connection signal="pressed" from="PauseButton" to="." method="OnPauseLevelButtonPressed"]
+[connection signal="pressed" from="StartButton" to="." method="OnStartLevelButtonPressed"]

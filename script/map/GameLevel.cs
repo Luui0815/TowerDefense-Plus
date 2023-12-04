@@ -1,11 +1,13 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TowerDefense;
 
 public abstract partial class GameLevel : Node2D
 {
     private readonly HashSet<int> _completedLanes = new();
+    private readonly MapLane[] _lanes = new MapLane[5];
     //private EnemySpawner _spawner;
     private bool _levelStarted = false;
 
@@ -14,6 +16,14 @@ public abstract partial class GameLevel : Node2D
         get
         {
             return _levelStarted;
+        }
+    }
+
+    public MapLane[] Lanes
+    {
+        get
+        {
+            return _lanes;
         }
     }
 
@@ -39,12 +49,21 @@ public abstract partial class GameLevel : Node2D
 
     public override void _Ready()
     {
-
+        PackedScene laneScene = GD.Load<PackedScene>("res://scene//map/MapLane.tscn");
+        for (int i = 0; i<5; i++)
+        {
+            MapLane lane = (MapLane) laneScene.Instantiate();
+            lane.Init(i, GetFieldTypeRow(i));
+            lane.EnemyCrossedLane += (laneNr) => OnEnemyCrossedLane(laneNr);
+            lane.AllEnemiesDefeated += (laneNr) => OnAllEnemiesDefeated(laneNr);
+            AddChild(lane);
+            _lanes[i] = lane;
+        }
     }
 
     public void FillTowerContainer()
     {
-
+        //TODO: Fill item container
     }
 
     /*
@@ -56,6 +75,7 @@ public abstract partial class GameLevel : Node2D
 
     protected void OnStartLevelButtonPressed()
     {
+        GetNode<Button>("StartButton").QueueFree();
         _levelStarted = true;
         //_spawner.Start();
     }
@@ -66,12 +86,12 @@ public abstract partial class GameLevel : Node2D
         //TODO: Open pause screen
     }
 
-    protected void OnEnemyCrossedLane(int laneNr)
+    private void OnEnemyCrossedLane(int laneNr)
     {
         //TODO: Show defeat screen
     }
 
-    protected void OnAllEnemiesDefeated(int laneNr)
+    private void OnAllEnemiesDefeated(int laneNr)
     {
         /*
         if (_spawner.Finished)
@@ -83,5 +103,13 @@ public abstract partial class GameLevel : Node2D
             }
         }
         */
+    }
+
+    private FieldType[] GetFieldTypeRow(int index)
+    {
+        index = Math.Clamp(index, 0, 4);
+        return Enumerable.Range(0, FieldTypes.GetLength(1))
+            .Select(x => FieldTypes[index, x])
+            .ToArray();
     }
 }

@@ -7,9 +7,9 @@ namespace TowerDefense
 	{
 		Normal
 	}
-	
+
 	public partial class MapField : Control
 	{
-		
+
 	}
 }
