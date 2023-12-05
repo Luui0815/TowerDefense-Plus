@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bun2c41yhaett"]
+[gd_scene load_steps=5 format=3 uid="uid://bun2c41yhaett"]
 
 [ext_resource type="Texture2D" uid="uid://11c8mm6e5lsy" path="res://assets/background/PixleCastle.png" id="1_lhq8s"]
-[ext_resource type="Texture2D" uid="uid://b65ebyk86d3k" path="res://assets/button/StoneButton.png" id="2_4qbh7"]
+[ext_resource type="Texture2D" uid="uid://b65ebyk86d3k" path="res://assets/button/Stonebutton.png" id="2_4qbh7"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="3_2mpoe"]
+[ext_resource type="Texture2D" uid="uid://ceh7jn57xacd1" path="res://assets/button/StonebuttonPressed.png" id="3_757rl"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -38,6 +39,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 8
 alignment = 1
 
 [node name="SelectLevel" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
@@ -45,10 +47,11 @@ custom_minimum_size = Vector2(450, 85)
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("2_4qbh7")
+texture_pressed = ExtResource("3_757rl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Text" type="Label" parent="MenuMargCont/ButtonsVBoxCont/SelectLevel"]
+[node name="LabelSelectButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/SelectLevel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,10 +74,11 @@ custom_minimum_size = Vector2(450, 85)
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("2_4qbh7")
+texture_pressed = ExtResource("3_757rl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Text1" type="Label" parent="MenuMargCont/ButtonsVBoxCont/Options"]
+[node name="LabelOptionButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/Options"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,10 +101,11 @@ custom_minimum_size = Vector2(450, 85)
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("2_4qbh7")
+texture_pressed = ExtResource("3_757rl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Text1" type="Label" parent="MenuMargCont/ButtonsVBoxCont/AboutProject"]
+[node name="LabelProjectButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/AboutProject"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,15 +123,21 @@ text = "ABOUT THIS GAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SpaceButton" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
+custom_minimum_size = Vector2(450, 165)
+layout_mode = 2
+button_mask = 0
+
 [node name="Exit" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
 custom_minimum_size = Vector2(450, 85)
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("2_4qbh7")
+texture_pressed = ExtResource("3_757rl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Text1" type="Label" parent="MenuMargCont/ButtonsVBoxCont/Exit"]
+[node name="LabelExitButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/Exit"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,7 +155,7 @@ text = "CLOSE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="MenuMargCont"]
+[node name="LabelGameTitle" type="Label" parent="MenuMargCont"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_2mpoe")
