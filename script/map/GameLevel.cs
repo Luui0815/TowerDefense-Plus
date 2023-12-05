@@ -62,17 +62,21 @@ public abstract partial class GameLevel : Node2D
     {
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
+        Vector2 Position = new Vector2(0, 0);
 
         PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
         for (int i = 0; i<5; i++)
         {
-            MapLane lane = (MapLane) laneScene.Instantiate();
-            lane.Init(i, GetFieldTypeRow(i));
+            //MapLane lane = (MapLane) laneScene.Instantiate();
+            MapLane lane = (MapLane)GD.Load<PackedScene>("res://scene/map/MapLane.tscn").Instantiate();
+            lane.Init(1, GetFieldTypeRow(i),i);
+            lane.Position = Position;
             lane.Name = "MapLane" + i;
             lane.EnemyCrossedLane += (laneNr) => OnEnemyCrossedLane(laneNr);
             lane.AllEnemiesDefeated += (laneNr) => OnAllEnemiesDefeated(laneNr);
             AddChild(lane);
             _lanes[i] = lane;
+            Position.Y += 144;
         }
 
 
