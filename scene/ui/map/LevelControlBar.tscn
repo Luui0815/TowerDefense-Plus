@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cph6w2yafda7f"]
+[gd_scene load_steps=7 format=3 uid="uid://cph6w2yafda7f"]
 
 [ext_resource type="Texture2D" uid="uid://ct4pl4cxo45ho" path="res://assets/texture/map/LevelControlBar.png" id="1_cnujt"]
+[ext_resource type="Script" path="res://script/ui/map/LevelControlBar.cs" id="1_s5i7c"]
 [ext_resource type="Theme" uid="uid://bmdbvi544mbu2" path="res://scene/ui/map/LevelControlBarTheme.tres" id="2_0yxdt"]
 [ext_resource type="Texture2D" uid="uid://bb77l2iirrjq1" path="res://assets/texture/buttons/PlayButton.png" id="2_kabve"]
 [ext_resource type="Texture2D" uid="uid://cqkc88ch7ypg3" path="res://assets/texture/buttons/PauseButton.png" id="3_upghf"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_s5i7c")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 1080.0
@@ -77,7 +79,7 @@ expand_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
-text = "2000
+text = "0
 "
 
 [node name="TowerContainer" type="MarginContainer" parent="ControlBar/VBoxContainer"]
@@ -89,3 +91,6 @@ theme_override_constants/margin_right = 20
 [node name="TowerItemContainer" type="VBoxContainer" parent="ControlBar/VBoxContainer/TowerContainer"]
 custom_minimum_size = Vector2(160, 472)
 layout_mode = 2
+
+[connection signal="pressed" from="ControlBar/VBoxContainer/ButtonContainer/HBoxContainer/StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="ControlBar/VBoxContainer/ButtonContainer/HBoxContainer/PauseButton" to="." method="OnPauseButtonPressed"]

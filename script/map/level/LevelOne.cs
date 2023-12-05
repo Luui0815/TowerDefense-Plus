@@ -4,12 +4,12 @@ using TowerDefense;
 
 public partial class LevelOne : GameLevel
 {
-    //TODO: Change start money
-    public override int CurrentMoney 
-    { 
-        get; 
-        set; 
-    } = 999;
+
+    public LevelOne()
+    {
+        //TODO: Change start money
+        _currentMoney = 999;
+    }
 
     protected override int LevelNumber
     {
@@ -34,5 +34,4 @@ public partial class LevelOne : GameLevel
         { FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal },
         { FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal }
     };
-
 }

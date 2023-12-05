@@ -6,9 +6,11 @@ using TowerDefense;
 
 public abstract partial class GameLevel : Node2D
 {
+    protected int _currentMoney = 0;
     private readonly HashSet<int> _completedLanes = new();
     private readonly MapLane[] _lanes = new MapLane[5];
     //private EnemySpawner _spawner;
+    private LevelControlBar _levelControlBar;
     private bool _levelStarted = false;
 
     public bool LevelStarted
@@ -27,9 +29,18 @@ public abstract partial class GameLevel : Node2D
         }
     }
 
-    public abstract int CurrentMoney
+    public int CurrentMoney
     {
-        get; set;
+        get
+        {
+            return _currentMoney;
+        }
+
+        set
+        {
+            _currentMoney = Math.Clamp(value, 0, 99999);
+            _levelControlBar.DisplayMoney(_currentMoney);
+        }
     }
 
     protected abstract int LevelNumber
@@ -49,6 +60,9 @@ public abstract partial class GameLevel : Node2D
 
     public override void _Ready()
     {
+        _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
+        _levelControlBar.DisplayMoney(CurrentMoney);
+
         PackedScene laneScene = GD.Load<PackedScene>("res://scene//map/MapLane.tscn");
         for (int i = 0; i<5; i++)
         {
@@ -74,9 +88,14 @@ public abstract partial class GameLevel : Node2D
     }
     */
 
-    protected void OnStartLevelButtonPressed()
+    public void ChangeMoney(int newMoney)
     {
-        GetNode<Button>("StartButton").QueueFree();
+        CurrentMoney = newMoney;
+    }
+
+    protected void OnStartLevelButtonPressed(Button button)
+    {
+        button.QueueFree();
         _levelStarted = true;
         //_spawner.Start();
     }

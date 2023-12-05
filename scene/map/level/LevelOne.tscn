@@ -7,3 +7,6 @@
 script = ExtResource("1_psca5")
 
 [node name="LevelControlBar" parent="." instance=ExtResource("2_i75gx")]
+
+[connection signal="PauseButtonPressed" from="LevelControlBar" to="." method="OnPauseLevelButtonPressed"]
+[connection signal="StartButtonPressed" from="LevelControlBar" to="." method="OnStartLevelButtonPressed"]
