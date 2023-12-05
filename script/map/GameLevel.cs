@@ -63,7 +63,7 @@ public abstract partial class GameLevel : Node2D
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
 
-        PackedScene laneScene = GD.Load<PackedScene>("res://scene//map/MapLane.tscn");
+        PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
         for (int i = 0; i<5; i++)
         {
             MapLane lane = (MapLane) laneScene.Instantiate();
@@ -74,11 +74,32 @@ public abstract partial class GameLevel : Node2D
             AddChild(lane);
             _lanes[i] = lane;
         }
+
+
+        List<string> strings = new List<string>
+        {
+            "knight",
+            "knight",
+            "knight",
+            "knight"
+        };
+        FillTowerContainer(strings);
     }
 
-    public void FillTowerContainer()
+    public void FillTowerContainer(List<string> towerNames)
     {
         //TODO: Fill item container
+
+        PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
+        TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
+        foreach (string towerName in towerNames)
+        {
+            TowerSettings towerSettings = towerConfig.GetTowerSettingsByName(towerName);
+
+            TowerContainerItem item = (TowerContainerItem) towerItemScene.Instantiate();
+            item.Init(towerName, towerSettings.Cost);
+            _levelControlBar.AddTowerButton(item);
+        }
     }
 
     /*
