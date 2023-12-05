@@ -15,12 +15,12 @@ public partial class DragItem : Control
 	{
 	}
 
-    public override Variant _GetDragData(Vector2 atPosition)
-    {
+	public override Variant _GetDragData(Vector2 atPosition)
+	{
 		string Info;
-        Dropitem di2 = (Dropitem)GD.Load<PackedScene>("res://scene/map/Dropitem.tscn").Instantiate();
-        SetDragPreview(di2);
+		Dropitem di2 = (Dropitem)GD.Load<PackedScene>("res://scene/map/Dropitem.tscn").Instantiate();
+		SetDragPreview(di2);
 		Info = di2.GetPath();
 		return Info;
-    }
+	}
 }

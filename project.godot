@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="SWE-Tower-Defense"
-run/main_scene="res://scene/map/game_level.tscn"
-config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+run/main_scene="res://scene/map/level/LevelOne.tscn"
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 PlayerData="*res://singleton/PlayerData.cs"
+TowerConfig="*res://singleton/TowerConfig.cs"
 
 [display]
 
