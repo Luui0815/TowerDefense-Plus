@@ -93,6 +93,7 @@ theme_override_constants/margin_right = 20
 [node name="TowerItemContainer" type="VBoxContainer" parent="ControlBar/VBoxContainer/TowerContainer"]
 custom_minimum_size = Vector2(160, 472)
 layout_mode = 2
+theme_override_constants/separation = 72
 
 [connection signal="pressed" from="ControlBar/VBoxContainer/ButtonContainer/HBoxContainer/StartButton" to="." method="OnStartButtonPressed"]
 [connection signal="pressed" from="ControlBar/VBoxContainer/ButtonContainer/HBoxContainer/PauseButton" to="." method="OnPauseButtonPressed"]
