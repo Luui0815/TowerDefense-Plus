@@ -5,6 +5,7 @@ public partial class LevelControlBar : Control
 {
 	private Label _moneyLabel;
 	private Button _startButton;
+	private VBoxContainer _towerItemContainer;
 
 	[Signal]
 	public delegate void StartButtonPressedEventHandler(Button startButton);
@@ -16,11 +17,17 @@ public partial class LevelControlBar : Control
     {
         _moneyLabel = GetNode<Label>("ControlBar/VBoxContainer/MoneyContainer/CenterContainer/HBoxContainer/MoneyLabel");
 		_startButton = GetNode<Button>("ControlBar/VBoxContainer/ButtonContainer/HBoxContainer/StartButton");
+		_towerItemContainer = GetNode<VBoxContainer>("ControlBar/VBoxContainer/TowerContainer/TowerItemContainer");
     }
 
     public void DisplayMoney(int money)
 	{
 		_moneyLabel.Text = Convert.ToString(money);
+	}
+
+	public void AddTowerButton(TowerContainerItem item)
+	{
+		_towerItemContainer.AddChild(item);
 	}
 
 	public void OnStartButtonPressed()
