@@ -1,8 +1,8 @@
 {
     "towers": [
         {
-            "name": "",
-            "cost": 0,
+            "name": "knight",
+            "cost": 300,
             "upgrade_names": [
                 "",
                 "",
