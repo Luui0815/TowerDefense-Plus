@@ -64,7 +64,6 @@ public abstract partial class GameLevel : Node2D
         _levelControlBar.DisplayMoney(CurrentMoney);
 
         Vector2 position = Vector2.Zero;
-
         PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
         for (int i = 0; i < 5; i++)
         {
@@ -93,6 +92,10 @@ public abstract partial class GameLevel : Node2D
         FillTowerContainer(strings);
     }
 
+    /// <summary>
+    /// Fills the tower inventory with the specified towers
+    /// </summary>
+    /// <param name="towerNames">The names of the towers added to the inventory</param>
     public void FillTowerContainer(List<string> towerNames)
     {
         PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
@@ -114,6 +117,10 @@ public abstract partial class GameLevel : Node2D
     }
     */
 
+    /// <summary>
+    /// Changes the money amount which the player has
+    /// </summary>
+    /// <param name="newMoney">The new money amount</param>
     public void ChangeMoney(int newMoney)
     {
         CurrentMoney = newMoney;

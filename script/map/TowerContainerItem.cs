@@ -7,6 +7,11 @@ public partial class TowerContainerItem : Control
     private string _towerName;
     private int _towerCost;
 
+    /// <summary>
+    /// Initializes the item with the tower which should be displayed
+    /// </summary>
+    /// <param name="towerName">The name of the tower</param>
+    /// <param name="towerCost">The cost of the tower</param>
     public void Init(string towerName, int towerCost)
     {
         _towerName = towerName;
