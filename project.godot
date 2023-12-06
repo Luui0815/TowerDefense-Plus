@@ -29,3 +29,7 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="SWE-Tower-Defense"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
