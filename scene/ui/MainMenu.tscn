@@ -42,7 +42,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 alignment = 1
 
-[node name="ButtonSelectLevel" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
+[node name="SelectLevel" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
 custom_minimum_size = Vector2(450, 85)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -51,7 +51,7 @@ texture_pressed = ExtResource("3_757rl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="LabelSelectButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/ButtonSelectLevel"]
+[node name="LabelSelectButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/SelectLevel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,7 +69,7 @@ text = "SELECT LEVEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonOptions" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
+[node name="Options" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
 custom_minimum_size = Vector2(450, 85)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -78,7 +78,7 @@ texture_pressed = ExtResource("3_757rl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="LabelOptionButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/ButtonOptions"]
+[node name="LabelOptionButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/Options"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,7 +96,7 @@ text = "OPTIONS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonAboutProject" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
+[node name="AboutProject" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
 custom_minimum_size = Vector2(450, 85)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -105,7 +105,7 @@ texture_pressed = ExtResource("3_757rl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="LabelProjectButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/ButtonAboutProject"]
+[node name="LabelProjectButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/AboutProject"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,7 +128,7 @@ custom_minimum_size = Vector2(450, 165)
 layout_mode = 2
 button_mask = 0
 
-[node name="ButtonExit" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
+[node name="Exit" type="TextureButton" parent="MenuMargCont/ButtonsVBoxCont"]
 custom_minimum_size = Vector2(450, 85)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -137,7 +137,7 @@ texture_pressed = ExtResource("3_757rl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="LabelExitButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/ButtonExit"]
+[node name="LabelExitButton" type="Label" parent="MenuMargCont/ButtonsVBoxCont/Exit"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
