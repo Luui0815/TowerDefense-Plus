@@ -81,7 +81,7 @@ public abstract partial class GameLevel : Node2D
         }
     }
 
-    public void FillTowerContainer(List<string> towerNames)
+    public void FillTowerContainer(SortedSet<string> towerNames)
     {
         PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");

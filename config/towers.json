@@ -61,8 +61,8 @@
             "ranged": false
         },
         {
-            "name": "fire_trap",
-            "cost": 50,
+            "name": "wall",
+            "cost": 250,
             "upgrade_names": [
                 "",
                 "",
@@ -76,8 +76,8 @@
             "ranged": false
         },
         {
-            "name": "wall",
-            "cost": 250,
+            "name": "fire_trap",
+            "cost": 50,
             "upgrade_names": [
                 "",
                 "",

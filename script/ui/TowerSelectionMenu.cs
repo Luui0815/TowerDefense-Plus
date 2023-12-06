@@ -11,12 +11,15 @@ public partial class TowerSelectionMenu : Node
 
     private string _levelNumber;
     private int _selectedTowerCount = 0;
-    private List<string> _selectedTowers = new();
+    private SortedSet<string> _selectedTowers;
 
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
+        _selectedTowers = new SortedSet<string>(new TowerComparer(towerConfig));
+
         _playerData = GetNode<PlayerData>("/root/PlayerData");
         _availableTowersContainer = GetNode<GridContainer>("AvailableTowersContainer");
         _selectedTowersContainer = GetNode<GridContainer>("SelectedTowersContainer");
