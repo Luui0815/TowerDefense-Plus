@@ -14,14 +14,17 @@ public partial class MapLane : Node2D
 	public void Init(int laneNr, FieldType[] fieldTypes)
 	{
 		_laneNr = laneNr;
-
+		
+		//GD.Print(this.Position);//immer 0
 		PackedScene fieldScene = GD.Load<PackedScene>("res://scene/map/MapField.tscn");
-		Vector2 fieldPosition = Vector2.Zero;
+		Vector2 fieldPosition = new Vector2(0,0);
 		for (int i = 0; i < 10; i++)
 		{
 			MapField field = (MapField)fieldScene.Instantiate();
 			field.Init(fieldTypes[i], i + (10 * laneNr));
+			//field.Size= new Vector2(108,144);
 			field.Position = fieldPosition;
+			GD.Print(laneNr + " " +fieldPosition);
 			AddChild(field);
 			fieldPosition.X += 108;
 		}

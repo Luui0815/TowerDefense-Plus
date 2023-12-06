@@ -40,15 +40,17 @@ namespace TowerDefense
 
 		public override bool _CanDropData(Vector2 atPosition, Variant data)
 		{
+			GD.Print("ja");
 			if(Tower==null)
 				return true; 
 			else
 				return false;
-			GD.Print("ja");
+			
 		}
 
 		public override void _DropData(Vector2 atPosition, Variant data)
 		{
+			GD.Print("ja2");
 			Tower = (TowerContainerItem) data;
 			AddChild(Tower);
 		}

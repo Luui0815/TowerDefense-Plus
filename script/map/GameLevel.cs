@@ -70,6 +70,7 @@ public abstract partial class GameLevel : Node2D
             MapLane lane = (MapLane)laneScene.Instantiate();
             lane.Init(i, GetFieldTypeRow(i));
             lane.Position = position;
+            //GD.Print(i + " " +position);//passt
             lane.Name = "MapLane" + i;
             lane.EnemyCrossedLane += (laneNr) => OnEnemyCrossedLane(laneNr);
             lane.AllEnemiesDefeated += (laneNr) => OnAllEnemiesDefeated(laneNr);
