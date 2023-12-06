@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl3jsrdk5p14a"]
+[gd_scene load_steps=2 format=3 uid="uid://uvijb0nfa6fc"]
 
 [ext_resource type="Script" path="res://script/map/MapField.cs" id="1_lc11e"]
 

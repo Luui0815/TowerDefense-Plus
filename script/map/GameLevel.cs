@@ -79,21 +79,9 @@ public abstract partial class GameLevel : Node2D
             _lanes[i] = lane;
             position.Y += 144;
         }
-
-
-        List<string> strings = new List<string>
-        {
-            "knight",
-            "spearman",
-            "goldmine",
-            "wall",
-            "archer",
-            "fire_trap"
-        };
-        FillTowerContainer(strings);
     }
 
-    public void FillTowerContainer(List<string> towerNames)
+    public void FillTowerContainer(SortedSet<string> towerNames)
     {
         PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
