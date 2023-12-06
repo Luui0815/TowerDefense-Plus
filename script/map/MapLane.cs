@@ -11,6 +11,8 @@ public partial class MapLane : Node2D
 	[Signal]
 	public delegate void EnemyCrossedLaneEventHandler(int laneNr);
 
+	public MapField[] _fields =new MapField[10];
+
 	public void Init(int laneNr, FieldType[] fieldTypes)
 	{
 		_laneNr = laneNr;
@@ -27,6 +29,7 @@ public partial class MapLane : Node2D
 			GD.Print(laneNr + " " +fieldPosition);
 			AddChild(field);
 			fieldPosition.X += 108;
+			_fields[i] = field;
 		}
 	}
 }

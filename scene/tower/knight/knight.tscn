@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://che5tv3yp1b0p"]
+
+[ext_resource type="Script" path="res://script/tower/knight/knight.cs" id="1_sqy6k"]
+[ext_resource type="Texture2D" uid="uid://bwuct104uhg45" path="res://assets/Defenders/Knight/Knight_idle8.png" id="2_4xlot"]
+[ext_resource type="Texture2D" uid="uid://d2t6msgjjdudt" path="res://assets/Defenders/Knight/Knight_idle9.png" id="3_csbms"]
+[ext_resource type="Texture2D" uid="uid://dru3lqcehny0u" path="res://assets/Defenders/Knight/Knight_idle10.png" id="4_qyllg"]
+[ext_resource type="Texture2D" uid="uid://bnoxmvtv3f111" path="res://assets/Defenders/Knight/Knight_idle12.png" id="5_7nos0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_igdp5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4xlot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_csbms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qyllg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qyllg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_csbms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4xlot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7nos0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[node name="Knight_Defender" type="Node2D"]
+script = ExtResource("1_sqy6k")
+
+[node name="Knight" type="AnimatedSprite2D" parent="."]
+position = Vector2(54, 72)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_igdp5")
+animation = &"idle"
+frame_progress = 0.544576

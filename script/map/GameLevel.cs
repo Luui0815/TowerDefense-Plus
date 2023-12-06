@@ -80,6 +80,16 @@ public abstract partial class GameLevel : Node2D
             position.Y += 144;
         }
 
+        foreach (MapLane lane in _lanes)
+        {
+            foreach (MapField field in lane._fields)
+            {
+                //field.Connect("Defender_placed", nameof(defender_placed));
+                //field.Connect("",nameof(defender_placed))
+            }
+        }
+
+        //GetNode<SenderNode>("Pfad/Zur/Sendenden/Node").Connect("MeinSignal", this, nameof(OnMeinSignal));
 
         List<string> strings = new List<string>
         {
@@ -165,5 +175,10 @@ public abstract partial class GameLevel : Node2D
         return Enumerable.Range(0, FieldTypes.GetLength(1))
             .Select(x => FieldTypes[index, x])
             .ToArray();
+    }
+
+    private void defender_placed(int cost)
+    {
+
     }
 }

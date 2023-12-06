@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 
+
 namespace TowerDefense
 {
 	public enum FieldType
@@ -10,10 +11,13 @@ namespace TowerDefense
 
 	public partial class MapField : Control
 	{
+		[Signal]
+        public delegate void Defender_placedEventHandler(int cost); 
+
 		private static Dictionary<FieldType, Texture2D> _fieldTextureCache = new();
 		private int _fieldNr;
 		private Sprite2D _sprite;
-		private Sprite2D _provTower;
+		private knight _provTower;
 		private bool _Towerset;
 
 		public void Init(FieldType fieldType, int fieldNumber)
@@ -51,11 +55,27 @@ namespace TowerDefense
 		{
 			string towerName=(string) data;
 
-			Sprite2D _provTower=new Sprite2D();
-			//_provTower.Transform=new Vector2(98,134);
-			_provTower.Texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{towerName}.png");
-			AddChild(_provTower);
-			_Towerset=true;
+			switch (towerName)
+			{
+				case "knight":
+				{
+                    _provTower = (knight) GD.Load<PackedScene>($"res://scene/tower/knight/{towerName}.tscn").Instantiate();
+					AddChild( _provTower );
+					EmitSignal(SignalName.Defender_placed,_provTower.Cost);
+					break;
+
+                }
+				default:
+				{
+					Sprite2D _provTower2 = new Sprite2D();
+                    //_provTower.Transform=new Vector2(98,134);
+					_provTower2.Texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{towerName}.png");
+					AddChild(_provTower);
+					_Towerset = true;
+					break;
+                }
+			}
+
 		}
 
 
