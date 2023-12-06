@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://ballro401mjon"]
+
+[ext_resource type="Script" path="res://scene/ui/victory_screne.gd" id="1_1u3jn"]
+[ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="1_s6c6t"]
+[ext_resource type="Texture2D" uid="uid://boomb8pebxv8m" path="res://assets/button/Stonebutton1.png" id="2_sooa4"]
+[ext_resource type="Texture2D" uid="uid://ceh7jn57xacd1" path="res://assets/button/StonebuttonPressed.png" id="3_hmj8h"]
+
+[sub_resource type="Theme" id="Theme_jyh26"]
+default_font = ExtResource("1_s6c6t")
+default_font_size = 60
+
+[sub_resource type="Theme" id="Theme_vf5wb"]
+default_font = ExtResource("1_s6c6t")
+default_font_size = 15
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b2pac"]
+texture = ExtResource("2_sooa4")
+expand_margin_left = 24.0
+expand_margin_top = 18.0
+expand_margin_right = 24.0
+expand_margin_bottom = 18.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fyuck"]
+texture = ExtResource("3_hmj8h")
+
+[node name="VictoryScreen" type="Node"]
+script = ExtResource("1_1u3jn")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(700, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_jyh26")
+theme_override_colors/font_color = Color(0.713726, 1, 0, 1)
+text = "VICTORY"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme = SubResource("Theme_vf5wb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_b2pac")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fyuck")
+text = "Back to MainMenu"
+
+[connection signal="pressed" from="Panel/MarginContainer/Button" to="." method="_on_button_pressed"]
