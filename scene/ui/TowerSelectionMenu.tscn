@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://02owil8hqq3b"]
+[gd_scene load_steps=3 format=3 uid="uid://cqsfc7qbq85r8"]
 
 [ext_resource type="Script" path="res://script/ui/TowerSelectionMenu.cs" id="1_4u00d"]
 
@@ -34,10 +34,10 @@ horizontal_alignment = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
-offset_left = 835.0
-offset_top = 578.0
-offset_right = -111.0
-offset_bottom = 584.24
+offset_left = 768.0
+offset_top = 584.0
+offset_right = -178.0
+offset_bottom = 590.24
 label_settings = SubResource("LabelSettings_0jjxl")
 horizontal_alignment = 1
 

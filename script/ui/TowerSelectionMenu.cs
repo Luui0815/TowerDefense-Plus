@@ -1,8 +1,5 @@
 using Godot;
-using Godot.Collections;
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 public partial class TowerSelectionMenu : Node
 {
@@ -28,7 +25,7 @@ public partial class TowerSelectionMenu : Node
 
         _levelNumber = 1;
         _startLevelButton.Disabled = true;
-        _availableTowerNumberDisplay.Text = "Noch " + (4 - _selectedTowerCount) + " Tuerme auswaehlbar.";
+        _availableTowerNumberDisplay.Text = "Noch 4 Türme auswählbar";
         _playerData.Load();
 
         CreateTowerButtons();
@@ -37,7 +34,7 @@ public partial class TowerSelectionMenu : Node
     private void OnGoBackButtonPressed()
     {
         ConfirmationPopup confirmationPopup = (ConfirmationPopup)GD.Load<PackedScene>("res://scene//ui//ConfirmationPopup.tscn").Instantiate();
-        confirmationPopup.Init("Willst du wirklich zur Levelauswahl zurueckgehen?", "Zur Levelauswahl zurueckgehen");
+        confirmationPopup.Init("Willst du wirklich zur Levelauswahl zurückgehen?", "Zur Levelauswahl zurückgehen");
         confirmationPopup.Confirmed += () => GetTree().ChangeSceneToFile("res://scene/ui/LevelSelectionMenu.tscn");
         AddChild(confirmationPopup);
     }
@@ -46,22 +43,24 @@ public partial class TowerSelectionMenu : Node
     { 
         CheckStartLevelButton();
 
-        if (!_selectedTowers.Contains(clickedButton.Text) && (_selectedTowerCount < 4))
+        if (_selectedTowers.Contains(clickedButton.Text))
+        {
+            _selectedTowers.Remove(clickedButton.Text);
+            _selectedTowerCount--;
+            _selectedTowersContainer.GetNode(clickedButton.Text).QueueFree();
+        }
+        else if (_selectedTowerCount < 4)
         {
             _selectedTowers.Add(clickedButton.Text);
             _selectedTowerCount++;
             Label towerLabel = new();
             towerLabel.Text = towerLabel.Name = clickedButton.Text;
             _selectedTowersContainer.AddChild(towerLabel);
-            _availableTowerNumberDisplay.Text = "Noch " + (4 - _selectedTowerCount) + " Tuerme auswaehlbar.";
         }
-        else
-        {
-            _selectedTowers.Remove(clickedButton.Text);
-            _selectedTowerCount--;
-            _selectedTowersContainer.GetNode(clickedButton.Text).QueueFree();
-            _availableTowerNumberDisplay.Text = "Noch " + (4 - _selectedTowerCount) + " Tuerme auswaehlbar.";
-        }
+
+        int towerLeftCount = 4 - _selectedTowerCount;
+        string towerText = towerLeftCount == 1 ? "Turm" : "Türme";
+        _availableTowerNumberDisplay.Text = towerLeftCount > 0 ? $"Noch {towerLeftCount} {towerText} auswählbar" : "Kein Turm mehr auswählbar";
 
         CheckStartLevelButton();
     }
@@ -87,6 +86,6 @@ public partial class TowerSelectionMenu : Node
 
     private void CheckStartLevelButton()
     {
-        _startLevelButton.Disabled = _selectedTowerCount != 4;
+        _startLevelButton.Disabled = _selectedTowerCount == 0 || _selectedTowerCount > 4;
     }
 }
