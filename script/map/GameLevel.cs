@@ -83,9 +83,11 @@ public abstract partial class GameLevel : Node2D
         List<string> strings = new List<string>
         {
             "knight",
-            "knight",
-            "knight",
-            "knight"
+            "spearman",
+            "goldmine",
+            "wall",
+            "archer",
+            "fire_trap"
         };
         FillTowerContainer(strings);
     }
