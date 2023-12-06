@@ -33,7 +33,7 @@ public partial class TowerContainerItem : Control
     public override Variant _GetDragData(Vector2 atPosition)
     {
         SetDragPreview(CreateDragPreview());
-        return this;
+        return _towerName;
     }
 
     private Control CreateDragPreview()

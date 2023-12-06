@@ -11,9 +11,10 @@ namespace TowerDefense
 	public partial class MapField : Control
 	{
 		private static Dictionary<FieldType, Texture2D> _fieldTextureCache = new();
-		private TowerContainerItem Tower;
 		private int _fieldNr;
 		private Sprite2D _sprite;
+		private Sprite2D _provTower;
+		private bool _Towerset;
 
 		public void Init(FieldType fieldType, int fieldNumber)
 		{
@@ -40,19 +41,21 @@ namespace TowerDefense
 
 		public override bool _CanDropData(Vector2 atPosition, Variant data)
 		{
-			GD.Print("ja");
-			if(Tower==null)
+			if(!_Towerset)
 				return true; 
 			else
 				return false;
-			
 		}
 
 		public override void _DropData(Vector2 atPosition, Variant data)
 		{
-			GD.Print("ja2");
-			Tower = (TowerContainerItem) data;
-			AddChild(Tower);
+			string towerName=(string) data;
+
+			Sprite2D _provTower=new Sprite2D();
+			//_provTower.Transform=new Vector2(98,134);
+			_provTower.Texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{towerName}.png");
+			AddChild(_provTower);
+			_Towerset=true;
 		}
 
 
