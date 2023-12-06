@@ -84,7 +84,7 @@ public abstract partial class GameLevel : Node2D
         {
             foreach (MapField field in lane._fields)
             {
-                //field.Connect("Defender_placed", nameof(defender_placed));
+                field.Connect(MapField.SignalName.Defender_placed,new Callable(this, "defender_placed"));
                 //field.Connect("",nameof(defender_placed))
             }
         }
@@ -179,6 +179,6 @@ public abstract partial class GameLevel : Node2D
 
     private void defender_placed(int cost)
     {
-
+        ChangeMoney(CurrentMoney-cost);
     }
 }
