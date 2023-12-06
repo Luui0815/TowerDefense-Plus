@@ -18,7 +18,6 @@ public partial class MainMenu : Node
 
 	public void OnLevelSelectionButtonPressed()
 	{
-		//TODO: Implement scene switch
 		GetTree().ChangeSceneToFile("res://scene/ui/LevelSelectionMenu.tscn");
 	}
 }

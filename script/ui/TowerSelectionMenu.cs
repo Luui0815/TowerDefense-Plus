@@ -1,6 +1,8 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public partial class TowerSelectionMenu : Node
 {
@@ -8,10 +10,11 @@ public partial class TowerSelectionMenu : Node
     private GridContainer _availableTowersContainer;
     private GridContainer _selectedTowersContainer;
     private Button _startLevelButton;
+    private Label _availableTowerNumberDisplay;
 
     private int _levelNumber;
-    private int _selectedTowerCount;
-    private Array<string> _selectedTowers = new();
+    private int _selectedTowerCount = 0;
+    private List<string> _selectedTowers = new();
 
 
     // Called when the node enters the scene tree for the first time.
@@ -21,47 +24,54 @@ public partial class TowerSelectionMenu : Node
         _availableTowersContainer = GetNode<GridContainer>("AvailableTowersContainer");
         _selectedTowersContainer = GetNode<GridContainer>("SelectedTowersContainer");
         _startLevelButton = GetNode<Button>("StartLevelButton");
+        _availableTowerNumberDisplay = GetNode <Label> ("DisplayAvailableNumber");
 
         _levelNumber = 1;
-        _selectedTowerCount = 0;
+        _startLevelButton.Disabled = true;
+        _availableTowerNumberDisplay.Text = "Noch " + (4 - _selectedTowerCount) + " Tuerme auswaehlbar.";
         _playerData.Load();
 
         CreateTowerButtons();
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-        CheckStartLevelButton();
-    }
-
     private void OnGoBackButtonPressed()
     {
-        ConfirmationPopup _confirmationPopup = (ConfirmationPopup)GD.Load<PackedScene>("res://scene//ui//ConfirmationPopup.tscn").Instantiate();
-        _confirmationPopup.Init("Willst du wirklich zur Levelauswahl zurueckgehen?", "Zur Levelauswahl zurueckgehen");
-        _confirmationPopup.Confirmed += () => GetTree().ChangeSceneToFile("res://scene/ui/LevelSelectionMenu.tscn");
-        AddChild(_confirmationPopup);
+        ConfirmationPopup confirmationPopup = (ConfirmationPopup)GD.Load<PackedScene>("res://scene//ui//ConfirmationPopup.tscn").Instantiate();
+        confirmationPopup.Init("Willst du wirklich zur Levelauswahl zurueckgehen?", "Zur Levelauswahl zurueckgehen");
+        confirmationPopup.Confirmed += () => GetTree().ChangeSceneToFile("res://scene/ui/LevelSelectionMenu.tscn");
+        AddChild(confirmationPopup);
     }
 
-    private void OnTowerButtonPressed()
-    {
-        Button pressedTowerButton = GetNode<Button>("towerButton"); //???
+    private void OnTowerButtonPressed(Button clickedButton)
+    { 
+        CheckStartLevelButton();
 
-        if (!_selectedTowers.Contains(pressedTowerButton.Text) && (_selectedTowerCount < 4))
+        if (!_selectedTowers.Contains(clickedButton.Text) && (_selectedTowerCount < 4))
         {
-            _selectedTowers.Add(pressedTowerButton.Text);
+            _selectedTowers.Add(clickedButton.Text);
             _selectedTowerCount++;
+            Label towerLabel = new();
+            towerLabel.Text = towerLabel.Name = clickedButton.Text;
+            _selectedTowersContainer.AddChild(towerLabel);
+            _availableTowerNumberDisplay.Text = "Noch " + (4 - _selectedTowerCount) + " Tuerme auswaehlbar.";
         }
         else
         {
-            _selectedTowers.Remove(pressedTowerButton.Text);
+            _selectedTowers.Remove(clickedButton.Text);
             _selectedTowerCount--;
+            _selectedTowersContainer.GetNode(clickedButton.Text).QueueFree();
+            _availableTowerNumberDisplay.Text = "Noch " + (4 - _selectedTowerCount) + " Tuerme auswaehlbar.";
         }
+
+        CheckStartLevelButton();
     }
 
     private void OnStartLevelButtonPressed()
     {
-        //starte level, übergebe array mit ausgewählten türmen
+        //PackedScene gameLevel = GD.Load<PackedScene>("");
+        //GameLevel instance = (GameLevel)gameLevel.Instantiate();
+        //instance.FillTowerContainer(_selectedTowers);
+        //GetTree().ChangeSceneToFile();
     }
 
     private void CreateTowerButtons()
@@ -69,21 +79,14 @@ public partial class TowerSelectionMenu : Node
         foreach (string tower in _playerData.UnlockedTowers)
         {
             Button towerButton = new();
-            towerButton.Text = tower;
-            towerButton.Pressed += OnTowerButtonPressed;
+            towerButton.Text = towerButton.Name = tower;
+            towerButton.Pressed += () => OnTowerButtonPressed(towerButton);
             _availableTowersContainer.AddChild(towerButton);
         }
     }
 
     private void CheckStartLevelButton()
     {
-        if (_selectedTowerCount == 4)
-        {
-            _startLevelButton.Disabled = false;
-        }
-        else
-        {
-            _startLevelButton.Disabled = true;
-        }
+        _startLevelButton.Disabled = _selectedTowerCount != 4;
     }
 }

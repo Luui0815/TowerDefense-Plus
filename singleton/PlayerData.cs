@@ -9,6 +9,9 @@ public partial class PlayerData : Node
     private Array<int> _completedLevels = new();
     private Array<string> _unlockedTowers = new();
 
+    //Um Turmauswahl zu testen, Auskommentierung untere Zeile wegmachen
+    //private Array<string> test = new() { "Archer", "Knight", "Spearman", "Wall", "Catapult" };
+    
     /// <summary>
     /// The volume set by the player
     /// </summary>
@@ -107,9 +110,13 @@ public partial class PlayerData : Node
         }
 
         var dataDict = new Dictionary<string, Variant>((Dictionary)json.Data);
+        
         _volume = (int)dataDict["Volume"];
         _completedLevels = (Array<int>)dataDict["CompletedLevels"];
         _unlockedTowers = (Array<string>)dataDict["UnlockedTowers"];
+
+        //Um Turmauswahl zu testen, Auskommentierung untere Zeile wegmachen 
+        //_unlockedTowers = test; 
     }
 
     /// <summary>
