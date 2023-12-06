@@ -1,17 +1,22 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Linq;
 using System.Text.Json;
 
 public partial class PlayerData : Node
 {
     private int _volume = 100;
     private Array<int> _completedLevels = new();
-    private Array<string> _unlockedTowers = new();
+    private Array<string> _unlockedTowers = new(){
+        "knight",
+        "spearman",
+        "wall",
+        "goldmine",
+        "archer",
+        "fire_trap"
+    };
 
-    //Um Turmauswahl zu testen, Auskommentierung untere Zeile wegmachen
-    //private Array<string> test = new() { "Archer", "Knight", "Spearman", "Wall", "Catapult" };
-    
     /// <summary>
     /// The volume set by the player
     /// </summary>
@@ -110,13 +115,18 @@ public partial class PlayerData : Node
         }
 
         var dataDict = new Dictionary<string, Variant>((Dictionary)json.Data);
-        
+
         _volume = (int)dataDict["Volume"];
         _completedLevels = (Array<int>)dataDict["CompletedLevels"];
-        _unlockedTowers = (Array<string>)dataDict["UnlockedTowers"];
 
-        //Um Turmauswahl zu testen, Auskommentierung untere Zeile wegmachen 
-        //_unlockedTowers = test; 
+        Array<string> savedUnlocks = (Array<string>)dataDict["UnlockedTowers"];
+        foreach (string unlockedTower in savedUnlocks)
+        {
+            if (!_unlockedTowers.Contains(unlockedTower))
+            {
+                _unlockedTowers.Add(unlockedTower);
+            }
+        }
     }
 
     /// <summary>
