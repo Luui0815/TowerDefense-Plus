@@ -9,7 +9,7 @@ public partial class TowerSelectionMenu : Node
     private Button _startLevelButton;
     private Label _availableTowerNumberDisplay;
 
-    private int _levelNumber;
+    private string _levelNumber;
     private int _selectedTowerCount = 0;
     private List<string> _selectedTowers = new();
 
@@ -23,7 +23,8 @@ public partial class TowerSelectionMenu : Node
         _startLevelButton = GetNode<Button>("StartLevelButton");
         _availableTowerNumberDisplay = GetNode <Label> ("DisplayAvailableNumber");
 
-        _levelNumber = 1;
+        //TODO: Remove hardcoded value
+        _levelNumber = "One";
         _startLevelButton.Disabled = true;
         _availableTowerNumberDisplay.Text = "Noch 4 Türme auswählbar";
         _playerData.Load();
@@ -67,10 +68,11 @@ public partial class TowerSelectionMenu : Node
 
     private void OnStartLevelButtonPressed()
     {
-        //PackedScene gameLevel = GD.Load<PackedScene>("");
-        //GameLevel instance = (GameLevel)gameLevel.Instantiate();
-        //instance.FillTowerContainer(_selectedTowers);
-        //GetTree().ChangeSceneToFile();
+        PackedScene levelScene = GD.Load<PackedScene>($"res://scene/map/level/Level{_levelNumber}.tscn");
+        GameLevel gameLevel = (GameLevel)levelScene.Instantiate();
+        GetTree().Root.AddChild(gameLevel);
+        gameLevel.FillTowerContainer(_selectedTowers);
+        QueueFree();
     }
 
     private void CreateTowerButtons()

@@ -79,18 +79,6 @@ public abstract partial class GameLevel : Node2D
             _lanes[i] = lane;
             position.Y += 144;
         }
-
-
-        List<string> strings = new List<string>
-        {
-            "knight",
-            "spearman",
-            "goldmine",
-            "wall",
-            "archer",
-            "fire_trap"
-        };
-        FillTowerContainer(strings);
     }
 
     public void FillTowerContainer(List<string> towerNames)
