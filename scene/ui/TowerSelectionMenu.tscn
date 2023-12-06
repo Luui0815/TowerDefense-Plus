@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://02owil8hqq3b"]
+
+[ext_resource type="Script" path="res://script/ui/TowerSelectionMenu.cs" id="1_4u00d"]
+
+[node name="TowerSelectionMenu" type="Node"]
+script = ExtResource("1_4u00d")
