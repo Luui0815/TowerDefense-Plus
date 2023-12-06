@@ -3,8 +3,6 @@ using System;
 
 namespace TowerDefense
 {
-	
-
 	public enum FieldType
 	{
 		Normal
@@ -12,24 +10,24 @@ namespace TowerDefense
 
 	public partial class MapField : Control
 	{
-        private int _fieldNr;
+		private int _fieldNr;
 		private Sprite2D _sprite;
 
-		public void Init(FieldType FT, int Fieldnumber)
-        {
-			_sprite = GetNode <Sprite2D> ("Background");
-			_fieldNr = Fieldnumber;
+		public void Init(FieldType fieldType, int fieldNumber)
+		{
+			_sprite = GetNode<Sprite2D>("Background");
+			_fieldNr = fieldNumber;
 
-			switch (FT)
+			switch (fieldType)
 			{
 				case FieldType.Normal:
 					{
-						_sprite.Texture= GD.Load<Texture2D>("res://assets/texture/Fields/normal.png");
+						_sprite.Texture = GD.Load<Texture2D>("res://assets/texture/field/Normal.png");
 						break;
-                    }
+					}
 			}
-        }
-    }
+		}
+	}
 
 
 }

@@ -34,7 +34,6 @@ public partial class TowerContainerItem : Control
 
     private Control CreateDragPreview()
     {
-        //TODO: Change to tower sprites?
         TextureRect previewNode = new TextureRect
         {
             Size = new Vector2(64, 64),

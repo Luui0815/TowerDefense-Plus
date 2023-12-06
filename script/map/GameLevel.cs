@@ -62,21 +62,22 @@ public abstract partial class GameLevel : Node2D
     {
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
-        Vector2 Position = new Vector2(0, 0);
+
+        Vector2 position = Vector2.Zero;
 
         PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
-        for (int i = 0; i<5; i++)
+        for (int i = 0; i < 5; i++)
         {
-            //MapLane lane = (MapLane) laneScene.Instantiate();
-            MapLane lane = (MapLane)GD.Load<PackedScene>("res://scene/map/MapLane.tscn").Instantiate();
-            lane.Init(1, GetFieldTypeRow(i),i);
-            lane.Position = Position;
+            MapLane lane = (MapLane)laneScene.Instantiate();
+            lane.Init(i, GetFieldTypeRow(i));
+            lane.Position = position;
             lane.Name = "MapLane" + i;
             lane.EnemyCrossedLane += (laneNr) => OnEnemyCrossedLane(laneNr);
             lane.AllEnemiesDefeated += (laneNr) => OnAllEnemiesDefeated(laneNr);
+
             AddChild(lane);
             _lanes[i] = lane;
-            Position.Y += 144;
+            position.Y += 144;
         }
 
 
@@ -94,15 +95,13 @@ public abstract partial class GameLevel : Node2D
 
     public void FillTowerContainer(List<string> towerNames)
     {
-        //TODO: Fill item container
-
         PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
         foreach (string towerName in towerNames)
         {
             TowerSettings towerSettings = towerConfig.GetTowerSettingsByName(towerName);
 
-            TowerContainerItem item = (TowerContainerItem) towerItemScene.Instantiate();
+            TowerContainerItem item = (TowerContainerItem)towerItemScene.Instantiate();
             item.Init(towerName, towerSettings.Cost);
             _levelControlBar.AddTowerButton(item);
         }
