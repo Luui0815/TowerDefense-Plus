@@ -45,7 +45,8 @@ namespace TowerDefense
 
 		public override bool _CanDropData(Vector2 atPosition, Variant data)
 		{
-			if(!_Towerset)
+			string info = (string)data;
+			if(!_Towerset && info!="")
 				return true; 
 			else
 				return false;

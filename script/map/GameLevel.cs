@@ -6,12 +6,16 @@ using TowerDefense;
 
 public abstract partial class GameLevel : Node2D
 {
+    [Signal]
+    public delegate void money_changedEventHandler(int _actmoney);
+
     protected int _currentMoney = 0;
     private readonly HashSet<int> _completedLanes = new();
     private readonly MapLane[] _lanes = new MapLane[5];
     //private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
     private bool _levelStarted = false;
+    //private TowerContainerItem[] _selectable_items = new TowerContainerItem[5];
 
     public bool LevelStarted
     {
@@ -84,7 +88,6 @@ public abstract partial class GameLevel : Node2D
             foreach (MapField field in lane._fields)
             {
                 field.Connect(MapField.SignalName.Defender_placed,new Callable(this, "defender_placed"));
-                //field.Connect("",nameof(defender_placed))
             }
         }
 
@@ -108,6 +111,7 @@ public abstract partial class GameLevel : Node2D
     /// <param name="towerNames">The names of the towers added to the inventory</param>
     public void FillTowerContainer(List<string> towerNames)
     {
+        //int i=0;
         PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
         foreach (string towerName in towerNames)
@@ -117,6 +121,8 @@ public abstract partial class GameLevel : Node2D
             TowerContainerItem item = (TowerContainerItem)towerItemScene.Instantiate();
             item.Init(towerName, towerSettings.Cost);
             _levelControlBar.AddTowerButton(item);
+            this.Connect(SignalName.money_changed, new Callable(item,"check_if_money_empty"));
+            //_selectable_items[i] = item;
         }
     }
 
@@ -179,5 +185,6 @@ public abstract partial class GameLevel : Node2D
     private void defender_placed(int cost)
     {
         ChangeMoney(CurrentMoney-cost);
+        EmitSignal(SignalName.money_changed, _currentMoney);
     }
 }
