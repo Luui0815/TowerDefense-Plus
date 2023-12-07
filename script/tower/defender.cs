@@ -1,14 +1,19 @@
 using Godot;
 using System;
 
-public partial class defender : Node2D
+public abstract partial class defender : Node2D
 {
-	private int _cost = 0; 
-    private string _name;
+	protected int _cost = 0; 
+    protected string _name;
 
-	public override void _Ready()
+	public abstract void Init();
+
+	public int cost
 	{
-
+		get
+		{
+			return _cost;
+		}
 	}
 
 }

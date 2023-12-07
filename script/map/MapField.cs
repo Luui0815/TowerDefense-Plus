@@ -17,7 +17,6 @@ namespace TowerDefense
 		private static Dictionary<FieldType, Texture2D> _fieldTextureCache = new();
 		private int _fieldNr;
 		private Sprite2D _sprite;
-		private knight _provTower;
 		private bool _Towerset;
 		private defender _Tower;
 
@@ -60,26 +59,16 @@ namespace TowerDefense
 			{
 				case "knight":
 				{
-                   /* _provTower = (knight) GD.Load<PackedScene>($"res://scene/tower/knight/{towerName}.tscn").Instantiate();
-					AddChild( _provTower );
-					EmitSignal(SignalName.Defender_placed,_provTower._cost);
-					break;*/
-
 					_Tower = (knight) GD.Load<PackedScene>($"res://scene/tower/knight/{towerName}.tscn").Instantiate();
+					_Tower.Init();
 					AddChild(_Tower);
-					EmitSignal(SignalName.Defender_placed,_provTower._cost);
+					EmitSignal(SignalName.Defender_placed,_Tower.cost);
 					_Towerset=true;
 					break;
-
                 }
 				default:
 				{
-					Sprite2D _provTower2 = new Sprite2D();
-                    //_provTower.Transform=new Vector2(98,134);
-					_provTower2.Texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{towerName}.png");
-					AddChild(_provTower);
-					_Towerset = true;
-					break;
+						break;
                 }
 			}
 
