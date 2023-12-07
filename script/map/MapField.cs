@@ -19,6 +19,7 @@ namespace TowerDefense
 		private Sprite2D _sprite;
 		private knight _provTower;
 		private bool _Towerset;
+		private defender _Tower;
 
 		public void Init(FieldType fieldType, int fieldNumber)
 		{
@@ -59,9 +60,15 @@ namespace TowerDefense
 			{
 				case "knight":
 				{
-                    _provTower = (knight) GD.Load<PackedScene>($"res://scene/tower/knight/{towerName}.tscn").Instantiate();
+                   /* _provTower = (knight) GD.Load<PackedScene>($"res://scene/tower/knight/{towerName}.tscn").Instantiate();
 					AddChild( _provTower );
-					EmitSignal(SignalName.Defender_placed,_provTower.Cost);
+					EmitSignal(SignalName.Defender_placed,_provTower._cost);
+					break;*/
+
+					_Tower = (knight) GD.Load<PackedScene>($"res://scene/tower/knight/{towerName}.tscn").Instantiate();
+					AddChild(_Tower);
+					EmitSignal(SignalName.Defender_placed,_provTower._cost);
+					_Towerset=true;
 					break;
 
                 }
