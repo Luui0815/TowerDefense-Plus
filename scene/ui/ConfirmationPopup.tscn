@@ -11,7 +11,15 @@ min_size = Vector2i(300, 300)
 max_size = Vector2i(500, 300)
 script = ExtResource("1_75v05")
 
-[node name="TextLabel" type="Label" parent="."]
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextLabel" type="Label" parent="Panel"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,19 +31,20 @@ offset_right = 230.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "Hallo"
 label_settings = SubResource("LabelSettings_0syus")
 horizontal_alignment = 1
 autowrap_mode = 3
 text_overrun_behavior = 3
 
-[node name="CancelButton" type="Button" parent="."]
+[node name="CancelButton" type="Button" parent="Panel"]
 offset_left = 20.0
 offset_top = 230.0
 offset_right = 120.0
 offset_bottom = 280.0
 text = "Abbrechen"
 
-[node name="ConfirmButton" type="Button" parent="."]
+[node name="ConfirmButton" type="Button" parent="Panel"]
 offset_left = 380.0
 offset_top = 230.0
 offset_right = 480.0
@@ -43,5 +52,5 @@ offset_bottom = 280.0
 text = "Bestätigen"
 
 [connection signal="close_requested" from="." to="." method="OnCloseRequested"]
-[connection signal="pressed" from="CancelButton" to="." method="OnCancelButtonPressed"]
-[connection signal="pressed" from="ConfirmButton" to="." method="OnConfirmButtonPressed"]
+[connection signal="pressed" from="Panel/CancelButton" to="." method="OnCancelButtonPressed"]
+[connection signal="pressed" from="Panel/ConfirmButton" to="." method="OnConfirmButtonPressed"]

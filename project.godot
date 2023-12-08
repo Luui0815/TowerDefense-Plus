@@ -12,7 +12,7 @@ config_version=5
 
 config/name="SWE-Tower-Defense"
 run/main_scene="res://scene/ui/MainMenu.tscn"
-config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -28,3 +28,7 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="SWE-Tower-Defense"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
