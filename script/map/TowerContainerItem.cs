@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public partial class TowerContainerItem : Control
 {
     private static Dictionary<string, Texture2D> _iconTextureCache = new();
+    private static Dictionary<string, Texture2D> _backgroundTextureCache = new();
     private string _towerName;
     private int _towerCost;
     private TextureRect _towerBackground;
@@ -20,7 +21,8 @@ public partial class TowerContainerItem : Control
         _towerCost = towerCost;
 
         _towerBackground = GetNode<TextureRect>("ItemBackground");
-        _towerBackground.Texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{towerName}.png");
+        //_towerBackground.Texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{towerName}.png");
+        check_if_money_empty(1000);
 
         Label towerLabel = _towerBackground.GetNode<Label>("TowerCostLabel");
         towerLabel.Text = $"{towerCost}$";
@@ -67,17 +69,31 @@ public partial class TowerContainerItem : Control
             string Name = "dark_" + _towerName;
 
             //Hide();//TODO: Felder sollen nicht verschwinden sondern ausgegarut werden
-            if(!_iconTextureCache.ContainsKey(Name))
+            if(!_backgroundTextureCache.ContainsKey(Name))
             {
                 Texture2D texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{Name}.png");
-                _iconTextureCache.Add(Name, texture);
+                _backgroundTextureCache.Add(Name, texture);
                 _towerBackground.Texture = texture;
             }
             else
             {
-                _towerBackground.Texture = _iconTextureCache[Name];
+                _towerBackground.Texture = _backgroundTextureCache[Name];
             }
             _tooexpensive = true;
+        }
+        else
+        {
+            if (!_backgroundTextureCache.ContainsKey(_towerName))
+            {
+                Texture2D texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{_towerName}.png");
+                _backgroundTextureCache.Add(_towerName, texture);
+                _towerBackground.Texture = texture;
+            }
+            else
+            {
+                _towerBackground.Texture = _backgroundTextureCache[_towerName];
+            }
+            _tooexpensive = false;
         }
     }
 }

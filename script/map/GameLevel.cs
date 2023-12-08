@@ -187,4 +187,9 @@ public abstract partial class GameLevel : Node2D
         ChangeMoney(CurrentMoney-cost);
         EmitSignal(SignalName.money_changed, _currentMoney);
     }
+
+    private void addmoney_from_mine()
+    {
+
+    }
 }

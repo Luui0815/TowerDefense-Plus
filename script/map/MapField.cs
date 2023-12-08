@@ -19,6 +19,7 @@ namespace TowerDefense
 		private Sprite2D _sprite;
 		private bool _Towerset;
 		private defender _Tower;
+		//GameLevel _level;//benoetigt um Signal von Goldmine mit Gamelevel zu Verbinden
 
 		public void Init(FieldType fieldType, int fieldNumber)
 		{
@@ -69,9 +70,23 @@ namespace TowerDefense
                 }
 				case "spearman":
 				{
-					//hier muss noch was hin
-					break;
+						_Tower = (spearman)GD.Load<PackedScene>($"res://scene/tower/spearman/{towerName}.tscn").Instantiate();
+                        _Tower.Init();
+                        AddChild(_Tower);
+                        EmitSignal(SignalName.Defender_placed, _Tower.cost);
+                        _Towerset = true;
+                        break;
 				}
+				case "goldmine":
+					{
+                        _Tower = (goldmine)GD.Load<PackedScene>($"res://scene/tower/goldmine/{towerName}.tscn").Instantiate();
+                        _Tower.Init();
+                        //_Tower.Connect(goldmine.SignalName.generated_mine_money, new Callable(_level, "addmoney_from_mine"));
+                        AddChild(_Tower);
+                        EmitSignal(SignalName.Defender_placed, _Tower.cost);
+                        _Towerset = true;
+                        break;
+                    }
 				default:
 				{
 						break;

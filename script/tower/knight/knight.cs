@@ -7,8 +7,9 @@ public partial class knight : defender
 
 	public override void Init()
 	{
-        _cost = 300;
         _name = "knight";
+		//_cost = get_Tower_cost(_name);
+		_cost = 300;
 
         _knight = GetNode<AnimatedSprite2D>("Knight");
         _knight.Play();

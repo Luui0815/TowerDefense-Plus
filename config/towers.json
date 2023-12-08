@@ -47,7 +47,7 @@
         },
         {
             "name": "goldmine",
-            "cost": 1,
+            "cost": 250,
             "upgrade_names": [
                 "",
                 "",
