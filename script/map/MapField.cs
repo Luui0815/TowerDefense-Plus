@@ -67,6 +67,11 @@ namespace TowerDefense
 					_Towerset=true;
 					break;
                 }
+				case "spearman":
+				{
+					//hier muss noch was hin
+					break;
+				}
 				default:
 				{
 						break;

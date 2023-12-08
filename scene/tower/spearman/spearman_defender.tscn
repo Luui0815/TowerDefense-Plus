@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://dv5luw6leae55"]
+
+[ext_resource type="Script" path="res://script/tower/spearman/spearman.cs" id="1_dbss1"]
+[ext_resource type="Texture2D" uid="uid://biitohi0u7t01" path="res://assets/Defenders/Spearman/SpearmanIdle1.png" id="2_2753v"]
+[ext_resource type="Texture2D" uid="uid://dindlnvbjj81t" path="res://assets/Defenders/Spearman/SpearmanIdle2.png" id="3_up4dy"]
+[ext_resource type="Texture2D" uid="uid://cmlkj7id7i71a" path="res://assets/Defenders/Spearman/SpearmanIdle3.png" id="4_jmlxo"]
+[ext_resource type="Texture2D" uid="uid://glb78aooop6a" path="res://assets/Defenders/Spearman/SpearmanIdle4.png" id="5_h62cm"]
+[ext_resource type="Texture2D" uid="uid://bqgvmutl6gjb8" path="res://assets/Defenders/Spearman/SpearmanIdle5.png" id="6_as3qq"]
+[ext_resource type="Texture2D" uid="uid://jq8xypmyqfjg" path="res://assets/Defenders/Spearman/SpearmanIdle6.png" id="7_73vxs"]
+[ext_resource type="Texture2D" uid="uid://1xunbc5p3c55" path="res://assets/Defenders/Spearman/SpearmanIdle7.png" id="8_0eost"]
+[ext_resource type="Texture2D" uid="uid://h1u3h8mny6wt" path="res://assets/Defenders/Spearman/SpearmanIdle8.png" id="9_086bj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_045pr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2753v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_up4dy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jmlxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_h62cm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_as3qq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_73vxs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0eost")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_086bj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[node name="spearman_defender" type="Node2D"]
+script = ExtResource("1_dbss1")
+
+[node name="spearman" type="AnimatedSprite2D" parent="."]
+position = Vector2(50, 50)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_045pr")
+animation = &"idle"
+frame_progress = 0.567973
