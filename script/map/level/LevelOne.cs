@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using TowerDefense;
 
 public partial class LevelOne : GameLevel
@@ -31,4 +32,12 @@ public partial class LevelOne : GameLevel
         { FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal },
         { FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal }
     };
+
+    protected override void addmoney_from_mine(int newmoney)
+    {
+        ChangeMoney(CurrentMoney + newmoney);
+        EmitSignal(SignalName.money_changed, _currentMoney);
+    }
+
+
 }

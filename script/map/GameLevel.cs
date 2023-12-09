@@ -182,14 +182,11 @@ public abstract partial class GameLevel : Node2D
             .ToArray();
     }
 
-    private void defender_placed(int cost)
+    private void defender_placed(int cost)//das und addmoney from mine kann man evtl. zusammenfassen
     {
         ChangeMoney(CurrentMoney-cost);
         EmitSignal(SignalName.money_changed, _currentMoney);
     }
 
-    private void addmoney_from_mine()
-    {
-
-    }
+    protected abstract void addmoney_from_mine(int newmoney);
 }
