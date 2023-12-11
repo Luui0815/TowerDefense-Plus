@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b35ka1dyjgx3"]
+
+[ext_resource type="Texture2D" uid="uid://dhadp5qiedxev" path="res://assets/Defenders/Wall/Wall.png" id="1_2s0v3"]
+[ext_resource type="Script" path="res://script/tower/wall/wall.cs" id="1_urkrg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d6id3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2s0v3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="wall_defedner" type="Node2D"]
+script = ExtResource("1_urkrg")
+
+[node name="wall" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_d6id3")
+animation = &"idle"
+centered = false

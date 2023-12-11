@@ -22,18 +22,8 @@ public partial class goldmine : defender
     {
         _moneytimer.Start(25);
     }
-
-    public override void _Process(double delta)
-    {
-        //if( _moneytimer.TimeLeft==0 )
-        //{
-            //EmitSignal(SignalName.generated_mine_money, _money_per_time);
-        //}
-    }
-
     private void _on_money_timer_timeout()
     {
         EmitSignal(SignalName.generated_mine_money, _money_per_time);
     }
-
 }

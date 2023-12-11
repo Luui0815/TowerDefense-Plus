@@ -38,6 +38,4 @@ public partial class LevelOne : GameLevel
         ChangeMoney(CurrentMoney + newmoney);
         EmitSignal(SignalName.money_changed, _currentMoney);
     }
-
-
 }

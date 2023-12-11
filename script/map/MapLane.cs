@@ -26,7 +26,7 @@ public partial class MapLane : Node2D
 			field.Init(fieldTypes[i], i + (10 * laneNr));
 			//field.Size= new Vector2(108,144);
 			field.Position = fieldPosition;
-			GD.Print(laneNr + " " +fieldPosition);
+			//GD.Print(laneNr + " " +fieldPosition);
 			AddChild(field);
 			fieldPosition.X += 108;
 			_fields[i] = field;
