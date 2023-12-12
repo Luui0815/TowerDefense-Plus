@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class goldmine : defender
+public partial class goldmine : passivTower
 {
     private AnimatedSprite2D _mine;
     private Timer _moneytimer;

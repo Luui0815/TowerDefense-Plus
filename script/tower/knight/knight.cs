@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class knight : defender
+public  partial class knight :meleeDefender
 {
 	AnimatedSprite2D _knight;
 

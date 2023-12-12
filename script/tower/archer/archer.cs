@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class archer : defender
+public partial class archer : rangeDefender
 {
     AnimatedSprite2D _archer;
 

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class spearman : defender
+public partial class spearman : meleeDefender
 {
 	AnimatedSprite2D _spearman;
 	public override void Init()
