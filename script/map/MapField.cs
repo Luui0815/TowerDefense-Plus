@@ -95,6 +95,24 @@ namespace TowerDefense
                         _Towerset = true;
                         break;
                     }
+				case "archer":
+					{
+                        _Tower = (archer)GD.Load<PackedScene>($"res://scene/tower/archer/{towerName}.tscn").Instantiate();
+                        _Tower.Init();
+                        AddChild(_Tower);
+                        EmitSignal(SignalName.Defender_placed, _Tower.cost);
+                        _Towerset = true;
+                        break;
+                    }
+				case "fire_trap":
+					{
+                        _Tower = (fire_trap)GD.Load<PackedScene>($"res://scene/tower/fire_trap/{towerName}.tscn").Instantiate();
+                        _Tower.Init();
+                        AddChild(_Tower);
+                        EmitSignal(SignalName.Defender_placed, _Tower.cost);
+                        _Towerset = true;
+                        break;
+                    }
 				default:
 				{
 						break;

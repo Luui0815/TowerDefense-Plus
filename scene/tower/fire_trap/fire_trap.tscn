@@ -1,0 +1,84 @@
+[gd_scene load_steps=19 format=3 uid="uid://gessf8a4vjba"]
+
+[ext_resource type="Script" path="res://script/tower/fire_trap/fire_trap.cs" id="1_ivqat"]
+[ext_resource type="Texture2D" uid="uid://dkokxxi1sldf6" path="res://assets/Defenders/Firetrap/fire1.png" id="2_o6mtc"]
+[ext_resource type="Texture2D" uid="uid://3fqe17a7ol2r" path="res://assets/Defenders/Firetrap/fire2.png" id="3_5ihjj"]
+[ext_resource type="Texture2D" uid="uid://cy28vebarvldw" path="res://assets/Defenders/Firetrap/fire3.png" id="4_bvy3g"]
+[ext_resource type="Texture2D" uid="uid://cm1qjk5sbyrb0" path="res://assets/Defenders/Firetrap/fire4.png" id="5_skafk"]
+[ext_resource type="Texture2D" uid="uid://c7w5a1jeeu3sh" path="res://assets/Defenders/Firetrap/fire5.png" id="6_jito0"]
+[ext_resource type="Texture2D" uid="uid://bgljbs8sm1vkb" path="res://assets/Defenders/Firetrap/fire6.png" id="7_g4a4r"]
+[ext_resource type="Texture2D" uid="uid://vapjrcsu3ar7" path="res://assets/Defenders/Firetrap/fire7.png" id="8_qdsw8"]
+[ext_resource type="Texture2D" uid="uid://bgg34tbumtxp7" path="res://assets/Defenders/Firetrap/fire8.png" id="9_jkgjp"]
+[ext_resource type="Texture2D" uid="uid://dxut24ye4iure" path="res://assets/Defenders/Firetrap/fire9.png" id="10_nppqh"]
+[ext_resource type="Texture2D" uid="uid://duemn8alxeihn" path="res://assets/Defenders/Firetrap/fire10.png" id="11_8ja1j"]
+[ext_resource type="Texture2D" uid="uid://brbgcctjqf4i6" path="res://assets/Defenders/Firetrap/fire11.png" id="12_jy562"]
+[ext_resource type="Texture2D" uid="uid://bp4kdnyh305lr" path="res://assets/Defenders/Firetrap/fire12.png" id="13_eqrfh"]
+[ext_resource type="Texture2D" uid="uid://brm6n8854w102" path="res://assets/Defenders/Firetrap/fire13.png" id="14_88ao6"]
+[ext_resource type="Texture2D" uid="uid://j3tn1bjyukx4" path="res://assets/Defenders/Firetrap/fire14.png" id="15_fgxg1"]
+[ext_resource type="Texture2D" uid="uid://dui3j60jalkia" path="res://assets/Defenders/Firetrap/fire15.png" id="16_4b8gx"]
+[ext_resource type="Texture2D" uid="uid://d2l2uy0v7qq5a" path="res://assets/Defenders/Firetrap/fire16.png" id="17_ysdsw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k5o0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_o6mtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5ihjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bvy3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_skafk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jito0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g4a4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qdsw8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jkgjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_nppqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8ja1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jy562")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_eqrfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_88ao6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fgxg1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_4b8gx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ysdsw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="fire_trap_defender" type="Node2D"]
+script = ExtResource("1_ivqat")
+
+[node name="fire_trap" type="AnimatedSprite2D" parent="."]
+position = Vector2(32, 29)
+sprite_frames = SubResource("SpriteFrames_k5o0w")
+animation = &"idle"
+frame_progress = 0.644028
