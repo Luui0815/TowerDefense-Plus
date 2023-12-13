@@ -15,8 +15,8 @@ public abstract partial class GameLevel : Node2D
     //private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
     private bool _levelStarted = false;
-    protected Timer _newMoneyTimer = new Timer();
-    protected int _amount_of_money_generated_per_Time = 50;
+   // protected Timer _newMoneyTimer = new Timer();
+   // protected int _amount_of_money_generated_per_Time = 50;
 
     public bool LevelStarted
     {
@@ -67,7 +67,7 @@ public abstract partial class GameLevel : Node2D
     {
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
-        Money_Timer_start(35);
+        //Money_Timer_start(35);
 
         Vector2 position = Vector2.Zero;
         PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
@@ -192,7 +192,7 @@ public abstract partial class GameLevel : Node2D
 
     protected abstract void addmoney_from_mine(int newmoney);
 
-    protected void Money_Timer_start(int Time_to_generate_money)//geht evtl. schoener
+   /* protected void Money_Timer_start(int Time_to_generate_money)//geht evtl. schoener
     {
         _newMoneyTimer.OneShot = false;
         _newMoneyTimer.Connect(Timer.SignalName.Timeout, new Callable(this, "addmoney_from_timer"));
@@ -204,5 +204,5 @@ public abstract partial class GameLevel : Node2D
     {
         addmoney_from_mine(_amount_of_money_generated_per_Time);
     }
-
+   */
 }
