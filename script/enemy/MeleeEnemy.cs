@@ -1,18 +1,27 @@
 using Godot;
 using System;
 
-public abstract partial class MeleeEnemy : Enemy
+public partial class MeleeEnemy : Enemy
 {
-	protected string _currentTower;
+	protected Node _currentTower;
 
-	public string CurrentTower
+	public Node CurrentTower
 	{
 		get { return _currentTower; }
 		set { _currentTower = value; }
 	}
 
-	public abstract void OnTowerEnteredBody();
-	public abstract void Action();
-	public abstract void Attack();
+	public virtual void OnTowerEnteredBody()
+	{
+
+	}
+	public override void Action()
+	{
+
+	}
+	public virtual void Attack()
+	{
+
+	}
 	
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract partial class defender : Node2D
+public abstract partial class defender : GameEntity
 {
 	[Signal]
     public delegate void generated_mine_moneyEventHandler(int _newmoney);//sollte man evtl. anders machen

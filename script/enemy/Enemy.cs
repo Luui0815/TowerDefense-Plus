@@ -1,13 +1,14 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
-public abstract partial class Enemy : Node2D
+public partial class Enemy : GameEntity
 {
 	protected bool _enemyDefeated = false;
 	protected bool _enemyCrossedLastField = false;
 	protected float _walkSpeed;
 	protected string _name;
-	//_statusEffects;
+	protected List<string> _statusEffects = new List<string>();
 
 	public bool EnemyDefeated
 	{
@@ -33,6 +34,13 @@ public abstract partial class Enemy : Node2D
 		set { _name = value; }
 	}
 
-	public abstract void Init();
-	//AddStatusEffect()
+	public virtual void Init()
+	{
+
+	}
+	
+	public virtual void AddStatusEffect(string effect)
+	{
+		_statusEffects.Add(effect);
+	}
 }

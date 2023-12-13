@@ -11,9 +11,6 @@ public partial class KnightEnemy : MeleeEnemy
         _knightEnemy = GetNode<AnimatedSprite2D>("KnightEnemy");
         _knightEnemy.Play("walking");
 	}
-	public override void _Ready()
-	{
-	}
 
 	public override void _Process(double delta)
 	{
@@ -21,7 +18,7 @@ public partial class KnightEnemy : MeleeEnemy
 
     public override void OnTowerEnteredBody()
     {
-
+     
     }
 
     public override void Action()
@@ -32,5 +29,10 @@ public partial class KnightEnemy : MeleeEnemy
     public override void Attack()
     {
 
+    }
+    public override void Destroy()
+    {
+        _knightEnemy.Play("death");
+        base.Destroy();     
     }
 }
