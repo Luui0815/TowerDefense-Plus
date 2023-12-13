@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bnnfoam5ykytn"]
+[gd_scene load_steps=41 format=3 uid="uid://bnnfoam5ykytn"]
 
 [ext_resource type="Texture2D" uid="uid://drdow1228k24c" path="res://assets/Enemies/KnightEnemy/noBKG_KnightAttack_strip.png" id="1_brolw"]
 [ext_resource type="Script" path="res://script/enemy/KnightEnemy/KnightEnemy.cs" id="1_t6ujt"]
@@ -255,9 +255,12 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fxhia"]
-radius = 27.0185
+radius = 22.0227
 
-[node name="KnightEnemy" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1xgvv"]
+radius = 14.0
+
+[node name="KnightEnemy" type="CharacterBody2D"]
 script = ExtResource("1_t6ujt")
 
 [node name="KnightEnemy" type="AnimatedSprite2D" parent="."]
@@ -268,9 +271,9 @@ frame_progress = 0.367593
 [node name="AttackRangeArea" type="Area2D" parent="."]
 
 [node name="AttackRange" type="CollisionShape2D" parent="AttackRangeArea"]
-position = Vector2(2, -1)
+position = Vector2(4, -1)
 shape = SubResource("CircleShape2D_fxhia")
 
-[node name="AttackRange2" type="CollisionShape2D" parent="."]
-position = Vector2(2, -1)
-shape = SubResource("CircleShape2D_fxhia")
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(6, 0)
+shape = SubResource("CircleShape2D_1xgvv")

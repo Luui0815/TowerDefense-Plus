@@ -11,17 +11,17 @@ public partial class MeleeEnemy : Enemy
 		set { _currentTower = value; }
 	}
 
-	public virtual void OnTowerEnteredBody()
-	{
+    public virtual void OnTowerEnteredBody(Node2D tower)
+    {
 
 	}
 	public override void Action()
 	{
 
 	}
-	public virtual void Attack()
+	public virtual void Attack(defender closestTarget)
 	{
-
+		closestTarget.Health -= 1;
 	}
 	
 }
