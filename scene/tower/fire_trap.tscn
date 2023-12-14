@@ -77,9 +77,13 @@ animations = [{
 [node name="FireTrapDefender" type="Node2D"]
 script = ExtResource("1_ivqat")
 
-[node name="AnimationSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(32, 29)
 sprite_frames = SubResource("SpriteFrames_k5o0w")
 animation = &"idle"
 frame = 1
 frame_progress = 0.681268
+
+[node name="ActionTimer" type="Timer" parent="."]
+
+[node name="AnimationTimer" type="Timer" parent="."]

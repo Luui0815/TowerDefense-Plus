@@ -22,3 +22,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_d6id3")
 animation = &"idle"
 centered = false
+
+[node name="ActionTimer" type="Timer" parent="."]
+
+[node name="AnimationTimer" type="Timer" parent="."]

@@ -51,3 +51,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_045pr")
 animation = &"idle"
 frame_progress = 0.100609
+
+[node name="ActionTimer" type="Timer" parent="."]
+
+[node name="AnimationTimer" type="Timer" parent="."]
