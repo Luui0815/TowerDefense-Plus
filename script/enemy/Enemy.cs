@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Enemy : GameEntity
+public abstract partial class Enemy : GameEntity
 {
 	protected bool _enemyDefeated = false;
 	protected bool _enemyCrossedLastField = false;
@@ -43,4 +43,9 @@ public partial class Enemy : GameEntity
 	{
 		_statusEffects.Add(effect);
 	}
+
+    public override void Destroy()
+    {
+        
+    }
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MeleeEnemy : Enemy
+public abstract partial class MeleeEnemy : Enemy
 {
 	protected Node _currentTower;
 
