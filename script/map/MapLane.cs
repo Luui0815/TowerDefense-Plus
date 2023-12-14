@@ -13,7 +13,8 @@ public partial class MapLane : Node2D
 
 	private MapField[] _fields = new MapField[10];
 
-	public MapField[] Fields {
+	public MapField[] Fields
+	{
 		get
 		{
 			return _fields;
@@ -23,9 +24,9 @@ public partial class MapLane : Node2D
 	public void Init(int laneNr, FieldType[] fieldTypes)
 	{
 		_laneNr = laneNr;
-		
+
 		PackedScene fieldScene = GD.Load<PackedScene>("res://scene/map/MapField.tscn");
-		Vector2 fieldPosition = new Vector2(0,0);
+		Vector2 fieldPosition = new Vector2(0, 0);
 		for (int i = 0; i < 10; i++)
 		{
 			MapField field = (MapField)fieldScene.Instantiate();

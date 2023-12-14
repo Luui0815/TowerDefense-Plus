@@ -1,53 +1,53 @@
-[gd_scene load_steps=11 format=3 uid="uid://dv5luw6leae55"]
+[gd_scene load_steps=11 format=3 uid="uid://dnbhdcdy38py4"]
 
 [ext_resource type="Script" path="res://script/tower/Spearman.cs" id="1_dbss1"]
-[ext_resource type="Texture2D" uid="uid://biitohi0u7t01" path="res://assets/Defenders/Spearman/SpearmanIdle1.png" id="2_2753v"]
-[ext_resource type="Texture2D" uid="uid://dindlnvbjj81t" path="res://assets/Defenders/Spearman/SpearmanIdle2.png" id="3_up4dy"]
-[ext_resource type="Texture2D" uid="uid://cmlkj7id7i71a" path="res://assets/Defenders/Spearman/SpearmanIdle3.png" id="4_jmlxo"]
-[ext_resource type="Texture2D" uid="uid://glb78aooop6a" path="res://assets/Defenders/Spearman/SpearmanIdle4.png" id="5_h62cm"]
-[ext_resource type="Texture2D" uid="uid://bqgvmutl6gjb8" path="res://assets/Defenders/Spearman/SpearmanIdle5.png" id="6_as3qq"]
-[ext_resource type="Texture2D" uid="uid://jq8xypmyqfjg" path="res://assets/Defenders/Spearman/SpearmanIdle6.png" id="7_73vxs"]
-[ext_resource type="Texture2D" uid="uid://1xunbc5p3c55" path="res://assets/Defenders/Spearman/SpearmanIdle7.png" id="8_0eost"]
-[ext_resource type="Texture2D" uid="uid://h1u3h8mny6wt" path="res://assets/Defenders/Spearman/SpearmanIdle8.png" id="9_086bj"]
+[ext_resource type="Texture2D" uid="uid://bx0saegruf4td" path="res://assets/texture/tower/animation/spearman/Idle1.png" id="2_5a54g"]
+[ext_resource type="Texture2D" uid="uid://b43yv3svt1jgq" path="res://assets/texture/tower/animation/spearman/Idle2.png" id="3_32nba"]
+[ext_resource type="Texture2D" uid="uid://ht3gbfisvvr6" path="res://assets/texture/tower/animation/spearman/Idle3.png" id="4_2ry8u"]
+[ext_resource type="Texture2D" uid="uid://r8h8xpm4xy1v" path="res://assets/texture/tower/animation/spearman/Idle4.png" id="5_22152"]
+[ext_resource type="Texture2D" uid="uid://0lolnrkd0q2a" path="res://assets/texture/tower/animation/spearman/Idle5.png" id="6_c4jab"]
+[ext_resource type="Texture2D" uid="uid://cuf0etynd1ij5" path="res://assets/texture/tower/animation/spearman/Idle6.png" id="7_hvyxj"]
+[ext_resource type="Texture2D" uid="uid://ka8kji2hmi0e" path="res://assets/texture/tower/animation/spearman/Idle7.png" id="8_qmcoq"]
+[ext_resource type="Texture2D" uid="uid://dohxwwee3kuyv" path="res://assets/texture/tower/animation/spearman/Idle8.png" id="9_slryr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_045pr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2753v")
+"texture": ExtResource("2_5a54g")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_up4dy")
+"texture": ExtResource("3_32nba")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_jmlxo")
+"texture": ExtResource("4_2ry8u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_h62cm")
+"texture": ExtResource("5_22152")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_as3qq")
+"texture": ExtResource("6_c4jab")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_73vxs")
+"texture": ExtResource("7_hvyxj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_0eost")
+"texture": ExtResource("8_qmcoq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_086bj")
+"texture": ExtResource("9_slryr")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 8.0
 }]
 
-[node name="spearman_defender" type="Node2D"]
+[node name="SpearmanDefender" type="Node2D"]
 script = ExtResource("1_dbss1")
 
-[node name="spearman" type="AnimatedSprite2D" parent="."]
+[node name="AnimationSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(50, 50)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_045pr")
 animation = &"idle"
-frame_progress = 0.567973
+frame_progress = 0.100609
