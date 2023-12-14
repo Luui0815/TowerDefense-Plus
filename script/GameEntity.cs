@@ -1,39 +1,71 @@
 using Godot;
 using System;
 
-public partial class GameEntity : Node2D
+public abstract partial class GameEntity : Node2D
 {
-    protected float _health;
-    protected bool _immuneToDamage;
     protected float _delay;
-    protected bool _idleAnimation;
-    protected bool _actionAnimation;
     protected float _animationDelay;
+    protected string _idleAnimation = "idle";
+    protected string _actionAnimation = "action";
+    protected AnimatedSprite2D _sprite;
+    protected GameLevel _level;
+    protected Timer _actionTimer;
+    private Timer _animationTimer;
 
+    public int Health
+    {
+        get; 
+        set;
+    }
 
-    public float Health
-    {
-        get { return _health; } 
-        set { _health = value; }
-    }
-    public virtual void InflictDamage()
-    {
+    public bool ImmuneToDamage {
+        get;
+    } = false;
 
-    }
-    public virtual void OnTimerEnd()
+    public override void _Ready()
     {
+        _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
+        _sprite.Play(_idleAnimation);
 
-    }
-    public virtual void Action()
-    {
+        _actionTimer = GetNode<Timer>("ActionTimer");
+        _actionTimer.Timeout += OnTimerEnd;
+        _actionTimer.OneShot = true;
+        _animationTimer = GetNode<Timer>("AnimationTimer");
+        _animationTimer.Timeout += OnAnimationTimerEnd;
+        _animationTimer.OneShot = true;
 
+        _level = GetNode<GameLevel>("/root/GameLevel");
     }
-    public virtual void Destroy()
-    {
-        QueueFree();
-    }
-    public virtual void OnAnimationTimerEnd()
-    {
 
+    public void InflictDamage(int damage)
+    {
+        if (!ImmuneToDamage)
+        {
+            Health -= damage;
+            if (Health <= 0)
+            {
+                Destroy();
+            }
+        }
     }
+
+    public void OnTimerEnd()
+    {
+        _sprite.Play(_actionAnimation);
+        _animationTimer.Start(_animationDelay);
+    }
+
+    public void OnAnimationTimerEnd()
+    {
+        if (_level != null && _level.LevelStarted)
+        {
+            Action();
+        }
+        _sprite.Play(_idleAnimation);
+        _actionTimer.Start(_delay);
+    }
+
+    public abstract void Action();
+
+    public abstract void Destroy();
 }

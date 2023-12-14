@@ -17,9 +17,10 @@ namespace TowerDefense
 		private static Dictionary<FieldType, Texture2D> _fieldTextureCache = new();
 		private int _fieldNr;
 		private Sprite2D _sprite;
-		private Defender _tower;
 
-		public void Init(FieldType fieldType, int fieldNumber)
+        public Defender Tower { get; set; }
+
+        public void Init(FieldType fieldType, int fieldNumber)
 		{
 			_sprite = GetNode<Sprite2D>("Background");
 			_fieldNr = fieldNumber;
@@ -37,24 +38,24 @@ namespace TowerDefense
 
 		public override bool _CanDropData(Vector2 atPosition, Variant data)
 		{
-			return _tower == null && (string)data != "";
+			return Tower == null && (string)data != "";
 		}
 
 		public override void _DropData(Vector2 atPosition, Variant data)
 		{
 			string towerName = (string)data;
 
-			_tower = (Defender)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
-			_tower.Init(towerName);
+			Tower = (Defender)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
+			Tower.Init(towerName);
 
 			if (towerName == "goldmine")
 			{
 				GameLevel level = (GameLevel)GetParent().GetParent();
-				((Goldmine)_tower).MoneyGenerated += level.AddMoney;
+				((Goldmine)Tower).MoneyGenerated += level.AddMoney;
 			}
 
-			AddChild(_tower);
-			EmitSignal(SignalName.DefenderPlaced, _tower.GetTowerCost());
+			AddChild(Tower);
+			EmitSignal(SignalName.DefenderPlaced, Tower.GetTowerCost());
 		}
 	}
 
