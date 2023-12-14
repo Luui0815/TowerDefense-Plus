@@ -91,7 +91,9 @@ public abstract partial class GameLevel : Node2D
             }
         }
 
-        List<string> strings = new List<string>
+        //Für Testzwecke Kommentare entfernen
+        /* 
+        SortedSet<string> strings = new SortedSet<string>
         {
             "knight",
             "spearman",
@@ -101,6 +103,7 @@ public abstract partial class GameLevel : Node2D
             "fire_trap"
         };
         FillTowerContainer(strings);
+        */
 
         _spawner = new(1);
         AddChild(_spawner);
