@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-public abstract partial class defender : GameEntity
+public abstract partial class Defender : GameEntity
 {
 	[Signal]
     public delegate void generated_mine_moneyEventHandler(int _newmoney);//sollte man evtl. anders machen
@@ -11,7 +10,7 @@ public abstract partial class defender : GameEntity
 
 	public abstract void Init();
 
-	public int cost
+	public int Cost
 	{
 		get
 		{
@@ -19,7 +18,7 @@ public abstract partial class defender : GameEntity
 		}
 	}
 
-	protected int get_Tower_cost(string towerName)
+	protected int GetTowerCost(string towerName)
     {
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
         TowerSettings towerSettings = towerConfig.GetTowerSettingsByName(towerName);

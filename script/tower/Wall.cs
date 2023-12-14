@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class wall : defender
+public partial class Wall : Defender
 {
     AnimatedSprite2D _wall;
 

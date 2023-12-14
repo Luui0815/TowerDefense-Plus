@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class fire_trap : trapDefence
+public partial class FireTrap : TrapDefence
 {
     AnimatedSprite2D _fire;
 

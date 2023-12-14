@@ -19,7 +19,7 @@ public partial class MeleeEnemy : Enemy
 	{
 
 	}
-	public virtual void Attack(defender closestTarget)
+	public virtual void Attack(Defender closestTarget)
 	{
 		closestTarget.Health -= 1;
 	}

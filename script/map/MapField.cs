@@ -18,7 +18,7 @@ namespace TowerDefense
 		private int _fieldNr;
 		private Sprite2D _sprite;
 		private bool _Towerset;
-		private defender _Tower;
+		private Defender _Tower;
 
         public void Init(FieldType fieldType, int fieldNumber)
 		{
@@ -60,63 +60,59 @@ namespace TowerDefense
 			{
 				case "knight":
 				{
-					_Tower = (knight) GD.Load<PackedScene>($"res://scene/tower/knight/{towerName}.tscn").Instantiate();
+					_Tower = (Knight) GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
 					_Tower.Init();
 					AddChild(_Tower);
-					EmitSignal(SignalName.Defender_placed,_Tower.cost);
+					EmitSignal(SignalName.Defender_placed,_Tower.Cost);
 					_Towerset=true;
 					break;
                 }
 				case "spearman":
 				{
-						_Tower = (spearman)GD.Load<PackedScene>($"res://scene/tower/spearman/{towerName}.tscn").Instantiate();
+						_Tower = (Spearman)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
                         _Tower.Init();
                         AddChild(_Tower);
-                        EmitSignal(SignalName.Defender_placed, _Tower.cost);
+                        EmitSignal(SignalName.Defender_placed, _Tower.Cost);
                         _Towerset = true;
                         break;
 				}
 				case "goldmine":
 					{
-                        _Tower = (goldmine)GD.Load<PackedScene>($"res://scene/tower/goldmine/{towerName}.tscn").Instantiate();
-                        _Tower.Connect(goldmine.SignalName.generated_mine_money, new Callable(GetParent().GetParent(), "addmoney_from_mine"));//GEtParent um LevelOne zuerreichen
+                        _Tower = (Goldmine)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
+                        _Tower.Connect(Goldmine.SignalName.generated_mine_money, new Callable(GetParent().GetParent(), "addmoney_from_mine"));//GEtParent um LevelOne zuerreichen
                         _Tower.Init();
                         AddChild(_Tower);
-                        EmitSignal(SignalName.Defender_placed, _Tower.cost);
+                        EmitSignal(SignalName.Defender_placed, _Tower.Cost);
                         _Towerset = true;
                         break;
                     }
 				case "wall":
 					{
-                        _Tower = (wall)GD.Load<PackedScene>($"res://scene/tower/wall/{towerName}.tscn").Instantiate();
+                        _Tower = (Wall)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
                         _Tower.Init();
                         AddChild(_Tower);
-                        EmitSignal(SignalName.Defender_placed, _Tower.cost);
+                        EmitSignal(SignalName.Defender_placed, _Tower.Cost);
                         _Towerset = true;
                         break;
                     }
 				case "archer":
 					{
-                        _Tower = (archer)GD.Load<PackedScene>($"res://scene/tower/archer/{towerName}.tscn").Instantiate();
+                        _Tower = (Archer)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
                         _Tower.Init();
                         AddChild(_Tower);
-                        EmitSignal(SignalName.Defender_placed, _Tower.cost);
+                        EmitSignal(SignalName.Defender_placed, _Tower.Cost);
                         _Towerset = true;
                         break;
                     }
 				case "fire_trap":
 					{
-                        _Tower = (fire_trap)GD.Load<PackedScene>($"res://scene/tower/fire_trap/{towerName}.tscn").Instantiate();
+                        _Tower = (FireTrap)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
                         _Tower.Init();
                         AddChild(_Tower);
-                        EmitSignal(SignalName.Defender_placed, _Tower.cost);
+                        EmitSignal(SignalName.Defender_placed, _Tower.Cost);
                         _Towerset = true;
                         break;
                     }
-				default:
-				{
-						break;
-                }
 			}
 
 		}
