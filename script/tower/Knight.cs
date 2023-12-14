@@ -8,14 +8,7 @@ public  partial class Knight : MeleeDefender
 	public override void Init()
 	{
         _name = "knight";
-		//_cost = get_Tower_cost(_name);
-		_cost = 300;
-
         _knight = GetNode<AnimatedSprite2D>("Knight");
         _knight.Play();
     }
-
-	public override void _Process(double delta)
-	{
-	}
 }

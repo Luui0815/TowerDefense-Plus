@@ -6,7 +6,7 @@ public partial class LevelOne : GameLevel
     public LevelOne()
     {
         //TODO: Change start money
-        _currentMoney = 999;
+        _currentMoney = 1000;
     }
 
     protected override int LevelNumber
@@ -32,10 +32,4 @@ public partial class LevelOne : GameLevel
         { FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal },
         { FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal }
     };
-
-    protected override void addmoney_from_mine(int newmoney)
-    {
-        ChangeMoney(CurrentMoney + newmoney);
-        EmitSignal(SignalName.MoneyChanged, _currentMoney);
-    }
 }

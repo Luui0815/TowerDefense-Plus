@@ -84,7 +84,7 @@ public abstract partial class GameLevel : Node2D
 
         foreach (MapLane lane in _lanes)
         {
-            foreach (MapField field in lane._fields)
+            foreach (MapField field in lane.Fields)
             {
                 field.DefenderPlaced += (towerCost) => ChangeMoney(_currentMoney - towerCost);
             }
@@ -139,6 +139,15 @@ public abstract partial class GameLevel : Node2D
         EmitSignal(SignalName.MoneyChanged, _currentMoney);
     }
 
+    /// <summary>
+    /// Adds money to the players money amount
+    /// </summary>
+    /// <param name="moneyAmount">Money added to the player</param>
+    public void AddMoney(int moneyAmount)
+    {
+        ChangeMoney(moneyAmount + _currentMoney);
+    }
+
     protected void OnStartLevelButtonPressed(Button button)
     {
         button.QueueFree();
@@ -178,6 +187,4 @@ public abstract partial class GameLevel : Node2D
             .Select(x => FieldTypes[index, x])
             .ToArray();
     }
-
-    protected abstract void addmoney_from_mine(int newmoney);
 }

@@ -11,7 +11,14 @@ public partial class MapLane : Node2D
 	[Signal]
 	public delegate void EnemyCrossedLaneEventHandler(int laneNr);
 
-	public MapField[] _fields = new MapField[10];
+	private MapField[] _fields = new MapField[10];
+
+	public MapField[] Fields {
+		get
+		{
+			return _fields;
+		}
+	}
 
 	public void Init(int laneNr, FieldType[] fieldTypes)
 	{

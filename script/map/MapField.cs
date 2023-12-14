@@ -17,104 +17,44 @@ namespace TowerDefense
 		private static Dictionary<FieldType, Texture2D> _fieldTextureCache = new();
 		private int _fieldNr;
 		private Sprite2D _sprite;
-		private bool _Towerset;
-		private Defender _Tower;
+		private Defender _tower;
 
         public void Init(FieldType fieldType, int fieldNumber)
 		{
 			_sprite = GetNode<Sprite2D>("Background");
 			_fieldNr = fieldNumber;
 
-			switch (fieldType)
+			if(!_fieldTextureCache.ContainsKey(fieldType))
 			{
-				case FieldType.Normal:
-					{
-						if(!_fieldTextureCache.ContainsKey(fieldType))
-						{
-							_sprite.Texture = GD.Load<Texture2D>("res://assets/texture/field/Normal.png");
-							_fieldTextureCache.Add(fieldType,_sprite.Texture);
-						}
-						else 
-						{
-							_sprite.Texture = _fieldTextureCache[fieldType];
-						}
-						break;
-					}
+				_sprite.Texture = GD.Load<Texture2D>($"res://assets/texture/field/{fieldType}.png");
+				_fieldTextureCache.Add(fieldType, _sprite.Texture);
+			}
+			else 
+			{
+				_sprite.Texture = _fieldTextureCache[fieldType];
 			}
 		}
 
 		public override bool _CanDropData(Vector2 atPosition, Variant data)
 		{
-			string info = (string)data;
-			if(!_Towerset && info!="")
-				return true; 
-			else
-				return false;
+			return _tower == null && (string) data != "";
 		}
 
 		public override void _DropData(Vector2 atPosition, Variant data)
 		{
 			string towerName=(string) data;
 
-			switch (towerName)
+			_tower = (Defender) GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
+			_tower.Init();
+
+			if (towerName == "goldmine")
 			{
-				case "knight":
-				{
-					_Tower = (Knight) GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
-					_Tower.Init();
-					AddChild(_Tower);
-					EmitSignal(SignalName.DefenderPlaced,_Tower.Cost);
-					_Towerset=true;
-					break;
-                }
-				case "spearman":
-				{
-						_Tower = (Spearman)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
-                        _Tower.Init();
-                        AddChild(_Tower);
-                        EmitSignal(SignalName.DefenderPlaced, _Tower.Cost);
-                        _Towerset = true;
-                        break;
-				}
-				case "goldmine":
-					{
-                        _Tower = (Goldmine)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
-                        _Tower.Connect(Goldmine.SignalName.generated_mine_money, new Callable(GetParent().GetParent(), "addmoney_from_mine"));//GEtParent um LevelOne zuerreichen
-                        _Tower.Init();
-                        AddChild(_Tower);
-                        EmitSignal(SignalName.DefenderPlaced, _Tower.Cost);
-                        _Towerset = true;
-                        break;
-                    }
-				case "wall":
-					{
-                        _Tower = (Wall)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
-                        _Tower.Init();
-                        AddChild(_Tower);
-                        EmitSignal(SignalName.DefenderPlaced, _Tower.Cost);
-                        _Towerset = true;
-                        break;
-                    }
-				case "archer":
-					{
-                        _Tower = (Archer)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
-                        _Tower.Init();
-                        AddChild(_Tower);
-                        EmitSignal(SignalName.DefenderPlaced, _Tower.Cost);
-                        _Towerset = true;
-                        break;
-                    }
-				case "fire_trap":
-					{
-                        _Tower = (FireTrap)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
-                        _Tower.Init();
-                        AddChild(_Tower);
-                        EmitSignal(SignalName.DefenderPlaced, _Tower.Cost);
-                        _Towerset = true;
-                        break;
-                    }
+				GameLevel level = (GameLevel) GetParent().GetParent();
+				((Goldmine)_tower).MoneyGenerated += level.AddMoney;
 			}
 
+			AddChild(_tower);
+			EmitSignal(SignalName.DefenderPlaced, _tower.GetTowerCost());
 		}
     }
 
