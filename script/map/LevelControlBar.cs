@@ -47,5 +47,5 @@ public partial class LevelControlBar : Control
 	{
 		EmitSignal(SignalName.PauseButtonPressed);
 	}
- 
+
 }

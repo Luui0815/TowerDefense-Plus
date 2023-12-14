@@ -39,7 +39,7 @@ public partial class TowerContainerItem : Control
             SetDragPreview(CreateDragPreview());
             return _towerName;
         }
-        
+
         return "";
     }
 

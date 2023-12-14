@@ -2,7 +2,7 @@ using Godot;
 
 public abstract partial class Defender : GameEntity
 {
-    protected string _name;
+	protected string _name;
 	protected AnimatedSprite2D _sprite;
 
 	public void Init(string towerName)
@@ -13,10 +13,10 @@ public abstract partial class Defender : GameEntity
 	}
 
 	public int GetTowerCost()
-    {
-        TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
-        TowerSettings towerSettings = towerConfig.GetTowerSettingsByName(_name);
-        return towerSettings.Cost;
-    }
+	{
+		TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
+		TowerSettings towerSettings = towerConfig.GetTowerSettingsByName(_name);
+		return towerSettings.Cost;
+	}
 
 }
