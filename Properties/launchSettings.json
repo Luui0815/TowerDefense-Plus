@@ -1,7 +1,8 @@
 {
   "profiles": {
     "SWE-Tower-Defense": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\mauro\\OneDrive\\Documents\\Godot Projekte\\SWE\\BA-SWE-Tower-Defense"
     },
     "Profil \"1\"": {
       "commandName": "Executable",

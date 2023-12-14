@@ -111,7 +111,7 @@ public abstract partial class GameLevel : Node2D
     /// Fills the tower inventory with the specified towers
     /// </summary>
     /// <param name="towerNames">The names of the towers added to the inventory</param>
-    public void FillTowerContainer(List<string> towerNames)
+    public void FillTowerContainer(SortedSet<string> towerNames)
     {
         PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
