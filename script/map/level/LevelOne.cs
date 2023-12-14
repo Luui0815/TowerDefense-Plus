@@ -36,6 +36,6 @@ public partial class LevelOne : GameLevel
     protected override void addmoney_from_mine(int newmoney)
     {
         ChangeMoney(CurrentMoney + newmoney);
-        EmitSignal(SignalName.money_changed, _currentMoney);
+        EmitSignal(SignalName.MoneyChanged, _currentMoney);
     }
 }

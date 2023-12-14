@@ -12,7 +12,7 @@ namespace TowerDefense
 	public partial class MapField : Control
 	{
 		[Signal]
-        public delegate void Defender_placedEventHandler(int cost); 
+        public delegate void DefenderPlacedEventHandler(int cost); 
 
 		private static Dictionary<FieldType, Texture2D> _fieldTextureCache = new();
 		private int _fieldNr;
@@ -63,7 +63,7 @@ namespace TowerDefense
 					_Tower = (Knight) GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
 					_Tower.Init();
 					AddChild(_Tower);
-					EmitSignal(SignalName.Defender_placed,_Tower.Cost);
+					EmitSignal(SignalName.DefenderPlaced,_Tower.Cost);
 					_Towerset=true;
 					break;
                 }
@@ -72,7 +72,7 @@ namespace TowerDefense
 						_Tower = (Spearman)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
                         _Tower.Init();
                         AddChild(_Tower);
-                        EmitSignal(SignalName.Defender_placed, _Tower.Cost);
+                        EmitSignal(SignalName.DefenderPlaced, _Tower.Cost);
                         _Towerset = true;
                         break;
 				}
@@ -82,7 +82,7 @@ namespace TowerDefense
                         _Tower.Connect(Goldmine.SignalName.generated_mine_money, new Callable(GetParent().GetParent(), "addmoney_from_mine"));//GEtParent um LevelOne zuerreichen
                         _Tower.Init();
                         AddChild(_Tower);
-                        EmitSignal(SignalName.Defender_placed, _Tower.Cost);
+                        EmitSignal(SignalName.DefenderPlaced, _Tower.Cost);
                         _Towerset = true;
                         break;
                     }
@@ -91,7 +91,7 @@ namespace TowerDefense
                         _Tower = (Wall)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
                         _Tower.Init();
                         AddChild(_Tower);
-                        EmitSignal(SignalName.Defender_placed, _Tower.Cost);
+                        EmitSignal(SignalName.DefenderPlaced, _Tower.Cost);
                         _Towerset = true;
                         break;
                     }
@@ -100,7 +100,7 @@ namespace TowerDefense
                         _Tower = (Archer)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
                         _Tower.Init();
                         AddChild(_Tower);
-                        EmitSignal(SignalName.Defender_placed, _Tower.Cost);
+                        EmitSignal(SignalName.DefenderPlaced, _Tower.Cost);
                         _Towerset = true;
                         break;
                     }
@@ -109,7 +109,7 @@ namespace TowerDefense
                         _Tower = (FireTrap)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
                         _Tower.Init();
                         AddChild(_Tower);
-                        EmitSignal(SignalName.Defender_placed, _Tower.Cost);
+                        EmitSignal(SignalName.DefenderPlaced, _Tower.Cost);
                         _Towerset = true;
                         break;
                     }
