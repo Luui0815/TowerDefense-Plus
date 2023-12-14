@@ -8,7 +8,7 @@ public partial class TowerContainerItem : Control
     private string _towerName;
     private int _towerCost;
     private TextureRect _towerBackground;
-    private bool _tooexpensive=false;//wird auf true gesetzt wenn der akt. Geldbetrag nicht ausreicht den Turm zu platzieren
+    private bool _buyable = false;
 
     /// <summary>
     /// Initializes the item with the tower which should be displayed
@@ -21,8 +21,6 @@ public partial class TowerContainerItem : Control
         _towerCost = towerCost;
 
         _towerBackground = GetNode<TextureRect>("ItemBackground");
-        //_towerBackground.Texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{towerName}.png");
-        check_if_money_empty(1000);
 
         Label towerLabel = _towerBackground.GetNode<Label>("TowerCostLabel");
         towerLabel.Text = $"{towerCost}$";
@@ -36,64 +34,40 @@ public partial class TowerContainerItem : Control
 
     public override Variant _GetDragData(Vector2 atPosition)
     {
-        if (!_tooexpensive)
+        if (_buyable)
         {
             SetDragPreview(CreateDragPreview());
             return _towerName;
         }
-        else
-            return "";
-
+        
+        return "";
     }
 
     private Control CreateDragPreview()
     {
-        if (!_tooexpensive)
+        TextureRect previewNode = new TextureRect
         {
-            TextureRect previewNode = new TextureRect
-            {
-                Size = new Vector2(64, 64),
-                ExpandMode = TextureRect.ExpandModeEnum.FitWidth,
-                Texture = _iconTextureCache[_towerName]
-            };
-            return previewNode;
-        }
-        else
-            return null;//Preview wird nicht mehr erzeugt, es wird trotzdem geguckt ob man das Ding platzieren kann
+            Size = new Vector2(64, 64),
+            ExpandMode = TextureRect.ExpandModeEnum.FitWidth,
+            Texture = _iconTextureCache[_towerName]
+        };
+        return previewNode;
     }
 
-    private void check_if_money_empty(int _current_money)
+    public void UpdateItemStatus(int currentMoney)
     {
-        if(_current_money <_towerCost)
-        {
-            string Name = "dark_" + _towerName;
+        _buyable = currentMoney >= _towerCost;
+        string textureName = _buyable ? _towerName : "dark_" + _towerName;
 
-            //Hide();//TODO: Felder sollen nicht verschwinden sondern ausgegarut werden
-            if(!_backgroundTextureCache.ContainsKey(Name))
-            {
-                Texture2D texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{Name}.png");
-                _backgroundTextureCache.Add(Name, texture);
-                _towerBackground.Texture = texture;
-            }
-            else
-            {
-                _towerBackground.Texture = _backgroundTextureCache[Name];
-            }
-            _tooexpensive = true;
+        if (!_backgroundTextureCache.ContainsKey(textureName))
+        {
+            Texture2D texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{textureName}.png");
+            _backgroundTextureCache.Add(textureName, texture);
+            _towerBackground.Texture = texture;
         }
         else
         {
-            if (!_backgroundTextureCache.ContainsKey(_towerName))
-            {
-                Texture2D texture = GD.Load<Texture2D>($"res://assets/texture/tower/background/{_towerName}.png");
-                _backgroundTextureCache.Add(_towerName, texture);
-                _towerBackground.Texture = texture;
-            }
-            else
-            {
-                _towerBackground.Texture = _backgroundTextureCache[_towerName];
-            }
-            _tooexpensive = false;
+            _towerBackground.Texture = _backgroundTextureCache[textureName];
         }
     }
 }

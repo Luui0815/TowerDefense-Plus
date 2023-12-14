@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://gessf8a4vjba"]
 
-[ext_resource type="Script" path="res://script/tower/fire_trap/fire_trap.cs" id="1_ivqat"]
+[ext_resource type="Script" path="res://script/tower/FireTrap.cs" id="1_ivqat"]
 [ext_resource type="Texture2D" uid="uid://dkokxxi1sldf6" path="res://assets/Defenders/Firetrap/fire1.png" id="2_o6mtc"]
 [ext_resource type="Texture2D" uid="uid://3fqe17a7ol2r" path="res://assets/Defenders/Firetrap/fire2.png" id="3_5ihjj"]
 [ext_resource type="Texture2D" uid="uid://cy28vebarvldw" path="res://assets/Defenders/Firetrap/fire3.png" id="4_bvy3g"]

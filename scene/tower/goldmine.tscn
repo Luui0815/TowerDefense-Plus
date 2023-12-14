@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://7q5de2imx1qj"]
 
-[ext_resource type="Script" path="res://script/tower/goldmine/goldmine.cs" id="1_gjhm7"]
+[ext_resource type="Script" path="res://script/tower/Goldmine.cs" id="1_gjhm7"]
 [ext_resource type="Texture2D" uid="uid://br0p62h7a4myg" path="res://assets/Defenders/Goldmine/goldmine.png" id="2_0ulyp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8ehx1"]

@@ -41,7 +41,7 @@ public partial class KnightEnemy : MeleeEnemy
     {
         if (_attackTimer.IsStopped())
         {
-            defender closestTarget = SelectClosestTarget();
+            Defender closestTarget = SelectClosestTarget();
             if (closestTarget != null)
             {
                 _attackTimer.Start();
@@ -57,14 +57,14 @@ public partial class KnightEnemy : MeleeEnemy
         else return false;
     }
     
-    private defender SelectClosestTarget()
+    private Defender SelectClosestTarget()
     {
         float closestDistance = float.MaxValue;
         Node2D closestTarget = null;
         
         foreach(Node2D body in _attackRangeArea.GetOverlappingAreas())     
         { 
-            if(body is defender defenderUnit)
+            if(body is Defender defenderUnit)
             {
                 float distance = Position.DistanceTo(defenderUnit.Position);
                 if(distance < closestDistance) 
@@ -74,7 +74,7 @@ public partial class KnightEnemy : MeleeEnemy
                 }
             }
         }
-        return (defender)closestTarget;
+        return (Defender)closestTarget;
     }
 
     private void MoveEnemy()

@@ -7,7 +7,7 @@ using TowerDefense;
 public abstract partial class GameLevel : Node2D
 {
     [Signal]
-    public delegate void money_changedEventHandler(int _actmoney);
+    public delegate void MoneyChangedEventHandler(int _actmoney);
 
     protected int _currentMoney = 0;
     private readonly HashSet<int> _completedLanes = new();
@@ -15,8 +15,6 @@ public abstract partial class GameLevel : Node2D
     //private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
     private bool _levelStarted = false;
-   // protected Timer _newMoneyTimer = new Timer();
-   // protected int _amount_of_money_generated_per_Time = 50;
 
     public bool LevelStarted
     {
@@ -67,7 +65,6 @@ public abstract partial class GameLevel : Node2D
     {
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
-        //Money_Timer_start(35);
 
         Vector2 position = Vector2.Zero;
         PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
@@ -77,8 +74,8 @@ public abstract partial class GameLevel : Node2D
             lane.Init(i, GetFieldTypeRow(i));
             lane.Position = position;
             lane.Name = "MapLane" + i;
-            lane.EnemyCrossedLane += (laneNr) => OnEnemyCrossedLane(laneNr);
-            lane.AllEnemiesDefeated += (laneNr) => OnAllEnemiesDefeated(laneNr);
+            lane.EnemyCrossedLane += OnEnemyCrossedLane;
+            lane.AllEnemiesDefeated += OnAllEnemiesDefeated;
 
             AddChild(lane);
             _lanes[i] = lane;
@@ -87,13 +84,11 @@ public abstract partial class GameLevel : Node2D
 
         foreach (MapLane lane in _lanes)
         {
-            foreach (MapField field in lane._fields)
+            foreach (MapField field in lane.Fields)
             {
-                field.Connect(MapField.SignalName.Defender_placed,new Callable(this, "defender_placed"));
+                field.DefenderPlaced += (towerCost) => ChangeMoney(_currentMoney - towerCost);
             }
         }
-
-        //GetNode<SenderNode>("Pfad/Zur/Sendenden/Node").Connect("MeinSignal", this, nameof(OnMeinSignal));
 
         List<string> strings = new List<string>
         {
@@ -113,7 +108,6 @@ public abstract partial class GameLevel : Node2D
     /// <param name="towerNames">The names of the towers added to the inventory</param>
     public void FillTowerContainer(List<string> towerNames)
     {
-        //int i=0;
         PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
         foreach (string towerName in towerNames)
@@ -123,9 +117,9 @@ public abstract partial class GameLevel : Node2D
             TowerContainerItem item = (TowerContainerItem)towerItemScene.Instantiate();
             item.Init(towerName, towerSettings.Cost);
             _levelControlBar.AddTowerButton(item);
-            this.Connect(SignalName.money_changed, new Callable(item,"check_if_money_empty"));
-            //_selectable_items[i] = item;
+            MoneyChanged += item.UpdateItemStatus;
         }
+        EmitSignal(SignalName.MoneyChanged, _currentMoney);
     }
 
     /*
@@ -142,6 +136,16 @@ public abstract partial class GameLevel : Node2D
     public void ChangeMoney(int newMoney)
     {
         CurrentMoney = newMoney;
+        EmitSignal(SignalName.MoneyChanged, _currentMoney);
+    }
+
+    /// <summary>
+    /// Adds money to the players money amount
+    /// </summary>
+    /// <param name="moneyAmount">Money added to the player</param>
+    public void AddMoney(int moneyAmount)
+    {
+        ChangeMoney(moneyAmount + _currentMoney);
     }
 
     protected void OnStartLevelButtonPressed(Button button)
@@ -183,26 +187,4 @@ public abstract partial class GameLevel : Node2D
             .Select(x => FieldTypes[index, x])
             .ToArray();
     }
-
-    protected void defender_placed(int cost)//das und addmoney from mine kann man evtl. zusammenfassen
-    {
-        ChangeMoney(CurrentMoney-cost);
-        EmitSignal(SignalName.money_changed, _currentMoney);
-    }
-
-    protected abstract void addmoney_from_mine(int newmoney);
-
-   /* protected void Money_Timer_start(int Time_to_generate_money)//geht evtl. schoener
-    {
-        _newMoneyTimer.OneShot = false;
-        _newMoneyTimer.Connect(Timer.SignalName.Timeout, new Callable(this, "addmoney_from_timer"));
-        AddChild(_newMoneyTimer);
-        _newMoneyTimer.Start(Time_to_generate_money);
-    }
-
-    protected void addmoney_from_timer()//geht evtl. schoener
-    {
-        addmoney_from_mine(_amount_of_money_generated_per_Time);
-    }
-   */
 }

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://7y0qfi38oi1i"]
 
 [ext_resource type="Texture2D" uid="uid://dg8g52klkh6hc" path="res://assets/Defenders/Archer/archeridle1.png" id="1_2n3tb"]
-[ext_resource type="Script" path="res://script/tower/archer/archer.cs" id="1_hs5q3"]
+[ext_resource type="Script" path="res://script/tower/Archer.cs" id="1_hs5q3"]
 [ext_resource type="Texture2D" uid="uid://b8p702h6e7djn" path="res://assets/Defenders/Archer/archeridle2.png" id="2_mwwhj"]
 [ext_resource type="Texture2D" uid="uid://yma6xi8wm1v" path="res://assets/Defenders/Archer/archeridle3.png" id="3_03jr7"]
 [ext_resource type="Texture2D" uid="uid://mi1scftqgdxc" path="res://assets/Defenders/Archer/archeridle4.png" id="4_iig1a"]
