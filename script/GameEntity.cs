@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public abstract partial class GameEntity : Node2D
 {
@@ -21,6 +20,10 @@ public abstract partial class GameEntity : Node2D
     public bool ImmuneToDamage {
         get;
     } = false;
+
+    public abstract void Action();
+
+    public abstract void Destroy();
 
     public override void _Ready()
     {
@@ -49,13 +52,13 @@ public abstract partial class GameEntity : Node2D
         }
     }
 
-    public void OnTimerEnd()
+    private void OnTimerEnd()
     {
         _sprite.Play(_actionAnimation);
         _animationTimer.Start(_animationDelay);
     }
 
-    public void OnAnimationTimerEnd()
+    private void OnAnimationTimerEnd()
     {
         if (_level != null && _level.LevelStarted)
         {
@@ -65,7 +68,4 @@ public abstract partial class GameEntity : Node2D
         _actionTimer.Start(_delay);
     }
 
-    public abstract void Action();
-
-    public abstract void Destroy();
 }
