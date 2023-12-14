@@ -8,8 +8,13 @@ public partial class KnightEnemy : MeleeEnemy
     Area2D _attackRangeArea;
     Timer _attackTimer;
 
-	public override void Init()
-	{
+    public KnightEnemy()
+    {
+        //TODO: Change values
+        _delay = 15;
+        _animationDelay = 1;
+        _actionAnimation = "idle";
+
         EnemyName = "KnightEnemy";
         WalkSpeed = 0.5f;
         Health = 10;
@@ -18,7 +23,7 @@ public partial class KnightEnemy : MeleeEnemy
         _attackRangeArea = GetNode<Area2D>("AttackRangeArea");
 
         _attackTimer = GetNode<Timer>("AttackTimer");
-	}
+    }
 
     public override void _Ready()
     {
