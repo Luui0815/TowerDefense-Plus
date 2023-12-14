@@ -3,8 +3,14 @@ using Godot;
 public abstract partial class Defender : GameEntity
 {
     protected string _name;
+	protected AnimatedSprite2D _sprite;
 
-	public abstract void Init();
+	public void Init(string towerName)
+	{
+		_name = towerName;
+		_sprite = GetNode<AnimatedSprite2D>("AnimationSprite");
+		_sprite.Play();
+	}
 
 	public int GetTowerCost()
     {

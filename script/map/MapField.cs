@@ -45,7 +45,7 @@ namespace TowerDefense
 			string towerName=(string) data;
 
 			_tower = (Defender) GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
-			_tower.Init();
+			_tower.Init(towerName);
 
 			if (towerName == "goldmine")
 			{

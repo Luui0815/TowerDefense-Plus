@@ -57,7 +57,7 @@ public partial class TowerContainerItem : Control
     public void UpdateItemStatus(int currentMoney)
     {
         _buyable = currentMoney >= _towerCost;
-        string textureName = _buyable ? _towerName : "dark_" + _towerName;
+        string textureName = _buyable ? _towerName : _towerName + "_disabled";
 
         if (!_backgroundTextureCache.ContainsKey(textureName))
         {
