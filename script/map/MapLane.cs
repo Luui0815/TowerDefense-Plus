@@ -31,6 +31,7 @@ public partial class MapLane : Node2D
 		{
 			MapField field = (MapField)fieldScene.Instantiate();
 			field.Init(fieldTypes[i], i + (10 * laneNr));
+			field.Name = "MapField" + (i + (10 * laneNr));
 			field.Position = fieldPosition;
 			AddChild(field);
 			fieldPosition.X += 108;

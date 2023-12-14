@@ -18,16 +18,15 @@ public partial class KnightEnemy : MeleeEnemy
         EnemyName = "KnightEnemy";
         WalkSpeed = 0.5f;
         Health = 10;
+    }
+
+    public override void _Ready()
+    {
         _knightEnemy = GetNode<AnimatedSprite2D>("KnightEnemy");
         _knightEnemy.Play("walking");
         _attackRangeArea = GetNode<Area2D>("AttackRangeArea");
 
         _attackTimer = GetNode<Timer>("AttackTimer");
-    }
-
-    public override void _Ready()
-    {
-        Init();
     }
 
     public override void _Process(double delta)
