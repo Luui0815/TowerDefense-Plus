@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vt2jqqmusrnl"
-path="res://.godot/imported/Auswahlmenu.png-799c022f5972086d7284a4058007da50.ctex"
+uid="uid://e618vvgk1dfx"
+path="res://.godot/imported/noBKG_KnightRun_strip.png-99e01b4fad10bff3f0f0a3f897270bb4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/Auswahlmenu.png"
-dest_files=["res://.godot/imported/Auswahlmenu.png-799c022f5972086d7284a4058007da50.ctex"]
+source_file="res://assets/Enemies/KnightEnemy/noBKG_KnightRun_strip.png"
+dest_files=["res://.godot/imported/noBKG_KnightRun_strip.png-99e01b4fad10bff3f0f0a3f897270bb4.ctex"]
 
 [params]
 

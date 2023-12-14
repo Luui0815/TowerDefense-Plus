@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SWE-Tower-Defense"
-run/main_scene="res://scene/ui/MainMenu.tscn"
+run/main_scene="res://scene/map/level/LevelOne.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -29,3 +29,7 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="SWE-Tower-Defense"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"

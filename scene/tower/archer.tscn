@@ -1,0 +1,59 @@
+[gd_scene load_steps=12 format=3 uid="uid://cq51do3xor63e"]
+
+[ext_resource type="Script" path="res://script/tower/Archer.cs" id="1_hs5q3"]
+[ext_resource type="Texture2D" uid="uid://chbub605kwp5i" path="res://assets/texture/tower/animation/archer/Idle1.png" id="2_xvoj0"]
+[ext_resource type="Texture2D" uid="uid://mq12b1cuju6o" path="res://assets/texture/tower/animation/archer/Idle2.png" id="3_livjr"]
+[ext_resource type="Texture2D" uid="uid://c6hnooke8ken5" path="res://assets/texture/tower/animation/archer/Idle3.png" id="4_mhclq"]
+[ext_resource type="Texture2D" uid="uid://c3av0wyuuto0" path="res://assets/texture/tower/animation/archer/Idle4.png" id="5_dr3q0"]
+[ext_resource type="Texture2D" uid="uid://b602r5bir5uks" path="res://assets/texture/tower/animation/archer/Idle5.png" id="6_0jjbs"]
+[ext_resource type="Texture2D" uid="uid://bqgih12xg405k" path="res://assets/texture/tower/animation/archer/Idle6.png" id="7_vvsvq"]
+[ext_resource type="Texture2D" uid="uid://bhulygc1u3q0f" path="res://assets/texture/tower/animation/archer/Idle7.png" id="8_h5waa"]
+[ext_resource type="Texture2D" uid="uid://by5p4svnye5qh" path="res://assets/texture/tower/animation/archer/Idle8.png" id="9_vydpa"]
+[ext_resource type="Texture2D" uid="uid://cal6hpilhohry" path="res://assets/texture/tower/animation/archer/Idle9.png" id="10_is4pi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwmpw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xvoj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_livjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mhclq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dr3q0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0jjbs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vvsvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_h5waa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vydpa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_is4pi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="ArcherDefender" type="Node2D"]
+script = ExtResource("1_hs5q3")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wwmpw")
+animation = &"idle"
+centered = false
+
+[node name="ActionTimer" type="Timer" parent="."]
+
+[node name="AnimationTimer" type="Timer" parent="."]

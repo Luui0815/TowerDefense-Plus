@@ -6,10 +6,13 @@ using TowerDefense;
 
 public abstract partial class GameLevel : Node2D
 {
+    [Signal]
+    public delegate void MoneyChangedEventHandler(int _actmoney);
+
     protected int _currentMoney = 0;
     private readonly HashSet<int> _completedLanes = new();
     private readonly MapLane[] _lanes = new MapLane[5];
-    //private EnemySpawner _spawner;
+    private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
     private bool _levelStarted = false;
 
@@ -60,11 +63,11 @@ public abstract partial class GameLevel : Node2D
 
     public override void _Ready()
     {
+        Name = "Level";
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
 
         Vector2 position = Vector2.Zero;
-
         PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
         for (int i = 0; i < 5; i++)
         {
@@ -72,15 +75,42 @@ public abstract partial class GameLevel : Node2D
             lane.Init(i, GetFieldTypeRow(i));
             lane.Position = position;
             lane.Name = "MapLane" + i;
-            lane.EnemyCrossedLane += (laneNr) => OnEnemyCrossedLane(laneNr);
-            lane.AllEnemiesDefeated += (laneNr) => OnAllEnemiesDefeated(laneNr);
+            lane.EnemyCrossedLane += OnEnemyCrossedLane;
+            lane.AllEnemiesDefeated += OnAllEnemiesDefeated;
 
             AddChild(lane);
             _lanes[i] = lane;
             position.Y += 144;
         }
+
+        foreach (MapLane lane in _lanes)
+        {
+            foreach (MapField field in lane.Fields)
+            {
+                field.DefenderPlaced += (towerCost) => ChangeMoney(_currentMoney - towerCost);
+            }
+        }
+
+        List<string> strings = new List<string>
+        {
+            "knight",
+            "spearman",
+            "goldmine",
+            "wall",
+            "archer",
+            "fire_trap"
+        };
+        FillTowerContainer(strings);
+
+        _spawner = new(1);
+        AddChild(_spawner);
+        _spawner.SpawnTimerStart();
     }
 
+    /// <summary>
+    /// Fills the tower inventory with the specified towers
+    /// </summary>
+    /// <param name="towerNames">The names of the towers added to the inventory</param>
     public void FillTowerContainer(SortedSet<string> towerNames)
     {
         PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
@@ -92,7 +122,9 @@ public abstract partial class GameLevel : Node2D
             TowerContainerItem item = (TowerContainerItem)towerItemScene.Instantiate();
             item.Init(towerName, towerSettings.Cost);
             _levelControlBar.AddTowerButton(item);
+            MoneyChanged += item.UpdateItemStatus;
         }
+        EmitSignal(SignalName.MoneyChanged, _currentMoney);
     }
 
     /*
@@ -102,9 +134,23 @@ public abstract partial class GameLevel : Node2D
     }
     */
 
+    /// <summary>
+    /// Changes the money amount which the player has
+    /// </summary>
+    /// <param name="newMoney">The new money amount</param>
     public void ChangeMoney(int newMoney)
     {
         CurrentMoney = newMoney;
+        EmitSignal(SignalName.MoneyChanged, _currentMoney);
+    }
+
+    /// <summary>
+    /// Adds money to the players money amount
+    /// </summary>
+    /// <param name="moneyAmount">Money added to the player</param>
+    public void AddMoney(int moneyAmount)
+    {
+        ChangeMoney(moneyAmount + _currentMoney);
     }
 
     protected void OnStartLevelButtonPressed(Button button)
