@@ -12,7 +12,7 @@ public abstract partial class GameLevel : Node2D
     protected int _currentMoney = 0;
     private readonly HashSet<int> _completedLanes = new();
     private readonly MapLane[] _lanes = new MapLane[5];
-    //private EnemySpawner _spawner;
+    private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
     private bool _levelStarted = false;
 
@@ -101,6 +101,10 @@ public abstract partial class GameLevel : Node2D
             "fire_trap"
         };
         FillTowerContainer(strings);
+
+        _spawner = new(1);
+        AddChild(_spawner);
+        _spawner.SpawnTimerStart();
     }
 
     /// <summary>

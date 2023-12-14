@@ -20,7 +20,7 @@ public partial class EnemySpawner : Node
 	
         _spawnTimer = new Timer();
         AddChild(_spawnTimer);
-        _spawnTimer.WaitTime = 10.0f;
+        _spawnTimer.WaitTime = 6.0f;
         _spawnTimer.OneShot = false;
         _spawnTimer.Timeout += OnSpawnTimerTimeout;
     }
@@ -39,7 +39,7 @@ public partial class EnemySpawner : Node
 
             if (_currentSpawnIndex < _spawnTimes.Length)
             {
-                _spawnTimer.WaitTime = _spawnTimes[_currentSpawnIndex].Item1 - _spawnTimes[_currentSpawnIndex - 1].Item1;
+                _spawnTimer.WaitTime = _spawnTimes[_currentSpawnIndex - 1].Item1;
             }
         }
         else
@@ -55,7 +55,7 @@ public partial class EnemySpawner : Node
             case "KnightEnemy":
                 _enemy = (KnightEnemy)GD.Load<PackedScene>($"res://scene/enemy/KnightEnemy/{enemyType}.tscn").Instantiate();
                 _enemy.Init();
-                _enemy.Position = new Vector2();
+                _enemy.Position = new Vector2(978,125);
                 AddChild(_enemy);
                 GD.Print(enemyType + "spawnt");
                 break;
