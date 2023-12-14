@@ -21,6 +21,11 @@ public abstract partial class GameEntity : Node2D
         get;
     } = false;
 
+    /// <summary>
+    /// The action done by the entity. Gets called when the AnimationTimer ends.
+    /// 
+    /// Order: ActionTimer => AnimationTimer => Action() => (repeat)
+    /// </summary>
     public abstract void Action();
 
     public abstract void Destroy();
@@ -40,6 +45,10 @@ public abstract partial class GameEntity : Node2D
         _level = GetNode<GameLevel>("/root/Level");
     }
 
+    /// <summary>
+    /// Inflicts damage to the entity
+    /// </summary>
+    /// <param name="damage">The damage amount</param>
     public void InflictDamage(int damage)
     {
         if (!ImmuneToDamage)
