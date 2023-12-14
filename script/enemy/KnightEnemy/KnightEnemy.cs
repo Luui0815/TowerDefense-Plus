@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class KnightEnemy : MeleeEnemy
 {
@@ -35,6 +36,8 @@ public partial class KnightEnemy : MeleeEnemy
         {
             Destroy();
         }
+
+       
 	}
 
     private bool CanAttack()
@@ -44,33 +47,40 @@ public partial class KnightEnemy : MeleeEnemy
             Defender closestTarget = SelectClosestTarget();
             if (closestTarget != null)
             {
+                WalkSpeed = 0;
                 _attackTimer.Start();
+                _knightEnemy.Play("attacking");
                 Attack(closestTarget);
                 return true;
             }
             else
             {
+                WalkSpeed = 0.5f;
                 _knightEnemy.Play("walking");
                 return false;
             }
         }
-        else return false;
+        else
+        {
+            return false;
+        }
     }
     
     private Defender SelectClosestTarget()
     {
+        Defender closestTarget = null;
         float closestDistance = float.MaxValue;
-        Node2D closestTarget = null;
         
         foreach(Node2D body in _attackRangeArea.GetOverlappingAreas())     
-        { 
-            if(body is Defender defenderUnit)
+        {
+            Node2D parent = (Node2D)body.GetParent();
+            if(parent.HasMethod("GetTowerCost"))
             {
-                float distance = Position.DistanceTo(defenderUnit.Position);
+                float distance = Position.DistanceTo(parent.Position);
                 if(distance < closestDistance) 
                 {
                     closestDistance = distance;
-                    closestTarget = body;
+                    closestTarget = parent as Defender;
                 }
             }
         }
