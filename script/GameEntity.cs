@@ -37,7 +37,7 @@ public abstract partial class GameEntity : Node2D
         _animationTimer.Timeout += OnAnimationTimerEnd;
         _animationTimer.OneShot = true;
 
-        _level = GetNode<GameLevel>("/root/GameLevel");
+        _level = GetNode<GameLevel>("/root/Level");
     }
 
     public void InflictDamage(int damage)

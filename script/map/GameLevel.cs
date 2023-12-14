@@ -63,6 +63,7 @@ public abstract partial class GameLevel : Node2D
 
     public override void _Ready()
     {
+        Name = "Level";
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
 

@@ -11,6 +11,9 @@ public partial class Goldmine : Defender
     {
         _delay = 25;
         _animationDelay = 1;
+
+        //TODO: Add action animation
+        _actionAnimation = "idle";
     }
 
     public override void _Ready()
