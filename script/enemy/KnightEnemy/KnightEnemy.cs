@@ -40,7 +40,6 @@ public partial class KnightEnemy : MeleeEnemy
         {
             Destroy();
         }
-
        
 	}
 

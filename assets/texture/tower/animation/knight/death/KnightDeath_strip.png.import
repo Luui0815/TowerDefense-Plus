@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hh86kjniu8wa"
-path="res://.godot/imported/Idle7.png-2a5e96309c0a2f8a3de85f0aa0a09714.ctex"
+uid="uid://dxrhdbawgdo0i"
+path="res://.godot/imported/KnightDeath_strip.png-f4488d451b9947cca0df4ad63ada5c3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/animation/knight/Idle7.png"
-dest_files=["res://.godot/imported/Idle7.png-2a5e96309c0a2f8a3de85f0aa0a09714.ctex"]
+source_file="res://assets/texture/tower/animation/knight/death/KnightDeath_strip.png"
+dest_files=["res://.godot/imported/KnightDeath_strip.png-f4488d451b9947cca0df4ad63ada5c3e.ctex"]
 
 [params]
 

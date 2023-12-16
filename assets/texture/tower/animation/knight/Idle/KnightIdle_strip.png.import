@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3bmu0uwgbiq4"
-path="res://.godot/imported/Idle6.png-7d5d28d458d0fda6b089db652b39cda4.ctex"
+uid="uid://bxbbikwsfidq0"
+path="res://.godot/imported/KnightIdle_strip.png-2ee89152d38c780578e5ecad0f3a7ba9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/animation/knight/Idle6.png"
-dest_files=["res://.godot/imported/Idle6.png-7d5d28d458d0fda6b089db652b39cda4.ctex"]
+source_file="res://assets/texture/tower/animation/knight/Idle/KnightIdle_strip.png"
+dest_files=["res://.godot/imported/KnightIdle_strip.png-2ee89152d38c780578e5ecad0f3a7ba9.ctex"]
 
 [params]
 

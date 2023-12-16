@@ -80,7 +80,7 @@ public abstract partial class GameLevel : Node2D
 
             AddChild(lane);
             _lanes[i] = lane;
-            position.Y += 144;
+            position.Y += 125;
         }
 
         foreach (MapLane lane in _lanes)

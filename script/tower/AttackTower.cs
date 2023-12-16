@@ -3,5 +3,11 @@ using System;
 
 public abstract partial class AttackTower : Defender
 {
-	//hier ist Platz für deine Inovationen
+	protected int _damage;
+    protected Timer _AttackTimer;
+
+    protected void Attack(Enemy target, int damage)
+    {
+        target.Health -= damage;
+    }
 }

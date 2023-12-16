@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TowerDefense;
 
 public partial class LevelOne : GameLevel
@@ -31,4 +32,10 @@ public partial class LevelOne : GameLevel
         { FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal },
         { FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal }
     };
+
+   /* public override void _Ready()//nur fuer mich besser zum debuggen
+    {
+        SortedSet<string> towerNemes = new SortedSet<string>(new[] { "wall" });
+        FillTowerContainer(towerNemes);
+    }*/
 }
