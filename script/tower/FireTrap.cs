@@ -1,18 +1,63 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class FireTrap : TrapDefence
 {
-    public FireTrap()
-    {
-        //TODO: Change values and add action animation
-        _delay = 15;
-        _animationDelay = 1;
-        _actionAnimation = "idle";
-    }
-    
-    public override void Action()
-    {
-        
-    }
+	private List<Enemy> _attackableEnemiess = new List<Enemy>();
+	public FireTrap()
+	{
+		//TODO: Change values and add action animation
+		_delay = 15;//nicht benoetigt, da Trap nur Status hinzufuegt
+		_animationDelay = 1;
+		_actionAnimation = "idle";
+		Health = 3;
+	}
+
+	public override void Action()
+	{
+
+	}
+
+	public override void _Ready()
+	{
+		_AttackArea = GetNode<Area2D>("AttackArea");
+		//_AttackTimer = GetNode<Timer>("AttackTimer");
+		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
+		//_AttackTimer.WaitTime = _delay; ;
+		_animatedSprite.Play(_actionAnimation);
+	}
+
+	public override void _Process(double delta)
+	{
+		_attackableEnemiess = SelectTargets();
+
+		if(_attackableEnemiess.Count > 0)
+		{
+			foreach(Enemy enemy in _attackableEnemiess)
+			{
+				enemy.AddStatusEffect("burn");
+			}
+		}
+	}
+
+	private List<Enemy> SelectTargets()
+	{
+		List<Enemy> EnemyList = new List<Enemy>();
+
+		foreach (Node2D body in _AttackArea.GetOverlappingAreas())
+		{
+			Node2D parent = (Node2D)body.GetParent();
+			if (parent is Enemy)
+			{
+				EnemyList.Add(parent as Enemy);
+			}
+		}
+		return EnemyList;
+	}
 }
+
+
+
+
+

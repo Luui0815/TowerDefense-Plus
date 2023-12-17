@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcgr3fjxgr54n"]
+[gd_scene load_steps=20 format=3 uid="uid://bcgr3fjxgr54n"]
 
 [ext_resource type="Script" path="res://script/tower/FireTrap.cs" id="1_ivqat"]
 [ext_resource type="Texture2D" uid="uid://cqf3su76jgetf" path="res://assets/texture/tower/animation/fire_trap/Idle1.png" id="2_r76w6"]
@@ -74,11 +74,14 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5syy7"]
+size = Vector2(100, 120)
+
 [node name="FireTrapDefender" type="Node2D"]
 script = ExtResource("1_ivqat")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(32, 29)
+position = Vector2(50, 60)
 sprite_frames = SubResource("SpriteFrames_k5o0w")
 animation = &"idle"
 frame = 1
@@ -87,3 +90,11 @@ frame_progress = 0.681268
 [node name="ActionTimer" type="Timer" parent="."]
 
 [node name="AnimationTimer" type="Timer" parent="."]
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(50, 60)
+shape = SubResource("RectangleShape2D_5syy7")
+
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

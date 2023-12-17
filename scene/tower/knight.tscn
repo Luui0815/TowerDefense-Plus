@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dkb3jd5uivu8j"]
+[gd_scene load_steps=60 format=3 uid="uid://dkb3jd5uivu8j"]
 
 [ext_resource type="Script" path="res://script/tower/Knight.cs" id="1_sqy6k"]
 [ext_resource type="Texture2D" uid="uid://y3uav64y34u0" path="res://assets/texture/tower/animation/knight/Attack/noBKG_KnightAttack_strip.png" id="2_6dbv2"]
@@ -388,13 +388,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6bfj"]
+size = Vector2(25, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ote3p"]
 size = Vector2(100, 120)
 
 [node name="KnightDefender" type="Node2D"]
 script = ExtResource("1_sqy6k")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-10, -3)
+position = Vector2(-17, -3)
 scale = Vector2(1.31124, 2)
 sprite_frames = SubResource("SpriteFrames_tm0n5")
 animation = &"death"
@@ -408,7 +411,7 @@ centered = false
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(150, 60)
+position = Vector2(113, 60)
 shape = SubResource("RectangleShape2D_q6bfj")
 
 [node name="HitboxArea" type="Area2D" parent="."]
@@ -417,7 +420,7 @@ collision_mask = 3
 
 [node name="HitBox" type="CollisionShape2D" parent="HitboxArea"]
 position = Vector2(50, 60)
-shape = SubResource("RectangleShape2D_q6bfj")
+shape = SubResource("RectangleShape2D_ote3p")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 1.5
