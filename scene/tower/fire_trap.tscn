@@ -92,9 +92,10 @@ frame_progress = 0.681268
 [node name="AnimationTimer" type="Timer" parent="."]
 
 [node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(50, 60)
 shape = SubResource("RectangleShape2D_5syy7")
 
-[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

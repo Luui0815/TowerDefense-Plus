@@ -11,7 +11,7 @@ public partial class FireTrap : TrapDefence
 		_delay = 15;//nicht benoetigt, da Trap nur Status hinzufuegt
 		_animationDelay = 1;
 		_actionAnimation = "idle";
-		Health = 3;
+		Health = 6;
 	}
 
 	public override void Action()
@@ -39,6 +39,11 @@ public partial class FireTrap : TrapDefence
 				enemy.AddStatusEffect("burn");
 			}
 		}
+
+		if(Health<=0)
+		{
+			Destroy();//TODO: DeathAnimation
+		}
 	}
 
 	private List<Enemy> SelectTargets()
@@ -55,7 +60,12 @@ public partial class FireTrap : TrapDefence
 		}
 		return EnemyList;
 	}
+	private void _on_attack_area_area_entered(Area2D area)
+	{
+		Health--;
+	}
 }
+
 
 
 
