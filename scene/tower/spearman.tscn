@@ -45,7 +45,7 @@ animations = [{
 [node name="SpearmanDefender" type="Node2D"]
 script = ExtResource("1_dbss1")
 
-[node name="AnimationSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(50, 50)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_045pr")

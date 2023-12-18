@@ -9,7 +9,7 @@ public partial class Goldmine : Defender
 
     public Goldmine()
     {
-        _delay = 25;
+        _delay = 15;
         _animationDelay = 1;
 
         //TODO: Add action animation

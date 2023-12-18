@@ -218,31 +218,34 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o7aj"]
-size = Vector2(257, 86)
+size = Vector2(232, 52)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d2fve"]
-radius = 86.0233
+radius = 69.029
 
 [node name="GiantEnemy" type="CharacterBody2D"]
-position = Vector2(596, 333)
+position = Vector2(596, 347)
 script = ExtResource("1_pth77")
 
 [node name="GiantEnemy" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3.5, 3.5)
+position = Vector2(-4, 13)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_c20pv")
-animation = &"death"
-frame_progress = 0.249414
+animation = &"walking"
+frame_progress = 0.658693
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 
 [node name="AttackRange" type="CollisionShape2D" parent="AttackRangeArea"]
-position = Vector2(39.5, 104)
+position = Vector2(52, 121)
 shape = SubResource("RectangleShape2D_4o7aj")
-
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(127, 67)
-shape = SubResource("CircleShape2D_d2fve")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 1.69
 one_shot = true
+
+[node name="HitboxArea" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
+position = Vector2(104, 67)
+shape = SubResource("CircleShape2D_d2fve")

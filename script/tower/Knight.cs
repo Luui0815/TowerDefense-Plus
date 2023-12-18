@@ -13,7 +13,7 @@ public  partial class Knight : MeleeDefender
 		_animationDelay = 1;
 		_actionAnimation = "idle";
 		_damage = 1;
-		Health = 35;
+		Health = 30;
 	}
 	public override void _Ready()
 	{
@@ -30,10 +30,13 @@ public  partial class Knight : MeleeDefender
 
 		foreach (Node2D body in _AttackArea.GetOverlappingAreas())
 		{
-			Node2D parent = (Node2D)body.GetParent();
-			if (parent is Enemy)
+			if (body.Name == "HitboxArea")
 			{
-				EnemyList.Add(parent as Enemy);
+				Node2D parent = (Node2D)body.GetParent();
+				if (parent is Enemy)
+				{
+					EnemyList.Add(parent as Enemy);
+				}
 			}
 		}
 		return EnemyList;
@@ -73,6 +76,7 @@ public  partial class Knight : MeleeDefender
 
 		if (Health <=0)
 		{
+			DefenderDefeated = true;
 			Destroy();
 		}
 

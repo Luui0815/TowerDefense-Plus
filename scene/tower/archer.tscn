@@ -47,6 +47,7 @@ animations = [{
 }]
 
 [node name="ArcherDefender" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_hs5q3")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]

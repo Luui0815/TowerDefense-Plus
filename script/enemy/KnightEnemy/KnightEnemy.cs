@@ -16,7 +16,7 @@ public partial class KnightEnemy : MeleeEnemy
 		_actionAnimation = "idle";
 
 		EnemyName = "KnightEnemy";
-		WalkSpeed = 0.5f;
+		WalkSpeed = 0.4f;
 		Health = 10;
 	}
 
@@ -35,10 +35,10 @@ public partial class KnightEnemy : MeleeEnemy
 
 		if (!CanAttack())
 		{
-			MoveEnemy();
+			MoveEnemy(WalkSpeed);
 		}
 
-		if(Health <=0) 
+		if(Health <=0 && !EnemyDefeated) 
 		{
 			Destroy();
 		}
@@ -48,18 +48,18 @@ public partial class KnightEnemy : MeleeEnemy
 	{
 		if (_attackTimer.IsStopped())
 		{
-			Defender closestTarget = SelectClosestTarget();
+			Defender closestTarget = SelectClosestTarget(_attackRangeArea);
 			if (closestTarget != null)
 			{
 				WalkSpeed = 0;
 				_attackTimer.Start();
 				_knightEnemy.Play("attacking");
-				Attack(closestTarget,1);
+				Attack(closestTarget, 1);
 				return true;
 			}
 			else
 			{
-				WalkSpeed = 0.5f;
+				WalkSpeed = 0.4f;
 				_knightEnemy.Play("walking");
 				return false;
 			}
@@ -69,38 +69,12 @@ public partial class KnightEnemy : MeleeEnemy
 			return false;
 		}
 	}
-	
-	private Defender SelectClosestTarget()
-	{
-		Defender closestTarget = null;
-		float closestDistance = float.MaxValue;
-		
-		foreach(Node2D body in _attackRangeArea.GetOverlappingAreas())     
-		{
-			Node2D parent = (Node2D)body.GetParent();
-			if(parent.HasMethod("GetTowerCost"))
-			{
-				float distance = Position.DistanceTo(parent.Position);
-				if(distance < closestDistance) 
-				{
-					closestDistance = distance;
-					closestTarget = parent as Defender;
-				}
-			}
-		}
-		return (Defender)closestTarget;
-	}
-
-	private void MoveEnemy()
-	{
-		Vector2 movement = new(-WalkSpeed, 0);
-		Translate(movement);
-	}
 
 	public override void Destroy()
 	{
+		EnemyDefeated = true;
 		_knightEnemy.Play("death");
-		base.Destroy();     
+		base.Destroy();
 	}
 
 	//public override void OnTowerEnteredBody(Node2D tower)
