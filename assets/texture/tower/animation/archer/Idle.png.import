@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chbub605kwp5i"
-path="res://.godot/imported/Idle1.png-cb72cfaf927dc832f0ae36620e55bbb0.ctex"
+uid="uid://cak4b5uol47k2"
+path="res://.godot/imported/Idle.png-6861ce55fc89d5ca92c6ebb1f6b81dd3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/animation/archer/Idle1.png"
-dest_files=["res://.godot/imported/Idle1.png-cb72cfaf927dc832f0ae36620e55bbb0.ctex"]
+source_file="res://assets/texture/tower/animation/archer/Idle.png"
+dest_files=["res://.godot/imported/Idle.png-6861ce55fc89d5ca92c6ebb1f6b81dd3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by5p4svnye5qh"
-path="res://.godot/imported/Idle8.png-d37c351a6bed4bd079a31ea4c52bd161.ctex"
+uid="uid://hicjumx6eavn"
+path="res://.godot/imported/Attack.png-105b9728a16ca198aac3f786d471a457.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/animation/archer/Idle8.png"
-dest_files=["res://.godot/imported/Idle8.png-d37c351a6bed4bd079a31ea4c52bd161.ctex"]
+source_file="res://assets/texture/tower/animation/archer/Attack.png"
+dest_files=["res://.godot/imported/Attack.png-105b9728a16ca198aac3f786d471a457.ctex"]
 
 [params]
 

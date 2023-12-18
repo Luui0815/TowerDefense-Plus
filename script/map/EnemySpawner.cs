@@ -19,14 +19,14 @@ public partial class EnemySpawner : Node
         switch (levelNr)
         {
             case 1:
-                _spawnTimes = new (float, string)[] { (20, "KnightEnemy"), (25, "KnightEnemy"), (20, "BanditEnemy"), (20, "BanditEnemy"), (20, "GiantEnemy"), (0, "") };
+                _spawnTimes = new (float, string)[] { (5, "KnightEnemy"), (25, "KnightEnemy"), (20, "BanditEnemy"), (20, "BanditEnemy"), (20, "GiantEnemy"), (0, "") };
                 break;
             default: break;
         }
 
         _spawnTimer = new Timer();
         AddChild(_spawnTimer);
-        _spawnTimer.WaitTime = 20.0f;
+        _spawnTimer.WaitTime = 5.0f;
         _spawnTimer.OneShot = false;
         _spawnTimer.Timeout += OnSpawnTimerTimeout;
     }
