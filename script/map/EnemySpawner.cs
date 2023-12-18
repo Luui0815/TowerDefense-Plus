@@ -7,17 +7,23 @@ public partial class EnemySpawner : Node
     private (float, string)[] _spawnTimes;
     private Enemy _enemy;
     private int _currentSpawnIndex = 0;
+    private bool finished = false;
+
+    public bool Finished
+    {
+        get { return finished; }
+    }
 
     public EnemySpawner(int levelNr)
-	{
+    {
         switch (levelNr)
         {
-			case 1:
-                _spawnTimes = new (float, string)[] {(10, "KnightEnemy"),(5, "KnightEnemy"),(2, "KnightEnemy")};
-				break;
-			default: break;
-		}
-	
+            case 1:
+                _spawnTimes = new (float, string)[] { (15, "KnightEnemy"), (10, "KnightEnemy"), (5, "BanditEnemy"), (1, "BanditEnemy"), (5, "GiantEnemy"), (0, "") };
+                break;
+            default: break;
+        }
+
         _spawnTimer = new Timer();
         AddChild(_spawnTimer);
         _spawnTimer.WaitTime = 6.0f;
@@ -45,21 +51,39 @@ public partial class EnemySpawner : Node
         else
         {
             _spawnTimer.Stop();
+            finished = true;
         }
     }
 
     private void SpawnEnemy(string enemyType)
     {
-        switch(enemyType)
+        int random = GD.RandRange(0, 4);
+        int lane = random + 1;
+
+        switch (enemyType)
         {
             case "KnightEnemy":
-                _enemy = (KnightEnemy)GD.Load<PackedScene>($"res://scene/enemy/KnightEnemy/{enemyType}.tscn").Instantiate();
+                _enemy = (KnightEnemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}/{enemyType}.tscn").Instantiate();
                 _enemy.Init();
-                _enemy.Position = new Vector2(978,125);
+                _enemy.Position = new Vector2(978, (random * 125) - 30);
                 AddChild(_enemy);
-                GD.Print(enemyType + "spawnt");
+                GD.Print(enemyType + " spawnt auf Lane " + lane);
                 break;
+            case "BanditEnemy":
+                _enemy = (BanditEnemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}/{enemyType}.tscn").Instantiate();
+                _enemy.Init();
+                _enemy.Position = new Vector2(978, (random * 125) - 25);
+                AddChild(_enemy);
+                GD.Print(enemyType + " spawnt auf Lane " + lane);
+                break;
+            case "GiantEnemy":
+                _enemy = (GiantEnemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}/{enemyType}.tscn").Instantiate();
+                _enemy.Init();
+                _enemy.Position = new Vector2(978, (random * 125) - 30);
+                AddChild(_enemy);
+                GD.Print(enemyType + " spawnt auf Lane " + lane);
+                break;
+            default: break;
         }
     }
 }
-

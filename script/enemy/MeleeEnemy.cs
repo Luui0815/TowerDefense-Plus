@@ -19,9 +19,9 @@ public abstract partial class MeleeEnemy : Enemy
 	{
 
 	}
-	public virtual void Attack(Defender closestTarget)
+	public virtual void Attack(Defender closestTarget, int damage)
 	{
-		closestTarget.Health -= 1;
+		closestTarget.Health -= damage;
 	}
 	
 }

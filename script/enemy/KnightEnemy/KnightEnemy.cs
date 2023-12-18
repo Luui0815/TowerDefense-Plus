@@ -42,7 +42,6 @@ public partial class KnightEnemy : MeleeEnemy
 		{
 			Destroy();
 		}
-		GD.Print(Health);
 	}
 
 	private bool CanAttack()
@@ -55,7 +54,7 @@ public partial class KnightEnemy : MeleeEnemy
 				WalkSpeed = 0;
 				_attackTimer.Start();
 				_knightEnemy.Play("attacking");
-				Attack(closestTarget);
+				Attack(closestTarget,1);
 				return true;
 			}
 			else
