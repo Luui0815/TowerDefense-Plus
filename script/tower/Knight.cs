@@ -18,6 +18,7 @@ public  partial class Knight : MeleeDefender
 	public override void _Ready()
 	{
 		_AttackArea = GetNode<Area2D>("AttackArea");
+		_HitboxArea = GetNode<Area2D>("HitboxArea");
 		_AttackTimer = GetNode<Timer>("AttackTimer");
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
 		_AttackTimer.WaitTime= _delay; ;
@@ -76,15 +77,24 @@ public  partial class Knight : MeleeDefender
 
 		if (Health <=0)
 		{
-			DefenderDefeated = true;
-			Destroy();
+			OnDefenderDefeated();
 		}
 
 	}
 
-	public override void Destroy()
-	{
-		_animatedSprite.Play("death");//Passt noch nicht
-		base.Destroy();
-	}
+	private void OnDefenderDefeated()
+    {
+        DefenderDefeated = true;
+        _HitboxArea.QueueFree();
+        _animatedSprite.Play("death");
+    }
+
+	 private void OnAnimationLooped()
+    {
+        if (_animatedSprite.Animation == "death")
+        {
+            Destroy();
+			QueueFree();
+        }
+    }
 }

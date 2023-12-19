@@ -401,7 +401,6 @@ position = Vector2(-17, -3)
 scale = Vector2(1.31124, 2)
 sprite_frames = SubResource("SpriteFrames_tm0n5")
 animation = &"death"
-frame_progress = 0.706219
 centered = false
 
 [node name="ActionTimer" type="Timer" parent="."]

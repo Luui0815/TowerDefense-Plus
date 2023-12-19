@@ -5,6 +5,7 @@ public abstract partial class Defender : GameEntity
 {
 	protected string _name;
     protected AnimatedSprite2D _animatedSprite;
+	protected Area2D _HitboxArea;
 
 	public bool DefenderDefeated
 	{

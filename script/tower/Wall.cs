@@ -1,3 +1,5 @@
+using Godot;
+
 public partial class Wall : Defender
 {
     public Wall()
@@ -16,10 +18,21 @@ public partial class Wall : Defender
 
     	public override void _Ready()
 	{
-		_AttackArea = GetNode<Area2D>("AttackArea");
-		_AttackTimer = GetNode<Timer>("AttackTimer");
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
-		_AttackTimer.WaitTime= _delay; ;
 		_animatedSprite.Play(_actionAnimation);
+	}
+
+    public override void _Process(double delta)
+	{
+        if(Health<=0)
+        {
+            Destroy();
+        }
+    }
+
+    public override void Destroy()
+	{
+		//_animatedSprite.Play("death");//Passt noch nicht
+		base.Destroy();
 	}
 }
