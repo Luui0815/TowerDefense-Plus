@@ -5,7 +5,7 @@ using System.Diagnostics;
 public partial class KnightEnemy : MeleeEnemy
 {
 	AnimatedSprite2D _knightEnemy;
-	Area2D _attackRangeArea;
+	Area2D _attackRangeArea, _hitboxArea;
 	Timer _attackTimer;
 
 	public KnightEnemy()
@@ -17,39 +17,41 @@ public partial class KnightEnemy : MeleeEnemy
 
 		EnemyName = "KnightEnemy";
 		WalkSpeed = 0.4f;
-		Health = 10;
+		Health = 20;
 	}
 
 	public override void _Ready()
 	{
 		_knightEnemy = GetNode<AnimatedSprite2D>("KnightEnemy");
 		_knightEnemy.Play("walking");
-		_attackRangeArea = GetNode<Area2D>("AttackRangeArea");
+        _knightEnemy.AnimationLooped += OnAnimationLooped;
+        _attackRangeArea = GetNode<Area2D>("AttackRangeArea");
+        _hitboxArea = GetNode<Area2D>("HitboxArea");
 
-		_attackTimer = GetNode<Timer>("AttackTimer");
+        _attackTimer = GetNode<Timer>("AttackTimer");
 	}
 
 	public override void _Process(double delta)
 	{
 		getStatuseffectDamage();
 
-		if (!CanAttack())
+		if (!CanAttack() && !EnemyDefeated)
 		{
 			MoveEnemy(WalkSpeed);
 		}
 
 		if(Health <=0 && !EnemyDefeated) 
 		{
-			Destroy();
+			OnEnemyDefeated();
 		}
 	}
 
 	private bool CanAttack()
 	{
-		if (_attackTimer.IsStopped())
+		if (_attackTimer.IsStopped() && !EnemyDefeated)
 		{
 			Defender closestTarget = SelectClosestTarget(_attackRangeArea);
-			if (closestTarget != null)
+			if (closestTarget != null && !closestTarget.ImmuneToDamage)
 			{
 				WalkSpeed = 0;
 				_attackTimer.Start();
@@ -59,8 +61,11 @@ public partial class KnightEnemy : MeleeEnemy
 			}
 			else
 			{
-				WalkSpeed = 0.4f;
-				_knightEnemy.Play("walking");
+				if(!EnemyDefeated)
+				{
+					WalkSpeed = 0.4f;
+					_knightEnemy.Play("walking");
+				}
 				return false;
 			}
 		}
@@ -70,17 +75,18 @@ public partial class KnightEnemy : MeleeEnemy
 		}
 	}
 
-	public override void Destroy()
-	{
-		EnemyDefeated = true;
-		_knightEnemy.Play("death");
-		base.Destroy();
-	}
-
-	//public override void OnTowerEnteredBody(Node2D tower)
-	//{}
-
-	//public override void Action()
-	//{}
-	
+    private void OnEnemyDefeated()
+    {
+        WalkSpeed = 0;
+        EnemyDefeated = true;
+        _hitboxArea.QueueFree();
+        _knightEnemy.Play("death");
+    }
+    private void OnAnimationLooped()
+    {
+        if (_knightEnemy.Animation == "death")
+        {
+            Destroy();
+        }
+    }
 }

@@ -251,11 +251,12 @@ animations = [{
 size = Vector2(99, 26)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1xgvv"]
-radius = 41.7732
+radius = 36.1604
 
 [node name="KnightEnemy" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(588, 242)
+scale = Vector2(0.9, 0.9)
 script = ExtResource("1_t6ujt")
 
 [node name="KnightEnemy" type="AnimatedSprite2D" parent="."]
@@ -283,5 +284,5 @@ one_shot = true
 [node name="HitboxArea" type="Area2D" parent="."]
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
-position = Vector2(165, 93)
+position = Vector2(173.333, 100)
 shape = SubResource("CircleShape2D_1xgvv")
