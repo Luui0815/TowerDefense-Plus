@@ -307,14 +307,14 @@ size = Vector2(26.5, 20)
 radius = 14.0089
 
 [node name="SoldierEnemy" type="CharacterBody2D"]
-position = Vector2(652, 351)
+position = Vector2(651, 399)
 scale = Vector2(2.5, 2.5)
 script = ExtResource("1_536wf")
 
 [node name="SoldierEnemy" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jdva5")
 animation = &"regenerate"
-frame_progress = 0.795896
+frame_progress = 0.591903
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 

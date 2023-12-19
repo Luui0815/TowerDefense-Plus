@@ -19,7 +19,7 @@ public partial class EnemySpawner : Node
         switch (levelNr)
         {
             case 1:
-                _spawnTimes = new (float, string)[] { (5, "KnightEnemy"), (25, "KnightEnemy"), (20, "BanditEnemy"), (20, "BanditEnemy"), (20, "GiantEnemy"), (5, "GiantEnemy") };
+                _spawnTimes = new (float, string)[] { (5, "SoldierEnemy"), (10, "SoldierEnemy"), (25, "KnightEnemy"), (20, "KnightEnemy"), (20, "BanditEnemy"), (1, "BanditEnemy"),(20, "GiantEnemy"), (5, "GiantEnemy") };
                 break;
             default: break;
         }
@@ -77,6 +77,12 @@ public partial class EnemySpawner : Node
             case "GiantEnemy":
                 _enemy = (GiantEnemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}/{enemyType}.tscn").Instantiate();
                 _enemy.Position = new Vector2(978, (random * 125) - 28);
+                AddChild(_enemy);
+                GD.Print(enemyType + " spawnt auf Lane " + lane);
+                break;
+            case "SoldierEnemy":
+                _enemy = (SoldierEnemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}/{enemyType}.tscn").Instantiate();
+                _enemy.Position = new Vector2(978, (random * 125) +50);
                 AddChild(_enemy);
                 GD.Print(enemyType + " spawnt auf Lane " + lane);
                 break;
