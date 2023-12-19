@@ -10,6 +10,7 @@ public partial class arrowProjectile : projectile
 	private Enemy _target;
 	private float _velocity;
     private Area2D _HitboxArea;
+	private AnimatedSprite2D _animatedSprite;
 
 	public void Init(Vector2 targetPosition, Enemy target, float velocity)
 	{
@@ -17,15 +18,17 @@ public partial class arrowProjectile : projectile
 		_target = target;
 		_velocity = velocity;
 		Visible = true;
-	}
+    }
 	public override void _Ready()
 	{
-        _HitboxArea = GetNode<Area2D>("HitboxArea");
+        _animatedSprite = GetNode<AnimatedSprite2D>("Arrow");
+		_animatedSprite.Play("arrow");
+		_HitboxArea = GetNode<Area2D>("HitboxArea");
     }
 
 	public override void _Process(double delta)
 	{
-		MoveProjectile(_velocity);
+		MoveProjectile(_velocity);//TODO: Pfeil auf Bahnen fliegen lassen
 
 		if(CheckTarget())
 		{
@@ -35,7 +38,7 @@ public partial class arrowProjectile : projectile
 
 		if(Position.X > _targetPosition.X + 150)//Falls Gegner schon besiegt wurde
 		{
-			QueueFree();
+			QueueFree();//schoener machen, er soll dann auf den Boden fliegen und verschwinden, nicht einfach so
 		}
 	}
 

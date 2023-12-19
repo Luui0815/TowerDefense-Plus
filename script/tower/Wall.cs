@@ -16,7 +16,7 @@ public partial class Wall : Defender
         //Not needed until upgrades are implemented
     }
 
-    	public override void _Ready()
+    public override void _Ready()
 	{
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
 		_animatedSprite.Play(_actionAnimation);
@@ -29,10 +29,4 @@ public partial class Wall : Defender
             Destroy();
         }
     }
-
-    public override void Destroy()
-	{
-		//_animatedSprite.Play("death");//Passt noch nicht
-		base.Destroy();
-	}
 }

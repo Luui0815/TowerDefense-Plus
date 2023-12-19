@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b43yv3svt1jgq"
-path="res://.godot/imported/Idle2.png-40f43f92f9b70b7c41256ff7cbdfbe89.ctex"
+uid="uid://cv3ih6rceoo5q"
+path="res://.godot/imported/Spear move.png-b577a5228952993b44ba5c4d2bc0c976.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/animation/spearman/Idle2.png"
-dest_files=["res://.godot/imported/Idle2.png-40f43f92f9b70b7c41256ff7cbdfbe89.ctex"]
+source_file="res://assets/texture/tower/animation/spearman/Spear move.png"
+dest_files=["res://.godot/imported/Spear move.png-b577a5228952993b44ba5c4d2bc0c976.ctex"]
 
 [params]
 

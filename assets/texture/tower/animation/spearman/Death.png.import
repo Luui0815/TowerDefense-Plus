@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0lolnrkd0q2a"
-path="res://.godot/imported/Idle5.png-8b0affd03e746ec91b899e9a4f6a90be.ctex"
+uid="uid://cibuaabeknv27"
+path="res://.godot/imported/Death.png-1a5a1af9efd0aa483a2697f5600f1860.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/animation/spearman/Idle5.png"
-dest_files=["res://.godot/imported/Idle5.png-8b0affd03e746ec91b899e9a4f6a90be.ctex"]
+source_file="res://assets/texture/tower/animation/spearman/Death.png"
+dest_files=["res://.godot/imported/Death.png-1a5a1af9efd0aa483a2697f5600f1860.ctex"]
 
 [params]
 

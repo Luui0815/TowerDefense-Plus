@@ -23,7 +23,8 @@ public  partial class Knight : MeleeDefender
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
 		_AttackTimer.WaitTime= _delay; ;
 		_animatedSprite.Play(_actionAnimation);
-	}
+        _animatedSprite.AnimationLooped += OnAnimationLooped;
+    }
 
 	private List<Enemy> SelectTargets()
 	{
@@ -60,41 +61,41 @@ public  partial class Knight : MeleeDefender
 	
 	public override void _Process(double delta)
 	{
-		if(CanAttack())
+		if(!DefenderDefeated)
 		{
-			_animatedSprite.Play("attack");
-			foreach (Enemy enemy in _attackableEnemiess)
-			{
-				Attack(enemy, _damage);
-				_AttackTimer.Start();
-			}
-			//Todo: Animation aendern und abspielen
-		}
-		else if(_attackableEnemiess.Count==0)
-		{
-			_animatedSprite.Play("idle");
-		}
+            if (CanAttack())
+            {
+                _animatedSprite.Play("attack");
+                foreach (Enemy enemy in _attackableEnemiess)
+                {
+                    Attack(enemy, _damage);
+                    _AttackTimer.Start();
+                }
+            }
+            else if (_attackableEnemiess.Count == 0)
+            {
+                _animatedSprite.Play("idle");
+            }
 
-		if (Health <=0)
-		{
-			OnDefenderDefeated();
-		}
-
+            if (Health <= 0)
+            {
+                OnDefenderDefeated();
+            }
+        }
 	}
 
 	private void OnDefenderDefeated()
     {
-        DefenderDefeated = true;
+        _DefenderDefeated = true;
         _HitboxArea.QueueFree();
         _animatedSprite.Play("death");
     }
 
-	 private void OnAnimationLooped()
+	private void OnAnimationLooped()
     {
         if (_animatedSprite.Animation == "death")
         {
             Destroy();
-			QueueFree();
         }
     }
 }

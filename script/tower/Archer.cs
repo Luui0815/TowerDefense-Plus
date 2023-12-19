@@ -25,8 +25,10 @@ public partial class Archer : RangeDefender
         _AttackArea = GetNode<Area2D>("AttackArea");
         _AttackTimer = GetNode<Timer>("AttackTimer");
         _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
+        _HitboxArea = GetNode<Area2D>("HitboxArea");
         _AttackTimer.WaitTime = _delay; ;
         _animatedSprite.Play(_actionAnimation);
+        _animatedSprite.AnimationLooped += OnAnimationLooped;
     }
 
     private Enemy SelectTarget()
@@ -70,29 +72,39 @@ public partial class Archer : RangeDefender
 
     public override void _Process(double delta)
     {
-        if (CanAttack())
+        if (!DefenderDefeated)
         {
-            _animatedSprite.Play("attack");
-            SpawnArrow();
-            _AttackTimer.Start();
-        }
-        else if (_targetEnemy == null)
-        {
-            _animatedSprite.Play("idle");
-        }
+            if (CanAttack())
+            {
+                _animatedSprite.Play("attack");
+                SpawnArrow();
+                _AttackTimer.Start();
+            }
+            else if (_targetEnemy == null)
+            {
+                _animatedSprite.Play("idle");
+            }
 
-        if (Health <= 0)
-        {
-            DefenderDefeated = true;
-            Destroy();
+            if (Health <= 0)
+            {
+                OnDefenderDefeated();
+            }
         }
-
     }
 
-    public override void Destroy()
+    private void OnDefenderDefeated()
     {
-        _animatedSprite.Play("death");//Passt noch nicht
-        base.Destroy();
+        _DefenderDefeated = true;
+        _HitboxArea.QueueFree();
+        _animatedSprite.Play("death");
+    }
+
+    private void OnAnimationLooped()
+    {
+        if (_animatedSprite.Animation == "death")
+        {
+            Destroy();
+        }
     }
 
     private void SpawnArrow()

@@ -14,13 +14,23 @@ public partial class Goldmine : Defender
 
         //TODO: Add action animation
         _actionAnimation = "idle";
+        Health = 15;
     }
 
     public override void _Ready()
     {
         base._Ready();
-
         _actionTimer.Start(_delay);
+        _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
+        _animatedSprite.Play(_actionAnimation);
+    }
+
+    public override void _Process(double delta)
+    {
+        if (Health <= 0)
+        {
+            Destroy();
+        }
     }
 
     public override void Action()

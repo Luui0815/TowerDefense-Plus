@@ -6,11 +6,13 @@ public abstract partial class Defender : GameEntity
 	protected string _name;
     protected AnimatedSprite2D _animatedSprite;
 	protected Area2D _HitboxArea;
+    protected bool _DefenderDefeated = false;
 
-	public bool DefenderDefeated
+    public bool DefenderDefeated
 	{
-        get; set;
-	}
+        get { return _DefenderDefeated; }
+        set { _DefenderDefeated = value; }
+    }
 
     public void Init(string towerName)
 	{

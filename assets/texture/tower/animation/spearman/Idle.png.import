@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ht3gbfisvvr6"
-path="res://.godot/imported/Idle3.png-ac6ff96643426c1c58387182f8013815.ctex"
+uid="uid://cqkqg8k0ovj1x"
+path="res://.godot/imported/Idle.png-fa4405aa10d219e2e6770a37161b5d1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/animation/spearman/Idle3.png"
-dest_files=["res://.godot/imported/Idle3.png-ac6ff96643426c1c58387182f8013815.ctex"]
+source_file="res://assets/texture/tower/animation/spearman/Idle.png"
+dest_files=["res://.godot/imported/Idle.png-fa4405aa10d219e2e6770a37161b5d1b.ctex"]
 
 [params]
 
