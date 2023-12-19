@@ -19,6 +19,7 @@ public abstract partial class GameEntity : Node2D
 
     public bool ImmuneToDamage {
         get;
+        set;
     } = false;
 
     /// <summary>
