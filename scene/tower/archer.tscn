@@ -132,7 +132,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -206,13 +206,14 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8fj2"]
-size = Vector2(600, 100)
+size = Vector2(662.158, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1xmj"]
 size = Vector2(60, 50)
 
 [node name="ArcherDefender" type="Node2D"]
-scale = Vector2(2, 2)
+position = Vector2(0, 12)
+scale = Vector2(1.9, 1.9)
 script = ExtResource("1_hs5q3")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
@@ -220,7 +221,7 @@ position = Vector2(-38, -32.5)
 scale = Vector2(1.3, 1.16)
 sprite_frames = SubResource("SpriteFrames_wwmpw")
 animation = &"attack"
-frame_progress = 0.559198
+frame_progress = 0.958232
 centered = false
 
 [node name="ActionTimer" type="Timer" parent="."]
@@ -231,7 +232,7 @@ centered = false
 scale = Vector2(0.5, 0.5)
 
 [node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(301, 51)
+position = Vector2(332.079, 51)
 shape = SubResource("RectangleShape2D_d8fj2")
 
 [node name="HitboxArea" type="Area2D" parent="."]

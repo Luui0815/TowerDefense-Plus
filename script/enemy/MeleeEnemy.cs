@@ -56,4 +56,6 @@ public abstract partial class MeleeEnemy : Enemy
         Translate(movement);
     }
 
+
+
 }

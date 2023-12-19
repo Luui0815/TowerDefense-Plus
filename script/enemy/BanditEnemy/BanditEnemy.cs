@@ -4,7 +4,7 @@ using System;
 public partial class BanditEnemy : MeleeEnemy
 {
     AnimatedSprite2D _banditEnemy;
-    Area2D _attackRangeArea;
+    Area2D _attackRangeArea, _hitboxArea;
     Timer _attackTimer;
 
     public BanditEnemy()
@@ -23,21 +23,23 @@ public partial class BanditEnemy : MeleeEnemy
     {
         _banditEnemy = GetNode<AnimatedSprite2D>("BanditEnemy");
         _banditEnemy.Play("walking");
+        _banditEnemy.AnimationFinished += OnAnimationFinished;
         _attackRangeArea = GetNode<Area2D>("AttackRangeArea");
+        _hitboxArea = GetNode<Area2D>("HitboxArea");
 
         _attackTimer = GetNode<Timer>("AttackTimer");
     }
 
     public override void _Process(double delta)
     {
-        if (!CanAttack())
+        if (!CanAttack() && !EnemyDefeated)
         {
             MoveEnemy(WalkSpeed);
         }
 
-        if (Health <= 0)
+        if (Health <= 0 && !EnemyDefeated)
         {
-            Destroy();
+            OnEnemyDefeated();
         }
 
 
@@ -45,7 +47,7 @@ public partial class BanditEnemy : MeleeEnemy
 
     private bool CanAttack()
     {
-        if (_attackTimer.IsStopped())
+        if (_attackTimer.IsStopped() && !EnemyDefeated)
         {
             Defender closestTarget = SelectClosestTarget(_attackRangeArea);
             if (closestTarget != null && !closestTarget.ImmuneToDamage)
@@ -58,8 +60,12 @@ public partial class BanditEnemy : MeleeEnemy
             }
             else
             {
-                WalkSpeed = 1f;
-                _banditEnemy.Play("walking");
+                if (!EnemyDefeated)
+                {
+                    WalkSpeed = 1f;
+                    _banditEnemy.Play("walking");
+                    
+                }
                 return false;
             }
         }
@@ -69,15 +75,20 @@ public partial class BanditEnemy : MeleeEnemy
         }
     }
 
-    public override void Destroy()
+    private void OnEnemyDefeated()
     {
+        WalkSpeed = 0;
+        EnemyDefeated = true;
+        _hitboxArea.QueueFree();
         _banditEnemy.Play("death");
-        base.Destroy();
     }
 
-    //public override void OnTowerEnteredBody(Node2D tower)
-    //{}
-
-    //public override void Action()
-    //{}
+    private void OnAnimationFinished()
+    {
+        GD.Print(_banditEnemy.Animation);
+        if(_banditEnemy.Animation =="death")
+        {
+            Destroy();
+        }
+    }
 }

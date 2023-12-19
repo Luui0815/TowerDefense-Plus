@@ -4,7 +4,7 @@ using System;
 public partial class GiantEnemy : MeleeEnemy
 {
     AnimatedSprite2D _giantEnemy;
-    Area2D _attackRangeArea;
+    Area2D _attackRangeArea, _hitboxArea;
     Timer _attackTimer;
 
     public GiantEnemy()
@@ -23,21 +23,23 @@ public partial class GiantEnemy : MeleeEnemy
     {
         _giantEnemy = GetNode<AnimatedSprite2D>("GiantEnemy");
         _giantEnemy.Play("walking");
+        _giantEnemy.AnimationFinished += OnAnimationFinished;
         _attackRangeArea = GetNode<Area2D>("AttackRangeArea");
+        _hitboxArea = GetNode<Area2D>("HitboxArea");
 
         _attackTimer = GetNode<Timer>("AttackTimer");
     }
 
     public override void _Process(double delta)
     {
-        if (!CanAttack())
+        if (!CanAttack() && !EnemyDefeated)
         {
             MoveEnemy(WalkSpeed);
         }
 
-        if (Health <= 0)
+        if (Health <= 0 && !EnemyDefeated)
         {
-            Destroy();
+            OnEnemyDefeated();
         }
 
 
@@ -45,7 +47,7 @@ public partial class GiantEnemy : MeleeEnemy
 
     private bool CanAttack()
     {
-        if (_attackTimer.IsStopped())
+        if (_attackTimer.IsStopped() && !EnemyDefeated)
         {
             Defender closestTarget = SelectClosestTarget(_attackRangeArea);
             if (closestTarget != null && !closestTarget.ImmuneToDamage)
@@ -58,8 +60,11 @@ public partial class GiantEnemy : MeleeEnemy
             }
             else
             {
-                WalkSpeed = 0.3f;
-                _giantEnemy.Play("walking");
+                if (!EnemyDefeated)
+                {
+                    WalkSpeed = 0.3f;
+                    _giantEnemy.Play("walking");
+                }
                 return false;
             }
         }
@@ -68,16 +73,20 @@ public partial class GiantEnemy : MeleeEnemy
             return false;
         }
     }
-
-    public override void Destroy()
+    private void OnEnemyDefeated()
     {
+        WalkSpeed = 0;
+        EnemyDefeated = true;
+        _hitboxArea.QueueFree();
         _giantEnemy.Play("death");
-        base.Destroy();
     }
 
-    //public override void OnTowerEnteredBody(Node2D tower)
-    //{}
-
-    //public override void Action()
-    //{}
+    private void OnAnimationFinished()
+    {
+        GD.Print(_giantEnemy.Animation);
+        if (_giantEnemy.Animation == "death")
+        {
+            Destroy();
+        }
+    }
 }
