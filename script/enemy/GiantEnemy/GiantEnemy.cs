@@ -23,7 +23,7 @@ public partial class GiantEnemy : MeleeEnemy
     {
         _giantEnemy = GetNode<AnimatedSprite2D>("GiantEnemy");
         _giantEnemy.Play("walking");
-        _giantEnemy.AnimationFinished += OnAnimationFinished;
+        _giantEnemy.AnimationLooped += OnAnimationLooped;
         _attackRangeArea = GetNode<Area2D>("AttackRangeArea");
         _hitboxArea = GetNode<Area2D>("HitboxArea");
 
@@ -32,6 +32,8 @@ public partial class GiantEnemy : MeleeEnemy
 
     public override void _Process(double delta)
     {
+        getStatuseffectDamage();
+
         if (!CanAttack() && !EnemyDefeated)
         {
             MoveEnemy(WalkSpeed);
@@ -81,9 +83,8 @@ public partial class GiantEnemy : MeleeEnemy
         _giantEnemy.Play("death");
     }
 
-    private void OnAnimationFinished()
+    private void OnAnimationLooped()
     {
-        GD.Print(_giantEnemy.Animation);
         if (_giantEnemy.Animation == "death")
         {
             Destroy();

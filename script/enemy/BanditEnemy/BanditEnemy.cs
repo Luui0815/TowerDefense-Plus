@@ -23,7 +23,7 @@ public partial class BanditEnemy : MeleeEnemy
     {
         _banditEnemy = GetNode<AnimatedSprite2D>("BanditEnemy");
         _banditEnemy.Play("walking");
-        _banditEnemy.AnimationFinished += OnAnimationFinished;
+        _banditEnemy.AnimationLooped += OnAnimationLooped;
         _attackRangeArea = GetNode<Area2D>("AttackRangeArea");
         _hitboxArea = GetNode<Area2D>("HitboxArea");
 
@@ -32,6 +32,8 @@ public partial class BanditEnemy : MeleeEnemy
 
     public override void _Process(double delta)
     {
+        getStatuseffectDamage();
+
         if (!CanAttack() && !EnemyDefeated)
         {
             MoveEnemy(WalkSpeed);
@@ -83,9 +85,8 @@ public partial class BanditEnemy : MeleeEnemy
         _banditEnemy.Play("death");
     }
 
-    private void OnAnimationFinished()
+    private void OnAnimationLooped()
     {
-        GD.Print(_banditEnemy.Animation);
         if(_banditEnemy.Animation =="death")
         {
             Destroy();

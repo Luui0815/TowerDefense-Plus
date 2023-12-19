@@ -30,7 +30,7 @@ namespace TowerDefense
 
 			DelayTimer=new Timer(); ;
 			DelayTimer.OneShot = true;
-			DelayTimer.WaitTime = 2f;
+			DelayTimer.WaitTime = 1.5f;
 
 			this.damage = damage;
         }
@@ -122,6 +122,7 @@ public abstract partial class Enemy : GameEntity
 			if(!effect.DamageTimer.IsStopped() && effect.DelayTimer.IsStopped())
 			{
 				Health -= effect.damage;
+				GD.Print(EnemyName + " HP: " + Health);
 				effect.DelayTimer.Start();
 			}
 		}

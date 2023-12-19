@@ -24,7 +24,7 @@ public partial class KnightEnemy : MeleeEnemy
 	{
 		_knightEnemy = GetNode<AnimatedSprite2D>("KnightEnemy");
 		_knightEnemy.Play("walking");
-        _knightEnemy.AnimationFinished += OnAnimationFinished;
+        _knightEnemy.AnimationLooped += OnAnimationLooped;
         _attackRangeArea = GetNode<Area2D>("AttackRangeArea");
         _hitboxArea = GetNode<Area2D>("HitboxArea");
 
@@ -82,9 +82,8 @@ public partial class KnightEnemy : MeleeEnemy
         _hitboxArea.QueueFree();
         _knightEnemy.Play("death");
     }
-    private void OnAnimationFinished()
+    private void OnAnimationLooped()
     {
-        GD.Print(_knightEnemy.Animation);
         if (_knightEnemy.Animation == "death")
         {
             Destroy();
