@@ -17,7 +17,7 @@ public partial class KnightEnemy : MeleeEnemy
 
 		EnemyName = "KnightEnemy";
 		WalkSpeed = 0.4f;
-		Health = 10;
+		Health = 20;
 	}
 
 	public override void _Ready()

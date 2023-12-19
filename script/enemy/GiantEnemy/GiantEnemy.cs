@@ -16,7 +16,7 @@ public partial class GiantEnemy : MeleeEnemy
 
         EnemyName = "GiantEnemy";
         WalkSpeed = 0.3f;
-        Health = 50;
+        Health = 60;
     }
 
     public override void _Ready()
@@ -57,7 +57,7 @@ public partial class GiantEnemy : MeleeEnemy
                 WalkSpeed = 0;
                 _attackTimer.Start();
                 _giantEnemy.Play("attacking");
-                Attack(closestTarget, 5);
+                Attack(closestTarget, 10);
                 return true;
             }
             else
@@ -81,6 +81,15 @@ public partial class GiantEnemy : MeleeEnemy
         EnemyDefeated = true;
         _hitboxArea.QueueFree();
         _giantEnemy.Play("death");
+
+        //spawnt 2 Grunts beim Tod
+
+        for(int i = 0; i<2; i++)
+        {
+            GruntEnemy gruntEnemy = (GruntEnemy)GD.Load<PackedScene>("res://scene/enemy/GruntEnemy/GruntEnemy.tscn").Instantiate();
+            gruntEnemy.GlobalPosition = GlobalPosition - new Vector2(25*i, -50);
+            GetParent().AddChild(gruntEnemy);
+        }
     }
 
     private void OnAnimationLooped()

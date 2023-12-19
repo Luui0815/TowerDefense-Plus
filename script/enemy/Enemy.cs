@@ -122,7 +122,7 @@ public abstract partial class Enemy : GameEntity
 			if(!effect.DamageTimer.IsStopped() && effect.DelayTimer.IsStopped())
 			{
 				Health -= effect.damage;
-				GD.Print(EnemyName + " HP: " + Health);
+				//GD.Print(EnemyName + " HP: " + Health);
 				effect.DelayTimer.Start();
 			}
 		}

@@ -1,29 +1,29 @@
 using Godot;
 using System;
 
-public partial class BanditEnemy : MeleeEnemy
+public partial class GruntEnemy : MeleeEnemy
 {
-    AnimatedSprite2D _banditEnemy;
+    AnimatedSprite2D _gruntEnemy;
     Area2D _attackRangeArea, _hitboxArea;
     Timer _attackTimer;
 
-    public BanditEnemy()
+    public GruntEnemy()
     {
         //TODO: Change values
         _delay = 15;
         _animationDelay = 1;
         _actionAnimation = "idle";
 
-        EnemyName = "BanditEnemy";
-        WalkSpeed = 1f;
+        EnemyName = "GruntEnemy";
+        WalkSpeed = 1.3f;
         Health = 10;
     }
 
     public override void _Ready()
     {
-        _banditEnemy = GetNode<AnimatedSprite2D>("BanditEnemy");
-        _banditEnemy.Play("walking");
-        _banditEnemy.AnimationLooped += OnAnimationLooped;
+        _gruntEnemy = GetNode<AnimatedSprite2D>("GruntEnemy");
+        _gruntEnemy.Play("walking");
+        _gruntEnemy.AnimationLooped += OnAnimationLooped;
         _attackRangeArea = GetNode<Area2D>("AttackRangeArea");
         _hitboxArea = GetNode<Area2D>("HitboxArea");
 
@@ -56,17 +56,17 @@ public partial class BanditEnemy : MeleeEnemy
             {
                 WalkSpeed = 0;
                 _attackTimer.Start();
-                _banditEnemy.Play("attacking");
-                Attack(closestTarget, 1);
+                _gruntEnemy.Play("attacking");
+                Attack(closestTarget, 2);
                 return true;
             }
             else
             {
                 if (!EnemyDefeated)
                 {
-                    WalkSpeed = 1f;
-                    _banditEnemy.Play("walking");
-                    
+                    WalkSpeed = 1.2f;
+                    _gruntEnemy.Play("walking");
+
                 }
                 return false;
             }
@@ -82,12 +82,12 @@ public partial class BanditEnemy : MeleeEnemy
         WalkSpeed = 0;
         EnemyDefeated = true;
         _hitboxArea.QueueFree();
-        _banditEnemy.Play("death");
+        _gruntEnemy.Play("death");
     }
 
     private void OnAnimationLooped()
     {
-        if(_banditEnemy.Animation =="death")
+        if (_gruntEnemy.Animation == "death")
         {
             Destroy();
         }
