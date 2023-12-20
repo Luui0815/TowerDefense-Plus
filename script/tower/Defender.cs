@@ -1,10 +1,20 @@
+using Godot;
 using TowerDefense;
 
 public abstract partial class Defender : GameEntity
 {
 	protected string _name;
+    protected AnimatedSprite2D _animatedSprite;
+	protected Area2D _HitboxArea;
+    protected bool _DefenderDefeated = false;
 
-	public void Init(string towerName)
+    public bool DefenderDefeated
+	{
+        get { return _DefenderDefeated; }
+        set { _DefenderDefeated = value; }
+    }
+
+    public void Init(string towerName)
 	{
 		_name = towerName;
 	}

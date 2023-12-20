@@ -80,7 +80,7 @@ public abstract partial class GameLevel : Node2D
 
             AddChild(lane);
             _lanes[i] = lane;
-            position.Y += 144;
+            position.Y += 125;
         }
 
         foreach (MapLane lane in _lanes)
@@ -107,7 +107,6 @@ public abstract partial class GameLevel : Node2D
 
         _spawner = new(1);
         AddChild(_spawner);
-        _spawner.SpawnTimerStart();
     }
 
     /// <summary>
@@ -160,7 +159,7 @@ public abstract partial class GameLevel : Node2D
     {
         button.QueueFree();
         _levelStarted = true;
-        //_spawner.Start();
+        _spawner.SpawnTimerStart();
     }
 
     protected void OnPauseLevelButtonPressed()

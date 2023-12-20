@@ -4,109 +4,89 @@ using System.Diagnostics;
 
 public partial class KnightEnemy : MeleeEnemy
 {
-    AnimatedSprite2D _knightEnemy;
-    Area2D _attackRangeArea;
-    Timer _attackTimer;
+	AnimatedSprite2D _knightEnemy;
+	Area2D _attackRangeArea, _hitboxArea;
+	Timer _attackTimer;
 
-    public KnightEnemy()
-    {
-        //TODO: Change values
-        _delay = 15;
-        _animationDelay = 1;
-        _actionAnimation = "idle";
+	public KnightEnemy()
+	{
+		//TODO: Change values
+		_delay = 15;
+		_animationDelay = 1;
+		_actionAnimation = "idle";
 
-        EnemyName = "KnightEnemy";
-        WalkSpeed = 0.5f;
-        Health = 10;
-    }
+		EnemyName = "KnightEnemy";
+		WalkSpeed = 0.5f;
+		Health = 25;
+	}
 
-    public override void _Ready()
-    {
-        _knightEnemy = GetNode<AnimatedSprite2D>("KnightEnemy");
-        _knightEnemy.Play("walking");
+	public override void _Ready()
+	{
+		_knightEnemy = GetNode<AnimatedSprite2D>("KnightEnemy");
+		_knightEnemy.Play("walking");
+        _knightEnemy.AnimationLooped += OnAnimationLooped;
         _attackRangeArea = GetNode<Area2D>("AttackRangeArea");
+        _hitboxArea = GetNode<Area2D>("HitboxArea");
 
         _attackTimer = GetNode<Timer>("AttackTimer");
-    }
+	}
 
-    public override void _Process(double delta)
+	public override void _Process(double delta)
 	{
-        if (!CanAttack())
-        {
-            MoveEnemy();
-        }
+		getStatuseffectDamage();
 
-        if(Health <=0) 
+		if (!CanAttack() && !EnemyDefeated)
+		{
+			MoveEnemy(WalkSpeed);
+		}
+
+		if(Health <=0 && !EnemyDefeated) 
+		{
+			OnEnemyDefeated();
+		}
+	}
+
+	private bool CanAttack()
+	{
+		if (_attackTimer.IsStopped() && !EnemyDefeated)
+		{
+			Defender closestTarget = SelectClosestTarget(_attackRangeArea);
+			if (closestTarget != null && !closestTarget.ImmuneToDamage)
+			{
+				WalkSpeed = 0;
+				_attackTimer.Start();
+				_knightEnemy.Play("attacking");
+				Attack(closestTarget, 1);
+				return true;
+			}
+			else
+			{
+				if(!EnemyDefeated)
+				{
+					WalkSpeed = 0.5f;
+					_knightEnemy.Play("walking");
+				}
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+    private void OnEnemyDefeated()
+    {
+        WalkSpeed = 0;
+        EnemyDefeated = true;
+        _hitboxArea.QueueFree();
+        _knightEnemy.Play("death");
+    }
+    private void OnAnimationLooped()
+    {
+        if (_knightEnemy.Animation == "death")
         {
             Destroy();
         }
-
-       
-	}
-
-    private bool CanAttack()
-    {
-        if (_attackTimer.IsStopped())
-        {
-            Defender closestTarget = SelectClosestTarget();
-            if (closestTarget != null)
-            {
-                WalkSpeed = 0;
-                _attackTimer.Start();
-                _knightEnemy.Play("attacking");
-                Attack(closestTarget);
-                return true;
-            }
-            else
-            {
-                WalkSpeed = 0.5f;
-                _knightEnemy.Play("walking");
-                return false;
-            }
-        }
-        else
-        {
-            return false;
-        }
     }
-    
-    private Defender SelectClosestTarget()
-    {
-        Defender closestTarget = null;
-        float closestDistance = float.MaxValue;
-        
-        foreach(Node2D body in _attackRangeArea.GetOverlappingAreas())     
-        {
-            Node2D parent = (Node2D)body.GetParent();
-            if(parent.HasMethod("GetTowerCost"))
-            {
-                float distance = Position.DistanceTo(parent.Position);
-                if(distance < closestDistance) 
-                {
-                    closestDistance = distance;
-                    closestTarget = parent as Defender;
-                }
-            }
-        }
-        return (Defender)closestTarget;
-    }
-
-    private void MoveEnemy()
-    {
-        Vector2 movement = new(-WalkSpeed, 0);
-        Translate(movement);
-    }
-
-    public override void Destroy()
-    {
-        _knightEnemy.Play("death");
-        base.Destroy();     
-    }
-
-    //public override void OnTowerEnteredBody(Node2D tower)
-    //{}
-
-    //public override void Action()
-    //{}
-    
 }

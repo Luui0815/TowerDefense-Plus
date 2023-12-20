@@ -19,9 +19,39 @@ public abstract partial class MeleeEnemy : Enemy
 	{
 
 	}
-	public virtual void Attack(Defender closestTarget)
+
+    protected Defender SelectClosestTarget(Area2D _attackRangeArea)
+    {
+        Defender closestTarget = null;
+        float closestDistance = float.MaxValue;
+
+        foreach (Node2D body in _attackRangeArea.GetOverlappingAreas())
+        {
+            if (body.Name == "HitboxArea")
+            {
+                Node2D parent = (Node2D)body.GetParent();
+                if (parent is Defender)
+                {
+                    float distance = Position.DistanceTo(parent.Position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestTarget = parent as Defender;
+                    }
+                }
+            }
+        }
+        return (Defender)closestTarget;
+    }
+
+    public virtual void Attack(Defender closestTarget, int damage)
 	{
-		closestTarget.Health -= 1;
+		closestTarget.Health -= damage;
+        //GD.Print("Angriff auf: " + closestTarget.Name + " HP: " + closestTarget.Health);
 	}
-	
+
+
+
+
+
 }

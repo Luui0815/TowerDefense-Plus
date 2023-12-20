@@ -26,7 +26,7 @@ public partial class MapLane : Node2D
 		_laneNr = laneNr;
 
 		PackedScene fieldScene = GD.Load<PackedScene>("res://scene/map/MapField.tscn");
-		Vector2 fieldPosition = new Vector2(0, 0);
+		Vector2 fieldPosition = new Vector2(80, 0);
 		for (int i = 0; i < 10; i++)
 		{
 			MapField field = (MapField)fieldScene.Instantiate();
@@ -34,7 +34,7 @@ public partial class MapLane : Node2D
 			field.Name = "MapField" + (i + (10 * laneNr));
 			field.Position = fieldPosition;
 			AddChild(field);
-			fieldPosition.X += 108;
+			fieldPosition.X += 100;
 			_fields[i] = field;
 		}
 	}

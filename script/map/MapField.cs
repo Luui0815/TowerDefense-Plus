@@ -47,6 +47,8 @@ namespace TowerDefense
 
 			Tower = (Defender)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
 			Tower.Init(towerName);
+			Tower.TopLevel = true;
+			Tower.Position = GlobalPosition;
 
 			if (towerName == "goldmine")
 			{
