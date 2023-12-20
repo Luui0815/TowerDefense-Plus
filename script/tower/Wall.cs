@@ -8,7 +8,7 @@ public partial class Wall : Defender
         _delay = 200;
         _animationDelay = 1;
         _actionAnimation = "idle";
-        Health=45;
+        Health=50;
     }
 
     public override void Action()

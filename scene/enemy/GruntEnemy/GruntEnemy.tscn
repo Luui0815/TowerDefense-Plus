@@ -212,19 +212,18 @@ animations = [{
 size = Vector2(90, 41)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nu5ig"]
-radius = 44.4072
+radius = 58.0345
 
 [node name="GruntEnemy" type="CharacterBody2D"]
-position = Vector2(693, 341)
-scale = Vector2(0.5, 0.5)
+position = Vector2(693, 335)
+scale = Vector2(0.55, 0.55)
 script = ExtResource("1_nah8m")
 
 [node name="GruntEnemy" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_6bw2f")
-animation = &"death"
-frame = 1
-frame_progress = 0.183388
+animation = &"walking"
+frame_progress = 0.919696
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 
@@ -235,7 +234,7 @@ shape = SubResource("RectangleShape2D_sbiwn")
 [node name="HitboxArea" type="Area2D" parent="."]
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
-position = Vector2(37, 125)
+position = Vector2(52, 104)
 shape = SubResource("CircleShape2D_nu5ig")
 
 [node name="AttackTimer" type="Timer" parent="."]

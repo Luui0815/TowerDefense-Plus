@@ -14,7 +14,7 @@ public partial class Goldmine : Defender
 
         //TODO: Add action animation
         _actionAnimation = "idle";
-        Health = 15;
+        Health = 5;
     }
 
     public override void _Ready()

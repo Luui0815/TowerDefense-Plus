@@ -195,7 +195,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attacking",
-"speed": 6.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -313,8 +313,8 @@ script = ExtResource("1_536wf")
 
 [node name="SoldierEnemy" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jdva5")
-animation = &"regenerate"
-frame_progress = 0.591903
+animation = &"attacking"
+frame_progress = 0.353888
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 

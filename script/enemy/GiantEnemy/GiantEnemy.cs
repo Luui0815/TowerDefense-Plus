@@ -87,7 +87,7 @@ public partial class GiantEnemy : MeleeEnemy
         for(int i = 0; i<2; i++)
         {
             GruntEnemy gruntEnemy = (GruntEnemy)GD.Load<PackedScene>("res://scene/enemy/GruntEnemy/GruntEnemy.tscn").Instantiate();
-            gruntEnemy.GlobalPosition = GlobalPosition - new Vector2(25*i, -50);
+            gruntEnemy.GlobalPosition = GlobalPosition - new Vector2(25*i +20, -40);
             GetParent().AddChild(gruntEnemy);
         }
     }

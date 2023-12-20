@@ -12,7 +12,7 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
         _animationDelay = 1;
         _actionAnimation = "idle";
         _damage = 5;
-        Health = 25;
+        Health = 10;
     }
     public override void _Ready()
     {

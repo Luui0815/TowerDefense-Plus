@@ -62,8 +62,9 @@ public partial class FireTrap : TrapDefence
 	}
 	private void _on_attack_area_area_entered(Area2D area)
 	{
-		Health--;
-	}
+		if(area.GetParent() is Enemy)
+            Health--;
+    }
 }
 
 

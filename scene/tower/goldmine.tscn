@@ -15,13 +15,14 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6iukd"]
-size = Vector2(100, 120)
+size = Vector2(100, 86)
 
 [node name="GoldmineDefender" type="Node2D"]
-position = Vector2(0, 1)
+position = Vector2(0, 15)
 script = ExtResource("1_gjhm7")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 24)
 sprite_frames = SubResource("SpriteFrames_8ehx1")
 animation = &"idle"
 centered = false
@@ -34,5 +35,5 @@ centered = false
 position = Vector2(92, 54)
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
-position = Vector2(-42, 5)
+position = Vector2(-42, 11)
 shape = SubResource("RectangleShape2D_6iukd")

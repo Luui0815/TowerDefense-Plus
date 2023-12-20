@@ -10,7 +10,7 @@ public partial class Archer : RangeDefender
         _delay = 2;
         _animationDelay = 1;
         _actionAnimation = "idle";
-        Health = 15;
+        Health = 5;
         _damage = 2;
         _ArrowVelocity = 5;
     }
@@ -114,7 +114,7 @@ public partial class Archer : RangeDefender
         arrow.hitTarget += ArrowHit;
         //arrow.Position = new Vector2(Position.X+100,Position.Y+40);
         arrow.TopLevel = true;
-        arrow.Position = new Vector2(GlobalPosition.X+80,GlobalPosition.Y+40);
+        arrow.Position = new Vector2(GlobalPosition.X+80,GlobalPosition.Y+55);
         AddChild(arrow);
     }
 

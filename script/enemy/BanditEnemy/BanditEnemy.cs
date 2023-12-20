@@ -16,7 +16,7 @@ public partial class BanditEnemy : MeleeEnemy
 
         EnemyName = "BanditEnemy";
         WalkSpeed = 1f;
-        Health = 10;
+        Health = 12;
     }
 
     public override void _Ready()

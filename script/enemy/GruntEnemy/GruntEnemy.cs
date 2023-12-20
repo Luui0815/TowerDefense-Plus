@@ -15,8 +15,8 @@ public partial class GruntEnemy : MeleeEnemy
         _actionAnimation = "idle";
 
         EnemyName = "GruntEnemy";
-        WalkSpeed = 1.3f;
-        Health = 10;
+        WalkSpeed = 1.2f;
+        Health = 8;
     }
 
     public override void _Ready()
