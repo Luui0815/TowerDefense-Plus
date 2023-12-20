@@ -16,7 +16,7 @@ public partial class KnightEnemy : MeleeEnemy
 		_actionAnimation = "idle";
 
 		EnemyName = "KnightEnemy";
-		WalkSpeed = 0.4f;
+		WalkSpeed = 0.5f;
 		Health = 25;
 	}
 
@@ -63,7 +63,7 @@ public partial class KnightEnemy : MeleeEnemy
 			{
 				if(!EnemyDefeated)
 				{
-					WalkSpeed = 0.4f;
+					WalkSpeed = 0.5f;
 					_knightEnemy.Play("walking");
 				}
 				return false;

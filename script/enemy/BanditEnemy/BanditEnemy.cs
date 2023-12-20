@@ -15,7 +15,7 @@ public partial class BanditEnemy : MeleeEnemy
         _actionAnimation = "idle";
 
         EnemyName = "BanditEnemy";
-        WalkSpeed = 1f;
+        WalkSpeed = 1.1f;
         Health = 12;
     }
 
@@ -64,7 +64,7 @@ public partial class BanditEnemy : MeleeEnemy
             {
                 if (!EnemyDefeated)
                 {
-                    WalkSpeed = 1f;
+                    WalkSpeed = 1.1f;
                     _banditEnemy.Play("walking");
                     
                 }

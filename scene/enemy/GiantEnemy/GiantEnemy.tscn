@@ -224,7 +224,8 @@ size = Vector2(232, 52)
 radius = 49.0102
 
 [node name="GiantEnemy" type="CharacterBody2D"]
-position = Vector2(596, 347)
+position = Vector2(599, 353)
+scale = Vector2(0.9, 0.9)
 script = ExtResource("1_pth77")
 
 [node name="GiantEnemy" type="AnimatedSprite2D" parent="."]

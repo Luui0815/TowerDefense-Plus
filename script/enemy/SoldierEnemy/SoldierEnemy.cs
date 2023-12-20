@@ -19,7 +19,7 @@ public partial class SoldierEnemy : MeleeEnemy
 
         EnemyName = "SoldierEnemy";
         WalkSpeed = 0.6f;
-        Health = 10;
+        Health = 7;
     }
 
     public override void _Ready()
@@ -100,6 +100,7 @@ public partial class SoldierEnemy : MeleeEnemy
         _isRegenerating = false;
         ImmuneToDamage = false;
         _soldierEnemy.Play("walking");
+        WalkSpeed = 1f;
 
         _hitboxArea.CollisionLayer = 1;
         _hitboxArea.CollisionMask = 1;

@@ -22,10 +22,10 @@ horizontal_alignment = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
-offset_left = 939.0
-offset_top = 99.0
-offset_right = -7.0
-offset_bottom = 105.24
+offset_left = 642.0
+offset_top = 86.0
+offset_right = -304.0
+offset_bottom = 92.24
 text = "Ausgewählte Türme"
 label_settings = SubResource("LabelSettings_0jjxl")
 horizontal_alignment = 1
@@ -34,25 +34,25 @@ horizontal_alignment = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
-offset_left = 768.0
-offset_top = 584.0
-offset_right = -178.0
-offset_bottom = 590.24
+offset_left = 126.0
+offset_top = 432.0
+offset_right = -820.0
+offset_bottom = 438.24
 label_settings = SubResource("LabelSettings_0jjxl")
 horizontal_alignment = 1
 
 [node name="AvailableTowersContainer" type="GridContainer" parent="."]
 offset_left = 3.0
 offset_top = 80.0
-offset_right = 899.0
-offset_bottom = 538.0
+offset_right = 632.0
+offset_bottom = 397.0
 columns = 4
 
 [node name="SelectedTowersContainer" type="GridContainer" parent="."]
-offset_left = 954.0
-offset_top = 146.0
-offset_right = 1257.0
-offset_bottom = 539.0
+offset_left = 660.0
+offset_top = 134.0
+offset_right = 963.0
+offset_bottom = 419.0
 
 [node name="GoBackButton" type="Button" parent="."]
 anchors_preset = -1

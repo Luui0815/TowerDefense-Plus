@@ -77,7 +77,7 @@ script = ExtResource("1_85je2")
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_7uayc")
 animation = &"fireball"
-frame_progress = 0.110121
+frame_progress = 0.571175
 
 [node name="HitboxArea" type="Area2D" parent="."]
 
