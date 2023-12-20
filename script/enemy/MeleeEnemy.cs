@@ -50,11 +50,7 @@ public abstract partial class MeleeEnemy : Enemy
         //GD.Print("Angriff auf: " + closestTarget.Name + " HP: " + closestTarget.Health);
 	}
 
-    protected void MoveEnemy(float WalkSpeed)
-    {
-        Vector2 movement = new(-WalkSpeed, 0);
-        Translate(movement);
-    }
+
 
 
 

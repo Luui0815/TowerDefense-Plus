@@ -127,4 +127,10 @@ public abstract partial class Enemy : GameEntity
 			}
 		}
 	}
+
+    protected void MoveEnemy(float WalkSpeed)
+    {
+        Vector2 movement = new(-WalkSpeed, 0);
+        Translate(movement);
+    }
 }
