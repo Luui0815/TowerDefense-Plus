@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -129,12 +130,12 @@ public abstract partial class GameLevel : Node2D
         EmitSignal(SignalName.MoneyChanged, _currentMoney);
     }
 
-    /*
+    
     public Array<Enemy> GetEnemiesAcrossLanes()
     {
         //TODO: Add implementation
     }
-    */
+    
 
     /// <summary>
     /// Changes the money amount which the player has
@@ -175,7 +176,7 @@ public abstract partial class GameLevel : Node2D
 
     private void OnAllEnemiesDefeated(int laneNr)
     {
-        /*
+        
         if (_spawner.Finished)
         {
             bool alreadyCompleted = _completedLanes.Add(laneNr);
@@ -184,7 +185,7 @@ public abstract partial class GameLevel : Node2D
                 //TODO: Show victory screen
             }
         }
-        */
+       
     }
 
     private FieldType[] GetFieldTypeRow(int index)

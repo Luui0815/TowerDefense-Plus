@@ -112,7 +112,7 @@ public abstract partial class Enemy : GameEntity
 
     public override void Destroy()
     {
-        QueueFree();
+		QueueFree();
     }
 
 	public virtual void getStatuseffectDamage()
