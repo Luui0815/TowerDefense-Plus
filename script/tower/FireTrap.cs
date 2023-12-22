@@ -53,7 +53,7 @@ public partial class FireTrap : TrapDefence
 		foreach (Node2D body in _AttackArea.GetOverlappingAreas())
 		{
 			Node2D parent = (Node2D)body.GetParent();
-			if (parent is Enemy)
+			if (parent is Enemy && body.Name == "HitboxArea")
 			{
 				EnemyList.Add(parent as Enemy);
 			}

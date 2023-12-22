@@ -65,8 +65,12 @@ public partial class GiantEnemy : MeleeEnemy
                 if (!EnemyDefeated)
                 {
                     WalkSpeed = 0.3f;
-                    _giantEnemy.Play("walking");
+                    if (!IsFreezed())
+                        _giantEnemy.Play("walking");
+                    else
+                        _giantEnemy.Play("idle");
                 }
+                MoveEnemy(WalkSpeed);
                 return false;
             }
         }

@@ -72,7 +72,11 @@ public partial class SoldierEnemy : MeleeEnemy
                 if (!EnemyDefeated && !_isRegenerating)
                 {
                     WalkSpeed = 0.6f;
-                    _soldierEnemy.Play("walking");
+                    if (!IsFreezed())
+                        _soldierEnemy.Play("walking");
+                    else
+                        _soldierEnemy.Play("idle");
+                    MoveEnemy(WalkSpeed);
                 }
                 return false;
             }

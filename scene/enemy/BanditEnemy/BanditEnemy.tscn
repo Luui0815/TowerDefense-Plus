@@ -1,10 +1,11 @@
-[gd_scene load_steps=41 format=3 uid="uid://l1mj6w0esghj"]
+[gd_scene load_steps=50 format=3 uid="uid://l1mj6w0esghj"]
 
 [ext_resource type="Script" path="res://script/enemy/BanditEnemy/BanditEnemy.cs" id="1_rg2nn"]
 [ext_resource type="Texture2D" uid="uid://dawjul8amir2i" path="res://assets/Enemies/BanditEnemy/Attack1.png" id="2_id476"]
 [ext_resource type="Texture2D" uid="uid://d3bxnf8621dq4" path="res://assets/Enemies/BanditEnemy/Attack2.png" id="3_fjfi0"]
 [ext_resource type="Texture2D" uid="uid://i0563bnubx01" path="res://assets/Enemies/BanditEnemy/Attack3.png" id="4_ok1ar"]
 [ext_resource type="Texture2D" uid="uid://cmf40jj7bu2lj" path="res://assets/Enemies/BanditEnemy/Death.png" id="5_3bdrt"]
+[ext_resource type="Texture2D" uid="uid://cqkqg8k0ovj1x" path="res://assets/texture/tower/animation/spearman/Idle.png" id="6_2uxnb"]
 [ext_resource type="Texture2D" uid="uid://vepvn2flso6i" path="res://assets/Enemies/BanditEnemy/Run.png" id="6_gw8f3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rrmn6"]
@@ -98,6 +99,38 @@ region = Rect2(150, 0, 150, 150)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xc8e"]
 atlas = ExtResource("5_3bdrt")
 region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf8eu"]
+atlas = ExtResource("6_2uxnb")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dy6x"]
+atlas = ExtResource("6_2uxnb")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_he5ks"]
+atlas = ExtResource("6_2uxnb")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r48ru"]
+atlas = ExtResource("6_2uxnb")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbbfi"]
+atlas = ExtResource("6_2uxnb")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xqr4"]
+atlas = ExtResource("6_2uxnb")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ay66c"]
+atlas = ExtResource("6_2uxnb")
+region = Rect2(900, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1ded"]
+atlas = ExtResource("6_2uxnb")
+region = Rect2(1050, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0e6ax"]
 atlas = ExtResource("6_gw8f3")
@@ -214,6 +247,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_yf8eu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dy6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_he5ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r48ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbbfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xqr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ay66c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1ded")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0e6ax")
 }, {
 "duration": 1.0,
@@ -256,7 +318,7 @@ script = ExtResource("1_rg2nn")
 [node name="BanditEnemy" type="AnimatedSprite2D" parent="."]
 position = Vector2(20, 20)
 sprite_frames = SubResource("SpriteFrames_2wel6")
-animation = &"death"
+animation = &"idle"
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 position = Vector2(-1.6, 12.4)

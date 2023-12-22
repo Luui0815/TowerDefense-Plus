@@ -130,12 +130,12 @@ public abstract partial class GameLevel : Node2D
         EmitSignal(SignalName.MoneyChanged, _currentMoney);
     }
 
-    
+    /*
     public Array<Enemy> GetEnemiesAcrossLanes()
     {
         //TODO: Add implementation
     }
-    
+    */
 
     /// <summary>
     /// Changes the money amount which the player has

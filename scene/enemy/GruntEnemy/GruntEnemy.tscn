@@ -178,6 +178,11 @@ animations = [{
 "name": &"death",
 "speed": 4.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c4u3p")
@@ -222,8 +227,7 @@ script = ExtResource("1_nah8m")
 [node name="GruntEnemy" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_6bw2f")
-animation = &"walking"
-frame_progress = 0.919696
+animation = &"idle"
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 

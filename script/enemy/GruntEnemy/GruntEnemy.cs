@@ -65,9 +65,12 @@ public partial class GruntEnemy : MeleeEnemy
                 if (!EnemyDefeated)
                 {
                     WalkSpeed = 1.2f;
-                    _gruntEnemy.Play("walking");
-
+                    if (!IsFreezed())
+                        _gruntEnemy.Play("walking");
+                    else
+                        _gruntEnemy.Play("idle");
                 }
+                MoveEnemy(WalkSpeed);
                 return false;
             }
         }

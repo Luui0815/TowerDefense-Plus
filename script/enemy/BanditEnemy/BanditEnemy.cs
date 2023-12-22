@@ -65,9 +65,12 @@ public partial class BanditEnemy : MeleeEnemy
                 if (!EnemyDefeated)
                 {
                     WalkSpeed = 1.1f;
-                    _banditEnemy.Play("walking");
-                    
+                    if (!IsFreezed())
+                        _banditEnemy.Play("walking");
+                    else
+                        _banditEnemy.Play("idle");
                 }
+                MoveEnemy(WalkSpeed);
                 return false;
             }
         }

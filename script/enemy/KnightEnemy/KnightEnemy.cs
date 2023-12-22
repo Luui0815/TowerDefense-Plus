@@ -64,9 +64,13 @@ public partial class KnightEnemy : MeleeEnemy
 				if(!EnemyDefeated)
 				{
 					WalkSpeed = 0.5f;
-					_knightEnemy.Play("walking");
-				}
-				return false;
+                    if (!IsFreezed())
+                        _knightEnemy.Play("walking");
+                    else
+                        _knightEnemy.Play("idle");
+                }
+                MoveEnemy(WalkSpeed);
+                return false;
 			}
 		}
 		else

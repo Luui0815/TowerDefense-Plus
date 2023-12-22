@@ -187,6 +187,11 @@ animations = [{
 "name": &"death",
 "speed": 8.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cfvp4")
@@ -232,9 +237,7 @@ script = ExtResource("1_pth77")
 position = Vector2(-4, 13)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_c20pv")
-animation = &"death"
-frame = 1
-frame_progress = 0.0151427
+animation = &"idle"
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 

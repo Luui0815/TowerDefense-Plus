@@ -21,7 +21,7 @@ public partial class LawnMower : CharacterBody2D
         if(SearchTarget() && ! _activated)
         {
             _activated = true;
-            StartMoving();
+            //StartMoving();
         }
 	}
 
@@ -40,7 +40,7 @@ public partial class LawnMower : CharacterBody2D
         }
         return false;
     }
-
+    /*
     private void StartMoving() 
     {
         while(GlobalPosition.X < 1250)
@@ -53,7 +53,7 @@ public partial class LawnMower : CharacterBody2D
             }
         }
     }
-
+    */
     private void MoveUnit()
 	{
 		Vector2 movement = new(5, 0);

@@ -226,6 +226,11 @@ animations = [{
 "name": &"death",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ap0nb")
@@ -313,8 +318,7 @@ script = ExtResource("1_536wf")
 
 [node name="SoldierEnemy" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jdva5")
-animation = &"attacking"
-frame_progress = 0.353888
+animation = &"idle"
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 

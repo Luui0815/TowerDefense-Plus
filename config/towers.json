@@ -89,6 +89,21 @@
                 0
             ],
             "ranged": false
+        },
+        {
+            "name": "caltrop_trap",
+            "cost": 50,
+            "upgrade_names": [
+                "",
+                "",
+                ""
+            ],
+            "upgrade_costs": [
+                0,
+                0,
+                0
+            ],
+            "ranged": false
         }
     ]
 }

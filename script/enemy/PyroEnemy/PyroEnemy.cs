@@ -78,6 +78,10 @@ public partial class PyroEnemy : RangedEnemy
     {
         if (!EnemyDefeated)
         {
+            if(IsFreezed())
+            {
+                getStatuseffectDamage();
+            }
             if (CanAttack())
             {
                 _pyroEnemy.Play("attacking");
@@ -86,6 +90,10 @@ public partial class PyroEnemy : RangedEnemy
             }
             else if (_targetDefender == null)
             {
+                if (!IsFreezed())
+                    _pyroEnemy.Play("walking");
+                else
+                    _pyroEnemy.Play("idle");
                 _pyroEnemy.Play("walking");
                 MoveEnemy(WalkSpeed);
             }

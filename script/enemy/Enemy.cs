@@ -107,7 +107,31 @@ public abstract partial class Enemy : GameEntity
                     }
 					break;
 				}
-		}
+			case "caltrop":
+				{
+					if (!contained)
+					{
+                        Statuseffects stat = new Statuseffects("caltrop", 5, 1);
+                        AddChild(stat.DamageTimer);
+                        AddChild(stat.DelayTimer);
+
+                        stat.DamageTimer.Start();
+                        stat.DelayTimer.Start();
+
+                        _statusEffects.Add(stat);
+                    }
+					else
+					{
+						if(_statusEffects.First(x => x.name == effect).DamageTimer.IsStopped())
+						{
+                            _statusEffects.First(x => x.name == effect).DamageTimer.Start();
+                        }
+					}
+                    
+                    break;
+                }
+
+        }
 	}
 
     public override void Destroy()
@@ -127,10 +151,31 @@ public abstract partial class Enemy : GameEntity
 			}
 		}
 	}
+	public bool IsFreezed()
+	{
+        bool caltrop = false;
+        //check if caltrap effect is theire
+        foreach (Statuseffects effect in _statusEffects)
+        {
+            if (effect.name == "caltrop" && !effect.DamageTimer.IsStopped())
+            {
+                caltrop = true;
+            }
+        }
+
+        GD.Print("freezed" + caltrop);
+        return caltrop;
+    }
 
     protected void MoveEnemy(float WalkSpeed)
     {
-        Vector2 movement = new(-WalkSpeed, 0);
+		Vector2 movement = new Vector2(0, 0);
+
+		if(!IsFreezed())
+		{
+			movement = new(-WalkSpeed, 0);
+		}
+
         Translate(movement);
     }
 }
