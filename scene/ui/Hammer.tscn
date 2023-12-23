@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8fr6r6g0idrn"]
+
+[ext_resource type="Script" path="res://script/ui/Hammer.cs" id="1_seuyx"]
+[ext_resource type="Texture2D" uid="uid://doenbmpgpwg8l" path="res://assets/texture/hammer/hammer.png" id="2_3uktb"]
+[ext_resource type="Texture2D" uid="uid://dwi3uakvy8iqi" path="res://assets/texture/hammer/hammer1.png" id="3_8ktyo"]
+[ext_resource type="Texture2D" uid="uid://b1hlk38pjswm1" path="res://assets/texture/hammer/hammer2.png" id="4_mfb07"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x1jml"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3uktb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8ktyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mfb07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8ktyo")
+}],
+"loop": true,
+"name": &"action",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3uktb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Hammer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_seuyx")
+
+[node name="animatedSprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(22, 21)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_x1jml")
+animation = &"action"

@@ -43,6 +43,7 @@ public abstract partial class Enemy : GameEntity
 	protected bool _enemyCrossedLastField = false;
 	protected float _walkSpeed;
 	protected string _name;
+	protected bool _TrapDeleted = false;
 	protected List<Statuseffects> _statusEffects = new List<Statuseffects>();
 
 	public bool EnemyDefeated
@@ -73,8 +74,35 @@ public abstract partial class Enemy : GameEntity
 	{
 
 	}
+
+	public void DeleteTrap(string trap)
+	{
+        _TrapDeleted = true;
+		string effect;
+		switch (trap)
+		{
+			case "FireTrapDefender":
+				{
+					effect = "burn";
+					break;
+				}
+			case "caltrop_trap":
+				{
+					effect = "caltrop";
+					break;
+				}
+			default:
+				{
+					effect = "";
+					break;
+				}
+		}
+        _statusEffects.First(x => x.name == effect).DamageTimer.Stop();
+        _statusEffects.First(x => x.name == effect).DelayTimer.Stop();
+
+    }
 	
-	public virtual void AddStatusEffect(string effect)
+	public virtual void AddStatusEffect(string effect, Defender trap)
 	{
 		bool contained=false;
 
@@ -103,7 +131,7 @@ public abstract partial class Enemy : GameEntity
 					}
 					else
 					{
-						_statusEffects.First(x => x.name == effect).DamageTimer.Start();
+                        _statusEffects.First(x => x.name == effect).DamageTimer.Start();
                     }
 					break;
 				}
@@ -141,13 +169,18 @@ public abstract partial class Enemy : GameEntity
 
 	public virtual void getStatuseffectDamage()
 	{
+
 		foreach(Statuseffects effect in _statusEffects)
 		{
 			if(!effect.DamageTimer.IsStopped() && effect.DelayTimer.IsStopped())
 			{
-				Health -= effect.damage;
-				//GD.Print(EnemyName + " HP: " + Health);
-				effect.DelayTimer.Start();
+				//check if trap still exists
+				if (!_TrapDeleted)
+				{
+					Health -= effect.damage;
+					GD.Print(EnemyName + " HP: " + Health);
+					effect.DelayTimer.Start();
+				}
 			}
 		}
 	}
@@ -162,8 +195,6 @@ public abstract partial class Enemy : GameEntity
                 caltrop = true;
             }
         }
-
-        GD.Print("freezed" + caltrop);
         return caltrop;
     }
 

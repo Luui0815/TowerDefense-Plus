@@ -100,21 +100,4 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
             Destroy();
         }
     }
-
-    private void SpawnArrow()
-    {
-        arrowProjectile arrow = (arrowProjectile)GD.Load<PackedScene>("res://scene/tower/arrowProjectile.tscn").Instantiate();
-        arrow.Init(_targetEnemy.Position, _targetEnemy, _ArrowVelocity);
-        arrow.hitTarget += ArrowHit;
-        //arrow.Position = new Vector2(Position.X+100,Position.Y+40);
-        arrow.TopLevel = true;
-        arrow.Position = new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 40);
-        AddChild(arrow);
-    }
-
-    private void ArrowHit()
-    {
-        Attack(_targetEnemy, _damage);
-        _targetEnemy.AddStatusEffect("burn");//eigentlich erst bei Upgrade
-    }
 }

@@ -37,8 +37,9 @@ public partial class caltrop_trap : TrapDefence
         {
             foreach (Enemy enemy in _attackableEnemiess)
             {
-                enemy.AddStatusEffect("caltrop");
+                enemy.AddStatusEffect("caltrop",this);
                 _attackedEnemiess.Add(enemy);
+                TrapDeleted += (Name) => enemy.DeleteTrap(Name);
             }
         }
 
@@ -66,7 +67,10 @@ public partial class caltrop_trap : TrapDefence
 
     private void _on_attack_area_area_entered(Area2D area)
     {
-        if (area.GetParent() is Enemy)
+        // muss so sein, da: Wenn Soldier auf Falle stribt und sich wiederbelebt baut er
+        // alte Area2d ab und eine neue auf. Dadurch verliert die Falle 2 LEben und nicht nur 1
+        //daher muss verglichen werden ob der Gegner neu ist
+        if (area.GetParent() is Enemy && !_attackedEnemiess.Contains((Enemy)area.GetParent()))
             Health--;
     }
 }

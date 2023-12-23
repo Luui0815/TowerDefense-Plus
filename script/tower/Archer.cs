@@ -121,6 +121,6 @@ public partial class Archer : RangeDefender
     private void ArrowHit()
     {
         Attack(_targetEnemy, _damage);
-        _targetEnemy.AddStatusEffect("burn");//eigentlich erst bei Upgrade
+        _targetEnemy.AddStatusEffect("burn", this);//eigentlich erst bei Upgrade
     }
 }

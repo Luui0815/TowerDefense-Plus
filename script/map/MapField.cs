@@ -38,26 +38,42 @@ namespace TowerDefense
 
 		public override bool _CanDropData(Vector2 atPosition, Variant data)
 		{
-			return Tower == null && (string)data != "";
+			//return Tower == null && (string)data != "";
+			string info=(string)data;
+
+			if (info == "hammer" && Tower != null) return true;
+			else if (info != "" && info != "hammer" && Tower == null) return true;
+			else return false;
 		}
 
 		public override void _DropData(Vector2 atPosition, Variant data)
 		{
 			string towerName = (string)data;
 
-			Tower = (Defender)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
-			Tower.Init(towerName);
-			Tower.TopLevel = true;
-			Tower.Position = GlobalPosition;
-
-			if (towerName == "goldmine")
+			if(towerName == "hammer")
 			{
-				GameLevel level = (GameLevel)GetParent().GetParent();
-				((Goldmine)Tower).MoneyGenerated += level.AddMoney;
-			}
+				if(Tower is TrapDefence)
+                   Tower.EmitSignal(TrapDefence.SignalName.TrapDeleted,Tower.Name);
 
-			AddChild(Tower);
-			EmitSignal(SignalName.DefenderPlaced, Tower.GetTowerCost());
+				Tower.QueueFree();
+				Tower = null;
+			}
+			else
+			{
+                Tower = (Defender)GD.Load<PackedScene>($"res://scene/tower/{towerName}.tscn").Instantiate();
+                Tower.Init(towerName);
+                Tower.TopLevel = true;
+                Tower.Position = GlobalPosition;
+
+                if (towerName == "goldmine")
+                {
+                    GameLevel level = (GameLevel)GetParent().GetParent();
+                    ((Goldmine)Tower).MoneyGenerated += level.AddMoney;
+                }
+
+                AddChild(Tower);
+                EmitSignal(SignalName.DefenderPlaced, Tower.GetTowerCost());
+            }
 		}
 	}
 

@@ -3,5 +3,6 @@ using System;
 
 public abstract partial class TrapDefence : AttackTower
 {
-	//hier ist Platz für deine Inovationen
+    [Signal]
+    public delegate void TrapDeletedEventHandler(string TrapName);
 }

@@ -1,13 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpxgq32kry88s"]
+[gd_scene load_steps=4 format=3 uid="uid://cpxgq32kry88s"]
 
 [ext_resource type="Script" path="res://script/map/level/LevelOne.cs" id="1_psca5"]
 [ext_resource type="PackedScene" uid="uid://cph6w2yafda7f" path="res://scene/map/LevelControlBar.tscn" id="2_i75gx"]
+[ext_resource type="PackedScene" uid="uid://b8fr6r6g0idrn" path="res://scene/ui/Hammer.tscn" id="3_dtkpb"]
 
 [node name="LevelOne" type="Node2D"]
 script = ExtResource("1_psca5")
 
 [node name="LevelControlBar" parent="." instance=ExtResource("2_i75gx")]
 z_index = 2
+
+[node name="Hammer" parent="." instance=ExtResource("3_dtkpb")]
+offset_left = 2.0
+offset_top = 23.0
+offset_right = 69.0
+offset_bottom = 57.0
+metadata/_edit_group_ = true
 
 [connection signal="PauseButtonPressed" from="LevelControlBar" to="." method="OnPauseLevelButtonPressed"]
 [connection signal="StartButtonPressed" from="LevelControlBar" to="." method="OnStartLevelButtonPressed"]
