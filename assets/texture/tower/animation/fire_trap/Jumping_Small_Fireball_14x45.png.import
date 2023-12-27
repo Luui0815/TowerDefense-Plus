@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d31qln40djgb1"
-path="res://.godot/imported/Idle2.png-99301ab896e10cd28e9f6c838d39175d.ctex"
+uid="uid://cbyc7jm0i7bb3"
+path="res://.godot/imported/Jumping_Small_Fireball_14x45.png-9825d10695bbe8b79ee2a4dfe4875231.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/animation/fire_trap/Idle2.png"
-dest_files=["res://.godot/imported/Idle2.png-99301ab896e10cd28e9f6c838d39175d.ctex"]
+source_file="res://assets/texture/tower/animation/fire_trap/Jumping_Small_Fireball_14x45.png"
+dest_files=["res://.godot/imported/Jumping_Small_Fireball_14x45.png-9825d10695bbe8b79ee2a4dfe4875231.ctex"]
 
 [params]
 

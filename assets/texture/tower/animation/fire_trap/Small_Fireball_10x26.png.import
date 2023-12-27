@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw5v1vw2eshfd"
-path="res://.godot/imported/goldmine.png-d97bda05aec93e3cb5b9a50c7b00bb88.ctex"
+uid="uid://djirod108sdso"
+path="res://.godot/imported/Small_Fireball_10x26.png-4329a8ab6f3a1cb46f42e7ba3466616f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/goldmine.png"
-dest_files=["res://.godot/imported/goldmine.png-d97bda05aec93e3cb5b9a50c7b00bb88.ctex"]
+source_file="res://assets/texture/tower/animation/fire_trap/Small_Fireball_10x26.png"
+dest_files=["res://.godot/imported/Small_Fireball_10x26.png-4329a8ab6f3a1cb46f42e7ba3466616f.ctex"]
 
 [params]
 
