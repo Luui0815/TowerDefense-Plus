@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://3yhndatylnyk"]
+[gd_scene load_steps=3 format=3 uid="uid://3yhndatylnyk"]
 
 [ext_resource type="Script" path="res://script/map/MapLane.cs" id="1_24ey8"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvsen"]
+size = Vector2(80, 120)
+
 [node name="MapLane" type="Node2D"]
 script = ExtResource("1_24ey8")
+
+[node name="LawnMoverArea" type="Area2D" parent="."]
+
+[node name="DetectionBox" type="CollisionShape2D" parent="LawnMoverArea"]
+position = Vector2(40.5, 60)
+shape = SubResource("RectangleShape2D_hvsen")
+debug_color = Color(0, 0.6, 0.0392157, 0.419608)

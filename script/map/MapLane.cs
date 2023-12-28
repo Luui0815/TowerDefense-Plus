@@ -4,6 +4,7 @@ using TowerDefense;
 public partial class MapLane : Node2D
 {
 	private int _laneNr;
+	private Area2D _LawnMowerArea;
 
 	[Signal]
 	public delegate void AllEnemiesDefeatedEventHandler(int laneNr);
@@ -37,5 +38,22 @@ public partial class MapLane : Node2D
 			fieldPosition.X += 100;
 			_fields[i] = field;
 		}
+	}
+
+	public override void _Ready()
+	{
+		_LawnMowerArea = GetNode<Area2D>("LawnMoverArea");
+	}
+
+	public override void _Process(double delta)
+	{
+		foreach (Node2D body in _LawnMowerArea.GetOverlappingAreas())
+		{
+			if (body is Enemy && body.Name == "HitboxArea")
+			{
+				EmitSignal(SignalName.EnemyCrossedLane);
+			}
+		}
+
 	}
 }

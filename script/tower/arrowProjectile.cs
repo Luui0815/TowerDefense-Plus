@@ -8,7 +8,7 @@ public partial class arrowProjectile : projectile
 
 	private Vector2 _targetPosition;
 	private Enemy _target;
-	private float _velocity;
+	private Vector2 _velocity;
     private Area2D _HitboxArea;
 	private AnimatedSprite2D _animatedSprite;
 
@@ -16,7 +16,7 @@ public partial class arrowProjectile : projectile
 	{
 		_targetPosition = targetPosition;
 		_target = target;
-		_velocity = velocity;
+		_velocity.X = velocity;
 		Visible = true;
     }
 	public override void _Ready()
@@ -36,10 +36,14 @@ public partial class arrowProjectile : projectile
             QueueFree();
         }
 
-		if(Position.X > _targetPosition.X + 150)//Falls Gegner schon besiegt wurde
+		if(Position.X > _targetPosition.X + 50)//Falls Gegner schon besiegt wurde
 		{
-			QueueFree();//schoener machen, er soll dann auf den Boden fliegen und verschwinden, nicht einfach so
+			_velocity.Y = 2;
 		}
+		if(Position.X > _targetPosition.X + 150 || Position.Y>_targetPosition.Y+80)
+		{
+			QueueFree();
+        }
 	}
 
 	private bool CheckTarget()

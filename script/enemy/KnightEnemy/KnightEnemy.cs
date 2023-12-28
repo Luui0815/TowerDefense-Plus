@@ -29,13 +29,25 @@ public partial class KnightEnemy : MeleeEnemy
         _hitboxArea = GetNode<Area2D>("HitboxArea");
 
         _attackTimer = GetNode<Timer>("AttackTimer");
-	}
+        _BurnAnimation = GetNode<AnimatedSprite2D>("burn");
+    }
 
 	public override void _Process(double delta)
 	{
 		getStatuseffectDamage();
 
-		if (!CanAttack() && !EnemyDefeated)
+        if (IsBurned())//ist true wenn burn damage
+        {
+            _BurnAnimation.Play("burn");
+            _BurnAnimation.Visible = true;
+        }
+        else
+        {
+            _BurnAnimation.Visible = false;
+            _BurnAnimation.Stop();
+        }
+
+        if (!CanAttack() && !EnemyDefeated)
 		{
 			MoveEnemy(WalkSpeed);
 		}
@@ -48,6 +60,9 @@ public partial class KnightEnemy : MeleeEnemy
 
 	private bool CanAttack()
 	{
+		Vector2 _BurnAnimationPositionWalking = new Vector2(139,68);
+		Vector2 _BurnAnimationPositionAttacking = new Vector2(165, 68);
+
 		if (_attackTimer.IsStopped() && !EnemyDefeated)
 		{
 			Defender closestTarget = SelectClosestTarget(_attackRangeArea);
@@ -55,6 +70,7 @@ public partial class KnightEnemy : MeleeEnemy
 			{
 				WalkSpeed = 0;
 				_attackTimer.Start();
+				_BurnAnimation.Position = _BurnAnimationPositionAttacking;
 				_knightEnemy.Play("attacking");
 				Attack(closestTarget, 1);
 				return true;
@@ -65,7 +81,10 @@ public partial class KnightEnemy : MeleeEnemy
 				{
 					WalkSpeed = 0.5f;
                     if (!IsFreezed())
+					{
+						_BurnAnimation.Position= _BurnAnimationPositionWalking;
                         _knightEnemy.Play("walking");
+					}
                     else
                         _knightEnemy.Play("idle");
                 }

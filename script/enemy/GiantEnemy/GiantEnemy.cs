@@ -28,11 +28,23 @@ public partial class GiantEnemy : MeleeEnemy
         _hitboxArea = GetNode<Area2D>("HitboxArea");
 
         _attackTimer = GetNode<Timer>("AttackTimer");
+        _BurnAnimation = GetNode<AnimatedSprite2D>("burn");
     }
 
     public override void _Process(double delta)
     {
         getStatuseffectDamage();
+
+        if (IsBurned())//ist true wenn burn damage
+        {
+            _BurnAnimation.Play("burn");
+            _BurnAnimation.Visible = true;
+        }
+        else
+        {
+            _BurnAnimation.Visible = false;
+            _BurnAnimation.Stop();
+        }
 
         if (!CanAttack() && !EnemyDefeated)
         {

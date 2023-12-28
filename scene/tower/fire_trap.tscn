@@ -858,7 +858,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5syy7"]
-size = Vector2(100, 120)
+size = Vector2(50, 120)
 
 [node name="FireTrapDefender" type="Node2D"]
 script = ExtResource("1_ivqat")
@@ -878,7 +878,7 @@ frame_progress = 0.775962
 collision_mask = 3
 
 [node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(50, 60)
+position = Vector2(25, 60)
 shape = SubResource("RectangleShape2D_5syy7")
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

@@ -45,6 +45,7 @@ public abstract partial class Enemy : GameEntity
 	protected string _name;
 	protected bool _TrapDeleted = false;
 	protected List<Statuseffects> _statusEffects = new List<Statuseffects>();
+	protected AnimatedSprite2D _BurnAnimation;
 
 	public bool EnemyDefeated
 	{
@@ -167,9 +168,8 @@ public abstract partial class Enemy : GameEntity
 		QueueFree();
     }
 
-	public virtual void getStatuseffectDamage()
+	public virtual void getStatuseffectDamage() //wenn true dann burn damage fuer burn animation der Gegner
 	{
-
 		foreach(Statuseffects effect in _statusEffects)
 		{
 			if(!effect.DamageTimer.IsStopped() && effect.DelayTimer.IsStopped())
@@ -178,7 +178,7 @@ public abstract partial class Enemy : GameEntity
 				if (!_TrapDeleted)
 				{
 					Health -= effect.damage;
-					GD.Print(EnemyName + " HP: " + Health);
+					//GD.Print(EnemyName + " HP: " + Health);
 					effect.DelayTimer.Start();
 				}
 			}
@@ -196,6 +196,20 @@ public abstract partial class Enemy : GameEntity
             }
         }
         return caltrop;
+    }
+
+    public bool IsBurned()
+    {
+        bool burn = false;
+        //check if burn effect is theire
+        foreach (Statuseffects effect in _statusEffects)
+        {
+            if (effect.name == "burn" && !effect.DamageTimer.IsStopped())
+            {
+                burn = true;
+            }
+        }
+        return burn;
     }
 
     protected void MoveEnemy(float WalkSpeed)
