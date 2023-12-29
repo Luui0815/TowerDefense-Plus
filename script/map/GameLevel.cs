@@ -172,6 +172,7 @@ public abstract partial class GameLevel : Node2D
     private void OnEnemyCrossedLane(int laneNr)
     {
         //TODO: Show defeat screen
+        //der Gartenteppichtrimmer ruft die Methode bereits richtig auf!
     }
 
     private void OnAllEnemiesDefeated(int laneNr)

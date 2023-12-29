@@ -4,8 +4,8 @@ using System.Transactions;
 
 public partial class LawnMower : CharacterBody2D
 {
-	Area2D _attackRangeArea;
-    private bool _activated = false;
+	private Area2D _HitboxArea;
+	private bool _activated;
 
     public LawnMower() 
     { 
@@ -13,50 +13,48 @@ public partial class LawnMower : CharacterBody2D
     }
 	public override void _Ready()
 	{
-		_attackRangeArea = GetNode<Area2D>("AttackRangeArea");
+		_HitboxArea = GetNode<Area2D>("HitboxArea");
 	}
 
 	public override void _Process(double delta)
 	{
-        if(SearchTarget() && ! _activated)
-        {
-            _activated = true;
-            //StartMoving();
-        }
+		if(_activated)
+		{
+			Move();
+			DestroyEnemyUnits();
+		}
 	}
 
-    protected bool SearchTarget()
-    {
-        foreach (Node2D body in _attackRangeArea.GetOverlappingAreas())
-        {
-            if (body.Name == "HitboxArea")
-            {
-                Node2D parent = (Node2D)body.GetParent();
-                if (parent is Enemy)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    /*
-    private void StartMoving() 
-    {
-        while(GlobalPosition.X < 1250)
-        {
-            MoveUnit();
-            if (CanAttack())
-            {
-                Attack(_targetEnemy, _damage);
-                _AttackTimer.Start();
-            }
-        }
-    }
-    */
-    private void MoveUnit()
+    private void Move()
 	{
 		Vector2 movement = new(5, 0);
 		Translate(movement);
+		if (Position.X > 1200)
+			QueueFree();
+	}
+
+	private void DestroyEnemyUnits()
+	{
+        foreach (Node2D body in _HitboxArea.GetOverlappingAreas())
+        {
+            if (body.GetParent() is Enemy && body.Name == "HitboxArea")
+            {
+                Enemy target = (Enemy)body.GetParent();
+				target.Health -= 1000;
+				//Ondefeated Methode ware auch moeglich, ist aber private und so nicht erreichbar
+            }
+        }
+    }
+
+	public bool ActivateLawnMover
+	{
+		get
+		{
+			return _activated;
+		}
+		set
+		{
+			_activated = true;
+		}
 	}
 }
