@@ -12,7 +12,7 @@ public partial class caltrop_trap : TrapDefence
         _delay = 15;//nicht benoetigt, da Trap nur Status hinzufuegt
         _animationDelay = 1;
         _actionAnimation = "idle";
-        Health = 6;
+        Health = 5;
     }
 
     public override void Action()

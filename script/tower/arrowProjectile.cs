@@ -36,14 +36,15 @@ public partial class arrowProjectile : projectile
             QueueFree();
         }
 
-		if(Position.X > _targetPosition.X + 50)//Falls Gegner schon besiegt wurde
+		if (Position.X > _targetPosition.X + 100)//Falls Gegner schon besiegt wurde
 		{
 			_velocity.Y = 2;
 		}
-		if(Position.X > _targetPosition.X + 150 || Position.Y>_targetPosition.Y+80)
+		if (Position.X > _targetPosition.X + 200 || Position.Y > _targetPosition.Y + 80)
 		{
+			GD.Print("Pfeil verschwindet.");
 			QueueFree();
-        }
+		}
 	}
 
 	private bool CheckTarget()

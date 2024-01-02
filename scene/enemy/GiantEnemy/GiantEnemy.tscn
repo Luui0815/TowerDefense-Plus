@@ -226,8 +226,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o7aj"]
 size = Vector2(232, 52)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d2fve"]
-radius = 49.0102
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_id8nx"]
+size = Vector2(48.8889, 139.444)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00qm2"]
 atlas = ExtResource("3_ayh6u")
@@ -658,13 +658,13 @@ animations = [{
 }]
 
 [node name="GiantEnemy" type="CharacterBody2D"]
-position = Vector2(599, 353)
-scale = Vector2(0.9, 0.9)
+position = Vector2(602, 367)
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_pth77")
 
 [node name="GiantEnemy" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(-4, 13)
+position = Vector2(-10, -50)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_c20pv")
 animation = &"walking"
@@ -673,7 +673,7 @@ frame_progress = 0.310611
 [node name="AttackRangeArea" type="Area2D" parent="."]
 
 [node name="AttackRange" type="CollisionShape2D" parent="AttackRangeArea"]
-position = Vector2(52, 121)
+position = Vector2(50, 46.6667)
 shape = SubResource("RectangleShape2D_4o7aj")
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -681,14 +681,15 @@ wait_time = 1.69
 one_shot = true
 
 [node name="HitboxArea" type="Area2D" parent="."]
+position = Vector2(2.22222, -67.7778)
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
-position = Vector2(108, 98)
-shape = SubResource("CircleShape2D_d2fve")
+position = Vector2(98.8889, 80.8334)
+shape = SubResource("RectangleShape2D_id8nx")
 
 [node name="burn" type="AnimatedSprite2D" parent="."]
-position = Vector2(106.111, 16.6667)
-scale = Vector2(8.55556, 6.41026)
+position = Vector2(98.8889, -4.44444)
+scale = Vector2(7.02778, 5.10684)
 sprite_frames = SubResource("SpriteFrames_81ofp")
 animation = &"burn"
 frame_progress = 0.25761

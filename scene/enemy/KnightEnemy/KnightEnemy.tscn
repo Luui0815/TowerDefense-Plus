@@ -362,8 +362,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1v7mi"]
 size = Vector2(99, 26)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1xgvv"]
-radius = 36.1604
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcw7a"]
+size = Vector2(44.1668, 82.2222)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00qm2"]
 atlas = ExtResource("6_b2st2")
@@ -805,7 +805,7 @@ position = Vector2(150, 102)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_lwpmj")
 animation = &"attacking"
-frame_progress = 0.58101
+frame_progress = 0.206217
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 
@@ -824,8 +824,8 @@ one_shot = true
 [node name="HitboxArea" type="Area2D" parent="."]
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
-position = Vector2(173.333, 100)
-shape = SubResource("CircleShape2D_1xgvv")
+position = Vector2(170, 92.2222)
+shape = SubResource("RectangleShape2D_gcw7a")
 
 [node name="burn" type="AnimatedSprite2D" parent="."]
 position = Vector2(165.556, 67.7778)

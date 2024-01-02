@@ -16,7 +16,7 @@ public partial class KnightEnemy : MeleeEnemy
 		_actionAnimation = "idle";
 
 		EnemyName = "KnightEnemy";
-		WalkSpeed = 0.5f;
+		WalkSpeed = 0.3f;
 		Health = 25;
 	}
 
@@ -79,7 +79,7 @@ public partial class KnightEnemy : MeleeEnemy
 			{
 				if(!EnemyDefeated)
 				{
-					WalkSpeed = 0.5f;
+					WalkSpeed = 0.3f;
                     if (!IsFreezed())
 					{
 						_BurnAnimation.Position= _BurnAnimationPositionWalking;

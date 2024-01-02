@@ -309,8 +309,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5b8q"]
 size = Vector2(26.5, 20)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rvbpt"]
-radius = 14.0089
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j76qu"]
+size = Vector2(18.5, 30.4)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00qm2"]
 atlas = ExtResource("4_g3bct")
@@ -761,8 +761,9 @@ shape = SubResource("RectangleShape2D_i5b8q")
 show_behind_parent = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
-position = Vector2(0.5, 7.5)
-shape = SubResource("CircleShape2D_rvbpt")
+position = Vector2(1.25, 7.60001)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_j76qu")
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true

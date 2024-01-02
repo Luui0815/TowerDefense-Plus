@@ -18,7 +18,7 @@ public partial class SoldierEnemy : MeleeEnemy
         _actionAnimation = "idle";
 
         EnemyName = "SoldierEnemy";
-        WalkSpeed = 0.6f;
+        WalkSpeed = 0.4f;
         Health = 7;
     }
 
@@ -83,7 +83,7 @@ public partial class SoldierEnemy : MeleeEnemy
             {
                 if (!EnemyDefeated && !_isRegenerating)
                 {
-                    WalkSpeed = 0.6f;
+                    WalkSpeed = 0.4f;
                     if (!IsFreezed())
                         _soldierEnemy.Play("walking");
                     else

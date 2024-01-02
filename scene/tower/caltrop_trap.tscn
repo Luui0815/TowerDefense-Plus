@@ -15,7 +15,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rhau"]
-size = Vector2(6, 120)
+size = Vector2(8, 41)
 
 [node name="caltrop_trap" type="Node2D"]
 script = ExtResource("1_257yf")
@@ -30,7 +30,7 @@ animation = &"idle"
 collision_mask = 3
 
 [node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(3, 60)
+position = Vector2(33, 60)
 shape = SubResource("RectangleShape2D_3rhau")
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

@@ -239,8 +239,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l121e"]
 size = Vector2(422.079, 54)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_exjwp"]
-radius = 30.0167
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ng3to"]
+size = Vector2(27.2727, 67.2728)
 
 [node name="PyroEnemy" type="CharacterBody2D"]
 position = Vector2(1051, 317)
@@ -251,7 +251,7 @@ script = ExtResource("1_5aewb")
 position = Vector2(0, -16)
 scale = Vector2(1.6, 1.6)
 sprite_frames = SubResource("SpriteFrames_1mv2s")
-animation = &"idle"
+animation = &"death"
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 
@@ -262,8 +262,8 @@ shape = SubResource("RectangleShape2D_l121e")
 [node name="HitboxArea" type="Area2D" parent="."]
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
-position = Vector2(0, 22)
-shape = SubResource("CircleShape2D_exjwp")
+position = Vector2(0, 28.1819)
+shape = SubResource("RectangleShape2D_ng3to")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.51

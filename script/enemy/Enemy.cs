@@ -140,7 +140,7 @@ public abstract partial class Enemy : GameEntity
 				{
 					if (!contained)
 					{
-                        Statuseffects stat = new Statuseffects("caltrop", 5, 1);
+                        Statuseffects stat = new Statuseffects("caltrop", 3, 1);
                         AddChild(stat.DamageTimer);
                         AddChild(stat.DelayTimer);
 

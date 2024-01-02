@@ -308,8 +308,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dvy4"]
 size = Vector2(33.1, 14.6)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p6edk"]
-radius = 15.0831
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bsq1n"]
+size = Vector2(11.3044, 27.3912)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00qm2"]
 atlas = ExtResource("8_cvlfd")
@@ -748,8 +748,7 @@ script = ExtResource("1_rg2nn")
 z_index = 1
 position = Vector2(20, 20)
 sprite_frames = SubResource("SpriteFrames_2wel6")
-animation = &"walking"
-frame_progress = 0.0514092
+animation = &"attacking"
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 position = Vector2(-1.6, 12.4)
@@ -765,8 +764,8 @@ one_shot = true
 [node name="HitboxArea" type="Area2D" parent="."]
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
-position = Vector2(19.5652, 27.3913)
-shape = SubResource("CircleShape2D_p6edk")
+position = Vector2(16.9565, 26.9565)
+shape = SubResource("RectangleShape2D_bsq1n")
 
 [node name="burn" type="AnimatedSprite2D" parent="."]
 visible = false
