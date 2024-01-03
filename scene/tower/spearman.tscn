@@ -174,7 +174,7 @@ animations = [{
 size = Vector2(100, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45bpy"]
-size = Vector2(100, 120)
+size = Vector2(146, 120)
 
 [node name="SpearmanDefender" type="Node2D"]
 script = ExtResource("1_dbss1")
@@ -202,5 +202,5 @@ shape = SubResource("RectangleShape2D_q1gye")
 [node name="AttackArea1" type="Area2D" parent="."]
 
 [node name="AttackBox1" type="CollisionShape2D" parent="AttackArea1"]
-position = Vector2(150, 60)
+position = Vector2(173, 60)
 shape = SubResource("RectangleShape2D_45bpy")
