@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerData="*res://singleton/PlayerData.cs"
+TowerConfig="*res://singleton/TowerConfig.cs"
 
 [display]
 
@@ -32,3 +33,4 @@ project/assembly_name="SWE-Tower-Defense"
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
