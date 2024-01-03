@@ -138,7 +138,7 @@ public abstract partial class Enemy : GameEntity
 				}
 			case "caltrop":
 				{
-					if (!contained)
+					if (!contained && EnemyName != "PyroEnemy")
 					{
                         Statuseffects stat = new Statuseffects("caltrop", 3, 1);
                         AddChild(stat.DamageTimer);

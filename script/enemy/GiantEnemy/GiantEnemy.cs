@@ -15,8 +15,8 @@ public partial class GiantEnemy : MeleeEnemy
         _actionAnimation = "idle";
 
         EnemyName = "GiantEnemy";
-        WalkSpeed = 0.3f;
-        Health = 60;
+        WalkSpeed = 0.25f;
+        Health = 55;
     }
 
     public override void _Ready()
@@ -69,14 +69,14 @@ public partial class GiantEnemy : MeleeEnemy
                 WalkSpeed = 0;
                 _attackTimer.Start();
                 _giantEnemy.Play("attacking");
-                Attack(closestTarget, 10);
+                Attack(closestTarget, 9);
                 return true;
             }
             else
             {
                 if (!EnemyDefeated)
                 {
-                    WalkSpeed = 0.3f;
+                    WalkSpeed = 0.25f;
                     if (!IsFreezed())
                         _giantEnemy.Play("walking");
                     else

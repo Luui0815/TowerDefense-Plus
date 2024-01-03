@@ -14,6 +14,8 @@ public partial class PyroEnemy : RangedEnemy
         _delay = 2;
         _animationDelay = 1;
         _actionAnimation = "idle";
+
+        EnemyName = "PyroEnemy";
         Health = 6;
         WalkSpeed = 0.4f;
         _arrowVelocity = 5;
@@ -133,6 +135,13 @@ public partial class PyroEnemy : RangedEnemy
 
     private void FireballHit()
     {
-        Attack(_targetDefender, 2);
+        if (_targetDefender is Wall)
+        {
+            Attack(_targetDefender, 5);
+        }
+        else
+        {
+            Attack(_targetDefender, 2);
+        }
     }
 }

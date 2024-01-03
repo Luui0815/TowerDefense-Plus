@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://c7o46r0lnl6du"]
+[gd_scene load_steps=102 format=3 uid="uid://c7o46r0lnl6du"]
 
 [ext_resource type="Script" path="res://script/enemy/GruntEnemy/GruntEnemy.cs" id="1_nah8m"]
 [ext_resource type="Texture2D" uid="uid://c85dfr2vu6gvr" path="res://assets/Enemies/GruntEnemy/xeno-grunt-attack-1.png" id="2_y8bni"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bqulie28rjwbj" path="res://assets/Enemies/GruntEnemy/xeno-grunt-prep-jump.png" id="4_jh7tr"]
 [ext_resource type="Texture2D" uid="uid://dp3smu06et4bw" path="res://assets/Enemies/GruntEnemy/xeno-grunt-knockback.png" id="5_xuxm0"]
 [ext_resource type="Texture2D" uid="uid://065tet85ok3b" path="res://assets/Enemies/GruntEnemy/xeno-grunt-death-grounded.png" id="6_r8rsh"]
+[ext_resource type="Texture2D" uid="uid://b2ot2u0l4xcjh" path="res://assets/Enemies/GruntEnemy/xeno-grunt-idle.png" id="7_5pr0v"]
 [ext_resource type="Texture2D" uid="uid://5q83xl6veai6" path="res://assets/Enemies/GruntEnemy/xeno-grunt-run.png" id="7_eda6f"]
 [ext_resource type="Texture2D" uid="uid://tmhi046nshu5" path="res://assets/Enemies/firedamage/Small_Fireball_10x26.png" id="8_w2yxm"]
 
@@ -80,6 +81,14 @@ region = Rect2(0, 0, 320, 320)
 [sub_resource type="AtlasTexture" id="AtlasTexture_86gu8"]
 atlas = ExtResource("6_r8rsh")
 region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80b3i"]
+atlas = ExtResource("7_5pr0v")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x1ks"]
+atlas = ExtResource("7_5pr0v")
+region = Rect2(320, 0, 320, 320)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4u3p"]
 atlas = ExtResource("7_eda6f")
@@ -179,7 +188,13 @@ animations = [{
 "name": &"death",
 "speed": 4.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80b3i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x1ks")
+}],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
@@ -657,8 +672,8 @@ script = ExtResource("1_nah8m")
 z_index = 1
 position = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_6bw2f")
-animation = &"walking"
-frame_progress = 0.939473
+animation = &"idle"
+frame_progress = 0.584977
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 

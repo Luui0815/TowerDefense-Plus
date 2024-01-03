@@ -181,10 +181,11 @@ script = ExtResource("1_dbss1")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(39, 64)
-scale = Vector2(2, 2)
+scale = Vector2(2.1, 2.1)
 sprite_frames = SubResource("SpriteFrames_045pr")
 animation = &"attack"
-frame_progress = 0.528577
+frame = 3
+frame_progress = 0.673903
 
 [node name="ActionTimer" type="Timer" parent="."]
 

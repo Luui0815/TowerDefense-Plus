@@ -1,9 +1,13 @@
-[gd_scene load_steps=108 format=3 uid="uid://dwlgyt1enyt7k"]
+[gd_scene load_steps=116 format=3 uid="uid://dwlgyt1enyt7k"]
 
 [ext_resource type="Script" path="res://script/enemy/SoldierEnemy/SoldierEnemy.cs" id="1_536wf"]
 [ext_resource type="Texture2D" uid="uid://cwd0uascnto3h" path="res://assets/Enemies/SoldierEnemy/LightBandit.png" id="1_s8fij"]
 [ext_resource type="Texture2D" uid="uid://do55tyfegsway" path="res://assets/Enemies/SoldierEnemy/attack2.png" id="2_05p02"]
+[ext_resource type="Texture2D" uid="uid://n2ya86a7p2xc" path="res://assets/Enemies/SoldierEnemy/LightBandit_Idle_0.png" id="4_1cd43"]
 [ext_resource type="Texture2D" uid="uid://tmhi046nshu5" path="res://assets/Enemies/firedamage/Small_Fireball_10x26.png" id="4_g3bct"]
+[ext_resource type="Texture2D" uid="uid://bk8a5eutu1y50" path="res://assets/Enemies/SoldierEnemy/LightBandit_Idle_1.png" id="5_7hnyy"]
+[ext_resource type="Texture2D" uid="uid://dvhcoecfv74ab" path="res://assets/Enemies/SoldierEnemy/LightBandit_Idle_2.png" id="6_rix5a"]
+[ext_resource type="Texture2D" uid="uid://douuansbr4hgs" path="res://assets/Enemies/SoldierEnemy/LightBandit_Idle_3.png" id="7_4v2r6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qavux"]
 atlas = ExtResource("1_s8fij")
@@ -76,6 +80,22 @@ region = Rect2(0, 144, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_f301b"]
 atlas = ExtResource("1_s8fij")
 region = Rect2(192, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34yen"]
+atlas = ExtResource("4_1cd43")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ydmu"]
+atlas = ExtResource("5_7hnyy")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjjwh"]
+atlas = ExtResource("6_rix5a")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hbts"]
+atlas = ExtResource("7_4v2r6")
+region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ap0nb"]
 atlas = ExtResource("1_s8fij")
@@ -227,7 +247,19 @@ animations = [{
 "name": &"death",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34yen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ydmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjjwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hbts")
+}],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
@@ -748,8 +780,8 @@ script = ExtResource("1_536wf")
 [node name="SoldierEnemy" type="AnimatedSprite2D" parent="."]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_jdva5")
-animation = &"walking"
-frame_progress = 0.609435
+animation = &"idle"
+frame_progress = 0.78014
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 

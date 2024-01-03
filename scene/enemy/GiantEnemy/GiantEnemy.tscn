@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://2v8tfbffcm7j"]
+[gd_scene load_steps=104 format=3 uid="uid://2v8tfbffcm7j"]
 
 [ext_resource type="Texture2D" uid="uid://cf5c0vantmcie" path="res://assets/Enemies/GiantEnemy/Bringer-of-Death-SpritSheet.png" id="1_b2uex"]
 [ext_resource type="Script" path="res://script/enemy/GiantEnemy/GiantEnemy.cs" id="1_pth77"]
@@ -83,6 +83,38 @@ region = Rect2(700, 372, 140, 93)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ag03"]
 atlas = ExtResource("1_b2uex")
 region = Rect2(840, 372, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4006a"]
+atlas = ExtResource("1_b2uex")
+region = Rect2(0, 0, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms2eg"]
+atlas = ExtResource("1_b2uex")
+region = Rect2(140, 0, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwu8u"]
+atlas = ExtResource("1_b2uex")
+region = Rect2(280, 0, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvumo"]
+atlas = ExtResource("1_b2uex")
+region = Rect2(420, 0, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82o7p"]
+atlas = ExtResource("1_b2uex")
+region = Rect2(560, 0, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqqxy"]
+atlas = ExtResource("1_b2uex")
+region = Rect2(700, 0, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcdcl"]
+atlas = ExtResource("1_b2uex")
+region = Rect2(840, 0, 140, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuj5k"]
+atlas = ExtResource("1_b2uex")
+region = Rect2(980, 0, 140, 93)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cfvp4"]
 atlas = ExtResource("1_b2uex")
@@ -188,7 +220,31 @@ animations = [{
 "name": &"death",
 "speed": 8.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4006a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms2eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwu8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvumo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82o7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqqxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcdcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuj5k")
+}],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
@@ -224,10 +280,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o7aj"]
-size = Vector2(232, 52)
+size = Vector2(201, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_id8nx"]
-size = Vector2(48.8889, 139.444)
+size = Vector2(79.4445, 139.444)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_00qm2"]
 atlas = ExtResource("3_ayh6u")
@@ -667,12 +723,14 @@ z_index = 1
 position = Vector2(-10, -50)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_c20pv")
-animation = &"idle"
+animation = &"attacking"
+frame = 9
+frame_progress = 0.722033
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 
 [node name="AttackRange" type="CollisionShape2D" parent="AttackRangeArea"]
-position = Vector2(50, 46.6667)
+position = Vector2(65.5, 46.6666)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4o7aj")
 
@@ -684,7 +742,8 @@ one_shot = true
 position = Vector2(2.22222, -67.7778)
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
-position = Vector2(98.8889, 80.8334)
+position = Vector2(78.7499, 80.2778)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_id8nx")
 
 [node name="burn" type="AnimatedSprite2D" parent="."]

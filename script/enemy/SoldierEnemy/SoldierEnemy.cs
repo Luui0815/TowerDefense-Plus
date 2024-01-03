@@ -7,6 +7,7 @@ public partial class SoldierEnemy : MeleeEnemy
     Area2D _attackRangeArea, _hitboxArea;
     CollisionShape2D _hitbox;
     Timer _attackTimer, _regenerationTimer;
+
     private bool _isRegenerating = false;
     private bool _hasRegenerated = false;
 
@@ -18,7 +19,7 @@ public partial class SoldierEnemy : MeleeEnemy
         _actionAnimation = "idle";
 
         EnemyName = "SoldierEnemy";
-        WalkSpeed = 0.4f;
+        WalkSpeed = 0.3f;
         Health = 7;
     }
 
@@ -83,7 +84,7 @@ public partial class SoldierEnemy : MeleeEnemy
             {
                 if (!EnemyDefeated && !_isRegenerating)
                 {
-                    WalkSpeed = 0.4f;
+                    WalkSpeed = _hasRegenerated ? 0.5f : 0.3f;
                     if (!IsFreezed())
                         _soldierEnemy.Play("walking");
                     else

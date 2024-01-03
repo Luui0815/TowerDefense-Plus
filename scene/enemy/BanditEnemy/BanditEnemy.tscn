@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://d3bxnf8621dq4" path="res://assets/Enemies/BanditEnemy/Attack2.png" id="3_fjfi0"]
 [ext_resource type="Texture2D" uid="uid://i0563bnubx01" path="res://assets/Enemies/BanditEnemy/Attack3.png" id="4_ok1ar"]
 [ext_resource type="Texture2D" uid="uid://cmf40jj7bu2lj" path="res://assets/Enemies/BanditEnemy/Death.png" id="5_3bdrt"]
-[ext_resource type="Texture2D" uid="uid://cqkqg8k0ovj1x" path="res://assets/texture/tower/animation/spearman/Idle.png" id="6_2uxnb"]
 [ext_resource type="Texture2D" uid="uid://vepvn2flso6i" path="res://assets/Enemies/BanditEnemy/Run.png" id="6_gw8f3"]
+[ext_resource type="Texture2D" uid="uid://cfj4ygjq8r52v" path="res://assets/Enemies/BanditEnemy/Idle.png" id="6_ivw1e"]
 [ext_resource type="Texture2D" uid="uid://tmhi046nshu5" path="res://assets/Enemies/firedamage/Small_Fireball_10x26.png" id="8_cvlfd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rrmn6"]
@@ -101,36 +101,36 @@ region = Rect2(150, 0, 150, 150)
 atlas = ExtResource("5_3bdrt")
 region = Rect2(0, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yf8eu"]
-atlas = ExtResource("6_2uxnb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lhtq"]
+atlas = ExtResource("6_ivw1e")
 region = Rect2(0, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dy6x"]
-atlas = ExtResource("6_2uxnb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_svcny"]
+atlas = ExtResource("6_ivw1e")
 region = Rect2(150, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_he5ks"]
-atlas = ExtResource("6_2uxnb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv0yj"]
+atlas = ExtResource("6_ivw1e")
 region = Rect2(300, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r48ru"]
-atlas = ExtResource("6_2uxnb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j41ct"]
+atlas = ExtResource("6_ivw1e")
 region = Rect2(450, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pbbfi"]
-atlas = ExtResource("6_2uxnb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_amodh"]
+atlas = ExtResource("6_ivw1e")
 region = Rect2(600, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4xqr4"]
-atlas = ExtResource("6_2uxnb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nva1"]
+atlas = ExtResource("6_ivw1e")
 region = Rect2(750, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ay66c"]
-atlas = ExtResource("6_2uxnb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebmml"]
+atlas = ExtResource("6_ivw1e")
 region = Rect2(900, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1ded"]
-atlas = ExtResource("6_2uxnb")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtsil"]
+atlas = ExtResource("6_ivw1e")
 region = Rect2(1050, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0e6ax"]
@@ -248,28 +248,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yf8eu")
+"texture": SubResource("AtlasTexture_4lhtq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7dy6x")
+"texture": SubResource("AtlasTexture_svcny")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_he5ks")
+"texture": SubResource("AtlasTexture_sv0yj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r48ru")
+"texture": SubResource("AtlasTexture_j41ct")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pbbfi")
+"texture": SubResource("AtlasTexture_amodh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4xqr4")
+"texture": SubResource("AtlasTexture_8nva1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ay66c")
+"texture": SubResource("AtlasTexture_ebmml")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e1ded")
+"texture": SubResource("AtlasTexture_xtsil")
 }],
 "loop": true,
 "name": &"idle",
@@ -749,6 +749,8 @@ z_index = 1
 position = Vector2(20, 20)
 sprite_frames = SubResource("SpriteFrames_2wel6")
 animation = &"attacking"
+frame = 8
+frame_progress = 0.769587
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 position = Vector2(-1.6, 12.4)

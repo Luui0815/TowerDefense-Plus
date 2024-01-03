@@ -311,7 +311,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6bfj"]
-size = Vector2(25, 120)
+size = Vector2(38.5, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ote3p"]
 size = Vector2(100, 120)
@@ -323,7 +323,8 @@ script = ExtResource("1_sqy6k")
 position = Vector2(-45, -4)
 scale = Vector2(2, 2.3)
 sprite_frames = SubResource("SpriteFrames_tm0n5")
-animation = &"idle"
+animation = &"attack"
+frame_progress = 0.588067
 centered = false
 
 [node name="ActionTimer" type="Timer" parent="."]
@@ -333,7 +334,7 @@ centered = false
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(113, 60)
+position = Vector2(119.75, 60)
 shape = SubResource("RectangleShape2D_q6bfj")
 
 [node name="HitboxArea" type="Area2D" parent="."]
