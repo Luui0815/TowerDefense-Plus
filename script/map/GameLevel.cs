@@ -14,6 +14,7 @@ public abstract partial class GameLevel : Node2D
     private readonly MapLane[] _lanes = new MapLane[5];
     private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
+    private PauseMenu _pauseMenu;
     private bool _levelStarted = false;
 
     public bool LevelStarted
@@ -67,6 +68,9 @@ public abstract partial class GameLevel : Node2D
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
 
+        _pauseMenu = (PauseMenu)GD.Load<PackedScene>("res://scene/ui/PauseMenu.tscn").Instantiate();
+        GetNode<CanvasLayer>("CanvasLayer").AddChild(_pauseMenu);
+
         Vector2 position = Vector2.Zero;
         PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
         for (int i = 0; i < 5; i++)
@@ -105,7 +109,10 @@ public abstract partial class GameLevel : Node2D
         FillTowerContainer(strings);
         */
 
-        _spawner = new(1);
+        _spawner = new(1){
+            Name = "EnemySpawner",
+            ProcessMode = ProcessModeEnum.Pausable
+        };
         AddChild(_spawner);
     }
 
@@ -165,7 +172,7 @@ public abstract partial class GameLevel : Node2D
     protected void OnPauseLevelButtonPressed()
     {
         GetTree().Paused = true;
-        //TODO: Open pause screen
+        _pauseMenu.Show();
     }
 
     private void OnEnemyCrossedLane(int laneNr)

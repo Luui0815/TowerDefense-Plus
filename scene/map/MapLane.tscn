@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://script/map/MapLane.cs" id="1_24ey8"]
 
 [node name="MapLane" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_24ey8")
