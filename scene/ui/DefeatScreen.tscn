@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://6chkmcjsws5f"]
 
-[ext_resource type="Script" path="res://script/ui/DefeatScreen.gd" id="1_srajs"]
-[ext_resource type="Texture2D" uid="uid://csk0hvpws3wrr" path="res://assets/sprites/GoodGuys/Knight/KnightAttack.png" id="2_f2ebn"]
+[ext_resource type="Script" path="res://script/ui/DefeatScreen.cs" id="1_s3abl"]
+[ext_resource type="Texture2D" uid="uid://bslopsooqcvvq" path="res://assets/sprites/GoodGuys/Knight/KnightIdle.png" id="2_kpqsk"]
 [ext_resource type="Texture2D" uid="uid://bm358q1cxnq80" path="res://assets/sprites/GoodGuys/Archer/ArcherDeath.png" id="2_sd28o"]
 [ext_resource type="AnimationLibrary" uid="uid://3nt84gbothej" path="res://Properties/Animations/AnimationsDefeatScreenKnight.res" id="3_y5dty"]
 [ext_resource type="AnimationLibrary" uid="uid://b1o53tuuyatl8" path="res://Properties/Animations/AnimationDefeatScreenArcher.res" id="4_scsjx"]
@@ -256,7 +256,8 @@ _data = {
 }
 
 [node name="DefeatScreen" type="Node"]
-script = ExtResource("1_srajs")
+process_mode = 3
+script = ExtResource("1_s3abl")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(750, 450)
@@ -276,8 +277,9 @@ grow_vertical = 2
 z_index = 1
 position = Vector2(190, 271)
 scale = Vector2(4, 4)
-texture = ExtResource("2_f2ebn")
-hframes = 22
+texture = ExtResource("2_kpqsk")
+hframes = 15
+frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/FallenKnight"]
 libraries = {
@@ -285,6 +287,8 @@ libraries = {
 }
 
 [node name="TimerDeathKnight" type="Timer" parent="Panel/FallenKnight"]
+one_shot = true
+autostart = true
 
 [node name="FallenArcher" type="Sprite2D" parent="Panel"]
 visibility_layer = 2
@@ -301,6 +305,8 @@ libraries = {
 }
 
 [node name="TimerDeathArcher" type="Timer" parent="Panel/FallenArcher"]
+one_shot = true
+autostart = true
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
@@ -384,4 +390,4 @@ libraries = {
 "AnimationDefeatScreenSkeleton": ExtResource("11_g6nkk")
 }
 
-[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/Button" to="." method="OnMenuButtonPressed"]

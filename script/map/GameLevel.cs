@@ -15,6 +15,7 @@ public abstract partial class GameLevel : Node2D
     private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
     private PauseMenu _pauseMenu;
+    private CanvasLayer _menuLayer;
     private bool _levelStarted = false;
 
     public bool LevelStarted
@@ -69,7 +70,8 @@ public abstract partial class GameLevel : Node2D
         _levelControlBar.DisplayMoney(CurrentMoney);
 
         _pauseMenu = (PauseMenu)GD.Load<PackedScene>("res://scene/ui/PauseMenu.tscn").Instantiate();
-        GetNode<CanvasLayer>("CanvasLayer").AddChild(_pauseMenu);
+        _menuLayer = GetNode<CanvasLayer>("CanvasLayer");
+        _menuLayer.AddChild(_pauseMenu);
 
         Vector2 position = Vector2.Zero;
         PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
@@ -177,7 +179,9 @@ public abstract partial class GameLevel : Node2D
 
     private void OnEnemyCrossedLane(int laneNr)
     {
-        //TODO: Show defeat screen
+        GetTree().Paused = true;
+        DefeatScreen defeatScreen = (DefeatScreen)GD.Load<PackedScene>("res://scene/ui/DefeatScreen.tscn").Instantiate();
+        _menuLayer.AddChild(defeatScreen);
     }
 
     private void OnAllEnemiesDefeated(int laneNr)

@@ -14,7 +14,11 @@ public partial class PauseMenu : Control
 		confirmationPopup.Confirmed += () => 
         {
             GetTree().ChangeSceneToFile("res://scene/ui/MainMenu.tscn");
-            GetNode<GameLevel>("/root/Level").QueueFree();
+            GameLevel gameLevel = GetNode<GameLevel>("/root/Level");
+            if (gameLevel != null)
+            {
+                gameLevel.QueueFree();
+            }
             GetTree().Paused = false;
         };
 		AddChild(confirmationPopup);
