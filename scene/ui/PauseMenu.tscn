@@ -71,7 +71,7 @@ text = "=PAUSE="
 [node name="OptionButton" type="Button" parent="Bagground/MarginContainer/PauseMenuFunktionContainer"]
 layout_mode = 2
 theme = SubResource("Theme_dy7o5")
-text = "Options"
+text = "Settings"
 
 [node name="CloseButton" type="Button" parent="Bagground/MarginContainer/PauseMenuFunktionContainer"]
 layout_mode = 2

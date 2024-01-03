@@ -338,7 +338,7 @@ size_flags_stretch_ratio = 0.0
 theme = SubResource("Theme_o8j0w")
 theme_override_styles/normal = SubResource("StyleBoxTexture_huhop")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_y5s3v")
-text = "Back to MainMenu"
+text = "Back to Menu"
 
 [node name="VictoriousWizard" type="Sprite2D" parent="Panel"]
 visibility_layer = 4
