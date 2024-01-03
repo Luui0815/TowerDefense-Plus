@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bun2c41yhaett"]
+[gd_scene load_steps=6 format=3 uid="uid://bun2c41yhaett"]
 
+[ext_resource type="Script" path="res://script/ui/MainMenu.cs" id="1_50fbc"]
 [ext_resource type="Texture2D" uid="uid://11c8mm6e5lsy" path="res://assets/background/PixleCastle.png" id="1_lhq8s"]
 [ext_resource type="Texture2D" uid="uid://b65ebyk86d3k" path="res://assets/button/Stonebutton.png" id="2_4qbh7"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="3_2mpoe"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_50fbc")
 
 [node name="BackgroundMainMenu" type="TextureRect" parent="."]
 layout_mode = 1
@@ -92,7 +94,7 @@ theme_override_constants/shadow_offset_y = 5
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("3_2mpoe")
 theme_override_font_sizes/font_size = 35
-text = "OPTIONS"
+text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -160,5 +162,9 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("3_2mpoe")
 theme_override_font_sizes/font_size = 50
-text = "BA TOWER DEFENS GAME"
+text = "BA TOWER DEFENSE GAME"
 horizontal_alignment = 1
+
+[connection signal="pressed" from="MenuMargCont/ButtonsVBoxCont/ButtonSelectLevel" to="." method="OnLevelSelectionButtonPressed"]
+[connection signal="pressed" from="MenuMargCont/ButtonsVBoxCont/ButtonOptions" to="." method="OnSettingsButtonPressed"]
+[connection signal="pressed" from="MenuMargCont/ButtonsVBoxCont/ButtonExit" to="." method="OnExitButtonPressed"]
