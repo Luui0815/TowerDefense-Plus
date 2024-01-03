@@ -288,7 +288,6 @@ libraries = {
 
 [node name="TimerDeathKnight" type="Timer" parent="Panel/FallenKnight"]
 one_shot = true
-autostart = true
 
 [node name="FallenArcher" type="Sprite2D" parent="Panel"]
 visibility_layer = 2
@@ -306,7 +305,6 @@ libraries = {
 
 [node name="TimerDeathArcher" type="Timer" parent="Panel/FallenArcher"]
 one_shot = true
-autostart = true
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
@@ -374,6 +372,9 @@ libraries = {
 "AnimationDefeatScreenSkeleton": ExtResource("11_g6nkk")
 }
 
+[node name="TimerAttackSkeletonOne" type="Timer" parent="Panel/VictoriousSkeleton1"]
+one_shot = true
+
 [node name="VictoriousSkeleton2" type="Sprite2D" parent="Panel"]
 visibility_layer = 2
 position = Vector2(550, 285)
@@ -389,5 +390,8 @@ libraries = {
 "": SubResource("AnimationLibrary_y1dxw"),
 "AnimationDefeatScreenSkeleton": ExtResource("11_g6nkk")
 }
+
+[node name="TimerAttackSkeletonTwo" type="Timer" parent="Panel/VictoriousSkeleton2"]
+one_shot = true
 
 [connection signal="pressed" from="Panel/Button" to="." method="OnMenuButtonPressed"]

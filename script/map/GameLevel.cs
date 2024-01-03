@@ -186,16 +186,16 @@ public abstract partial class GameLevel : Node2D
 
     private void OnAllEnemiesDefeated(int laneNr)
     {
-        /*
         if (_spawner.Finished)
         {
-            bool alreadyCompleted = _completedLanes.Add(laneNr);
-            if (!alreadyCompleted && _completedLanes.Count == 5)
+            _completedLanes.Add(laneNr);
+            if (_completedLanes.Count == 5)
             {
-                //TODO: Show victory screen
+                GetTree().Paused = true;
+                VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>("res://scene/ui/VictoryScreen.tscn").Instantiate();
+                _menuLayer.AddChild(victoryScreen);
             }
         }
-        */
     }
 
     private FieldType[] GetFieldTypeRow(int index)
