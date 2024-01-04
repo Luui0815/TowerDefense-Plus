@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwdejjxmadwey"
-path="res://.godot/imported/hammer2.png-6f7e42ceb695283ac2f0c97d9c12f37f.ctex"
+uid="uid://c8br26mgwg1dw"
+path="res://.godot/imported/Rammbock.png-25abd2d6b3d218acd62604a34ef42109.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/hammer/hammer2.png"
-dest_files=["res://.godot/imported/hammer2.png-6f7e42ceb695283ac2f0c97d9c12f37f.ctex"]
+source_file="res://assets/texture/map/Rammbock.png"
+dest_files=["res://.godot/imported/Rammbock.png-25abd2d6b3d218acd62604a34ef42109.ctex"]
 
 [params]
 

@@ -25,6 +25,7 @@ TowerConfig="*res://singleton/TowerConfig.cs"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="res://assets/texture/mousecursor/MauscourserV1.png"
 
 [dotnet]
 

@@ -12,12 +12,15 @@ z_index = 4
 metadata/_edit_use_anchors_ = true
 
 [node name="Hammer" parent="." instance=ExtResource("3_dtkpb")]
-offset_left = 1010.0
-offset_top = 681.0
-offset_right = 1077.0
-offset_bottom = 715.0
-metadata/_edit_group_ = true
-metadata/_edit_use_anchors_ = true
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1009.0
+offset_top = 646.0
+offset_right = 1078.0
+offset_bottom = 718.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="PauseButtonPressed" from="LevelControlBar" to="." method="OnPauseLevelButtonPressed"]
 [connection signal="StartButtonPressed" from="LevelControlBar" to="." method="OnStartLevelButtonPressed"]

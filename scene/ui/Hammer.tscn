@@ -1,24 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8fr6r6g0idrn"]
+[gd_scene load_steps=7 format=3 uid="uid://b8fr6r6g0idrn"]
 
 [ext_resource type="Script" path="res://script/ui/Hammer.cs" id="1_seuyx"]
-[ext_resource type="Texture2D" uid="uid://doenbmpgpwg8l" path="res://assets/texture/hammer/hammer.png" id="2_3uktb"]
-[ext_resource type="Texture2D" uid="uid://dwi3uakvy8iqi" path="res://assets/texture/hammer/hammer1.png" id="3_8ktyo"]
-[ext_resource type="Texture2D" uid="uid://b1hlk38pjswm1" path="res://assets/texture/hammer/hammer2.png" id="4_mfb07"]
+[ext_resource type="Texture2D" uid="uid://ddwfmxtj4q4jm" path="res://assets/texture/hammer/hammer1.png" id="2_cbt4u"]
+[ext_resource type="Texture2D" uid="uid://bwdejjxmadwey" path="res://assets/texture/hammer/hammer2.png" id="3_drhhg"]
+[ext_resource type="Texture2D" uid="uid://cdfs8aoi8d0ew" path="res://assets/texture/hammer/hammer3.png" id="4_ksprb"]
+[ext_resource type="Texture2D" uid="uid://bmo4m1nab38o5" path="res://assets/texture/hammer/hammer_symbol.png" id="5_gq5mr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x1jml"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_3uktb")
+"texture": ExtResource("2_cbt4u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_8ktyo")
+"texture": ExtResource("3_drhhg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_mfb07")
+"texture": ExtResource("4_ksprb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_8ktyo")
+"texture": ExtResource("3_drhhg")
 }],
 "loop": true,
 "name": &"action",
@@ -26,7 +27,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_3uktb")
+"texture": ExtResource("5_gq5mr")
 }],
 "loop": true,
 "name": &"idle",
@@ -45,7 +46,7 @@ script = ExtResource("1_seuyx")
 [node name="animatedSprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(22, 21)
-scale = Vector2(0.05, 0.05)
+position = Vector2(34.9999, 37)
+scale = Vector2(-0.820999, 0.856717)
 sprite_frames = SubResource("SpriteFrames_x1jml")
-animation = &"action"
+animation = &"idle"

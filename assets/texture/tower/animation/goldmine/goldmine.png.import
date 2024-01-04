@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwdejjxmadwey"
-path="res://.godot/imported/hammer2.png-6f7e42ceb695283ac2f0c97d9c12f37f.ctex"
+uid="uid://ri3kya2ejv15"
+path="res://.godot/imported/goldmine.png-434c754308b0e26049ba392841f62cc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/hammer/hammer2.png"
-dest_files=["res://.godot/imported/hammer2.png-6f7e42ceb695283ac2f0c97d9c12f37f.ctex"]
+source_file="res://assets/texture/tower/animation/goldmine/goldmine.png"
+dest_files=["res://.godot/imported/goldmine.png-434c754308b0e26049ba392841f62cc8.ctex"]
 
 [params]
 

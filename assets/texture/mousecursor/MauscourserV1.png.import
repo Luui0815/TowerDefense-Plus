@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doenbmpgpwg8l"
-path="res://.godot/imported/hammer.png-d358ce101f9c6b779bdae34c7adb0b11.ctex"
+uid="uid://dc2ds31on4luj"
+path="res://.godot/imported/MauscourserV1.png-16121950b9673bc72e9b76c14d76f69c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/hammer/hammer.png"
-dest_files=["res://.godot/imported/hammer.png-d358ce101f9c6b779bdae34c7adb0b11.ctex"]
+source_file="res://assets/texture/mousecursor/MauscourserV1.png"
+dest_files=["res://.godot/imported/MauscourserV1.png-16121950b9673bc72e9b76c14d76f69c.ctex"]
 
 [params]
 

@@ -1,13 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7kph6mhqv3kl"]
+[gd_scene load_steps=10 format=3 uid="uid://b7kph6mhqv3kl"]
 
 [ext_resource type="Script" path="res://script/map/LawnMower.cs" id="1_vkx5i"]
-[ext_resource type="Texture2D" uid="uid://bqw1v64hlrou0" path="res://assets/texture/map/Lawn_mower.webp" id="2_5xiat"]
+[ext_resource type="Texture2D" uid="uid://c8br26mgwg1dw" path="res://assets/texture/map/Rammbock.png" id="2_h55y3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceojy"]
+atlas = ExtResource("2_h55y3")
+region = Rect2(0, 0, 250, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyk22"]
+atlas = ExtResource("2_h55y3")
+region = Rect2(250, 0, 250, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d14ni"]
+atlas = ExtResource("2_h55y3")
+region = Rect2(500, 0, 250, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnur5"]
+atlas = ExtResource("2_h55y3")
+region = Rect2(750, 0, 250, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f00px"]
+atlas = ExtResource("2_h55y3")
+region = Rect2(0, 0, 250, 86)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0w7y3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_5xiat")
+"texture": SubResource("AtlasTexture_ceojy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyk22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d14ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnur5")
+}],
+"loop": true,
+"name": &"action",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f00px")
 }],
 "loop": true,
 "name": &"idle",
@@ -21,10 +58,11 @@ radius = 55.0
 script = ExtResource("1_vkx5i")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(52.75, 53.1875)
-scale = Vector2(0.365152, 0.427575)
+position = Vector2(42, 55)
+scale = Vector2(0.59, 0.860465)
 sprite_frames = SubResource("SpriteFrames_0w7y3")
-animation = &"idle"
+animation = &"action"
+frame_progress = 0.563152
 
 [node name="HitboxArea" type="Area2D" parent="."]
 
