@@ -40,12 +40,7 @@ public partial class arrow_spearProjectile : projectile
 
 	public override void _Process(double delta)
 	{
-		int q;
 		MoveProjectile(_velocity);//TODO: Pfeil auf Bahnen fliegen lassen
-
-		if (_target.Health <= 0)//wenn man viele Pfeile hat kann der eigentliche Gener schon lange Tod sein
-			q = 0;
-			//QueueFree();
 
 		if(CheckTarget())
 		{
@@ -60,12 +55,9 @@ public partial class arrow_spearProjectile : projectile
 			_velocity.Y = t+1;
         }
 
-		//if (Position.X > _targetPosition.X + 200 || Position.Y > _targetPosition.Y + 35)
-		//{
-		//	GD.Print("Pfeil verschwindet.");
-		//	QueueFree();
-		//}
-		//Objekt wird geloescht wenn in MapField Area geentred wird
+		if(Position.X>1018)
+			QueueFree();
+		//Objekt wird geloescht wenn in MapField Area geentred wird oder rechte Endposition erreicht wird
         float targetAngle = Mathf.Atan2(_velocity.Y, _velocity.X);
         Rotation = Mathf.LerpAngle(Rotation, targetAngle,4*(float)delta);//vielleicht die 2 Anpassen, damit sich Pfeil langsamer/schneller dreht
 
