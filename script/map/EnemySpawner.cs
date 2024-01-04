@@ -4,9 +4,9 @@ using System;
 public partial class EnemySpawner : Node
 {
     private Timer _spawnTimer;
-    private (float, string)[] _spawnTimes;
+    private (float, int)[] _spawnTimes, _endlessSpawnTimes;
     private Enemy _enemy;
-    private int _currentSpawnIndex = 0;
+    private int _currentSpawnIndex = 0, _endlessEnemyAmount = 15;
     private bool finished = false;
 
     public bool Finished
@@ -14,12 +14,13 @@ public partial class EnemySpawner : Node
         get { return finished; }
     }
 
+    // Soldier - 1, Knight - 2, Bandit - 3, Pyro - 4, Giant - 5
     public EnemySpawner(int levelNr)
     {
         switch (levelNr)
         {
             case 1:
-                _spawnTimes = new (float, string)[] { (30, "SoldierEnemy"), (10, "SoldierEnemy"), (5, "KnightEnemy"), (20, "KnightEnemy"), (1, "SoldierEnemy"), (1, "SoldierEnemy"), (1, "SoldierEnemy"), (1, "KnightEnemy"), (1, "KnightEnemy"), (1, "SoldierEnemy"), (1, "SoldierEnemy"), (1, "SoldierEnemy"), (10, "SoldierEnemy"), (1, "BanditEnemy"), (20, "BanditEnemy"), (1, "KnightEnemy"), (1, "KnightEnemy"), (1, "KnightEnemy"), (2, "SoldierEnemy"), (1, "SoldierEnemy"), (1, "SoldierEnemy"),(1, "PyroEnemy"),(20, "PyroEnemy"), (1, "KnightEnemy"), (1, "KnightEnemy"), (1, "KnightEnemy"), (1, "KnightEnemy"),(1, "SoldierEnemy"), (1, "SoldierEnemy"), (1, "SoldierEnemy"), (1, "SoldierEnemy"), (1, "SoldierEnemy"), (1, "SoldierEnemy"), (1, "SoldierEnemy"), (1, "BanditEnemy"), (1, "BanditEnemy"), (1, "BanditEnemy"), (1, "PyroEnemy"), (25, "PyroEnemy"), (5,"GiantEnemy"), (4, "GiantEnemy"), (0,"")};
+                _spawnTimes = new (float, int)[] { (30, 1), (10, 1), (5, 2), (20, 2), (1, 1), (1, 1), (1, 1), (1, 2), (1, 2), (1, 1), (1, 1), (1,1), (10, 1), (1, 3), (20, 3), (1, 2), (1, 2), (1, 2), (2, 1), (1, 1), (1, 1),(1, 4),(20, 4), (1, 2), (1, 2), (1, 2), (1, 2),(1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 3), (1, 3), (1, 3), (1, 4), (25, 4), (5,5), (4, 5), (0,0)};
                 break;
             default: break;
         }
@@ -52,42 +53,87 @@ public partial class EnemySpawner : Node
         {
             _spawnTimer.Stop();
             finished = true;
+
+            GD.Print("Starte Endlos-Modus");
+            _spawnTimer.Timeout -= OnSpawnTimerTimeout;
+            _spawnTimer.Timeout += OnEndlessSpawnTimerTimeout;
+            StartEndlessTimer();
         }
     }
 
-    private void SpawnEnemy(string enemyType)
+    private void StartEndlessTimer()
+    {
+        _spawnTimer.WaitTime = 10f;
+        _currentSpawnIndex = 0;
+        CreateEnemyWaveEndless();
+    }
+
+    private void OnEndlessSpawnTimerTimeout()
+    {
+        if (_currentSpawnIndex < _endlessSpawnTimes.Length)
+        {
+            SpawnEnemy(_spawnTimes[_currentSpawnIndex].Item2);
+            _currentSpawnIndex++;
+
+            if (_currentSpawnIndex < _endlessSpawnTimes.Length)
+            {
+                _spawnTimer.WaitTime = _endlessSpawnTimes[_currentSpawnIndex - 1].Item1;
+            }
+        }
+        else
+        {
+            _spawnTimer.Stop();
+            StartEndlessTimer();
+        }
+    }
+
+    private void CreateEnemyWaveEndless()
+    {
+        _endlessSpawnTimes = new(float,int)[_endlessEnemyAmount];
+        Random random = new();
+
+        for(int i = 0; i < _endlessEnemyAmount; i++) 
+        {
+            float waitTime = (float)random.NextDouble() * 10f;
+            int enemyId = random.Next(1, 5);
+            _endlessSpawnTimes[i] = (waitTime, enemyId);
+        }
+        _endlessEnemyAmount++;
+    }
+
+    private void SpawnEnemy(int enemyType)
     {
         int random = GD.RandRange(0, 4);
         int lane = random + 1;
 
         switch (enemyType)
         {
-            case "KnightEnemy":
-                _enemy = (KnightEnemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}/{enemyType}.tscn").Instantiate();
+            case 2:
+                _enemy = (KnightEnemy)GD.Load<PackedScene>($"res://scene/enemy/KnightEnemy/KnightEnemy.tscn").Instantiate();
                 _enemy.Position = new Vector2(1080, (random * 125) - 20);
                 AddChild(_enemy);
                 GD.Print(enemyType + " spawnt auf Lane " + lane);
                 break;
-            case "BanditEnemy":
-                _enemy = (BanditEnemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}/{enemyType}.tscn").Instantiate();
+            case 3:
+                _enemy = (BanditEnemy)GD.Load<PackedScene>($"res://scene/enemy/BanditEnemy/BanditEnemy.tscn").Instantiate();
                 _enemy.Position = new Vector2(1080, (random * 125) + 10);
                 AddChild(_enemy);
                 GD.Print(enemyType + " spawnt auf Lane " + lane);
                 break;
-            case "GiantEnemy":
-                _enemy = (GiantEnemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}/{enemyType}.tscn").Instantiate();
+            case 5:
+                _enemy = (GiantEnemy)GD.Load<PackedScene>($"res://scene/enemy/GiantEnemy/GiantEnemy.tscn").Instantiate();
                 _enemy.Position = new Vector2(1080, (random * 125) + 48);
                 AddChild(_enemy);
                 GD.Print(enemyType + " spawnt auf Lane " + lane);
                 break;
-            case "SoldierEnemy":
-                _enemy = (SoldierEnemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}/{enemyType}.tscn").Instantiate();
+            case 1:
+                _enemy = (SoldierEnemy)GD.Load<PackedScene>($"res://scene/enemy/SoldierEnemy/SoldierEnemy.tscn").Instantiate();
                 _enemy.Position = new Vector2(1080, (random * 125) +50);
                 AddChild(_enemy);
                 GD.Print(enemyType + " spawnt auf Lane " + lane);
                 break;
-            case "PyroEnemy":
-                _enemy = (PyroEnemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}/{enemyType}.tscn").Instantiate();
+            case 4:
+                _enemy = (PyroEnemy)GD.Load<PackedScene>($"res://scene/enemy/PyroEnemy/PyroEnemy.tscn").Instantiate();
                 _enemy.Position = new Vector2(1080, (random * 125) + 35);
                 AddChild(_enemy);
                 GD.Print(enemyType + " spawnt auf Lane " + lane);
