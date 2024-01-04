@@ -77,7 +77,7 @@ public partial class Archer : RangeDefender
             if (CanAttack())
             {
                 _animatedSprite.Play("attack");
-                SpawnArrow();
+                //SpawnArrow();
                 _AttackTimer.Start();
             }
             else if (_targetEnemy == null)
@@ -105,22 +105,24 @@ public partial class Archer : RangeDefender
         {
             Destroy();
         }
+        if (_animatedSprite.Animation == "attack")
+        {
+            SpawnArrow();
+        }
     }
 
     private void SpawnArrow()
     {
-        arrowProjectile arrow = (arrowProjectile)GD.Load<PackedScene>("res://scene/tower/arrowProjectile.tscn").Instantiate();
-        arrow.Init(_targetEnemy.Position, _targetEnemy, _ArrowVelocity);
+        arrow_spearProjectile arrow = (arrow_spearProjectile)GD.Load<PackedScene>("res://scene/tower/arrow_spearProjectile.tscn").Instantiate();
+        arrow.Init(_targetEnemy.Position, _targetEnemy, _ArrowVelocity,"arrow", new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 55));
         arrow.hitTarget += ArrowHit;
-        //arrow.Position = new Vector2(Position.X+100,Position.Y+40);
-        arrow.TopLevel = true;
-        arrow.Position = new Vector2(GlobalPosition.X+80,GlobalPosition.Y+55);
         AddChild(arrow);
     }
 
     private void ArrowHit()
     {
         Attack(_targetEnemy, _damage);
-        _targetEnemy.AddStatusEffect("burn", this);//eigentlich erst bei Upgrade
+        if(_targetEnemy != null)
+            _targetEnemy.AddStatusEffect("burn", this);//eigentlich erst bei Upgrade
     }
 }

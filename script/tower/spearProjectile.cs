@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class arrowProjectile : projectile
+public partial class spearProjectile : projectile
 {
     [Signal]
     public delegate void hitTargetEventHandler();
@@ -28,7 +28,7 @@ public partial class arrowProjectile : projectile
 
 	public override void _Process(double delta)
 	{
-		MoveProjectile(_velocity);//TODO: Pfeil auf Bahnen fliegen lassen
+		MoveProjectile(_velocity);
 
 		if(CheckTarget())
 		{

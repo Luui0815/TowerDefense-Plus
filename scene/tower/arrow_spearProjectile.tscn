@@ -1,31 +1,31 @@
-[gd_scene load_steps=12 format=3 uid="uid://bs7cfao4ggiga"]
+[gd_scene load_steps=13 format=3 uid="uid://bu6hv8ed52s78"]
 
-[ext_resource type="Texture2D" uid="uid://lihsq7jfg5sc" path="res://assets/texture/tower/animation/archer/Arrow.png" id="1_a4nk0"]
-[ext_resource type="Script" path="res://script/tower/arrowProjectile.cs" id="1_kcjqx"]
-[ext_resource type="Texture2D" uid="uid://cv3ih6rceoo5q" path="res://assets/texture/tower/animation/spearman/Spear move.png" id="3_6vpig"]
+[ext_resource type="Script" path="res://script/tower/arrow_spearProjectile.cs" id="1_njr3r"]
+[ext_resource type="Texture2D" uid="uid://lihsq7jfg5sc" path="res://assets/texture/tower/animation/archer/Arrow.png" id="2_xmcvv"]
+[ext_resource type="Texture2D" uid="uid://cv3ih6rceoo5q" path="res://assets/texture/tower/animation/spearman/Spear move.png" id="3_esoib"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7wko"]
-atlas = ExtResource("1_a4nk0")
+atlas = ExtResource("2_xmcvv")
 region = Rect2(0, 0, 24, 5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7xu0"]
-atlas = ExtResource("1_a4nk0")
+atlas = ExtResource("2_xmcvv")
 region = Rect2(24, 0, 24, 5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_igg3j"]
-atlas = ExtResource("3_6vpig")
+atlas = ExtResource("3_esoib")
 region = Rect2(0, 0, 60, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rrabh"]
-atlas = ExtResource("3_6vpig")
+atlas = ExtResource("3_esoib")
 region = Rect2(60, 0, 60, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlkq5"]
-atlas = ExtResource("3_6vpig")
+atlas = ExtResource("3_esoib")
 region = Rect2(120, 0, 60, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xmcs3"]
-atlas = ExtResource("3_6vpig")
+atlas = ExtResource("3_esoib")
 region = Rect2(180, 0, 60, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u7v2y"]
@@ -63,19 +63,32 @@ animations = [{
 radius = 3.0
 height = 36.0
 
-[node name="ArcherArrow" type="Node2D"]
-script = ExtResource("1_kcjqx")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1haco"]
+radius = 5.0
+height = 64.0
 
-[node name="Arrow" type="AnimatedSprite2D" parent="."]
+[node name="Arrow_Spear" type="Node2D"]
+script = ExtResource("1_njr3r")
+
+[node name="animatedSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_u7v2y")
-animation = &"arrow"
+animation = &"spear"
 centered = false
 
-[node name="HitboxArea" type="Area2D" parent="."]
+[node name="ArrowHitboxArea" type="Area2D" parent="."]
+visible = false
 
-[node name="ArrowHitbox" type="CollisionShape2D" parent="HitboxArea"]
+[node name="ArrowHitbox" type="CollisionShape2D" parent="ArrowHitboxArea"]
 position = Vector2(18, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_q7uay")
 debug_color = Color(0.74902, 0.458824, 0.0666667, 0.419608)
+
+[node name="SpearHitboxArea" type="Area2D" parent="."]
+visible = false
+
+[node name="SpearHitbox" type="CollisionShape2D" parent="SpearHitboxArea"]
+position = Vector2(47, 16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1haco")

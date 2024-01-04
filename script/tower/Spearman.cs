@@ -5,7 +5,8 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
 {
     private Enemy _targetEnemy;
     private Area2D _AttackArea2;
-    private float _ArrowVelocity = 5f;
+    private float _SpearVelocity = 5f;
+    private bool _Mode; //false = Melee Mode, true = Distance Mode
     public Spearman()
     {
         _delay = 2;
@@ -17,7 +18,8 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
     public override void _Ready()
     {
         _AttackArea = GetNode<Area2D>("AttackArea1");
-        _AttackArea2 = GetNode<Area2D>("AttackArea1");
+        _AttackArea2 = GetNode<Area2D>("AttackArea2");
+
         _HitboxArea = GetNode<Area2D>("HitboxArea");
         _AttackTimer = GetNode<Timer>("AttackTimer");
         _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
@@ -30,16 +32,30 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
     {
         if (!DefenderDefeated)
         {
-            if (CanAttack())
+            if (CanAttack() && _Mode==false)
             {
-                _animatedSprite.Play("attack");
+                if(_AttackTimer.IsStopped())
+                    _animatedSprite.Play("attack");
                 Attack(_targetEnemy, _damage);
                 _AttackTimer.Start();
             }
-            else if (_targetEnemy == null)
+            else if(CanAttack() && _Mode==true)
             {
-                _animatedSprite.Play("idle");
+                if (_AttackTimer.IsStopped())
+                    _animatedSprite.Play("spear_attack");
+                //SpawnSpear();
+                _AttackTimer.Start();
             }
+            else
+            {
+                if (_AttackTimer.IsStopped())
+                    _animatedSprite.Play("idle");
+            }
+
+            //else if (_targetEnemy == null) oben war malso
+            //{
+            //    _animatedSprite.Play("idle");
+            //}
 
             if (Health <= 0)
             {
@@ -50,10 +66,11 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
 
     protected Enemy SelectTarget()
     {
+        _Mode = false;
         Enemy closestTarget = null;
         float closestDistance = float.MaxValue;
 
-        foreach (Node2D body in _AttackArea.GetOverlappingAreas())
+        foreach (Node2D body in _AttackArea.GetOverlappingAreas())//Nahkampf
         {
             if (body.Name == "HitboxArea")
             {
@@ -68,6 +85,26 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
                     }
                 }
             }
+        }
+        if(closestTarget == null)//Fernkampf
+        {
+            foreach (Node2D body in _AttackArea2.GetOverlappingAreas())
+            {
+                if (body.Name == "HitboxArea")
+                {
+                    Node2D parent = (Node2D)body.GetParent();
+                    if (parent is Enemy)
+                    {
+                        float distance = Position.DistanceTo(parent.Position);
+                        if (distance < closestDistance)
+                        {
+                            closestDistance = distance;
+                            closestTarget = parent as Enemy;
+                        }
+                    }
+                }
+            }
+            _Mode= true;
         }
         return (Enemy)closestTarget;
     }
@@ -99,5 +136,20 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
         {
             Destroy();
         }
+        if(_animatedSprite.Animation == "spear_attack")
+            SpawnSpear();
+    }
+
+    private void SpawnSpear()
+    {
+        arrow_spearProjectile spear = (arrow_spearProjectile)GD.Load<PackedScene>("res://scene/tower/arrow_spearProjectile.tscn").Instantiate();
+        spear.Init(_targetEnemy.Position, _targetEnemy, _SpearVelocity,"spear", new Vector2(GlobalPosition.X -10, GlobalPosition.Y + 15));
+        spear.hitTarget += ArrowHit;
+        AddChild(spear);
+    }
+
+    private void ArrowHit()
+    {
+        Attack(_targetEnemy, _damage);
     }
 }

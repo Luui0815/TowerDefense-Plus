@@ -9,7 +9,11 @@ public abstract partial class AttackTower : Defender
 
     protected void Attack(Enemy target, int damage)
     {
-        target.Health -= damage;
-        GD.Print(target.Name + " HP: " + target.Health);
+        if(target != null)
+        {
+            target.Health -= damage;
+            GD.Print(target.Name + " HP: " + target.Health);
+        }
+
     }
 }
