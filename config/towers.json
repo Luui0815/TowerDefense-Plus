@@ -17,7 +17,7 @@
         },
         {
             "name": "spearman",
-            "cost": 1000,
+            "cost": 100,
             "upgrade_names": [
                 "",
                 "",

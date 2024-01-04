@@ -1,13 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://uvijb0nfa6fc"]
+[gd_scene load_steps=3 format=3 uid="uid://uvijb0nfa6fc"]
 
 [ext_resource type="Script" path="res://script/map/MapField.cs" id="1_lc11e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox62t"]
+size = Vector2(100, 1)
 
 [node name="MapField" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 108.0
-offset_bottom = 144.0
+offset_right = 100.0
+offset_bottom = 125.0
 script = ExtResource("1_lc11e")
 
 [node name="Background" type="Sprite2D" parent="."]
 centered = false
+
+[node name="arrow_spear_ground" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arrow_spear_ground"]
+position = Vector2(50, 124)
+shape = SubResource("RectangleShape2D_ox62t")
+
+[connection signal="area_entered" from="arrow_spear_ground" to="." method="_on_arrow_spear_ground_area_entered"]

@@ -75,7 +75,15 @@ namespace TowerDefense
                 EmitSignal(SignalName.DefenderPlaced, Tower.GetTowerCost());
             }
 		}
-	}
+
+		private void  _on_arrow_spear_ground_area_entered(Area2D area)
+		{
+			if(area.Name== "ArrowHitboxArea" || area.Name== "SpearHitboxArea")
+			{
+				area.GetParent().QueueFree();
+			}
+		}
+    }
 
 
 }
