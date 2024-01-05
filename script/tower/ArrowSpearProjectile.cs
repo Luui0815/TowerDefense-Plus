@@ -1,8 +1,7 @@
 using Godot;
 using System;
-using System.Collections.Specialized;
 
-public partial class arrow_spearProjectile : projectile
+public partial class ArrowSpearProjectile : Projectile
 {
     [Signal]
     public delegate void hitTargetEventHandler();

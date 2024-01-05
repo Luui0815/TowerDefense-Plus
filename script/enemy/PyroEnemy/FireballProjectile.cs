@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class FireballProjectile : projectile
+public partial class FireballProjectile : Projectile
 {
     [Signal]
     public delegate void hitTargetEventHandler();

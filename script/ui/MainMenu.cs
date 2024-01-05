@@ -24,7 +24,7 @@ public partial class MainMenu : Node
     public override void _Ready()
     {
         //Mousecursor anpassen
-        var arrow = ResourceLoader.Load("res://assets/texture/mousecursor/MauscourserV1.png");
+        Resource arrow = ResourceLoader.Load("res://assets/texture/mousecursor/MauscourserV1.png");
         Input.SetCustomMouseCursor(arrow, Input.CursorShape.Drag);
         Input.SetCustomMouseCursor(arrow, Input.CursorShape.CanDrop);
     }
