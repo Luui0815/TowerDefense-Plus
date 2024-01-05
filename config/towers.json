@@ -77,7 +77,7 @@
 		},
 		{
 			"name": "fire_trap",
-			"cost": 50,
+			"cost": 100,
 			"upgrade_names": [
 				"",
 				"",
@@ -92,7 +92,7 @@
 		},
 		{
 			"name": "caltrop_trap",
-			"cost": 50,
+			"cost": 100,
 			"upgrade_names": [
 				"",
 				"",
