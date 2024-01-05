@@ -10,7 +10,7 @@ public partial class Archer : RangeDefender
         _delay = 2;
         _animationDelay = 1;
         _actionAnimation = "idle";
-        Health = 5;
+        Health = 6;
         _damage = 2;
         _ArrowVelocity = 5;
     }

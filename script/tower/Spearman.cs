@@ -12,7 +12,7 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
         _delay = 2;
         _animationDelay = 1;
         _actionAnimation = "idle";
-        _damage = 5;
+        _damage = 3;
         Health = 10;
     }
     public override void _Ready()
@@ -36,7 +36,7 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
             {
                 if(_AttackTimer.IsStopped())
                     _animatedSprite.Play("attack");
-                Attack(_targetEnemy, _damage);
+                Attack(_targetEnemy, 2);
                 _AttackTimer.Start();
             }
             else if(CanAttack() && _Mode==true)

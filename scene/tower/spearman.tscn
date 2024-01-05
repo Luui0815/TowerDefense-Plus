@@ -229,10 +229,10 @@ animations = [{
 size = Vector2(100, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45bpy"]
-size = Vector2(161, 120)
+size = Vector2(147, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4eim"]
-size = Vector2(535, 118)
+size = Vector2(310, 118)
 
 [node name="SpearmanDefender" type="Node2D"]
 script = ExtResource("1_dbss1")
@@ -241,8 +241,9 @@ script = ExtResource("1_dbss1")
 position = Vector2(39, 64)
 scale = Vector2(2.1, 2.1)
 sprite_frames = SubResource("SpriteFrames_045pr")
-animation = &"spear_attack"
-frame_progress = 0.694036
+animation = &"attack"
+frame = 3
+frame_progress = 0.798609
 
 [node name="ActionTimer" type="Timer" parent="."]
 
@@ -260,13 +261,13 @@ shape = SubResource("RectangleShape2D_q1gye")
 [node name="AttackArea1" type="Area2D" parent="."]
 
 [node name="AttackBox1" type="CollisionShape2D" parent="AttackArea1"]
-position = Vector2(79.5, 60)
+position = Vector2(72.5, 60)
 shape = SubResource("RectangleShape2D_45bpy")
 debug_color = Color(0.356863, 0.615686, 0.196078, 0.419608)
 
 [node name="AttackArea2" type="Area2D" parent="."]
 
 [node name="AttackBox2" type="CollisionShape2D" parent="AttackArea2"]
-position = Vector2(270.5, 61)
+position = Vector2(158, 61)
 shape = SubResource("RectangleShape2D_b4eim")
 debug_color = Color(0.643137, 0.372549, 0.921569, 0.419608)

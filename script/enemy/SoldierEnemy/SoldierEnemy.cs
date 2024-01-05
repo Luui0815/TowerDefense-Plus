@@ -84,7 +84,7 @@ public partial class SoldierEnemy : MeleeEnemy
             {
                 if (!EnemyDefeated && !_isRegenerating)
                 {
-                    WalkSpeed = _hasRegenerated ? 0.5f : 0.3f;
+                    WalkSpeed = _hasRegenerated ? 0.45f : 0.3f;
                     if (!IsFreezed())
                         _soldierEnemy.Play("walking");
                     else
