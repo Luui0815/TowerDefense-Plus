@@ -39,6 +39,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1210.0
+offset_bottom = -646.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_seuyx")
@@ -46,7 +48,7 @@ script = ExtResource("1_seuyx")
 [node name="animatedSprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(34.9999, 37)
+position = Vector2(35, 37)
 scale = Vector2(-0.820999, 0.856717)
 sprite_frames = SubResource("SpriteFrames_x1jml")
 animation = &"idle"

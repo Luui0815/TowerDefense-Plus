@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://7i7g1a8fvcav"]
+
+[ext_resource type="PackedScene" uid="uid://b8fr6r6g0idrn" path="res://scene/ui/Hammer.tscn" id="1_8v21b"]
+
+[node name="HammerPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hammer" parent="." instance=ExtResource("1_8v21b")]
+layout_mode = 1
+offset_left = -35.0
+offset_top = -37.0
+offset_right = -1245.0
+offset_bottom = -683.0
+Animated = true
