@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using TowerDefense;
 
 public partial class Archer : RangeDefender
 {
@@ -113,9 +113,10 @@ public partial class Archer : RangeDefender
 
     private void SpawnArrow()
     {
-        arrow_spearProjectile arrow = (arrow_spearProjectile)GD.Load<PackedScene>("res://scene/tower/arrow_spearProjectile.tscn").Instantiate();
-        arrow.Init(_targetEnemy.Position, _targetEnemy, _ArrowVelocity,"arrow", new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 55));
-        arrow.hitTarget += ArrowHit;
+        TowerProjectile arrow = (TowerProjectile)GD.Load<PackedScene>("res://scene/tower/TowerProjectile.tscn").Instantiate();
+        arrow.Init(_targetEnemy, _ArrowVelocity, ProjectileType.Arrow);
+        arrow.TargetHit += ArrowHit;
+        arrow.Position = new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 55);
         AddChild(arrow);
     }
 

@@ -126,8 +126,8 @@ public partial class PyroEnemy : RangedEnemy
     private void SpawnFireball()
     {
         FireballProjectile fireball = (FireballProjectile)GD.Load<PackedScene>("res://scene/enemy/PyroEnemy/FireballProjectile.tscn").Instantiate();
-        fireball.Init(_targetDefender.Position, _targetDefender, _arrowVelocity);
-        fireball.hitTarget += FireballHit;
+        fireball.Init(_targetDefender, _arrowVelocity);
+        fireball.TargetHit += FireballHit;
         fireball.TopLevel = true;
         fireball.Position = new Vector2(GlobalPosition.X-20, GlobalPosition.Y+10);
         AddChild(fireball);

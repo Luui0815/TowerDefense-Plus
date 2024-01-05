@@ -73,7 +73,7 @@ size = Vector2(51, 20)
 position = Vector2(628, 319)
 script = ExtResource("1_85je2")
 
-[node name="FireballProjectile" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_7uayc")
 animation = &"fireball"
