@@ -6,6 +6,7 @@ public partial class caltrop_trap : TrapDefence
 {
     private List<Enemy> _attackableEnemiess = new List<Enemy>();
     private List<Enemy> _attackedEnemiess = new List<Enemy>();
+    private Enemy _EnemyInTrap;
     public caltrop_trap()
     {
         //TODO: Change values and add action animation
@@ -26,57 +27,67 @@ public partial class caltrop_trap : TrapDefence
         //_AttackTimer = GetNode<Timer>("AttackTimer");
         _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
         //_AttackTimer.WaitTime = _delay; ;
-        _animatedSprite.Play(_actionAnimation);
+        _animatedSprite.Play("open");
+        _animatedSprite.AnimationLooped += OnAnimationLooped;
     }
 
     public override void _Process(double delta)
     {
-        _attackableEnemiess = SelectTargets();
-
-        if (_attackableEnemiess.Count > 0)
+        if(_EnemyInTrap!=null && _EnemyInTrap.Health<=0)//Gegner in Falle gestorben
         {
-            foreach (Enemy enemy in _attackableEnemiess)
-            {
-                enemy.AddStatusEffect("caltrop",this);
-                _attackedEnemiess.Add(enemy);
-                TrapDeleted += (Name) => enemy.DeleteTrap(Name);
-            }
+            _EnemyInTrap = null;
+            _animatedSprite.Play("opening");
+            Health--;
+        }
+
+        if(_EnemyInTrap!= null && !_EnemyInTrap.IsFreezed())//Falle oeffnet sich wieder
+        {
+            _EnemyInTrap = null;
+            _animatedSprite.Play("opening");
+            Health--;
         }
 
         if (Health <= 0)
         {
-            Destroy();//TODO: DeathAnimation
+            _animatedSprite.Play("death");
         }
-    }
-
-    private List<Enemy> SelectTargets()
-    {
-        List<Enemy> EnemyList = new List<Enemy>();
-
-        foreach (Node2D body in _AttackArea.GetOverlappingAreas())
-        {
-            Node2D parent = (Node2D)body.GetParent();
-            if (parent is Enemy && body.Name == "HitboxArea")
-            {
-                if(!_attackedEnemiess.Contains(parent as Enemy))
-                    EnemyList.Add(parent as Enemy);
-            }
-        }
-        return EnemyList;
     }
 
     private void _on_attack_area_area_entered(Area2D area)
     {
-        // muss so sein, da: Wenn Soldier auf Falle stribt und sich wiederbelebt baut er
-        // alte Area2d ab und eine neue auf. Dadurch verliert die Falle 2 LEben und nicht nur 1
-        //daher muss verglichen werden ob der Gegner neu ist
-        if (area.GetParent() is Enemy && !_attackedEnemiess.Contains((Enemy)area.GetParent()))
-            Health--;
+        if(area.GetParent() is Enemy)
+        {
+            Enemy enemy = (Enemy)area.GetParent();
+
+            if (!_attackedEnemiess.Contains(enemy) && area.Name == "HitboxArea" && _EnemyInTrap == null && enemy.EnemyName != "PyroEnemy")
+            {
+                _EnemyInTrap = (Enemy)area.GetParent();
+                _EnemyInTrap.AddStatusEffect("caltrop");
+                _attackedEnemiess.Add(_EnemyInTrap);
+                TrapDeleted += (Name) => _EnemyInTrap.DeleteTrap(Name);
+                _animatedSprite.Play("closing");
+            }
+        }
+    }
+
+    private void OnAnimationLooped()
+    {
+        if (_animatedSprite.Animation == "closing")
+            _animatedSprite.Play("closed");
+        if (_animatedSprite.Animation == "opening")
+            _animatedSprite.Play("open");
+        if (_animatedSprite.Animation == "death")
+            Destroy();
+    }
+
+    public bool IsEnemyInTrap
+    {
+        get
+        {
+            if (_EnemyInTrap == null)
+                return false;
+            else
+                return true;
+        }
     }
 }
-
-
-
-
-
-

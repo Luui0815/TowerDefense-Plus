@@ -247,3 +247,5 @@ debug_color = Color(0.752941, 0.129412, 0.113725, 0.419608)
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
+
+[connection signal="area_exited" from="AttackArea" to="." method="_on_attack_area_area_exited"]

@@ -232,7 +232,7 @@ size = Vector2(100, 120)
 size = Vector2(147, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4eim"]
-size = Vector2(325, 118)
+size = Vector2(461, 118)
 
 [node name="SpearmanDefender" type="Node2D"]
 script = ExtResource("1_dbss1")
@@ -268,6 +268,8 @@ debug_color = Color(0.356863, 0.615686, 0.196078, 0.419608)
 [node name="AttackArea2" type="Area2D" parent="."]
 
 [node name="AttackBox2" type="CollisionShape2D" parent="AttackArea2"]
-position = Vector2(165.5, 61)
+position = Vector2(233.5, 61)
 shape = SubResource("RectangleShape2D_b4eim")
 debug_color = Color(0.643137, 0.372549, 0.921569, 0.419608)
+
+[connection signal="area_exited" from="AttackArea2" to="." method="_on_attack_area_2_area_exited"]

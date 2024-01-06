@@ -53,9 +53,13 @@ namespace TowerDefense
 			if(towerName == "hammer")
 			{
 				if(Tower is TrapDefence)
-                   Tower.EmitSignal(TrapDefence.SignalName.TrapDeleted,Tower.Name);
+				{
+					caltrop_trap caltrop = (caltrop_trap)Tower;
+					if(caltrop.IsEnemyInTrap)
+						Tower.EmitSignal(TrapDefence.SignalName.TrapDeleted,Tower.Name);//muss so, da sonst Methode vom enemy in Trap aufgerufen wird, 
+                }                                                                       //wenn der aber nicht drin, baehm Null Pointer
 
-				Tower.QueueFree();
+                Tower.QueueFree();
 				Tower = null;
 			}
 			else

@@ -60,11 +60,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q7uay"]
-radius = 3.0
+radius = 9.0
 height = 36.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1haco"]
-radius = 5.0
+radius = 11.0
 height = 64.0
 
 [node name="Arrow_Spear" type="Node2D"]

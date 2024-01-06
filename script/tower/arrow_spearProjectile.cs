@@ -14,6 +14,8 @@ public partial class arrow_spearProjectile : projectile
 	private AnimatedSprite2D _animatedSprite;
 	private Node2D _projectile;
 	private string _Mode;
+	private Vector2 _OldPosition;
+	private bool _IsFalling=false;
 
 	public void Init(Vector2 targetPosition, Enemy target, float velocity, string Mode, Vector2 Position)
 	{
@@ -24,6 +26,7 @@ public partial class arrow_spearProjectile : projectile
 		_Mode = Mode;
         TopLevel = true;
 		this.Position = Position;
+		//_EndOfAttackArea=EndOfAttackArea;
     }
 	public override void _Ready()
 	{
@@ -48,14 +51,15 @@ public partial class arrow_spearProjectile : projectile
             QueueFree();
         }
 
-		if (Position.X > _targetPosition.X && Position.Y < _targetPosition.Y + 35)//Falls Gegner schon besiegt wurde
-		{
-			float Dif= Position.X - _targetPosition.X;
-			int t = Convert.ToInt32(Dif / 50);
-			_velocity.Y = t+1;
-        }
+		if (Position.X > _targetPosition.X) //&& Position.Y < _targetPosition.Y + 35)// (Pfeil ueber AttackArea hinausfliegt)
+			falling = true;
 
-		if(Position.X>1018)
+		if(falling)
+		{
+			GotToGround();
+		}
+
+        if (Position.X>1018)
 			QueueFree();
 		//Objekt wird geloescht wenn in MapField Area geentred wird oder rechte Endposition erreicht wird
         float targetAngle = Mathf.Atan2(_velocity.Y, _velocity.X);
@@ -77,5 +81,28 @@ public partial class arrow_spearProjectile : projectile
             }
         }
 		return false;
+    }
+
+	public bool falling
+	{
+		get
+		{
+			return _IsFalling;
+		}
+		set
+		{
+			if(!_IsFalling && Position.X>(_targetPosition.X+65))
+			{
+				_IsFalling = true;
+				_OldPosition = Position;
+			}
+		}
+	}
+
+	public void GotToGround()
+	{
+        float Dif = Position.X - _OldPosition.X;
+        int t = Convert.ToInt32(Dif / 50);
+        _velocity.Y = t + 1;
     }
 }

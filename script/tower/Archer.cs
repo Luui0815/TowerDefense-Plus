@@ -4,6 +4,7 @@ using System;
 public partial class Archer : RangeDefender
 {
     private Enemy _targetEnemy;
+    private Mutex m = new Mutex();
     public Archer()
     {
         //TODO: Change values and add action animation
@@ -114,15 +115,30 @@ public partial class Archer : RangeDefender
     private void SpawnArrow()
     {
         arrow_spearProjectile arrow = (arrow_spearProjectile)GD.Load<PackedScene>("res://scene/tower/arrow_spearProjectile.tscn").Instantiate();
-        arrow.Init(_targetEnemy.Position, _targetEnemy, _ArrowVelocity,"arrow", new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 55));
-        arrow.hitTarget += ArrowHit;
-        AddChild(arrow);
+
+        if (_targetEnemy != null && _targetEnemy.Health>0)
+        {
+            arrow.Init(_targetEnemy.Position, _targetEnemy, _ArrowVelocity, "arrow", new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 55));
+            arrow.hitTarget += ArrowHit;
+            AddChild(arrow);
+        }
     }
 
     private void ArrowHit()
     {
-        Attack(_targetEnemy, _damage);
-        if(_targetEnemy != null)
-            _targetEnemy.AddStatusEffect("burn", this);//eigentlich erst bei Upgrade
+        if (_targetEnemy != null)
+        {
+            Attack(_targetEnemy, _damage);
+            _targetEnemy.AddStatusEffect("burn");//eigentlich erst bei Upgrade
+        }
+    }
+
+    private void _on_attack_area_area_exited(Area2D area)
+    {
+        if (area.Name == "ArrowHitboxArea" || area.Name == "SpearHitboxArea")
+        {
+            arrow_spearProjectile projectile = (arrow_spearProjectile)area.GetParent();
+            projectile.falling = true;
+        }
     }
 }

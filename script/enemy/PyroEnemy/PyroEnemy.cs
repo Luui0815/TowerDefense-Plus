@@ -80,10 +80,10 @@ public partial class PyroEnemy : RangedEnemy
     {
         if (!EnemyDefeated)
         {
-            if(IsFreezed())
-            {
-                getStatuseffectDamage();
-            }
+            //if(IsFreezed())
+            //{
+            //    getStatuseffectDamage();
+            //}
             if (CanAttack())
             {
                 _pyroEnemy.Play("attacking");

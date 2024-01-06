@@ -35,6 +35,7 @@ animations = [{
 }]
 
 [node name="Hammer" type="Control"]
+z_index = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

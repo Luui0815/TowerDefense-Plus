@@ -61,7 +61,7 @@ public partial class GiantEnemy : MeleeEnemy
 
     private bool CanAttack()
     {
-        if (_attackTimer.IsStopped() && !EnemyDefeated)
+        if (_attackTimer.IsStopped() && !EnemyDefeated && !IsFreezed())
         {
             Defender closestTarget = SelectClosestTarget(_attackRangeArea);
             if (closestTarget != null && !closestTarget.ImmuneToDamage)

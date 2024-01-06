@@ -143,13 +143,26 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
     private void SpawnSpear()
     {
         arrow_spearProjectile spear = (arrow_spearProjectile)GD.Load<PackedScene>("res://scene/tower/arrow_spearProjectile.tscn").Instantiate();
-        spear.Init(_targetEnemy.Position, _targetEnemy, _SpearVelocity,"spear", new Vector2(GlobalPosition.X -10, GlobalPosition.Y + 15));
-        spear.hitTarget += ArrowHit;
-        AddChild(spear);
+        if (_targetEnemy != null && _targetEnemy.Health > 0)
+        {
+            spear.Init(_targetEnemy.Position, _targetEnemy, _SpearVelocity, "spear", new Vector2(GlobalPosition.X - 10, GlobalPosition.Y + 15));
+            spear.hitTarget += ArrowHit;
+            AddChild(spear);
+        }
     }
 
     private void ArrowHit()
     {
-        Attack(_targetEnemy, _damage);
+        if (_targetEnemy != null && _targetEnemy.Health > 0)
+            Attack(_targetEnemy, _damage);
+    }
+
+    private void _on_attack_area_2_area_exited(Area2D area)
+    {
+        if (area.Name == "ArrowHitboxArea" || area.Name == "SpearHitboxArea")
+        {
+            arrow_spearProjectile projectile = (arrow_spearProjectile)area.GetParent();
+            projectile.falling = true;
+        }
     }
 }

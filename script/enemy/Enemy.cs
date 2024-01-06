@@ -39,7 +39,7 @@ namespace TowerDefense
 
 public abstract partial class Enemy : GameEntity
 {
-	protected bool _enemyDefeated = false;
+    protected bool _enemyDefeated = false;
 	protected bool _enemyCrossedLastField = false;
 	protected float _walkSpeed;
 	protected string _name;
@@ -103,7 +103,7 @@ public abstract partial class Enemy : GameEntity
 
     }
 	
-	public virtual void AddStatusEffect(string effect, Defender trap)
+	public virtual void AddStatusEffect(string effect)
 	{
 		bool contained=false;
 
@@ -138,9 +138,9 @@ public abstract partial class Enemy : GameEntity
 				}
 			case "caltrop":
 				{
-					if (!contained && EnemyName != "PyroEnemy")
+					if (!contained)
 					{
-                        Statuseffects stat = new Statuseffects("caltrop", 3, 1);
+                        Statuseffects stat = new Statuseffects("caltrop", 5, 2);
                         AddChild(stat.DamageTimer);
                         AddChild(stat.DelayTimer);
 
@@ -190,6 +190,9 @@ public abstract partial class Enemy : GameEntity
         //check if caltrap effect is theire
         foreach (Statuseffects effect in _statusEffects)
         {
+			//if (effect.DamageTimer == null)
+			//	return false;
+
             if (effect.name == "caltrop" && !effect.DamageTimer.IsStopped())
             {
                 caltrop = true;

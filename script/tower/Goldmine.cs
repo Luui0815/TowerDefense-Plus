@@ -10,7 +10,7 @@ public partial class Goldmine : Defender
 
     public Goldmine()
     {
-        _delay = 15;
+        _delay = 12;
         _animationDelay = 1;
 
         //TODO: Add action animation
@@ -43,7 +43,6 @@ public partial class Goldmine : Defender
 
     public override void Action()
     {
-        EmitSignal(SignalName.MoneyGenerated, _moneyPerCycle);
         _moneyGenerated = true;
         //wenn man hier die Anmiation abspielen wuerde, geht es nicht
         //und das ganze in die alte Version aufzurufen dauert
@@ -53,6 +52,9 @@ public partial class Goldmine : Defender
     private void OnAnimationLooped()
     {
         if (_animatedSprite.Animation == "action")
+        {
             _moneyGenerated = false;
+            EmitSignal(SignalName.MoneyGenerated, _moneyPerCycle);
+        }
     }
 }
