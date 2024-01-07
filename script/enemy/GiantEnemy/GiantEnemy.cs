@@ -61,6 +61,13 @@ public partial class GiantEnemy : MeleeEnemy
 
     private bool CanAttack()
     {
+        if (IsFreezed())
+        {
+            if (_giantEnemy.Animation == "attacking" || _giantEnemy.Animation == "walking")
+                _giantEnemy.Play("idle");
+            return false;
+        }
+
         if (_attackTimer.IsStopped() && !EnemyDefeated && !IsFreezed())
         {
             Defender closestTarget = SelectClosestTarget(_attackRangeArea);

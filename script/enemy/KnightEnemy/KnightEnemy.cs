@@ -63,6 +63,13 @@ public partial class KnightEnemy : MeleeEnemy
 		Vector2 _BurnAnimationPositionWalking = new Vector2(139,68);
 		Vector2 _BurnAnimationPositionAttacking = new Vector2(165, 68);
 
+		if(IsFreezed())
+		{
+            if (_knightEnemy.Animation == "attacking" || _knightEnemy.Animation == "walking")
+                _knightEnemy.Play("idle");
+			return false;
+		}
+
 		if (_attackTimer.IsStopped() && !EnemyDefeated)
 		{
 			Defender closestTarget = SelectClosestTarget(_attackRangeArea);
@@ -80,7 +87,7 @@ public partial class KnightEnemy : MeleeEnemy
 				if(!EnemyDefeated)
 				{
 					WalkSpeed = 0.3f;
-                    if (!IsFreezed())
+                    if (!IsBurned())
 					{
 						_BurnAnimation.Position= _BurnAnimationPositionWalking;
                         _knightEnemy.Play("walking");

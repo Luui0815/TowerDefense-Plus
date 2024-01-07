@@ -61,6 +61,13 @@ public partial class BanditEnemy : MeleeEnemy
 
     private bool CanAttack()
     {
+        if (IsFreezed())
+        {
+            if (_banditEnemy.Animation == "attacking" || _banditEnemy.Animation == "walking")
+                _banditEnemy.Play("idle");
+            return false;
+        }
+
         if (_attackTimer.IsStopped() && !EnemyDefeated)
         {
             Defender closestTarget = SelectClosestTarget(_attackRangeArea);

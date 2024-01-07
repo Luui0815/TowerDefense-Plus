@@ -69,6 +69,13 @@ public partial class SoldierEnemy : MeleeEnemy
 
     private bool CanAttack()
     {
+        if (IsFreezed())
+        {
+            if (_soldierEnemy.Animation == "attacking" || _soldierEnemy.Animation == "walking")
+                _soldierEnemy.Play("idle");
+            return false;
+        }
+
         if (_attackTimer.IsStopped() && !EnemyDefeated && !_isRegenerating)
         {
             Defender closestTarget = SelectClosestTarget(_attackRangeArea);

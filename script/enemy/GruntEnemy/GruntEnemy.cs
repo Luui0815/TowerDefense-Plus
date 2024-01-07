@@ -61,6 +61,13 @@ public partial class GruntEnemy : MeleeEnemy
 
     private bool CanAttack()
     {
+        if (IsFreezed())
+        {
+            if (_gruntEnemy.Animation == "attacking" || _gruntEnemy.Animation == "walking")
+                _gruntEnemy.Play("idle");
+            return false;
+        }
+
         if (_attackTimer.IsStopped() && !EnemyDefeated)
         {
             Defender closestTarget = SelectClosestTarget(_attackRangeArea);
