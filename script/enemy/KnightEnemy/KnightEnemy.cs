@@ -116,6 +116,8 @@ public partial class KnightEnemy : MeleeEnemy
     {
         if (_knightEnemy.Animation == "death")
         {
+            GameLevel Level = (GameLevel)GetParent().GetParent();
+            Level.AddMoney(10);
             Destroy();
         }
     }

@@ -120,6 +120,8 @@ public partial class GiantEnemy : MeleeEnemy
     {
         if (_giantEnemy.Animation == "death")
         {
+            GameLevel Level = (GameLevel)GetParent().GetParent();
+            Level.AddMoney(50);
             Destroy();
         }
     }
