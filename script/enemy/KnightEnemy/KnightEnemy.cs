@@ -87,7 +87,7 @@ public partial class KnightEnemy : MeleeEnemy
 				if(!EnemyDefeated)
 				{
 					WalkSpeed = 0.3f;
-                    if (!IsBurned())
+                    if (!IsFreezed())
 					{
 						_BurnAnimation.Position= _BurnAnimationPositionWalking;
                         _knightEnemy.Play("walking");
@@ -117,7 +117,7 @@ public partial class KnightEnemy : MeleeEnemy
         if (_knightEnemy.Animation == "death")
         {
             GameLevel Level = (GameLevel)GetParent().GetParent();
-            Level.AddMoney(10);
+            Level.AddMoney(25);
             Destroy();
         }
     }

@@ -52,13 +52,13 @@ public partial class MapLane : Node2D
     {
 		if (area.GetParent() is Enemy && area.Name == "HitboxArea" && !_LawnMower.ActivateLawnMover)
 		{
-			GD.Print("Enemy hat die heilige Fort erreicht. Starte Gegenangriff!");
+			GD.Print("Enemy hat die heilige Forte erreicht. Starte Gegenangriff!");
 			_LawnMower.ActivateLawnMover=true;
 		}
 		else if(area.GetParent() is Enemy && area.Name == "HitboxArea")
-		{
-			EmitSignal(SignalName.EnemyCrossedLane, _laneNr);
-            GD.Print("Enemy hat die heilige Fort zerstoert!");
+        {
+            EmitSignal(SignalName.EnemyCrossedLane, _laneNr);
+            GD.Print("Enemy hat die heilige Forte zerstoert!");
         }
 	}
 }

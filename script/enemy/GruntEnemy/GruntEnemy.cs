@@ -112,7 +112,7 @@ public partial class GruntEnemy : MeleeEnemy
         if (_gruntEnemy.Animation == "death")
         {
             GameLevel Level = (GameLevel)GetParent().GetParent();
-            Level.AddMoney(5);
+            Level.AddMoney(25);
             Destroy();
         }
     }

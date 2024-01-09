@@ -112,7 +112,7 @@ public partial class BanditEnemy : MeleeEnemy
         if(_banditEnemy.Animation =="death")
         {
             GameLevel Level = (GameLevel)GetParent().GetParent();
-            Level.AddMoney(10);
+            Level.AddMoney(25);
             Destroy();
         }
     }

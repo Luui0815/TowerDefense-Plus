@@ -120,7 +120,7 @@ public partial class PyroEnemy : RangedEnemy
         if (_pyroEnemy.Animation == "death")
         {
             GameLevel Level = (GameLevel)GetParent().GetParent();
-            Level.AddMoney(25);
+            Level.AddMoney(30);
             Destroy();
         }
     }

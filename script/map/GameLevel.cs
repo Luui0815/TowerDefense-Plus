@@ -15,7 +15,9 @@ public abstract partial class GameLevel : Node2D
     private readonly MapLane[] _lanes = new MapLane[5];
     private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
-    private bool _levelStarted = false;
+    private bool _levelStarted = false, _levelCompleted = false;
+
+    private Area2D _levelArea;
 
     public bool LevelStarted
     {
@@ -68,6 +70,8 @@ public abstract partial class GameLevel : Node2D
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
 
+        _levelArea = GetNode<Area2D>("LevelArea");
+
         Vector2 position = Vector2.Zero;
         PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
         for (int i = 0; i < 5; i++)
@@ -77,7 +81,7 @@ public abstract partial class GameLevel : Node2D
             lane.Position = position;
             lane.Name = "MapLane" + i;
             lane.EnemyCrossedLane += OnEnemyCrossedLane;
-            lane.AllEnemiesDefeated += OnAllEnemiesDefeated;
+            //lane.AllEnemiesDefeated += OnAllEnemiesDefeated;
 
             AddChild(lane);
             _lanes[i] = lane;
@@ -110,6 +114,12 @@ public abstract partial class GameLevel : Node2D
         AddChild(_spawner);
     }
 
+    public override void _Process(double delta)
+    {
+        if(!_levelCompleted)
+        GetEnemiesAcrossLanes();
+    }
+
     /// <summary>
     /// Fills the tower inventory with the specified towers
     /// </summary>
@@ -130,12 +140,27 @@ public abstract partial class GameLevel : Node2D
         EmitSignal(SignalName.MoneyChanged, _currentMoney);
     }
 
-    /*
-    public Array<Enemy> GetEnemiesAcrossLanes()
+
+    public void GetEnemiesAcrossLanes()
     {
-        //TODO: Add implementation
+        Array<Enemy> allEnemies = new();
+        foreach (Node2D body in _levelArea.GetOverlappingAreas())
+        {
+            if (body.Name == "HitboxArea")
+            {
+                Node2D parent = (Node2D)body.GetParent();
+                if (parent is Enemy)
+                {
+                    allEnemies.Add(parent as Enemy);
+                }
+            }
+        }
+        if(allEnemies.Count==0 && _spawner.Finished)
+        {
+            OnAllEnemiesDefeated();
+        }
     }
-    */
+
 
     /// <summary>
     /// Changes the money amount which the player has
@@ -172,21 +197,23 @@ public abstract partial class GameLevel : Node2D
     private void OnEnemyCrossedLane(int laneNr)
     {
         //TODO: Show defeat screen
-        //der Gartenteppichtrimmer ruft die Methode bereits richtig auf!
+        GetTree().Paused = true;
+        GD.Print("VERLOREN");
     }
 
-    private void OnAllEnemiesDefeated(int laneNr)
+    private void OnAllEnemiesDefeated()
     {
-        
-        if (_spawner.Finished)
-        {
-            bool alreadyCompleted = _completedLanes.Add(laneNr);
-            if (!alreadyCompleted && _completedLanes.Count == 5)
-            {
-                //TODO: Show victory screen
-            }
-        }
-       
+        GD.Print("GEWONNEN");
+        _levelCompleted = true;
+        //if (_spawner.Finished)
+        //{
+        //    bool alreadyCompleted = _completedLanes.Add(laneNr);
+        //    if (!alreadyCompleted && _completedLanes.Count == 5)
+        //    {
+        //        //TODO: Show victory screen
+        //    }
+        //}
+        _spawner.StartEndlessTimer(5);
     }
 
     private FieldType[] GetFieldTypeRow(int index)

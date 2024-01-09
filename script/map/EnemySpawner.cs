@@ -7,11 +7,11 @@ public partial class EnemySpawner : Node
     private (float, int)[] _spawnTimes, _endlessSpawnTimes;
     private Enemy _enemy;
     private int _currentSpawnIndex = 0, _endlessEnemyAmount = 15;
-    private bool finished = false;
+    private bool _finished = false, _endless = false;
 
     public bool Finished
     {
-        get { return finished; }
+        get { return _finished; }
     }
 
     // Soldier - 1, Knight - 2, Bandit - 3, Pyro - 4, Giant - 5
@@ -20,7 +20,7 @@ public partial class EnemySpawner : Node
         switch (levelNr)
         {
             case 1:
-                _spawnTimes = new (float, int)[] { (30, 1), (10, 1), (5, 2), (20, 2), (1, 1), (1, 1), (1, 1), (1, 2), (1, 2), (1, 1), (1, 1), (1,1), (10, 1), (1, 3), (20, 3), (1, 2), (1, 2), (1, 2), (2, 1), (1, 1), (1, 1),(1, 4),(20, 4), (1, 2), (1, 2), (1, 2), (1, 2),(1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 3), (1, 3), (1, 3), (1, 4), (25, 4), (5,5), (4, 5), (0,0)};
+                _spawnTimes = new (float, int)[] { (30, 1), (10, 1), (5, 2), (20, 2), (1, 1), (1, 1), /*(1, 1), (1, 2), (1, 2), (1, 1), (1, 1), (1,1), (10, 1), (1, 3), (20, 3), (1, 2), (1, 2), (1, 2), (2, 1), (1, 1), (1, 1),(1, 4),(20, 4), (1, 2), (1, 2), (1, 2), (1, 2),(1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 3), (1, 3), (1, 3), (1, 4), (25, 4), (5,5), (4, 5),*/ (0,0)};
                 break;
             default: break;
         }
@@ -52,16 +52,15 @@ public partial class EnemySpawner : Node
         else
         {
             _spawnTimer.Stop();
-            finished = true;
-
-            _spawnTimer.Timeout -= OnSpawnTimerTimeout;
-            _spawnTimer.Timeout += OnEndlessSpawnTimerTimeout;
-            StartEndlessTimer(5f);
+            _finished = true;
         }
     }
 
-    private void StartEndlessTimer(float waitTime)
+    public void StartEndlessTimer(float waitTime)
     {
+        GD.Print("Starte Endlos-Modus");
+        _spawnTimer.Timeout -= OnSpawnTimerTimeout;
+        _spawnTimer.Timeout += OnEndlessSpawnTimerTimeout;     
         _spawnTimer.WaitTime = waitTime;
         _spawnTimer.Start();
         _currentSpawnIndex = 0;

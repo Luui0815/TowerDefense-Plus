@@ -143,7 +143,7 @@ public partial class SoldierEnemy : MeleeEnemy
         if (_soldierEnemy.Animation == "death")
         {
             GameLevel Level = (GameLevel)GetParent().GetParent();
-            Level.AddMoney(5);
+            Level.AddMoney(20);
             Destroy();
         }
         else if(_soldierEnemy.Animation == "regenerate")
