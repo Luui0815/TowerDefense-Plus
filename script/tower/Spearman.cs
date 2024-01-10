@@ -145,7 +145,7 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
         TowerProjectile spear = (TowerProjectile)GD.Load<PackedScene>("res://scene/tower/TowerProjectile.tscn").Instantiate();
         if (_targetEnemy != null && _targetEnemy.Health > 0)
         {
-            spear.Init(_targetEnemy, _SpearVelocity, ProjectileType.Spear);
+            spear.Init(_targetEnemy, _SpearVelocity, ProjectileType.Spear, this);
             spear.TargetHit += ArrowHit;
             spear.Position = new Vector2(GlobalPosition.X - 10, GlobalPosition.Y + 20);
             AddChild(spear);
@@ -163,7 +163,10 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
         if (area.Name == "SpearHitboxArea")
         {
             TowerProjectile projectile = (TowerProjectile)area.GetParent();
-            projectile.ShouldFall = true;
+            if (projectile.Shooter == this)
+            {
+                projectile.ShouldFall = true;
+            }
         }
     }
 }
