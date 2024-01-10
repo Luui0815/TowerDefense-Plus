@@ -135,7 +135,7 @@ public partial class Archer : RangeDefender
 
     private void _on_attack_area_area_exited(Area2D area)
     {
-        if (area.Name == "ArrowHitboxArea" || area.Name == "SpearHitboxArea")
+        if (area.Name == "ArrowHitboxArea")
         {
             TowerProjectile projectile = (TowerProjectile)area.GetParent();
             projectile.ShouldFall = true;

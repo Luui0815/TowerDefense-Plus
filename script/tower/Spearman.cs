@@ -160,7 +160,7 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
 
     private void _on_attack_area_2_area_exited(Area2D area)
     {
-        if (area.Name == "ArrowHitboxArea" || area.Name == "SpearHitboxArea")
+        if (area.Name == "SpearHitboxArea")
         {
             TowerProjectile projectile = (TowerProjectile)area.GetParent();
             projectile.ShouldFall = true;
