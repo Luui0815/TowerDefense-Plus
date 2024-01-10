@@ -7,6 +7,7 @@ public partial class SoldierEnemy : MeleeEnemy
     Area2D _attackRangeArea, _hitboxArea;
     CollisionShape2D _hitbox;
     Timer _attackTimer, _regenerationTimer;
+
     private bool _isRegenerating = false;
     private bool _hasRegenerated = false;
 
@@ -18,7 +19,7 @@ public partial class SoldierEnemy : MeleeEnemy
         _actionAnimation = "idle";
 
         EnemyName = "SoldierEnemy";
-        WalkSpeed = 0.6f;
+        WalkSpeed = 0.3f;
         Health = 7;
     }
 
@@ -33,11 +34,23 @@ public partial class SoldierEnemy : MeleeEnemy
 
         _attackTimer = GetNode<Timer>("AttackTimer");
         _regenerationTimer = GetNode<Timer>("RegenerationTimer");
+        _BurnAnimation = GetNode<AnimatedSprite2D>("burn");
     }
 
     public override void _Process(double delta)
     {
         getStatuseffectDamage();
+
+        if (IsBurned() && !_isRegenerating)//ist true wenn burn damage
+        {
+            _BurnAnimation.Play("burn");
+            _BurnAnimation.Visible = true;
+        }
+        else
+        {
+            _BurnAnimation.Visible = false;
+            _BurnAnimation.Stop();
+        }
 
         if (!CanAttack() && !EnemyDefeated && !_isRegenerating)
         {
@@ -56,6 +69,13 @@ public partial class SoldierEnemy : MeleeEnemy
 
     private bool CanAttack()
     {
+        if (IsFreezed())
+        {
+            if (_soldierEnemy.Animation == "attacking" || _soldierEnemy.Animation == "walking")
+                _soldierEnemy.Play("idle");
+            return false;
+        }
+
         if (_attackTimer.IsStopped() && !EnemyDefeated && !_isRegenerating)
         {
             Defender closestTarget = SelectClosestTarget(_attackRangeArea);
@@ -71,8 +91,12 @@ public partial class SoldierEnemy : MeleeEnemy
             {
                 if (!EnemyDefeated && !_isRegenerating)
                 {
-                    WalkSpeed = 0.6f;
-                    _soldierEnemy.Play("walking");
+                    WalkSpeed = _hasRegenerated ? 0.45f : 0.3f;
+                    if (!IsFreezed())
+                        _soldierEnemy.Play("walking");
+                    else
+                        _soldierEnemy.Play("idle");
+                    MoveEnemy(WalkSpeed);
                 }
                 return false;
             }
@@ -118,6 +142,8 @@ public partial class SoldierEnemy : MeleeEnemy
     {
         if (_soldierEnemy.Animation == "death")
         {
+            GameLevel Level = (GameLevel)GetParent().GetParent();
+            Level.AddMoney(20);
             Destroy();
         }
         else if(_soldierEnemy.Animation == "regenerate")

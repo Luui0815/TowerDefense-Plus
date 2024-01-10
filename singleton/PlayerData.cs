@@ -14,7 +14,8 @@ public partial class PlayerData : Node
         "wall",
         "goldmine",
         "archer",
-        "fire_trap"
+        "fire_trap",
+        "caltrop_trap",
     };
 
     /// <summary>

@@ -15,8 +15,8 @@ public partial class GiantEnemy : MeleeEnemy
         _actionAnimation = "idle";
 
         EnemyName = "GiantEnemy";
-        WalkSpeed = 0.3f;
-        Health = 60;
+        WalkSpeed = 0.25f;
+        Health = 55;
     }
 
     public override void _Ready()
@@ -28,11 +28,23 @@ public partial class GiantEnemy : MeleeEnemy
         _hitboxArea = GetNode<Area2D>("HitboxArea");
 
         _attackTimer = GetNode<Timer>("AttackTimer");
+        _BurnAnimation = GetNode<AnimatedSprite2D>("burn");
     }
 
     public override void _Process(double delta)
     {
         getStatuseffectDamage();
+
+        if (IsBurned())//ist true wenn burn damage
+        {
+            _BurnAnimation.Play("burn");
+            _BurnAnimation.Visible = true;
+        }
+        else
+        {
+            _BurnAnimation.Visible = false;
+            _BurnAnimation.Stop();
+        }
 
         if (!CanAttack() && !EnemyDefeated)
         {
@@ -49,7 +61,14 @@ public partial class GiantEnemy : MeleeEnemy
 
     private bool CanAttack()
     {
-        if (_attackTimer.IsStopped() && !EnemyDefeated)
+        if (IsFreezed())
+        {
+            if (_giantEnemy.Animation == "attacking" || _giantEnemy.Animation == "walking")
+                _giantEnemy.Play("idle");
+            return false;
+        }
+
+        if (_attackTimer.IsStopped() && !EnemyDefeated && !IsFreezed())
         {
             Defender closestTarget = SelectClosestTarget(_attackRangeArea);
             if (closestTarget != null && !closestTarget.ImmuneToDamage)
@@ -57,16 +76,20 @@ public partial class GiantEnemy : MeleeEnemy
                 WalkSpeed = 0;
                 _attackTimer.Start();
                 _giantEnemy.Play("attacking");
-                Attack(closestTarget, 10);
+                Attack(closestTarget, 9);
                 return true;
             }
             else
             {
                 if (!EnemyDefeated)
                 {
-                    WalkSpeed = 0.3f;
-                    _giantEnemy.Play("walking");
+                    WalkSpeed = 0.25f;
+                    if (!IsFreezed())
+                        _giantEnemy.Play("walking");
+                    else
+                        _giantEnemy.Play("idle");
                 }
+                MoveEnemy(WalkSpeed);
                 return false;
             }
         }
@@ -75,6 +98,7 @@ public partial class GiantEnemy : MeleeEnemy
             return false;
         }
     }
+
     private void OnEnemyDefeated()
     {
         WalkSpeed = 0;
@@ -87,7 +111,7 @@ public partial class GiantEnemy : MeleeEnemy
         for(int i = 0; i<2; i++)
         {
             GruntEnemy gruntEnemy = (GruntEnemy)GD.Load<PackedScene>("res://scene/enemy/GruntEnemy/GruntEnemy.tscn").Instantiate();
-            gruntEnemy.GlobalPosition = GlobalPosition - new Vector2(25*i +100, -40);
+            gruntEnemy.GlobalPosition = GlobalPosition + new Vector2(25*i +100, -30);
             GetParent().AddChild(gruntEnemy);
         }
     }
@@ -96,6 +120,8 @@ public partial class GiantEnemy : MeleeEnemy
     {
         if (_giantEnemy.Animation == "death")
         {
+            GameLevel Level = (GameLevel)GetParent().GetParent();
+            Level.AddMoney(50);
             Destroy();
         }
     }

@@ -25,6 +25,7 @@ TowerConfig="*res://singleton/TowerConfig.cs"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="res://assets/texture/mousecursor/MauscourserV1.png"
 
 [dotnet]
 
@@ -34,3 +35,4 @@ project/assembly_name="SWE-Tower-Defense"
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

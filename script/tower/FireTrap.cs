@@ -37,7 +37,9 @@ public partial class FireTrap : TrapDefence
 			foreach(Enemy enemy in _attackableEnemiess)
 			{
 				enemy.AddStatusEffect("burn");
-			}
+				//TrapDeleted += (Name) => enemy.DeleteTrap(Name); einmal verbrannt ist verbrannt, wenn nicht geht das aber mit komischer Fehlermeldung
+				//wenn du das willst das nachdem die Falle zerstoert wurde "infizierte" Gegner keinen Schaden mehr nehmen sollen orientiere dich an caltrop trap!
+            }
 		}
 
 		if(Health<=0)
@@ -53,7 +55,7 @@ public partial class FireTrap : TrapDefence
 		foreach (Node2D body in _AttackArea.GetOverlappingAreas())
 		{
 			Node2D parent = (Node2D)body.GetParent();
-			if (parent is Enemy)
+			if (parent is Enemy && body.Name == "HitboxArea")
 			{
 				EnemyList.Add(parent as Enemy);
 			}

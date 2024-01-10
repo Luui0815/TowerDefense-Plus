@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,11 @@ public abstract partial class GameLevel : Node2D
     private readonly MapLane[] _lanes = new MapLane[5];
     private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
+    private bool _levelStarted = false, _levelCompleted = false;
+
+    private Area2D _levelArea;
     private PauseMenu _pauseMenu;
     private CanvasLayer _menuLayer;
-    private bool _levelStarted = false;
 
     public bool LevelStarted
     {
@@ -69,6 +72,7 @@ public abstract partial class GameLevel : Node2D
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
 
+        _levelArea = GetNode<Area2D>("LevelArea");
         _pauseMenu = (PauseMenu)GD.Load<PackedScene>("res://scene/ui/PauseMenu.tscn").Instantiate();
         _menuLayer = GetNode<CanvasLayer>("CanvasLayer");
         _menuLayer.AddChild(_pauseMenu);
@@ -82,7 +86,7 @@ public abstract partial class GameLevel : Node2D
             lane.Position = position;
             lane.Name = "MapLane" + i;
             lane.EnemyCrossedLane += OnEnemyCrossedLane;
-            lane.AllEnemiesDefeated += OnAllEnemiesDefeated;
+            //lane.AllEnemiesDefeated += OnAllEnemiesDefeated;
 
             AddChild(lane);
             _lanes[i] = lane;
@@ -118,6 +122,12 @@ public abstract partial class GameLevel : Node2D
         AddChild(_spawner);
     }
 
+    public override void _Process(double delta)
+    {
+        if(!_levelCompleted)
+        GetEnemiesAcrossLanes();
+    }
+
     /// <summary>
     /// Fills the tower inventory with the specified towers
     /// </summary>
@@ -138,12 +148,27 @@ public abstract partial class GameLevel : Node2D
         EmitSignal(SignalName.MoneyChanged, _currentMoney);
     }
 
-    /*
-    public Array<Enemy> GetEnemiesAcrossLanes()
+
+    public void GetEnemiesAcrossLanes()
     {
-        //TODO: Add implementation
+        Array<Enemy> allEnemies = new();
+        foreach (Node2D body in _levelArea.GetOverlappingAreas())
+        {
+            if (body.Name == "HitboxArea")
+            {
+                Node2D parent = (Node2D)body.GetParent();
+                if (parent is Enemy)
+                {
+                    allEnemies.Add(parent as Enemy);
+                }
+            }
+        }
+        if(allEnemies.Count==0 && _spawner.Finished)
+        {
+            OnAllEnemiesDefeated();
+        }
     }
-    */
+
 
     /// <summary>
     /// Changes the money amount which the player has
@@ -184,18 +209,14 @@ public abstract partial class GameLevel : Node2D
         _menuLayer.AddChild(defeatScreen);
     }
 
-    private void OnAllEnemiesDefeated(int laneNr)
+    private void OnAllEnemiesDefeated()
     {
-        if (_spawner.Finished)
-        {
-            _completedLanes.Add(laneNr);
-            if (_completedLanes.Count == 5)
-            {
-                GetTree().Paused = true;
-                VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>("res://scene/ui/VictoryScreen.tscn").Instantiate();
-                _menuLayer.AddChild(victoryScreen);
-            }
-        }
+        GetTree().Paused = true;
+        VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>("res://scene/ui/VictoryScreen.tscn").Instantiate();
+        _menuLayer.AddChild(victoryScreen);
+        
+        _levelCompleted = true;
+        //_spawner.StartEndlessTimer(5);
     }
 
     private FieldType[] GetFieldTypeRow(int index)

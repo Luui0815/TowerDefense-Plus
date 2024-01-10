@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://dm4pevxatumie"]
+
+[ext_resource type="Script" path="res://script/tower/caltrop_trap.cs" id="1_257yf"]
+[ext_resource type="Texture2D" uid="uid://ch7erbu44087" path="res://assets/texture/tower/animation/caltrop_trap/TrapCloseing.png" id="2_6ddt6"]
+[ext_resource type="Texture2D" uid="uid://gf5wxerv81mp" path="res://assets/texture/tower/animation/caltrop_trap/TrapOpen.png" id="2_ditrf"]
+[ext_resource type="Texture2D" uid="uid://bk1uwxjy7pgnp" path="res://assets/texture/tower/animation/caltrop_trap/SpriteSheetTrap.png" id="4_ocy58"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3os0"]
+atlas = ExtResource("4_ocy58")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4n7s"]
+atlas = ExtResource("4_ocy58")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5fq4h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6ddt6")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ditrf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6ddt6")
+}],
+"loop": true,
+"name": &"closing",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3os0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4n7s")
+}],
+"loop": true,
+"name": &"death",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ditrf")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6ddt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ditrf")
+}],
+"loop": true,
+"name": &"opening",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rhau"]
+size = Vector2(8, 41)
+
+[node name="caltrop_trap" type="Node2D"]
+script = ExtResource("1_257yf")
+metadata/_edit_horizontal_guides_ = [125.0]
+metadata/_edit_vertical_guides_ = [100.0]
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+z_index = 2
+position = Vector2(50, 77)
+scale = Vector2(1.46875, 1.60938)
+sprite_frames = SubResource("SpriteFrames_5fq4h")
+animation = &"death"
+frame_progress = 0.29665
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="AttackBox" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(28, 62)
+shape = SubResource("RectangleShape2D_3rhau")
+
+[node name="PauseTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]

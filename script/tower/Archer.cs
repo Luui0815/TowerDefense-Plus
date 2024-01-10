@@ -1,16 +1,17 @@
 using Godot;
-using System;
+using TowerDefense;
 
 public partial class Archer : RangeDefender
 {
     private Enemy _targetEnemy;
+    private Mutex m = new Mutex();
     public Archer()
     {
         //TODO: Change values and add action animation
         _delay = 2;
         _animationDelay = 1;
         _actionAnimation = "idle";
-        Health = 5;
+        Health = 6;
         _damage = 2;
         _ArrowVelocity = 5;
     }
@@ -77,7 +78,7 @@ public partial class Archer : RangeDefender
             if (CanAttack())
             {
                 _animatedSprite.Play("attack");
-                SpawnArrow();
+                //SpawnArrow();
                 _AttackTimer.Start();
             }
             else if (_targetEnemy == null)
@@ -105,22 +106,39 @@ public partial class Archer : RangeDefender
         {
             Destroy();
         }
+        if (_animatedSprite.Animation == "attack")
+        {
+            SpawnArrow();
+        }
     }
 
     private void SpawnArrow()
     {
-        arrowProjectile arrow = (arrowProjectile)GD.Load<PackedScene>("res://scene/tower/arrowProjectile.tscn").Instantiate();
-        arrow.Init(_targetEnemy.Position, _targetEnemy, _ArrowVelocity);
-        arrow.hitTarget += ArrowHit;
-        //arrow.Position = new Vector2(Position.X+100,Position.Y+40);
-        arrow.TopLevel = true;
-        arrow.Position = new Vector2(GlobalPosition.X+80,GlobalPosition.Y+55);
-        AddChild(arrow);
+        TowerProjectile arrow = (TowerProjectile)GD.Load<PackedScene>("res://scene/tower/TowerProjectile.tscn").Instantiate();
+        if (_targetEnemy != null && _targetEnemy.Health > 0)
+        {
+            arrow.Init(_targetEnemy, _ArrowVelocity, ProjectileType.Arrow);
+            arrow.TargetHit += ArrowHit;
+            arrow.Position = new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 55);
+            AddChild(arrow);
+        }
     }
 
     private void ArrowHit()
     {
-        Attack(_targetEnemy, _damage);
-        _targetEnemy.AddStatusEffect("burn");//eigentlich erst bei Upgrade
+        if (_targetEnemy != null)
+        {
+            Attack(_targetEnemy, _damage);
+            _targetEnemy.AddStatusEffect("burn");//eigentlich erst bei Upgrade
+        }
+    }
+
+    private void _on_attack_area_area_exited(Area2D area)
+    {
+        if (area.Name == "ArrowHitboxArea")
+        {
+            TowerProjectile projectile = (TowerProjectile)area.GetParent();
+            projectile.ShouldFall = true;
+        }
     }
 }

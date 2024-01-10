@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpxgq32kry88s"]
+[gd_scene load_steps=5 format=3 uid="uid://cpxgq32kry88s"]
 
 [ext_resource type="Script" path="res://script/map/level/LevelOne.cs" id="1_psca5"]
 [ext_resource type="PackedScene" uid="uid://cph6w2yafda7f" path="res://scene/map/LevelControlBar.tscn" id="2_i75gx"]
+[ext_resource type="PackedScene" uid="uid://b8fr6r6g0idrn" path="res://scene/ui/Hammer.tscn" id="3_dtkpb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwy85"]
+size = Vector2(1279, 716)
 
 [node name="LevelOne" type="Node2D"]
 process_mode = 3
@@ -9,7 +13,25 @@ script = ExtResource("1_psca5")
 
 [node name="LevelControlBar" parent="." instance=ExtResource("2_i75gx")]
 process_mode = 1
-z_index = 2
+z_index = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Hammer" parent="." instance=ExtResource("3_dtkpb")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1009.0
+offset_top = 646.0
+offset_right = 1078.0
+offset_bottom = 718.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="LevelArea" type="Area2D" parent="."]
+
+[node name="LevelShape" type="CollisionShape2D" parent="LevelArea"]
+position = Vector2(639.5, 360)
+shape = SubResource("RectangleShape2D_bwy85")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

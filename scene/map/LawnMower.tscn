@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7kph6mhqv3kl"]
+
+[ext_resource type="Script" path="res://script/map/LawnMower.cs" id="1_vkx5i"]
+[ext_resource type="Texture2D" uid="uid://c8br26mgwg1dw" path="res://assets/texture/map/Rammbock.png" id="2_h55y3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ceojy"]
+atlas = ExtResource("2_h55y3")
+region = Rect2(0, 0, 250, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyk22"]
+atlas = ExtResource("2_h55y3")
+region = Rect2(250, 0, 250, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d14ni"]
+atlas = ExtResource("2_h55y3")
+region = Rect2(500, 0, 250, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnur5"]
+atlas = ExtResource("2_h55y3")
+region = Rect2(750, 0, 250, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f00px"]
+atlas = ExtResource("2_h55y3")
+region = Rect2(0, 0, 250, 86)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0w7y3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ceojy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyk22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d14ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnur5")
+}],
+"loop": true,
+"name": &"action",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f00px")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8w6sj"]
+radius = 55.0
+
+[node name="LawnMower" type="CharacterBody2D"]
+script = ExtResource("1_vkx5i")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(42, 55)
+scale = Vector2(0.59, 0.860465)
+sprite_frames = SubResource("SpriteFrames_0w7y3")
+animation = &"action"
+frame_progress = 0.563152
+
+[node name="HitboxArea" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
+position = Vector2(55, 55)
+shape = SubResource("CircleShape2D_8w6sj")

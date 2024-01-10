@@ -14,6 +14,8 @@ public partial class PyroEnemy : RangedEnemy
         _delay = 2;
         _animationDelay = 1;
         _actionAnimation = "idle";
+
+        EnemyName = "PyroEnemy";
         Health = 6;
         WalkSpeed = 0.4f;
         _arrowVelocity = 5;
@@ -78,6 +80,10 @@ public partial class PyroEnemy : RangedEnemy
     {
         if (!EnemyDefeated)
         {
+            //if(IsFreezed())
+            //{
+            //    getStatuseffectDamage();
+            //}
             if (CanAttack())
             {
                 _pyroEnemy.Play("attacking");
@@ -86,6 +92,10 @@ public partial class PyroEnemy : RangedEnemy
             }
             else if (_targetDefender == null)
             {
+                if (!IsFreezed())
+                    _pyroEnemy.Play("walking");
+                else
+                    _pyroEnemy.Play("idle");
                 _pyroEnemy.Play("walking");
                 MoveEnemy(WalkSpeed);
             }
@@ -109,6 +119,8 @@ public partial class PyroEnemy : RangedEnemy
     {
         if (_pyroEnemy.Animation == "death")
         {
+            GameLevel Level = (GameLevel)GetParent().GetParent();
+            Level.AddMoney(30);
             Destroy();
         }
     }
@@ -116,8 +128,8 @@ public partial class PyroEnemy : RangedEnemy
     private void SpawnFireball()
     {
         FireballProjectile fireball = (FireballProjectile)GD.Load<PackedScene>("res://scene/enemy/PyroEnemy/FireballProjectile.tscn").Instantiate();
-        fireball.Init(_targetDefender.Position, _targetDefender, _arrowVelocity);
-        fireball.hitTarget += FireballHit;
+        fireball.Init(_targetDefender, _arrowVelocity);
+        fireball.TargetHit += FireballHit;
         fireball.TopLevel = true;
         fireball.Position = new Vector2(GlobalPosition.X-20, GlobalPosition.Y+10);
         AddChild(fireball);
@@ -125,6 +137,13 @@ public partial class PyroEnemy : RangedEnemy
 
     private void FireballHit()
     {
-        Attack(_targetDefender, 2);
+        if (_targetDefender is Wall)
+        {
+            Attack(_targetDefender, 5);
+        }
+        else
+        {
+            Attack(_targetDefender, 2);
+        }
     }
 }

@@ -47,7 +47,7 @@ public abstract partial class MeleeEnemy : Enemy
     public virtual void Attack(Defender closestTarget, int damage)
 	{
 		closestTarget.Health -= damage;
-        //GD.Print("Angriff auf: " + closestTarget.Name + " HP: " + closestTarget.Health);
+        GD.Print(closestTarget.Name + " HP: " + closestTarget.Health);
 	}
 
 

@@ -6,7 +6,7 @@ public partial class LevelOne : GameLevel
 	public LevelOne()
 	{
 		//TODO: Change start money
-		_currentMoney = 1000;
+		_currentMoney = 500;
 	}
 
 	protected override int LevelNumber

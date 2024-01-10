@@ -20,5 +20,13 @@ public partial class MainMenu : Node
 	{
 		GetTree().ChangeSceneToFile("res://scene/ui/LevelSelectionMenu.tscn");
 	}
+
+    public override void _Ready()
+    {
+        //Mousecursor anpassen
+        Resource arrow = ResourceLoader.Load("res://assets/texture/mousecursor/MauscourserV1.png");
+        Input.SetCustomMouseCursor(arrow, Input.CursorShape.Drag);
+        Input.SetCustomMouseCursor(arrow, Input.CursorShape.CanDrop);
+    }
 }
 
