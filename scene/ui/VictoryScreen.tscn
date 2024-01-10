@@ -376,7 +376,7 @@ offset_bottom = 97.0
 grow_horizontal = 2
 theme = SubResource("Theme_b6n5c")
 theme_override_colors/font_color = Color(1, 1, 0.262745, 1)
-text = "Victory
+text = "Sieg
 "
 horizontal_alignment = 1
 
@@ -400,7 +400,7 @@ size_flags_stretch_ratio = 0.0
 theme = SubResource("Theme_fkd05")
 theme_override_styles/normal = SubResource("StyleBoxTexture_24qt8")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_enx2s")
-text = "Back to Menu"
+text = "Hauptmenü"
 
 [node name="EndlessButton" type="Button" parent="Panel"]
 custom_minimum_size = Vector2(200, 50)
@@ -422,7 +422,7 @@ size_flags_stretch_ratio = 0.0
 theme = SubResource("Theme_fkd05")
 theme_override_styles/normal = SubResource("StyleBoxTexture_24qt8")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_enx2s")
-text = "Endless Mode"
+text = "Endlos-Modus"
 
 [node name="TimerDeathSkeleton" type="Timer" parent="Panel"]
 one_shot = true

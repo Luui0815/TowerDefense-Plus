@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://6chkmcjsws5f"]
+[gd_scene load_steps=25 format=3 uid="uid://dm85e7ymbwabc"]
 
 [ext_resource type="Script" path="res://script/ui/DefeatScreen.cs" id="1_s3abl"]
 [ext_resource type="Texture2D" uid="uid://bslopsooqcvvq" path="res://assets/sprites/GoodGuys/Knight/KnightIdle.png" id="2_kpqsk"]
@@ -318,7 +318,7 @@ offset_bottom = 97.0
 grow_horizontal = 2
 theme = SubResource("Theme_0e8m8")
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = "Defeat
+text = "Niederlage
 "
 horizontal_alignment = 1
 
@@ -342,7 +342,7 @@ size_flags_stretch_ratio = 0.0
 theme = SubResource("Theme_o8j0w")
 theme_override_styles/normal = SubResource("StyleBoxTexture_huhop")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_y5s3v")
-text = "Back to Menu"
+text = "Hauptmenü"
 
 [node name="VictoriousWizard" type="Sprite2D" parent="Panel"]
 visibility_layer = 4
