@@ -28,6 +28,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="LevelArea" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="LevelShape" type="CollisionShape2D" parent="LevelArea"]
 position = Vector2(639.5, 360)
