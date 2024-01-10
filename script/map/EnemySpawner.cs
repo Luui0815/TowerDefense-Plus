@@ -19,7 +19,7 @@ public partial class EnemySpawner : Node
         switch (levelNr)
         {
             case 1:
-                _spawnTimes = new (float, int)[] { (10, 2), (10, 1), (5, 2), (20, 2), (1, 1), (1, 1), /*(1, 1), (1, 2), (1, 2), (1, 1), (1, 1), (1,1), (10, 1), (1, 3), (20, 3), (1, 2), (1, 2), (1, 2), (2, 1), (1, 1), (1, 1),(1, 4),(20, 4), (1, 2), (1, 2), (1, 2), (1, 2),(1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 3), (1, 3), (1, 3), (1, 4), (25, 4), (5,5), (4, 5),*/ (0,0)};
+                _spawnTimes = new (float, int)[] { (30, 1), (10, 1), (5, 2), (20, 2), (1, 1), (1, 1), /*(1, 1), (1, 2), (1, 2), (1, 1), (1, 1), (1,1), (10, 1), (1, 3), (20, 3), (1, 2), (1, 2), (1, 2), (2, 1), (1, 1), (1, 1),(1, 4),(20, 4), (1, 2), (1, 2), (1, 2), (1, 2),(1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 3), (1, 3), (1, 3), (1, 4), (25, 4), (5,5), (4, 5),*/ (0,0)};
                 break;
             default: break;
         }
@@ -29,7 +29,7 @@ public partial class EnemySpawner : Node
             Name = "SpawnTimer"
         };
         AddChild(_spawnTimer);
-        _spawnTimer.WaitTime = 2.0f;
+        _spawnTimer.WaitTime = 20.0f;
         _spawnTimer.OneShot = false;
         _spawnTimer.Timeout += OnSpawnTimerTimeout;
     }

@@ -720,7 +720,7 @@ script = ExtResource("1_pth77")
 
 [node name="GiantEnemy" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(-10, -50)
+position = Vector2(-105, -50)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_c20pv")
 animation = &"attacking"
@@ -730,7 +730,7 @@ frame_progress = 0.722033
 [node name="AttackRangeArea" type="Area2D" parent="."]
 
 [node name="AttackRange" type="CollisionShape2D" parent="AttackRangeArea"]
-position = Vector2(65.5, 46.6666)
+position = Vector2(-40, 46.667)
 shape = SubResource("RectangleShape2D_4o7aj")
 
 [node name="AttackTimer" type="Timer" parent="."]
@@ -741,11 +741,10 @@ one_shot = true
 position = Vector2(2.22222, -67.7778)
 
 [node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
-position = Vector2(78.7499, 80.2778)
+position = Vector2(0, 80.278)
 shape = SubResource("RectangleShape2D_id8nx")
 
 [node name="burn" type="AnimatedSprite2D" parent="."]
-position = Vector2(98.8889, -4.44444)
 scale = Vector2(7.02778, 5.10684)
 sprite_frames = SubResource("SpriteFrames_81ofp")
 animation = &"burn"

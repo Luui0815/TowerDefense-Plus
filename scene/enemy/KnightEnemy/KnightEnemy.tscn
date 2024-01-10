@@ -804,7 +804,7 @@ z_index = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_lwpmj")
 animation = &"idle"
-frame_progress = 0.798284
+frame_progress = 0.115085
 
 [node name="AttackRangeArea" type="Area2D" parent="."]
 position = Vector2(-20, 8)
@@ -831,4 +831,4 @@ position = Vector2(0, -35)
 scale = Vector2(4.77777, 3.74959)
 sprite_frames = SubResource("SpriteFrames_m0yxo")
 animation = &"burn"
-frame_progress = 0.764877
+frame_progress = 0.0563149
