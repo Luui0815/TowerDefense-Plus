@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using TowerDefense;
 
 public partial class Spearman : MeleeDefender //so halber Nahkampf
 {
@@ -142,11 +142,12 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
 
     private void SpawnSpear()
     {
-        arrow_spearProjectile spear = (arrow_spearProjectile)GD.Load<PackedScene>("res://scene/tower/arrow_spearProjectile.tscn").Instantiate();
+        TowerProjectile spear = (TowerProjectile)GD.Load<PackedScene>("res://scene/tower/TowerProjectile.tscn").Instantiate();
         if (_targetEnemy != null && _targetEnemy.Health > 0)
         {
-            spear.Init(_targetEnemy.Position, _targetEnemy, _SpearVelocity, "spear", new Vector2(GlobalPosition.X - 10, GlobalPosition.Y + 15));
-            spear.hitTarget += ArrowHit;
+            spear.Init(_targetEnemy, _SpearVelocity, ProjectileType.Spear);
+            spear.TargetHit += ArrowHit;
+            spear.Position = new Vector2(GlobalPosition.X - 10, GlobalPosition.Y + 20);
             AddChild(spear);
         }
     }
@@ -161,8 +162,8 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
     {
         if (area.Name == "ArrowHitboxArea" || area.Name == "SpearHitboxArea")
         {
-            arrow_spearProjectile projectile = (arrow_spearProjectile)area.GetParent();
-            projectile.falling = true;
+            TowerProjectile projectile = (TowerProjectile)area.GetParent();
+            projectile.ShouldFall = true;
         }
     }
 }

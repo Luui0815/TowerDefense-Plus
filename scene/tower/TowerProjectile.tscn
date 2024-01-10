@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bu6hv8ed52s78"]
 
-[ext_resource type="Script" path="res://script/tower/arrow_spearProjectile.cs" id="1_njr3r"]
+[ext_resource type="Script" path="res://script/tower/TowerProjectile.cs" id="1_njr3r"]
 [ext_resource type="Texture2D" uid="uid://lihsq7jfg5sc" path="res://assets/texture/tower/animation/archer/Arrow.png" id="2_xmcvv"]
 [ext_resource type="Texture2D" uid="uid://cv3ih6rceoo5q" path="res://assets/texture/tower/animation/spearman/Spear move.png" id="3_esoib"]
 
@@ -38,7 +38,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_v7xu0")
 }],
 "loop": true,
-"name": &"arrow",
+"name": &"Arrow",
 "speed": 5.0
 }, {
 "frames": [{
@@ -55,7 +55,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_xmcs3")
 }],
 "loop": true,
-"name": &"spear",
+"name": &"Spear",
 "speed": 5.0
 }]
 
@@ -68,12 +68,13 @@ radius = 11.0
 height = 64.0
 
 [node name="Arrow_Spear" type="Node2D"]
+top_level = true
 script = ExtResource("1_njr3r")
 
-[node name="animatedSprite" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_u7v2y")
-animation = &"spear"
+animation = &"Spear"
 centered = false
 
 [node name="ArrowHitboxArea" type="Area2D" parent="."]
