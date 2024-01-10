@@ -12,6 +12,7 @@ namespace TowerDefense
 	public partial class TowerProjectile : Projectile
 	{
 		private ProjectileType _type;
+		private Defender _shooter;
 		private Vector2 _dropPosition;
 		private bool _shouldFall = false;
 
@@ -29,9 +30,18 @@ namespace TowerDefense
 			}
 		}
 
-		public void Init(Enemy target, float velocity, ProjectileType type)
+		public Defender Shooter
+		{
+			get 
+			{
+				return _shooter;
+			}
+		}
+
+		public void Init(Enemy target, float velocity, ProjectileType type, Defender shooter)
 		{
 			Init(target, velocity);
+			_shooter = shooter;
 			_type = type;
 		}
 

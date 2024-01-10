@@ -117,7 +117,7 @@ public partial class Archer : RangeDefender
         TowerProjectile arrow = (TowerProjectile)GD.Load<PackedScene>("res://scene/tower/TowerProjectile.tscn").Instantiate();
         if (_targetEnemy != null && _targetEnemy.Health > 0)
         {
-            arrow.Init(_targetEnemy, _ArrowVelocity, ProjectileType.Arrow);
+            arrow.Init(_targetEnemy, _ArrowVelocity, ProjectileType.Arrow, this);
             arrow.TargetHit += ArrowHit;
             arrow.Position = new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 55);
             AddChild(arrow);
@@ -138,7 +138,10 @@ public partial class Archer : RangeDefender
         if (area.Name == "ArrowHitboxArea")
         {
             TowerProjectile projectile = (TowerProjectile)area.GetParent();
-            projectile.ShouldFall = true;
+            if (projectile.Shooter == this)
+            {
+                projectile.ShouldFall = true;
+            }
         }
     }
 }
