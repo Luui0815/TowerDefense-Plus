@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5xrokqdfb8k3"]
+[gd_scene load_steps=3 format=3 uid="uid://dwp45knbjhjd0"]
 
 [ext_resource type="Script" path="res://script/ui/LevelSelectionMenu.cs" id="1_lphdg"]
 

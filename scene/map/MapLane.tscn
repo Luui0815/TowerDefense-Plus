@@ -7,6 +7,7 @@
 size = Vector2(80, 120)
 
 [node name="MapLane" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_24ey8")
 
 [node name="LawnMoverArea" type="Area2D" parent="."]

@@ -25,7 +25,10 @@ public partial class EnemySpawner : Node
             default: break;
         }
 
-        _spawnTimer = new Timer();
+        _spawnTimer = new Timer
+        {
+            Name = "SpawnTimer"
+        };
         AddChild(_spawnTimer);
         _spawnTimer.WaitTime = 20.0f;
         _spawnTimer.OneShot = false;

@@ -8,9 +8,11 @@
 size = Vector2(1279, 716)
 
 [node name="LevelOne" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_psca5")
 
 [node name="LevelControlBar" parent="." instance=ExtResource("2_i75gx")]
+process_mode = 1
 z_index = 4
 metadata/_edit_use_anchors_ = true
 
@@ -30,6 +32,9 @@ grow_vertical = 1
 [node name="LevelShape" type="CollisionShape2D" parent="LevelArea"]
 position = Vector2(639.5, 360)
 shape = SubResource("RectangleShape2D_bwy85")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [connection signal="PauseButtonPressed" from="LevelControlBar" to="." method="OnPauseLevelButtonPressed"]
 [connection signal="StartButtonPressed" from="LevelControlBar" to="." method="OnStartLevelButtonPressed"]

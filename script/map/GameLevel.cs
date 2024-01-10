@@ -18,6 +18,8 @@ public abstract partial class GameLevel : Node2D
     private bool _levelStarted = false, _levelCompleted = false;
 
     private Area2D _levelArea;
+    private PauseMenu _pauseMenu;
+    private CanvasLayer _menuLayer;
 
     public bool LevelStarted
     {
@@ -71,6 +73,9 @@ public abstract partial class GameLevel : Node2D
         _levelControlBar.DisplayMoney(CurrentMoney);
 
         _levelArea = GetNode<Area2D>("LevelArea");
+        _pauseMenu = (PauseMenu)GD.Load<PackedScene>("res://scene/ui/PauseMenu.tscn").Instantiate();
+        _menuLayer = GetNode<CanvasLayer>("CanvasLayer");
+        _menuLayer.AddChild(_pauseMenu);
 
         Vector2 position = Vector2.Zero;
         PackedScene laneScene = GD.Load<PackedScene>("res://scene/map/MapLane.tscn");
@@ -110,7 +115,10 @@ public abstract partial class GameLevel : Node2D
         FillTowerContainer(strings);
         */
 
-        _spawner = new(1);
+        _spawner = new(1){
+            Name = "EnemySpawner",
+            ProcessMode = ProcessModeEnum.Pausable
+        };
         AddChild(_spawner);
     }
 
@@ -191,29 +199,24 @@ public abstract partial class GameLevel : Node2D
     protected void OnPauseLevelButtonPressed()
     {
         GetTree().Paused = true;
-        //TODO: Open pause screen
+        _pauseMenu.Show();
     }
 
     private void OnEnemyCrossedLane(int laneNr)
     {
-        //TODO: Show defeat screen
         GetTree().Paused = true;
-        GD.Print("VERLOREN");
+        DefeatScreen defeatScreen = (DefeatScreen)GD.Load<PackedScene>("res://scene/ui/DefeatScreen.tscn").Instantiate();
+        _menuLayer.AddChild(defeatScreen);
     }
 
     private void OnAllEnemiesDefeated()
     {
-        GD.Print("GEWONNEN");
+        GetTree().Paused = true;
+        VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>("res://scene/ui/VictoryScreen.tscn").Instantiate();
+        _menuLayer.AddChild(victoryScreen);
+        
         _levelCompleted = true;
-        //if (_spawner.Finished)
-        //{
-        //    bool alreadyCompleted = _completedLanes.Add(laneNr);
-        //    if (!alreadyCompleted && _completedLanes.Count == 5)
-        //    {
-        //        //TODO: Show victory screen
-        //    }
-        //}
-        _spawner.StartEndlessTimer(5);
+        //_spawner.StartEndlessTimer(5);
     }
 
     private FieldType[] GetFieldTypeRow(int index)
