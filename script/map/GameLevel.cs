@@ -125,7 +125,9 @@ public abstract partial class GameLevel : Node2D
     public override void _Process(double delta)
     {
         if(!_levelCompleted)
-        GetEnemiesAcrossLanes();
+        {
+            GetEnemiesAcrossLanes();
+        }
     }
 
     /// <summary>
@@ -189,6 +191,11 @@ public abstract partial class GameLevel : Node2D
         ChangeMoney(moneyAmount + _currentMoney);
     }
 
+    public void StartEndlessMode()
+    {
+        _spawner.StartEndlessMode(5);
+    }
+
     protected void OnStartLevelButtonPressed(Button button)
     {
         button.QueueFree();
@@ -216,7 +223,6 @@ public abstract partial class GameLevel : Node2D
         _menuLayer.AddChild(victoryScreen);
         
         _levelCompleted = true;
-        //_spawner.StartEndlessTimer(5);
     }
 
     private FieldType[] GetFieldTypeRow(int index)

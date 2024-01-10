@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bun2c41yhaett"]
+[gd_scene load_steps=6 format=3 uid="uid://tjij4c0kv4o6"]
 
 [ext_resource type="Script" path="res://script/ui/MainMenu.cs" id="1_50fbc"]
 [ext_resource type="Texture2D" uid="uid://11c8mm6e5lsy" path="res://assets/background/PixleCastle.png" id="1_lhq8s"]
@@ -67,7 +67,7 @@ theme_override_constants/shadow_offset_y = 5
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("3_2mpoe")
 theme_override_font_sizes/font_size = 35
-text = "SELECT LEVEL"
+text = "LEVLELAUSWAHL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -94,7 +94,7 @@ theme_override_constants/shadow_offset_y = 5
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("3_2mpoe")
 theme_override_font_sizes/font_size = 35
-text = "SETTINGS"
+text = "EINSTELLUNGEN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -121,7 +121,7 @@ theme_override_constants/shadow_offset_y = 5
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("3_2mpoe")
 theme_override_font_sizes/font_size = 35
-text = "ABOUT THIS GAME"
+text = "ÜBER DIESES SPIEL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -153,7 +153,7 @@ theme_override_constants/shadow_offset_y = 5
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("3_2mpoe")
 theme_override_font_sizes/font_size = 35
-text = "CLOSE"
+text = "BEENDEN"
 horizontal_alignment = 1
 vertical_alignment = 1
 

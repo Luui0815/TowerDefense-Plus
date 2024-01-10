@@ -114,8 +114,7 @@ public partial class SoldierEnemy : MeleeEnemy
         ImmuneToDamage = true;
         Health = 10;
         _soldierEnemy.Play("regenerate");
-        _hitboxArea.CollisionLayer = 0;
-        _hitboxArea.CollisionMask = 0;
+        _hitboxArea.CollisionLayer = 0b10;
         GD.Print("regeneration started, HP: " + Health);
     }
 
@@ -127,14 +126,13 @@ public partial class SoldierEnemy : MeleeEnemy
         WalkSpeed = 1f;
 
         _hitboxArea.CollisionLayer = 1;
-        _hitboxArea.CollisionMask = 1;
     }
 
     private void OnEnemyDefeated()
     {
         WalkSpeed = 0;
         EnemyDefeated = true;
-        _hitboxArea.QueueFree();
+        _hitboxArea.CollisionLayer = 0b10;
         _soldierEnemy.Play("death");
     }
 

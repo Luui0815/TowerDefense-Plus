@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ballro401mjon"]
+[gd_scene load_steps=26 format=3 uid="uid://dgkvsv4v50nvi"]
 
 [ext_resource type="Script" path="res://script/ui/VictoryScreen.cs" id="1_e7tea"]
 [ext_resource type="Texture2D" uid="uid://bm358q1cxnq80" path="res://assets/sprites/GoodGuys/Archer/ArcherDeath.png" id="2_6aidy"]
@@ -332,7 +332,7 @@ size_flags_vertical = 4
 
 [node name="VictoriousKnight" type="Sprite2D" parent="Panel"]
 z_index = 1
-position = Vector2(190, 271)
+position = Vector2(190, 260)
 scale = Vector2(4, 4)
 texture = ExtResource("2_6aidy")
 hframes = 15
@@ -349,7 +349,7 @@ one_shot = true
 
 [node name="VictoriousArcher" type="Sprite2D" parent="Panel"]
 visibility_layer = 2
-position = Vector2(128, 207)
+position = Vector2(128, 196)
 scale = Vector2(4, 4)
 texture = ExtResource("2_6aidy")
 hframes = 10
@@ -376,11 +376,11 @@ offset_bottom = 97.0
 grow_horizontal = 2
 theme = SubResource("Theme_b6n5c")
 theme_override_colors/font_color = Color(1, 1, 0.262745, 1)
-text = "Victory
+text = "Sieg
 "
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="MenuButton" type="Button" parent="Panel"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 1
 anchors_preset = 8
@@ -388,9 +388,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = 20.0
 offset_top = 135.0
-offset_right = 100.0
+offset_right = 220.0
 offset_bottom = 185.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -400,14 +400,36 @@ size_flags_stretch_ratio = 0.0
 theme = SubResource("Theme_fkd05")
 theme_override_styles/normal = SubResource("StyleBoxTexture_24qt8")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_enx2s")
-text = "Back to Menu"
+text = "Hauptmenü"
+
+[node name="EndlessButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = 135.0
+offset_right = -30.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme = SubResource("Theme_fkd05")
+theme_override_styles/normal = SubResource("StyleBoxTexture_24qt8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_enx2s")
+text = "Endlos-Modus"
 
 [node name="TimerDeathSkeleton" type="Timer" parent="Panel"]
 one_shot = true
 
 [node name="FallenWizard" type="Sprite2D" parent="Panel"]
 visibility_layer = 4
-position = Vector2(652, 171)
+position = Vector2(652, 160)
 scale = Vector2(3, 3)
 texture = ExtResource("8_q44w8")
 flip_h = true
@@ -423,7 +445,7 @@ libraries = {
 one_shot = true
 
 [node name="FallenSkeleton1" type="Sprite2D" parent="Panel"]
-position = Vector2(504, 205)
+position = Vector2(504, 194)
 scale = Vector2(4, 4)
 texture = ExtResource("10_aiahf")
 offset = Vector2(-5, -8)
@@ -438,7 +460,7 @@ libraries = {
 
 [node name="FallenSkeleton2" type="Sprite2D" parent="Panel"]
 visibility_layer = 2
-position = Vector2(550, 285)
+position = Vector2(550, 274)
 scale = Vector2(4, 4)
 texture = ExtResource("10_aiahf")
 offset = Vector2(-12, -8)
@@ -452,4 +474,5 @@ libraries = {
 "AnimationDefeatScreenSkeleton": ExtResource("11_o24h6")
 }
 
-[connection signal="pressed" from="Panel/Button" to="." method="OnMenuButtonPressed"]
+[connection signal="pressed" from="Panel/MenuButton" to="." method="OnMenuButtonPressed"]
+[connection signal="pressed" from="Panel/EndlessButton" to="." method="OnEndlessModeButtonPressed"]
