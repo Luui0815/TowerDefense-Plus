@@ -72,4 +72,15 @@ public partial class VictoryScreen : Node
         }
         GetTree().Paused = false;
     }
+
+    private void OnEndlessModeButtonPressed()
+    {
+        GetTree().Paused = false;
+        GameLevel gameLevel = GetNode<GameLevel>("/root/Level");
+        if (gameLevel != null)
+        {
+            gameLevel.StartEndlessMode();
+        }
+        QueueFree();
+    }
 }
