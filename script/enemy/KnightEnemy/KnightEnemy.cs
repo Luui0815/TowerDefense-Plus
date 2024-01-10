@@ -60,8 +60,8 @@ public partial class KnightEnemy : MeleeEnemy
 
 	private bool CanAttack()
 	{
-		Vector2 _BurnAnimationPositionWalking = new Vector2(139,68);
-		Vector2 _BurnAnimationPositionAttacking = new Vector2(165, 68);
+		Vector2 _BurnAnimationPositionWalking = new Vector2(-5,-35);
+		Vector2 _BurnAnimationPositionAttacking = new Vector2(15, -35);
 
 		if(IsFreezed())
 		{
