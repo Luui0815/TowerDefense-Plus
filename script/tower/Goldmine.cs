@@ -31,14 +31,16 @@ public partial class Goldmine : Defender
     {
         if (Health <= 0)
         {
-            Destroy();
+            OnDefenderDefeated();
         }
 
-        if(_moneyGenerated)
-            _animatedSprite.Play("action");
-        else
-            _animatedSprite.Play("idle");
-
+        if(Health > 0)
+        {
+            if (_moneyGenerated)
+                _animatedSprite.Play("action");
+            else
+                _animatedSprite.Play("idle");
+        }
     }
 
     public override void Action()
@@ -56,5 +58,7 @@ public partial class Goldmine : Defender
             _moneyGenerated = false;
             EmitSignal(SignalName.MoneyGenerated, _moneyPerCycle);
         }
+        if (_animatedSprite.Animation == "death")
+            Destroy();
     }
 }

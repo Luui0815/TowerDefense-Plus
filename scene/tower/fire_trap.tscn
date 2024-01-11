@@ -486,6 +486,11 @@ region = Rect2(126, 225, 14, 45)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k5o0w"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7derg")
@@ -868,7 +873,6 @@ position = Vector2(50, 60.25)
 scale = Vector2(5, 2.67778)
 sprite_frames = SubResource("SpriteFrames_k5o0w")
 animation = &"idle"
-frame_progress = 0.775962
 
 [node name="ActionTimer" type="Timer" parent="."]
 

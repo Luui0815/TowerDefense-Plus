@@ -19,14 +19,25 @@ public partial class Wall : Defender
     public override void _Ready()
 	{
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
-		_animatedSprite.Play(_actionAnimation);
+        _animatedSprite.AnimationLooped += OnAnimationLooped;
+        _animatedSprite.Play(_actionAnimation);
 	}
 
     public override void _Process(double delta)
 	{
         if(Health<=0)
         {
-            Destroy();
+            OnDefenderDefeated();
         }
+        else
+        {
+            _animatedSprite.Frame =5- Health / 10;
+        }
+    }
+
+    private void OnAnimationLooped()
+    {
+        if (_animatedSprite.Animation == "death")
+            Destroy();
     }
 }

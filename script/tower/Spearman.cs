@@ -123,12 +123,12 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
             return false;
     }
 
-    private void OnDefenderDefeated()
-    {
-        _DefenderDefeated = true;
-        _HitboxArea.QueueFree();
-        _animatedSprite.Play("death");
-    }
+    //private void OnDefenderDefeated()
+    //{
+    //    _DefenderDefeated = true;
+    //    _HitboxArea.QueueFree();
+    //    _animatedSprite.Play("death");
+    //}
 
     private void OnAnimationLooped()
     {

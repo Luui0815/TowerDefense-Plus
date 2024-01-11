@@ -84,12 +84,12 @@ public  partial class Knight : MeleeDefender
         }
 	}
 
-	private void OnDefenderDefeated()
-    {
-        _DefenderDefeated = true;
-        _HitboxArea.QueueFree();
-        _animatedSprite.Play("death");
-    }
+	//private void OnDefenderDefeated()
+ //   {
+ //       _DefenderDefeated = true;
+ //       _HitboxArea.QueueFree();
+ //       _animatedSprite.Play("death");
+ //   }
 
 	private void OnAnimationLooped()
     {

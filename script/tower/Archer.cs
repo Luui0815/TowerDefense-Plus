@@ -93,12 +93,12 @@ public partial class Archer : RangeDefender
         }
     }
 
-    private void OnDefenderDefeated()
-    {
-        _DefenderDefeated = true;
-        _HitboxArea.QueueFree();
-        _animatedSprite.Play("death");
-    }
+    //private void OnDefenderDefeated()
+    //{
+    //    _DefenderDefeated = true;
+    //    _HitboxArea.QueueFree();
+    //    _animatedSprite.Play("death");
+    //}
 
     private void OnAnimationLooped()
     {

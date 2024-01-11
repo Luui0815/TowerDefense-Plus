@@ -58,7 +58,7 @@ public partial class caltrop_trap : TrapDefence
         }
         if (Health <= 0)
         {
-            _animatedSprite.Play("death");
+            OnDefenderDefeated();
         }
 
         TryToAttack();

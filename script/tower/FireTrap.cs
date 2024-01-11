@@ -44,7 +44,7 @@ public partial class FireTrap : TrapDefence
 
 		if(Health<=0)
 		{
-			Destroy();//TODO: DeathAnimation
+			OnDefenderDefeated();
 		}
 	}
 

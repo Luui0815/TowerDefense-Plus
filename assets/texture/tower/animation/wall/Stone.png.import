@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2lclenek0q3x"
-path="res://.godot/imported/Idle1.png-bc416672fca8e9e2d072524cbaab1d6a.ctex"
+uid="uid://ckfell6x5o4mm"
+path="res://.godot/imported/Stone.png-95913095601c134765516650b0bba0c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/animation/goldmine/Idle1.png"
-dest_files=["res://.godot/imported/Idle1.png-bc416672fca8e9e2d072524cbaab1d6a.ctex"]
+source_file="res://assets/texture/tower/animation/wall/Stone.png"
+dest_files=["res://.godot/imported/Stone.png-95913095601c134765516650b0bba0c4.ctex"]
 
 [params]
 

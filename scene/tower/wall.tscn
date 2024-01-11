@@ -1,13 +1,85 @@
-[gd_scene load_steps=5 format=3 uid="uid://cst8r3t8rel3i"]
+[gd_scene load_steps=15 format=3 uid="uid://cst8r3t8rel3i"]
 
 [ext_resource type="Script" path="res://script/tower/Wall.cs" id="1_urkrg"]
-[ext_resource type="Texture2D" uid="uid://bsostkeklcsux" path="res://assets/texture/tower/animation/wall/Idle1.png" id="2_15b2a"]
+[ext_resource type="Texture2D" uid="uid://ckfell6x5o4mm" path="res://assets/texture/tower/animation/wall/Stone.png" id="2_6suuw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qg15"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(160, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bxwc"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(192, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb683"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(224, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlkwp"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(256, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vytba"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(0, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ppyg"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(32, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol8i3"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(64, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxuja"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(96, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_452j1"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(128, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ko3d1"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(160, 0, 32, 46)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d6id3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_15b2a")
+"texture": SubResource("AtlasTexture_1qg15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bxwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bb683")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlkwp")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vytba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ppyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol8i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxuja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_452j1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ko3d1")
 }],
 "loop": true,
 "name": &"idle",
@@ -24,7 +96,8 @@ script = ExtResource("1_urkrg")
 position = Vector2(13, 8)
 scale = Vector2(1.68, 2)
 sprite_frames = SubResource("SpriteFrames_d6id3")
-animation = &"idle"
+animation = &"death"
+frame_progress = 0.766648
 centered = false
 
 [node name="ActionTimer" type="Timer" parent="."]

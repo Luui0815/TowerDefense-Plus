@@ -32,4 +32,11 @@ public abstract partial class Defender : GameEntity
 		field.Tower = null;
 		QueueFree();
     }
+    protected void OnDefenderDefeated()
+    {
+        _DefenderDefeated = true;
+        if(_HitboxArea != null)
+            _HitboxArea.QueueFree();
+        _animatedSprite.Play("death");
+    }
 }
