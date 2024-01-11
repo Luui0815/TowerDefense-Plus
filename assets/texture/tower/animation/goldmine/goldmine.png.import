@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7uo34mn7kyap"
-path="res://.godot/imported/Goldmine.png-a42d082b0bd4387ad5084c6a3743eeac.ctex"
+path="res://.godot/imported/goldmine.png-434c754308b0e26049ba392841f62cc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/tower/animation/goldmine/Goldmine.png"
-dest_files=["res://.godot/imported/Goldmine.png-a42d082b0bd4387ad5084c6a3743eeac.ctex"]
+source_file="res://assets/texture/tower/animation/goldmine/goldmine.png"
+dest_files=["res://.godot/imported/goldmine.png-434c754308b0e26049ba392841f62cc8.ctex"]
 
 [params]
 
