@@ -2,10 +2,10 @@ using Godot;
 
 public partial class DefeatScreen : Node
 {
-    private const double knightWaitTime = 1.8;
-    private const double archerWaitTime = 2.6;
-    private const double skeletonOneWaitTime = 1.8;
-    private const double skeletonTwoWaitTime = 1.35;
+    private const double _knightWaitTime = 1.8;
+    private const double _archerWaitTime = 2.6;
+    private const double _skeletonOneWaitTime = 1.8;
+    private const double _skeletonTwoWaitTime = 1.35;
 
 
     public override void _Ready()
@@ -26,7 +26,7 @@ public partial class DefeatScreen : Node
         skeletonOnePlayer.Play("AnimationDefeatScreenSkeleton/Skeleton1Idle");
         skeletonTwoPlayer.Play("AnimationDefeatScreenSkeleton/Skeleton2Idle");
 
-        knightTimer.WaitTime = knightWaitTime;
+        knightTimer.WaitTime = _knightWaitTime;
         knightTimer.Timeout += () => 
         {
             knightPlayer.Stop(false);
@@ -34,7 +34,7 @@ public partial class DefeatScreen : Node
         };
         knightTimer.Start();
 
-        archerTimer.WaitTime = archerWaitTime;
+        archerTimer.WaitTime = _archerWaitTime;
         archerTimer.Timeout += () => 
         {
             archerPlayer.Stop(false);
@@ -42,7 +42,7 @@ public partial class DefeatScreen : Node
         };
         archerTimer.Start();
 
-        skeletonOneTimer.WaitTime = skeletonOneWaitTime;
+        skeletonOneTimer.WaitTime = _skeletonOneWaitTime;
         skeletonOneTimer.Timeout += () =>
         {
             skeletonOnePlayer.Stop(false);
@@ -51,7 +51,7 @@ public partial class DefeatScreen : Node
         };
         skeletonOneTimer.Start();
 
-        skeletonTwoTimer.WaitTime = skeletonTwoWaitTime;
+        skeletonTwoTimer.WaitTime = _skeletonTwoWaitTime;
         skeletonTwoTimer.Timeout += () =>
         {
             skeletonTwoPlayer.Stop(false);
