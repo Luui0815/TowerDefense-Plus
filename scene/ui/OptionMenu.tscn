@@ -1,13 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://i4bi2w7f7ydm"]
+[gd_scene load_steps=11 format=3 uid="uid://i4bi2w7f7ydm"]
 
 [ext_resource type="Script" path="res://script/ui/OptionMenu.cs" id="1_0wsbl"]
+[ext_resource type="Texture2D" uid="uid://ckmi1xgxis0gr" path="res://assets/background/PixelSchlossDungeoWand.jpg" id="2_44lsr"]
 [ext_resource type="AudioStream" uid="uid://l6lo2eckjm87" path="res://assets/sound/WindowsTestSound.wav" id="2_wval4"]
+[ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="3_sitrc"]
+[ext_resource type="Texture2D" uid="uid://boomb8pebxv8m" path="res://assets/button/Stonebutton1.png" id="5_bax7w"]
+[ext_resource type="Texture2D" uid="uid://ceh7jn57xacd1" path="res://assets/button/StonebuttonPressed.png" id="6_tlx24"]
+[ext_resource type="Texture2D" uid="uid://dag8q6p2lhgop" path="res://assets/texture/OptionsmenüAmbosHammer.png" id="7_egou1"]
+
+[sub_resource type="Theme" id="Theme_itbxh"]
+default_font = ExtResource("3_sitrc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dvpof"]
+texture = ExtResource("5_bax7w")
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rwetv"]
+texture = ExtResource("6_tlx24")
+expand_margin_left = 7.0
+expand_margin_right = 7.0
 
 [node name="OptionMenu" type="Window"]
 title = "SPIELEINSTELLUNGEN"
 initial_position = 1
 size = Vector2i(1000, 500)
 script = ExtResource("1_0wsbl")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_44lsr")
 
 [node name="VolumeScrollbar" type="HScrollBar" parent="."]
 anchors_preset = 4
@@ -26,6 +52,7 @@ offset_left = 60.0
 offset_top = 80.0
 offset_right = 167.0
 offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("3_sitrc")
 theme_override_font_sizes/font_size = 20
 text = "Lautstärke:"
 
@@ -34,6 +61,7 @@ offset_left = 500.0
 offset_top = 80.0
 offset_right = 540.0
 offset_bottom = 106.0
+theme_override_fonts/font = ExtResource("3_sitrc")
 theme_override_font_sizes/font_size = 20
 text = "100"
 
@@ -55,7 +83,15 @@ offset_right = 50.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = SubResource("Theme_itbxh")
+theme_override_styles/normal = SubResource("StyleBoxTexture_dvpof")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rwetv")
 text = "Schließen"
+
+[node name="OptionsmenüambosHammer" type="Sprite2D" parent="."]
+position = Vector2(800, 350)
+scale = Vector2(3, 3)
+texture = ExtResource("7_egou1")
 
 [connection signal="close_requested" from="." to="." method="OnCloseRequested"]
 [connection signal="value_changed" from="VolumeScrollbar" to="." method="OnVolumeScrollbarValueChanged"]
