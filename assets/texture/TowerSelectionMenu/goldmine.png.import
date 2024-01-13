@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjwlh6cmetnqb"
-path="res://.godot/imported/Normal1.png-729ce002e0ba558b6f345e4cce0c37d7.ctex"
+uid="uid://dasdnhgbc5luq"
+path="res://.godot/imported/goldmine.png-f753982c8b9e6761564e078ae5959e52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/field/Normal1.png"
-dest_files=["res://.godot/imported/Normal1.png-729ce002e0ba558b6f345e4cce0c37d7.ctex"]
+source_file="res://assets/texture/TowerSelectionMenu/goldmine.png"
+dest_files=["res://.godot/imported/goldmine.png-f753982c8b9e6761564e078ae5959e52.ctex"]
 
 [params]
 

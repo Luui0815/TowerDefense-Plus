@@ -6,7 +6,8 @@ namespace TowerDefense
 {
 	public enum FieldType
 	{
-		Normal
+		Normal,
+		Disabled
 	}
 
 	public partial class MapField : Control
@@ -17,6 +18,7 @@ namespace TowerDefense
 		private static Dictionary<FieldType, Texture2D> _fieldTextureCache = new();
 		private int _fieldNr;
 		private Sprite2D _sprite;
+		private FieldType _fieldType;
 
         public Defender Tower { get; set; }
 
@@ -24,6 +26,7 @@ namespace TowerDefense
 		{
 			_sprite = GetNode<Sprite2D>("Background");
 			_fieldNr = fieldNumber;
+			_fieldType = fieldType;
 
 			if (!_fieldTextureCache.ContainsKey(fieldType))
 			{
@@ -38,12 +41,15 @@ namespace TowerDefense
 
 		public override bool _CanDropData(Vector2 atPosition, Variant data)
 		{
-			//return Tower == null && (string)data != "";
-			string info=(string)data;
-
-			if (info == "hammer" && Tower != null) return true;
-			else if (info != "" && info != "hammer" && Tower == null) return true;
-			else return false;
+			if(_fieldType==FieldType.Normal)
+			{
+                string info = (string)data;
+                if (info == "hammer" && Tower != null) return true;
+                else if (info != "" && info != "hammer" && Tower == null) return true;
+                else return false;
+            }
+			else
+				return false;
 		}
 
 		public override void _DropData(Vector2 atPosition, Variant data)
