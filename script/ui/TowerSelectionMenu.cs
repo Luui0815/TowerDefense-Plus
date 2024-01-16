@@ -28,8 +28,8 @@ public partial class TowerSelectionMenu : Node
         //_availableTowersContainer = GetNode<GridContainer>("AvailableTowersContainer");
         _availableTowersContainer = GetNode<Panel>("AvailableTowersContainer");
         _selectedTowersContainer = GetNode<Panel>("SelectedTowersContainer");
-        _startLevelButton = GetNode<Button>("StartLevelButton");
-        _availableTowerNumberDisplay = GetNode <Label> ("DisplayAvailableNumber");
+        _startLevelButton = GetNode<Button>("Panel/StartLevelButton");
+        _availableTowerNumberDisplay = GetNode <Label> ("Panel/DisplayAvailableNumber");
 
         //TODO: Remove hardcoded value
         _levelNumber = "One";
