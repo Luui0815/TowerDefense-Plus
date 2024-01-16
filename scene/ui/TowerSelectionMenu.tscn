@@ -130,7 +130,6 @@ metadata/_edit_group_ = true
 
 [node name="AvailableTowersContainer" type="Panel" parent="."]
 show_behind_parent = true
-z_index = -1
 clip_contents = true
 anchors_preset = -1
 anchor_right = 0.83
@@ -149,9 +148,7 @@ clip_contents = true
 offset_left = 140.0
 offset_top = 144.0
 offset_right = 1140.0
-offset_bottom = 344.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_bottom = 378.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_b52sb")
 
 [connection signal="pressed" from="Panel/GoBackButton" to="." method="OnGoBackButtonPressed"]

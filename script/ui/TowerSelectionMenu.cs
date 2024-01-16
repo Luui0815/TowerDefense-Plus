@@ -124,7 +124,7 @@ public partial class TowerSelectionMenu : Node
         tower_selection_grid TowerSelection = (tower_selection_grid)GD.Load<PackedScene>("res://scene/ui/tower_selection_grid.tscn").Instantiate();
         TowerSelection.Init(_selectedTowers.Contains(tower), tower);
         //Abstand in X-Richtung zwischen den Tuermen berechnen
-        Gap.X = (panel.Size.X - (100 * ElementCount)) / (ElementCount + 1);
+        Gap.X = (panel.Size.X - 40 - (100 * ElementCount)) / (ElementCount + 1);
         //Abstnd oben und unten ermitteln
         Gap.Y = (panel.Size.Y - 125) / 2;
         TowerSelection.Position = _Position + Gap;

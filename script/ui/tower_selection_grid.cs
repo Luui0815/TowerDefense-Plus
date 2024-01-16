@@ -109,17 +109,17 @@ public partial class tower_selection_grid : Control
 			if(_animatedSprite.Animation=="spearman_attack_range" || _animatedSprite.Animation=="archer_attack")
 			{
 				KnightEnemy enemy= new();
-				enemy.Position = new(Position.X+300,Position.Y);
+				enemy.Position = new(Position.X+500,Position.Y);
                 TowerProjectile projectile = (TowerProjectile)GD.Load<PackedScene>("res://scene/tower/TowerProjectile.tscn").Instantiate();
 				if(_animatedSprite.Animation == "spearman_attack_range")
 				{
                     projectile.Init(enemy, 5f, ProjectileType.Spear, null);
-                    projectile.Position = new Vector2(GlobalPosition.X - 10, GlobalPosition.Y + 20);
+                    projectile.Position = new Vector2(GlobalPosition.X, GlobalPosition.Y + 20);
                 }
                 else
 				{
                     projectile.Init(enemy, 5f, ProjectileType.Arrow, null);
-                    projectile.Position = new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 55);
+                    projectile.Position = new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 35);
                 }
                 AddChild(projectile);
             }
@@ -147,10 +147,10 @@ public partial class tower_selection_grid : Control
 			}
 			else if (_TowerName == "goldmine" || _TowerName == "wall" || _TowerName == "caltrop_trap")
 			{
-                if (GD.Randi() % 1000 == 0)
-                    _animatedSprite.Play(_TowerName);
-                else
+                if (GD.Randi() % 20 == 0)
                     _animatedSprite.Play(_TowerName + "_animation");
+                else
+                    _animatedSprite.Play(_TowerName);
             }
 			else if(_TowerName == "fire_trap")
 			{ }
