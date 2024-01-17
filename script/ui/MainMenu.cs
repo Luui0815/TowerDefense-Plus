@@ -32,6 +32,7 @@ public partial class MainMenu : Node
         Resource arrow = ResourceLoader.Load("res://assets/texture/mousecursor/MauscourserV1.png");
         Input.SetCustomMouseCursor(arrow, Input.CursorShape.Drag);
         Input.SetCustomMouseCursor(arrow, Input.CursorShape.CanDrop);
+		Input.SetCustomMouseCursor(arrow, Input.CursorShape.PointingHand);
     }
 }
 

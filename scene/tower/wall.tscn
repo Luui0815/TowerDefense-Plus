@@ -3,43 +3,43 @@
 [ext_resource type="Script" path="res://script/tower/Wall.cs" id="1_urkrg"]
 [ext_resource type="Texture2D" uid="uid://ckfell6x5o4mm" path="res://assets/texture/tower/animation/wall/Stone.png" id="2_6suuw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vlkwp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfg8k"]
 atlas = ExtResource("2_6suuw")
-region = Rect2(256, 0, 32, 46)
+region = Rect2(128, 0, 32, 46)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bb683"]
-atlas = ExtResource("2_6suuw")
-region = Rect2(224, 0, 32, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8bxwc"]
-atlas = ExtResource("2_6suuw")
-region = Rect2(192, 0, 32, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1qg15"]
-atlas = ExtResource("2_6suuw")
-region = Rect2(160, 0, 32, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ko3d1"]
-atlas = ExtResource("2_6suuw")
-region = Rect2(160, 0, 32, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vytba"]
-atlas = ExtResource("2_6suuw")
-region = Rect2(0, 0, 32, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ppyg"]
-atlas = ExtResource("2_6suuw")
-region = Rect2(32, 0, 32, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ol8i3"]
-atlas = ExtResource("2_6suuw")
-region = Rect2(64, 0, 32, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uxuja"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3d3l"]
 atlas = ExtResource("2_6suuw")
 region = Rect2(96, 0, 32, 46)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_452j1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_62mhe"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(64, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqxvr"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(32, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ygo6"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(0, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnakq"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(256, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr8i8"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(224, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft2b0"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(192, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xupeb"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(160, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0jos"]
 atlas = ExtResource("2_6suuw")
 region = Rect2(128, 0, 32, 46)
 
@@ -47,16 +47,19 @@ region = Rect2(128, 0, 32, 46)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vlkwp")
+"texture": SubResource("AtlasTexture_pfg8k")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bb683")
+"texture": SubResource("AtlasTexture_a3d3l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8bxwc")
+"texture": SubResource("AtlasTexture_62mhe")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1qg15")
+"texture": SubResource("AtlasTexture_vqxvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ygo6")
 }],
 "loop": true,
 "name": &"death",
@@ -64,22 +67,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ko3d1")
+"texture": SubResource("AtlasTexture_rnakq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vytba")
+"texture": SubResource("AtlasTexture_kr8i8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0ppyg")
+"texture": SubResource("AtlasTexture_ft2b0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ol8i3")
+"texture": SubResource("AtlasTexture_xupeb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uxuja")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_452j1")
+"texture": SubResource("AtlasTexture_a0jos")
 }],
 "loop": true,
 "name": &"idle",
@@ -96,7 +96,8 @@ script = ExtResource("1_urkrg")
 position = Vector2(13, 8)
 scale = Vector2(1.68, 2)
 sprite_frames = SubResource("SpriteFrames_d6id3")
-animation = &"idle"
+animation = &"death"
+frame_progress = 0.648247
 centered = false
 
 [node name="ActionTimer" type="Timer" parent="."]
