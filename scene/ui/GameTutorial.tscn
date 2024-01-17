@@ -1,4 +1,11 @@
-[gd_scene format=3 uid="uid://bgw1vpm7d8op"]
+[gd_scene load_steps=4 format=3 uid="uid://bgw1vpm7d8op"]
+
+[ext_resource type="Script" path="res://script/ui/GameTutorial.cs" id="1_dv6a1"]
+[ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="2_dq8dm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c8tiu"]
+font = ExtResource("2_dq8dm")
+font_size = 32
 
 [node name="GameTutorial" type="Control"]
 layout_mode = 3
@@ -7,3 +14,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_dv6a1")
+
+[node name="GoBackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 589.0
+offset_right = 270.0
+offset_bottom = 650.0
+
+[node name="Label" type="Label" parent="GoBackButton"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 7.0
+offset_right = 140.0
+offset_bottom = 55.0
+text = "ZURÜCK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.058
+offset_bottom = 3.24
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "ÜBER DIESES SPIEL"
+label_settings = SubResource("LabelSettings_c8tiu")
+horizontal_alignment = 1
