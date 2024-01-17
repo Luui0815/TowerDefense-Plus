@@ -21,6 +21,11 @@ public partial class MainMenu : Node
 		GetTree().ChangeSceneToFile("res://scene/ui/LevelSelectionMenu.tscn");
 	}
 
+    public void OnAboutProjectButtonPressed()
+    {
+        GetTree().ChangeSceneToFile("res://scene/ui/GameTutorial.tscn");
+    }
+
     public override void _Ready()
     {
         //Mousecursor anpassen
