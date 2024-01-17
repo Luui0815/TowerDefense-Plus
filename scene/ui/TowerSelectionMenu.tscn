@@ -72,25 +72,25 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
-offset_left = 3.0
-offset_top = 48.0
-offset_right = -943.0
-offset_bottom = 54.24
-text = "Ausgewählte Türme"
+offset_left = 4.0
+offset_top = 81.0
+offset_right = -942.0
+offset_bottom = 87.24
+text = "Ausgewählte Türme:"
 label_settings = SubResource("LabelSettings_0jjxl")
 horizontal_alignment = 1
 
 [node name="DisplayAvailableNumber" type="Label" parent="Panel"]
+z_index = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
-offset_left = 835.0
-offset_top = 578.0
-offset_right = -111.0
-offset_bottom = 584.24
+offset_left = 866.0
+offset_top = 80.0
+offset_right = -28.0
+offset_bottom = 86.24
 label_settings = SubResource("LabelSettings_0jjxl")
-horizontal_alignment = 1
 
 [node name="GoBackButton" type="Button" parent="Panel"]
 layout_mode = 1
