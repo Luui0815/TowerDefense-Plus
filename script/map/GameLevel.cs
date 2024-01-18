@@ -56,7 +56,7 @@ public abstract partial class GameLevel : Node2D
         get;
     }
 
-    protected abstract string[] SpawnConfigs
+    protected abstract (int, EnemyType)[] SpawnConfig
     {
         get;
     }
@@ -100,7 +100,7 @@ public abstract partial class GameLevel : Node2D
             }
         }
 
-        _spawner = new(1){
+        _spawner = new(1, SpawnConfig){
             Name = "EnemySpawner",
             ProcessMode = ProcessModeEnum.Pausable
         };
