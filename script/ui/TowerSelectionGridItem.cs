@@ -18,13 +18,7 @@ public partial class TowerSelectionGridItem : Control
 			return _button;
 		}
     }
-	//public string Name
-	//{
-	//	get
-	//	{
-	//		return _TowerName;
-	//	}
-	//}
+	
     public void Init(bool Animation,string TowerName)
 	{
 		_animated = Animation;

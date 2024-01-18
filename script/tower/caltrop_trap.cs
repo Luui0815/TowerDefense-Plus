@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public partial class caltrop_trap : TrapDefence
 {
-    //private List<Enemy> _attackableEnemiess = new List<Enemy>();
-    //private List<Enemy> _attackedEnemiess = new List<Enemy>();
     private Timer _PauseTimer;
     private Enemy _EnemyInTrap;
     public caltrop_trap()
@@ -34,22 +32,6 @@ public partial class caltrop_trap : TrapDefence
 
     public override void _Process(double delta)
     {
-        
-        /*
-        if(_EnemyInTrap!=null && _EnemyInTrap.Health<=0)//Gegner in Falle gestorben
-        {
-            _EnemyInTrap = null;
-            _animatedSprite.Play("opening");
-            Health--;
-        }
-
-        if(_EnemyInTrap!= null && !_EnemyInTrap.IsFreezed())//Falle oeffnet sich wieder
-        {                                                   //ich weiss, das ist Mist, aber geht denke ich nicht anders
-            _EnemyInTrap = null;
-            _animatedSprite.Play("opening");
-            Health--;
-        }
-        */
         if(_EnemyInTrap!=null && (_EnemyInTrap.Health<=0 || !_EnemyInTrap.IsFreezed()))//evtl. geht das, wenn nicht oben wieder einklammern!
         {
             _EnemyInTrap = null;
@@ -63,24 +45,6 @@ public partial class caltrop_trap : TrapDefence
 
         TryToAttack();
     }
-    /*
-    private void _on_attack_area_area_entered(Area2D area)
-    {
-        if(area.GetParent() is Enemy)
-        {
-            Enemy enemy = (Enemy)area.GetParent();
-
-            if (area.Name == "HitboxArea" && _EnemyInTrap == null && enemy.EnemyName != "PyroEnemy" && _PauseTimer.IsStopped())//!_attackedEnemiess.Contains(enemy) &&
-            {
-                _EnemyInTrap = (Enemy)area.GetParent();
-                _EnemyInTrap.AddStatusEffect("caltrop");
-                _PauseTimer.Start();
-                //_attackedEnemiess.Add(_EnemyInTrap);
-                TrapDeleted += (Name) => _EnemyInTrap.DeleteTrap(Name);
-                _animatedSprite.Play("closing");
-            }
-        }
-    }*/
 
     private void TryToAttack()
     {
@@ -97,7 +61,6 @@ public partial class caltrop_trap : TrapDefence
                         _EnemyInTrap = (Enemy)area.GetParent();
                         _EnemyInTrap.AddStatusEffect("caltrop");
                         _PauseTimer.Start();
-                        //_attackedEnemiess.Add(_EnemyInTrap);
                         TrapDeleted += (Name) => _EnemyInTrap.DeleteTrap(Name);
                         _animatedSprite.Play("closing");
                         break;

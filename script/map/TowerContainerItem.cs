@@ -51,7 +51,7 @@ public partial class TowerContainerItem : Control
             ExpandMode = TextureRect.ExpandModeEnum.FitWidth,
             Texture = _iconTextureCache[_towerName]
         };
-        //previewNode.PivotOffset = new Vector2(50,50);TODO: MAuszeiger mittig vom Symbol
+        //TODO: MAuszeiger mittig vom Symbol
         return previewNode;
     }
 

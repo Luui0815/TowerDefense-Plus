@@ -1,6 +1,6 @@
-[gd_scene load_steps=167 format=3 uid="uid://bbo4keuvt1nbj"]
+[gd_scene load_steps=167 format=3 uid="uid://dbilayfjsvrem"]
 
-[ext_resource type="Script" path="res://script/ui/tower_selection_grid.cs" id="1_sbfux"]
+[ext_resource type="Script" path="res://script/ui/TowerSelectionGridItem.cs" id="1_sbfux"]
 [ext_resource type="Texture2D" uid="uid://ehyu253ilbn3" path="res://assets/texture/TowerSelectionMenu/archer.png" id="1_uicei"]
 [ext_resource type="Texture2D" uid="uid://de2bbpvn3nte5" path="res://assets/texture/TowerSelectionMenu/caltrop_trap.png" id="2_kk411"]
 [ext_resource type="Texture2D" uid="uid://dasdnhgbc5luq" path="res://assets/texture/TowerSelectionMenu/goldmine.png" id="3_ch3xu"]
@@ -1200,8 +1200,7 @@ offset_bottom = 136.0
 position = Vector2(50.7647, 57.0234)
 scale = Vector2(2.1498, 2.69302)
 sprite_frames = SubResource("SpriteFrames_ipf8p")
-animation = &"spearman_attack_range"
-frame_progress = 0.387191
+animation = &"knight_animation"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

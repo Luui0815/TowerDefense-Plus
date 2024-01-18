@@ -23,7 +23,6 @@ public partial class Goldmine : Defender
         base._Ready();
         _actionTimer.Start(_delay);
         _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
-        //_animatedSprite.Play(_actionAnimation);
         _animatedSprite.AnimationLooped += OnAnimationLooped;
     }
 
@@ -46,9 +45,6 @@ public partial class Goldmine : Defender
     public override void Action()
     {
         _moneyGenerated = true;
-        //wenn man hier die Anmiation abspielen wuerde, geht es nicht
-        //und das ganze in die alte Version aufzurufen dauert
-        //ich weiss auch nicht wie und wann und wo die Action Methode aufgerufen wird
     }
 
     private void OnAnimationLooped()

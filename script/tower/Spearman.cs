@@ -43,7 +43,6 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
             {
                 if (_AttackTimer.IsStopped())
                     _animatedSprite.Play("spear_attack");
-                //SpawnSpear();
                 _AttackTimer.Start();
             }
             else
@@ -51,11 +50,6 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
                 if (_AttackTimer.IsStopped())
                     _animatedSprite.Play("idle");
             }
-
-            //else if (_targetEnemy == null) oben war malso
-            //{
-            //    _animatedSprite.Play("idle");
-            //}
 
             if (Health <= 0)
             {
@@ -122,13 +116,6 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
         else
             return false;
     }
-
-    //private void OnDefenderDefeated()
-    //{
-    //    _DefenderDefeated = true;
-    //    _HitboxArea.QueueFree();
-    //    _animatedSprite.Play("death");
-    //}
 
     private void OnAnimationLooped()
     {

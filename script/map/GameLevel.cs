@@ -86,7 +86,6 @@ public abstract partial class GameLevel : Node2D
             lane.Position = position;
             lane.Name = "MapLane" + i;
             lane.EnemyCrossedLane += OnEnemyCrossedLane;
-            //lane.AllEnemiesDefeated += OnAllEnemiesDefeated;
 
             AddChild(lane);
             _lanes[i] = lane;
@@ -100,20 +99,6 @@ public abstract partial class GameLevel : Node2D
                 field.DefenderPlaced += (towerCost) => ChangeMoney(_currentMoney - towerCost);
             }
         }
-
-        //Für Testzwecke Kommentare entfernen
-        /* 
-        SortedSet<string> strings = new SortedSet<string>
-        {
-            "knight",
-            "spearman",
-            "goldmine",
-            "wall",
-            "archer",
-            "fire_trap"
-        };
-        FillTowerContainer(strings);
-        */
 
         _spawner = new(1){
             Name = "EnemySpawner",

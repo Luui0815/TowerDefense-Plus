@@ -78,7 +78,6 @@ public partial class Archer : RangeDefender
             if (CanAttack())
             {
                 _animatedSprite.Play("attack");
-                //SpawnArrow();
                 _AttackTimer.Start();
             }
             else if (_targetEnemy == null)
@@ -92,13 +91,6 @@ public partial class Archer : RangeDefender
             }
         }
     }
-
-    //private void OnDefenderDefeated()
-    //{
-    //    _DefenderDefeated = true;
-    //    _HitboxArea.QueueFree();
-    //    _animatedSprite.Play("death");
-    //}
 
     private void OnAnimationLooped()
     {

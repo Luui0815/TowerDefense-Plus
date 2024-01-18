@@ -22,9 +22,7 @@ public partial class FireTrap : TrapDefence
 	public override void _Ready()
 	{
 		_AttackArea = GetNode<Area2D>("AttackArea");
-		//_AttackTimer = GetNode<Timer>("AttackTimer");
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
-		//_AttackTimer.WaitTime = _delay; ;
 		_animatedSprite.Play(_actionAnimation);
 	}
 
@@ -37,8 +35,6 @@ public partial class FireTrap : TrapDefence
 			foreach(Enemy enemy in _attackableEnemiess)
 			{
 				enemy.AddStatusEffect("burn");
-				//TrapDeleted += (Name) => enemy.DeleteTrap(Name); einmal verbrannt ist verbrannt, wenn nicht geht das aber mit komischer Fehlermeldung
-				//wenn du das willst das nachdem die Falle zerstoert wurde "infizierte" Gegner keinen Schaden mehr nehmen sollen orientiere dich an caltrop trap!
             }
 		}
 

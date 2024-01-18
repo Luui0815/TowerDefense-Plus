@@ -5,7 +5,6 @@ using System.Linq;
 public partial class TowerSelectionMenu : Node
 {
     private PlayerData _playerData;
-    //private GridContainer _availableTowersContainer;
     private Panel _availableTowersContainer;
     private Panel _selectedTowersContainer;
     private Button _startLevelButton;
@@ -25,7 +24,6 @@ public partial class TowerSelectionMenu : Node
         _selectedTowers = new SortedSet<string>(new TowerComparer(towerConfig));
 
         _playerData = GetNode<PlayerData>("/root/PlayerData");
-        //_availableTowersContainer = GetNode<GridContainer>("AvailableTowersContainer");
         _availableTowersContainer = GetNode<Panel>("AvailableTowersContainer");
         _selectedTowersContainer = GetNode<Panel>("SelectedTowersContainer");
         _startLevelButton = GetNode<Button>("Panel/StartLevelButton");
@@ -37,7 +35,6 @@ public partial class TowerSelectionMenu : Node
         _availableTowerNumberDisplay.Text = "Noch 4 Türme auswählbar";
         _playerData.Load();
 
-        //CreateTowerButtons();
         CreateAvailableTowers();
     }
 
@@ -67,9 +64,6 @@ public partial class TowerSelectionMenu : Node
             //hier aufgerufen
             _selectedTowers.Add(clickedButton.Text);
             _selectedTowerCount++;
-            //Label towerLabel = new();
-            //towerLabel.Text = towerLabel.Name = clickedButton.Text;
-            //_selectedTowersContainer.AddChild(towerLabel);
             CreateSelectedTowers(clickedButton.Text);
         }
 
@@ -123,7 +117,7 @@ public partial class TowerSelectionMenu : Node
     private TowerSelectionGridItem CreateTowers(Panel panel,string tower, int ElementCount)
     {
         Vector2 Gap;
-        TowerSelectionGridItem TowerSelection = (TowerSelectionGridItem)GD.Load<PackedScene>("res://scene/ui/tower_selection_grid.tscn").Instantiate();
+        TowerSelectionGridItem TowerSelection = (TowerSelectionGridItem)GD.Load<PackedScene>("res://scene/ui/TowerSelectionGridItem.tscn").Instantiate();
         TowerSelection.Init(_selectedTowers.Contains(tower), tower);
         //Abstand in X-Richtung zwischen den Tuermen berechnen
         Gap.X = (panel.Size.X - 40 - (100 * ElementCount)) / (ElementCount + 1);
