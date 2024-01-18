@@ -167,4 +167,5 @@ horizontal_alignment = 1
 
 [connection signal="pressed" from="MenuMargCont/ButtonsVBoxCont/ButtonSelectLevel" to="." method="OnLevelSelectionButtonPressed"]
 [connection signal="pressed" from="MenuMargCont/ButtonsVBoxCont/ButtonOptions" to="." method="OnSettingsButtonPressed"]
+[connection signal="pressed" from="MenuMargCont/ButtonsVBoxCont/ButtonAboutProject" to="." method="OnAboutProjectButtonPressed"]
 [connection signal="pressed" from="MenuMargCont/ButtonsVBoxCont/ButtonExit" to="." method="OnExitButtonPressed"]
