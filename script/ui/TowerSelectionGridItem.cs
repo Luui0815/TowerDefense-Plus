@@ -107,8 +107,10 @@ public partial class TowerSelectionGridItem : Control
 		{
 			if(_animatedSprite.Animation=="spearman_attack_range" || _animatedSprite.Animation=="archer_attack")
 			{
-				KnightEnemy enemy= new();
-				enemy.Position = new(Position.X+500,Position.Y);
+                KnightEnemy enemy = new()
+                {
+                    Position = new(Position.X + 500, Position.Y)
+                };
                 TowerProjectile projectile = (TowerProjectile)GD.Load<PackedScene>("res://scene/tower/TowerProjectile.tscn").Instantiate();
 				if(_animatedSprite.Animation == "spearman_attack_range")
 				{
@@ -122,31 +124,34 @@ public partial class TowerSelectionGridItem : Control
                 }
                 AddChild(projectile);
             }
+			
+			Random random = new Random();
 
 			if(_towerName == "spearman")
 			{
-				switch(GD.Randi()%3)
+
+				switch(random.Next(3))
 				{
 					case 0:
-						{
-							_animatedSprite.Play("spearman_animation");
-							break;
-						}
-						case 1:
-						{
-							_animatedSprite.Play("spearman_attack_melee");
-							break;
-						}
-						case 2:
-						{
-                            _animatedSprite.Play("spearman_attack_range");
-                            break;
-                        }
+					{
+						_animatedSprite.Play("spearman_animation");
+						break;
+					}
+					case 1:
+					{
+						_animatedSprite.Play("spearman_attack_melee");
+						break;
+					}
+					case 2:
+					{
+						_animatedSprite.Play("spearman_attack_range");
+						break;
+					}
 				}
 			}
 			else if (_towerName == "goldmine" || _towerName == "wall" || _towerName == "caltrop_trap")
 			{
-                if (GD.Randi() % 20 == 0)
+                if (random.Next(20) == 0)
                     _animatedSprite.Play(_towerName + "_animation");
                 else
                     _animatedSprite.Play(_towerName);
@@ -155,7 +160,7 @@ public partial class TowerSelectionGridItem : Control
 			{ }
 			else
 			{
-				if (GD.Randi() % 2 == 0)
+				if (random.Next(2) == 0)
 					_animatedSprite.Play(_towerName + "_animation");
 				else
 					_animatedSprite.Play(_towerName + "_attack");
