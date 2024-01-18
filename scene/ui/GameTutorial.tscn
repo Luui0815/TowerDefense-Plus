@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://q56k3jimr6xw"]
+[gd_scene load_steps=5 format=3 uid="uid://q56k3jimr6xw"]
 
 [ext_resource type="Script" path="res://script/ui/GameTutorial.cs" id="1_erwf3"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="2_dq8dm"]
+[ext_resource type="Texture2D" uid="uid://8yd4cvn6ty1u" path="res://assets/background/PixelSchlossDungeoTextfeldHintergrund.png" id="3_q6ajt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u327s"]
 font = ExtResource("2_dq8dm")
@@ -21,26 +22,112 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
-offset_bottom = 3.24
+offset_left = -1.0
+offset_top = 33.0
+offset_right = -1.0
+offset_bottom = 36.24
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "SPIELANLEITUNG"
 label_settings = SubResource("LabelSettings_u327s")
 horizontal_alignment = 1
 
+[node name="InfoTextLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.058
+offset_left = 33.0
+offset_top = 97.0
+offset_right = -30.0
+offset_bottom = 329.24
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+label_settings = SubResource("LabelSettings_u327s")
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="BackToMainMenuButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 575.0
-offset_right = 202.0
-offset_bottom = 640.0
+offset_left = 70.0
+offset_top = 606.0
+offset_right = 315.0
+offset_bottom = 671.0
 
-[node name="Label" type="Label" parent="BackToMainMenuButton"]
-layout_mode = 0
-offset_right = 143.0
-offset_bottom = 73.0
-text = "ZURÜCK ZUM 
-HAUPTMENÜ"
+[node name="BackToMainMenuLabel" type="Label" parent="BackToMainMenuButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.058
+offset_left = 1.0
+offset_top = 7.0
+offset_right = -2.0
+offset_bottom = 45.23
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Zum Hauptmenü"
+label_settings = SubResource("LabelSettings_u327s")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ShowNextButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 958.0
+offset_top = 497.0
+offset_right = 1203.0
+offset_bottom = 562.0
+
+[node name="ShowNextLabel" type="Label" parent="ShowNextButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.058
+offset_left = 1.0
+offset_top = 7.0
+offset_right = -2.0
+offset_bottom = 45.23
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Weiter"
+label_settings = SubResource("LabelSettings_u327s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShowPreviousButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 958.0
+offset_top = 585.0
+offset_right = 1203.0
+offset_bottom = 650.0
+
+[node name="ShowPreviousLabel" type="Label" parent="ShowPreviousButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.058
+offset_left = 1.0
+offset_top = 7.0
+offset_right = -2.0
+offset_bottom = 45.23
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "zurück
+"
+label_settings = SubResource("LabelSettings_u327s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 379.0
+offset_top = 395.0
+offset_right = 865.0
+offset_bottom = 675.0
+
+[node name="BackroundImage" type="TextureRect" parent="."]
+visible = false
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_right = 1282.0
+offset_bottom = 718.0
+texture = ExtResource("3_q6ajt")
+
 [connection signal="pressed" from="BackToMainMenuButton" to="." method="_on_back_to_main_menu_button_pressed"]
+[connection signal="pressed" from="ShowNextButton" to="." method="OnShowNextButtonPressed"]
+[connection signal="pressed" from="ShowPreviousButton" to="." method="OnShowPreviousButtonPressed"]
