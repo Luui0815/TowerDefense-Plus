@@ -63,7 +63,7 @@ public partial class tower_selection_grid : Control
                 }
             case "archer":
                 {
-                    _label.Text = "Bogenschuetze";
+                    _label.Text = "Bogenschütze";
                     break;
                 }
             case "fire_trap":
@@ -73,7 +73,7 @@ public partial class tower_selection_grid : Control
                 }
             case "caltrop_trap":
                 {
-                    _label.Text = "Baerenfalle";
+                    _label.Text = "Bärenfalle";
                     break;
                 }
         }
