@@ -15,8 +15,8 @@ public partial class TowerSelectionMenu : Node
     private int _selectedTowerCount = 0;
     private SortedSet<string> _selectedTowers;
 
-    private Vector2 _Position=Vector2.Zero;
-    private List<tower_selection_grid> _SelectedTowersList = new();
+    private Vector2 _position=Vector2.Zero;
+    private List<TowerSelectionGridItem> _selectedTowersList = new();
 
 
     public override void _Ready()
@@ -57,8 +57,8 @@ public partial class TowerSelectionMenu : Node
         {
             _selectedTowerCount--;
             _selectedTowers.Remove(clickedButton.Text);
-            _SelectedTowersList.First(x => x.button.Text == clickedButton.Text).QueueFree();
-            _SelectedTowersList.Remove(_SelectedTowersList.First(x=>x.button.Text== clickedButton.Text));
+            _selectedTowersList.First(x => x.TowerButton.Text == clickedButton.Text).QueueFree();
+            _selectedTowersList.Remove(_selectedTowersList.First(x=>x.TowerButton.Text== clickedButton.Text));
             foreach (string tower in _selectedTowers)
                 CreateSelectedTowers(tower);
         }
@@ -91,45 +91,47 @@ public partial class TowerSelectionMenu : Node
 
     private void CreateAvailableTowers()
     {
-        _Position = Vector2.Zero;
+        _position = Vector2.Zero;
         foreach (string tower in _playerData.UnlockedTowers)
         {
-            tower_selection_grid TowerContainer= CreateTowers(_availableTowersContainer, tower, _playerData.UnlockedTowers.Count);
-            TowerContainer.button.Pressed += () => OnTowerButtonPressed(TowerContainer.button);
+            TowerSelectionGridItem TowerContainer= CreateTowers(_availableTowersContainer, tower, _playerData.UnlockedTowers.Count);
+            TowerContainer.TowerButton.Pressed += () => OnTowerButtonPressed(TowerContainer.TowerButton);
         }
     }
 
     private void CreateSelectedTowers(string newTower)
     {
         //alle alten Tuerme loeschen
-        foreach (tower_selection_grid tower in _SelectedTowersList)
+        foreach (TowerSelectionGridItem tower in _selectedTowersList)
+        {
             tower.QueueFree();
-        _SelectedTowersList.Clear();
+        }
+        _selectedTowersList.Clear();
 
-        _Position = Vector2.Zero;
+        _position = Vector2.Zero;
         //alle Tuerme neu positionieren
         if(_selectedTowerCount!=0)
         {
             foreach (string tower in _selectedTowers)
             {
-                _SelectedTowersList.Add(CreateTowers(_selectedTowersContainer, tower, _selectedTowerCount));
+                _selectedTowersList.Add(CreateTowers(_selectedTowersContainer, tower, _selectedTowerCount));
             }
         }
 
     }
 
-    private tower_selection_grid CreateTowers(Panel panel,string tower, int ElementCount)
+    private TowerSelectionGridItem CreateTowers(Panel panel,string tower, int ElementCount)
     {
         Vector2 Gap;
-        tower_selection_grid TowerSelection = (tower_selection_grid)GD.Load<PackedScene>("res://scene/ui/tower_selection_grid.tscn").Instantiate();
+        TowerSelectionGridItem TowerSelection = (TowerSelectionGridItem)GD.Load<PackedScene>("res://scene/ui/tower_selection_grid.tscn").Instantiate();
         TowerSelection.Init(_selectedTowers.Contains(tower), tower);
         //Abstand in X-Richtung zwischen den Tuermen berechnen
         Gap.X = (panel.Size.X - 40 - (100 * ElementCount)) / (ElementCount + 1);
         //Abstnd oben und unten ermitteln
         Gap.Y = (panel.Size.Y - 125) / 2;
-        TowerSelection.Position = _Position + Gap;
+        TowerSelection.Position = _position + Gap;
         panel.AddChild(TowerSelection);
-        _Position.X += Gap.X + 100;
+        _position.X += Gap.X + 100;
 
         return TowerSelection;
     }

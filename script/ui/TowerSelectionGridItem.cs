@@ -1,22 +1,21 @@
 using Godot;
-using Godot.Collections;
 using System;
 using TowerDefense;
 
-public partial class tower_selection_grid : Control
+public partial class TowerSelectionGridItem : Control
 {
 	private bool _animated;
 	private Label _label;
 	private AnimatedSprite2D _animatedSprite;
-	private Button _Button;
+	private Button _button;
 	private Area2D _area;
-	private string _TowerName;
-	private bool _PlayAnimation;
-    public Button button
+	private string _towerName;
+	private bool _playAnimation;
+    public Button TowerButton
     {
 		get
 		{
-			return _Button;
+			return _button;
 		}
     }
 	//public string Name
@@ -29,9 +28,9 @@ public partial class tower_selection_grid : Control
     public void Init(bool Animation,string TowerName)
 	{
 		_animated = Animation;
-        _Button = GetNode<Button>("Button");
-		_Button.Text = TowerName;
-		_TowerName = TowerName;
+        _button = GetNode<Button>("Button");
+		_button.Text = TowerName;
+		_towerName = TowerName;
 		_area = GetNode<Area2D>("Area2D");
 		if(!Animation)
 			_area.Visible= false;
@@ -39,7 +38,7 @@ public partial class tower_selection_grid : Control
 	public override void _Ready()
 	{
 		_label = GetNode<Label>("Label");
-		switch (_TowerName)
+		switch (_towerName)
 		{
 			case "knight":
 				{
@@ -81,17 +80,17 @@ public partial class tower_selection_grid : Control
         _animatedSprite.AnimationLooped += OnAnimationLooped;
 
         if (_animated)
-			_animatedSprite.Play(_TowerName + "_animation");
+			_animatedSprite.Play(_towerName + "_animation");
 		else
-            _animatedSprite.Play(_TowerName);
+            _animatedSprite.Play(_towerName);
 
     }
 	public override void _Process(double delta)
 	{
-		if (_Button.IsHovered()&&!_animated)
-			_PlayAnimation = true;
+		if (_button.IsHovered()&&!_animated)
+			_playAnimation = true;
 		else
-			_PlayAnimation = false;	
+			_playAnimation = false;	
 	}
 
 
@@ -99,10 +98,10 @@ public partial class tower_selection_grid : Control
 	{
 		if(!_animated)
 		{
-            if (_PlayAnimation)
-                _animatedSprite.Play(_TowerName + "_animation");
+            if (_playAnimation)
+                _animatedSprite.Play(_towerName + "_animation");
             else
-                _animatedSprite.Play(_TowerName);
+                _animatedSprite.Play(_towerName);
         }
 		else
 		{
@@ -124,7 +123,7 @@ public partial class tower_selection_grid : Control
                 AddChild(projectile);
             }
 
-			if(_TowerName == "spearman")
+			if(_towerName == "spearman")
 			{
 				switch(GD.Randi()%3)
 				{
@@ -145,21 +144,21 @@ public partial class tower_selection_grid : Control
                         }
 				}
 			}
-			else if (_TowerName == "goldmine" || _TowerName == "wall" || _TowerName == "caltrop_trap")
+			else if (_towerName == "goldmine" || _towerName == "wall" || _towerName == "caltrop_trap")
 			{
                 if (GD.Randi() % 20 == 0)
-                    _animatedSprite.Play(_TowerName + "_animation");
+                    _animatedSprite.Play(_towerName + "_animation");
                 else
-                    _animatedSprite.Play(_TowerName);
+                    _animatedSprite.Play(_towerName);
             }
-			else if(_TowerName == "fire_trap")
+			else if(_towerName == "fire_trap")
 			{ }
 			else
 			{
 				if (GD.Randi() % 2 == 0)
-					_animatedSprite.Play(_TowerName + "_animation");
+					_animatedSprite.Play(_towerName + "_animation");
 				else
-					_animatedSprite.Play(_TowerName + "_attack");
+					_animatedSprite.Play(_towerName + "_attack");
 			}
 		}
 
