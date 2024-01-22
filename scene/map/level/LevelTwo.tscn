@@ -7,7 +7,5 @@
 [node name="LevelTwo" instance=ExtResource("1_oeec2")]
 script = ExtResource("2_lmegv")
 
-[node name="LevelTowMap" type="TextureRect" parent="." index="3"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="LevelMap" parent="." index="3"]
 texture = ExtResource("3_atp66")
