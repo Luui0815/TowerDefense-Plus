@@ -1,8 +1,8 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Linq;
 using System.Text.Json;
+using TowerDefense;
 
 public partial class PlayerData : Node
 {
@@ -53,6 +53,13 @@ public partial class PlayerData : Node
         {
             return _unlockedTowers;
         }
+    }
+
+    /// <summary>
+    /// The active level
+    /// </summary>
+    public Level CurrentLevel {
+        get; set;
     }
 
     public override void _Ready()

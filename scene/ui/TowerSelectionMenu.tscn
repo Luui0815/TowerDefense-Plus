@@ -63,7 +63,7 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
 offset_bottom = -2.76
-text = "LEVEL 1 - TURMAUSWAHL"
+text = "LEVEL X - TURMAUSWAHL"
 label_settings = SubResource("LabelSettings_0jjxl")
 horizontal_alignment = 1
 
