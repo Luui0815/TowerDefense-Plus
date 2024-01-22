@@ -44,8 +44,11 @@ public partial class LevelSelectionMenu : Node
 				Theme = theme
             };
 			button.Pressed += () => OnLevelButtonPressed(level);
-			button.MouseEntered += () => OnLevelButtonMouseEntered(level);
-			button.MouseExited += OnLevelButtonMouseExited;
+			if (!button.Disabled)
+			{
+				button.MouseEntered += () => OnLevelButtonMouseEntered(level);
+				button.MouseExited += OnLevelButtonMouseExited;
+			}
 			levelButtonContainer.AddChild(button);
 		}
 	}
