@@ -8,7 +8,6 @@ public  partial class Knight : MeleeDefender
 
 	public Knight()
 	{
-		//TODO: Change values and add action animation
 		_delay = 1.5f;
 		_animationDelay = 1;
 		_actionAnimation = "idle";

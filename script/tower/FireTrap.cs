@@ -7,7 +7,6 @@ public partial class FireTrap : TrapDefence
 	private List<Enemy> _attackableEnemiess = new List<Enemy>();
 	public FireTrap()
 	{
-		//TODO: Change values and add action animation
 		_delay = 15;//nicht benoetigt, da Trap nur Status hinzufuegt
 		_animationDelay = 1;
 		_actionAnimation = "idle";

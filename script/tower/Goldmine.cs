@@ -13,7 +13,6 @@ public partial class Goldmine : Defender
         _delay = 12;
         _animationDelay = 1;
 
-        //TODO: Add action animation
         _actionAnimation = "idle";
         Health = 5;
     }

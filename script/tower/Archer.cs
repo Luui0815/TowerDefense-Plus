@@ -7,7 +7,6 @@ public partial class Archer : RangeDefender
     private Mutex m = new Mutex();
     public Archer()
     {
-        //TODO: Change values and add action animation
         _delay = 2;
         _animationDelay = 1;
         _actionAnimation = "idle";

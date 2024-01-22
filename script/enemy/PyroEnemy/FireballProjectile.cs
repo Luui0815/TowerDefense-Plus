@@ -14,7 +14,7 @@ public partial class FireballProjectile : Projectile
 
     public override void _Process(double delta)
     {
-        Translate(-_velocity);//TODO: Pfeil auf Bahnen fliegen lassen
+        Translate(-_velocity);
 
         if (HasTarget() && !_projectileHit)
         {

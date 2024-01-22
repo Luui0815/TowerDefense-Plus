@@ -5,7 +5,6 @@ public partial class LevelOne : GameLevel
 {
 	public LevelOne()
 	{
-		//TODO: Change start money
 		_currentMoney = 500;
 	}
 
@@ -14,7 +13,6 @@ public partial class LevelOne : GameLevel
 		get;
 	} = 1;
 
-	//TODO: Configure spawns
 	protected override (int, EnemyType)[] SpawnConfig
 	{
 		get;

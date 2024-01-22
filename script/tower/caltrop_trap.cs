@@ -8,7 +8,6 @@ public partial class caltrop_trap : TrapDefence
     private Enemy _EnemyInTrap;
     public caltrop_trap()
     {
-        //TODO: Change values and add action animation
         _delay = 15;
         _animationDelay = 1;
         _actionAnimation = "idle";

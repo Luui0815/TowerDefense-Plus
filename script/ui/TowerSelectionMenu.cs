@@ -30,7 +30,6 @@ public partial class TowerSelectionMenu : Node
         _startLevelButton = GetNode<Button>("Panel/StartLevelButton");
         _availableTowerNumberDisplay = GetNode <Label> ("Panel/DisplayAvailableNumber");
 
-        //TODO: Remove hardcoded value
         _levelNumber = _playerData.CurrentLevel;
         _startLevelButton.Disabled = true;
         _availableTowerNumberDisplay.Text = "Noch 4 Türme auswählbar";
