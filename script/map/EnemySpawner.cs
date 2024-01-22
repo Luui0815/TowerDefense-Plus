@@ -18,7 +18,7 @@ public partial class EnemySpawner : Node
 {
     private Timer _spawnTimer;
     private (int, EnemyType)[] _spawnTimes, _endlessSpawnTimes;
-    private int _currentSpawnIndex = 0, _endlessEnemyAmount = 15;
+    private int _currentSpawnIndex = 0, _endlessEnemyAmount = 17;
     private bool _finished = false;
 
     public bool Finished
@@ -32,7 +32,8 @@ public partial class EnemySpawner : Node
         switch (levelNr)
         {
             case 2:
-                _spawnTimes = new (int, EnemyType)[] { (30, EnemyType.Soldier), (10, EnemyType.Soldier), (5, EnemyType.Knight), (20, EnemyType.Knight), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (10, EnemyType.Soldier), (1, EnemyType.Bandit), (20, EnemyType.Bandit), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (2, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Pyro), (20, EnemyType.Pyro), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Bandit), (1, EnemyType.Bandit), (1, EnemyType.Bandit), (1, EnemyType.Pyro), (25, EnemyType.Pyro), (5, EnemyType.Giant), (4, EnemyType.Giant)};
+                _spawnTimes = new (int, EnemyType)[] { (40, EnemyType.Soldier), (10, EnemyType.Soldier), (5, EnemyType.Knight), (20, EnemyType.Knight), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Knight), (1, EnemyType.Soldier), (10, EnemyType.Soldier), (1, EnemyType.Bandit), (20, EnemyType.Bandit), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (2, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Bandit), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Bandit), (1, EnemyType.Bandit), (1, EnemyType.Bandit), (1, EnemyType.Giant)};
+                //{ (30, EnemyType.Soldier), (10, EnemyType.Soldier), (5, EnemyType.Knight), (20, EnemyType.Knight), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (10, EnemyType.Soldier), (1, EnemyType.Bandit), (20, EnemyType.Bandit), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (2, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Pyro), (20, EnemyType.Pyro), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Bandit), (1, EnemyType.Bandit), (1, EnemyType.Bandit), (1, EnemyType.Pyro), (25, EnemyType.Pyro), (5, EnemyType.Giant), (4, EnemyType.Giant)};
                 break;
             default: break;
         }
@@ -114,7 +115,7 @@ public partial class EnemySpawner : Node
         for(int i = 0; i < _endlessEnemyAmount; i++) 
         {
             int waitTime = random.Next(1, 2);
-            int enemyId = _endlessEnemyAmount > 16 ? random.Next(1, 6) : random.Next(1, 5); // erst nach 2 Waves koennen giants spawnen
+            int enemyId = _endlessEnemyAmount > 19 ? random.Next(1, 6) : random.Next(1, 5); // erst nach 2 Waves koennen giants spawnen
             _endlessSpawnTimes[i] = (waitTime, (EnemyType) enemyId);
         }
         _endlessEnemyAmount++;

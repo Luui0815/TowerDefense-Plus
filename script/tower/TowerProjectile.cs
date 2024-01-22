@@ -79,7 +79,7 @@ namespace TowerDefense
 			}
 			
 			float targetAngle = Mathf.Atan2(_velocity.Y, _velocity.X);
-			Rotation = Mathf.LerpAngle(Rotation, targetAngle,4*(float)delta);
+			Rotation = Mathf.LerpAngle(Rotation, targetAngle,5*(float)delta);
 		}
 
 		private void DropProjectile()
