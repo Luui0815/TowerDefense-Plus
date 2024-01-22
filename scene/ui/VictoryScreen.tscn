@@ -1,12 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://dgkvsv4v50nvi"]
+[gd_scene load_steps=22 format=3 uid="uid://dgkvsv4v50nvi"]
 
 [ext_resource type="Script" path="res://script/ui/VictoryScreen.cs" id="1_e7tea"]
 [ext_resource type="Texture2D" uid="uid://bm358q1cxnq80" path="res://assets/sprites/GoodGuys/Archer/ArcherDeath.png" id="2_6aidy"]
 [ext_resource type="AnimationLibrary" uid="uid://3nt84gbothej" path="res://Properties/Animations/AnimationsDefeatScreenKnight.res" id="3_ux024"]
 [ext_resource type="AnimationLibrary" uid="uid://b1o53tuuyatl8" path="res://Properties/Animations/AnimationDefeatScreenArcher.res" id="4_j3rhe"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="5_tl8pg"]
-[ext_resource type="Texture2D" uid="uid://boomb8pebxv8m" path="res://assets/button/Stonebutton1.png" id="6_ewmwi"]
-[ext_resource type="Texture2D" uid="uid://ceh7jn57xacd1" path="res://assets/button/StonebuttonPressed.png" id="7_1bjd6"]
+[ext_resource type="Theme" uid="uid://dv64cnath00db" path="res://scene/ui/ButtonTheme.tres" id="6_uiijo"]
 [ext_resource type="Texture2D" uid="uid://com1sf40hpvl8" path="res://assets/sprites/BadGuys/EvilWizard/Death.png" id="8_q44w8"]
 [ext_resource type="AnimationLibrary" uid="uid://by2qb7yrh1t0h" path="res://Properties/Animations/AnimationDefeatScreenWizard.res" id="9_k76wg"]
 [ext_resource type="Texture2D" uid="uid://pdqpr1hpnmm4" path="res://assets/sprites/BadGuys/Skeleton/Skeleton Idle.png" id="10_aiahf"]
@@ -127,20 +126,6 @@ _data = {
 [sub_resource type="Theme" id="Theme_b6n5c"]
 default_font = ExtResource("5_tl8pg")
 default_font_size = 60
-
-[sub_resource type="Theme" id="Theme_fkd05"]
-default_font = ExtResource("5_tl8pg")
-default_font_size = 20
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_24qt8"]
-texture = ExtResource("6_ewmwi")
-expand_margin_left = 24.0
-expand_margin_top = 18.0
-expand_margin_right = 24.0
-expand_margin_bottom = 18.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_enx2s"]
-texture = ExtResource("7_1bjd6")
 
 [sub_resource type="Animation" id="Animation_rqi5m"]
 length = 0.001
@@ -397,9 +382,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
-theme = SubResource("Theme_fkd05")
-theme_override_styles/normal = SubResource("StyleBoxTexture_24qt8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_enx2s")
+theme = ExtResource("6_uiijo")
 text = "Hauptmenü"
 
 [node name="EndlessButton" type="Button" parent="Panel"]
@@ -419,9 +402,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
-theme = SubResource("Theme_fkd05")
-theme_override_styles/normal = SubResource("StyleBoxTexture_24qt8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_enx2s")
+theme = ExtResource("6_uiijo")
 text = "Endlos-Modus"
 
 [node name="TimerDeathSkeleton" type="Timer" parent="Panel"]

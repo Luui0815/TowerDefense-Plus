@@ -1,38 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://d04lcwxrv6sdx"]
+[gd_scene load_steps=8 format=3 uid="uid://d04lcwxrv6sdx"]
 
 [ext_resource type="Script" path="res://script/ui/ConfirmationPopup.cs" id="1_75v05"]
 [ext_resource type="Texture2D" uid="uid://ckmi1xgxis0gr" path="res://assets/background/PixelSchlossDungeoWand.jpg" id="2_ia4i8"]
+[ext_resource type="Theme" uid="uid://dv64cnath00db" path="res://scene/ui/ButtonTheme.tres" id="3_pax7e"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="3_tum0d"]
-[ext_resource type="Texture2D" uid="uid://boomb8pebxv8m" path="res://assets/button/Stonebutton1.png" id="4_yop7j"]
-[ext_resource type="Texture2D" uid="uid://ceh7jn57xacd1" path="res://assets/button/StonebuttonPressed.png" id="5_isaj8"]
 [ext_resource type="Texture2D" uid="uid://b82p8sfvg7j2s" path="res://assets/texture/Pixeldrache.png" id="6_nupmu"]
-
-[sub_resource type="Theme" id="Theme_0yqns"]
-default_font = ExtResource("3_tum0d")
-default_font_size = 0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_phf8w"]
-texture = ExtResource("4_yop7j")
-expand_margin_left = 7.0
-expand_margin_right = 7.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xjhqp"]
-texture = ExtResource("5_isaj8")
-expand_margin_left = 7.0
-expand_margin_right = 7.0
-
-[sub_resource type="Theme" id="Theme_gsbxm"]
-default_font = ExtResource("3_tum0d")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cnb7i"]
-texture = ExtResource("4_yop7j")
-expand_margin_left = 7.0
-expand_margin_right = 7.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ub4ud"]
-texture = ExtResource("5_isaj8")
-expand_margin_left = 7.0
-expand_margin_right = 7.0
 
 [sub_resource type="Theme" id="Theme_pera7"]
 default_font = ExtResource("3_tum0d")
@@ -60,9 +32,7 @@ offset_left = 20.0
 offset_top = 230.0
 offset_right = 120.0
 offset_bottom = 280.0
-theme = SubResource("Theme_0yqns")
-theme_override_styles/normal = SubResource("StyleBoxTexture_phf8w")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_xjhqp")
+theme = ExtResource("3_pax7e")
 text = "Abbrechen"
 
 [node name="ConfirmButton" type="Button" parent="TextureRect"]
@@ -71,9 +41,7 @@ offset_left = 380.0
 offset_top = 230.0
 offset_right = 480.0
 offset_bottom = 280.0
-theme = SubResource("Theme_gsbxm")
-theme_override_styles/normal = SubResource("StyleBoxTexture_cnb7i")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ub4ud")
+theme = ExtResource("3_pax7e")
 text = "Bestätigen"
 
 [node name="Sprite2D" type="Sprite2D" parent="TextureRect"]
