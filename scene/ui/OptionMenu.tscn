@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://i4bi2w7f7ydm"]
+[gd_scene load_steps=14 format=3 uid="uid://i4bi2w7f7ydm"]
 
 [ext_resource type="Script" path="res://script/ui/OptionMenu.cs" id="1_0wsbl"]
 [ext_resource type="Texture2D" uid="uid://ckmi1xgxis0gr" path="res://assets/background/PixelSchlossDungeoWand.jpg" id="2_44lsr"]
@@ -17,6 +17,19 @@ expand_margin_left = 7.0
 expand_margin_right = 7.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rwetv"]
+texture = ExtResource("6_tlx24")
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+
+[sub_resource type="Theme" id="Theme_cx5v7"]
+default_font = ExtResource("3_sitrc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d5ww4"]
+texture = ExtResource("5_bax7w")
+expand_margin_left = 7.0
+expand_margin_right = 7.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nqsrl"]
 texture = ExtResource("6_tlx24")
 expand_margin_left = 7.0
 expand_margin_right = 7.0
@@ -93,6 +106,21 @@ position = Vector2(800, 350)
 scale = Vector2(3, 3)
 texture = ExtResource("7_egou1")
 
+[node name="ResetButton" type="Button" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = 170.0
+offset_right = 290.0
+offset_bottom = 240.0
+grow_vertical = 2
+theme = SubResource("Theme_cx5v7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_d5ww4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nqsrl")
+text = "Fortschritt zurücksetzen"
+
 [connection signal="close_requested" from="." to="." method="OnCloseRequested"]
 [connection signal="value_changed" from="VolumeScrollbar" to="." method="OnVolumeScrollbarValueChanged"]
 [connection signal="pressed" from="CloseButton" to="." method="OnCloseButtonPressed"]
+[connection signal="pressed" from="ResetButton" to="." method="OnResetButtonPressed"]

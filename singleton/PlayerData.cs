@@ -10,11 +10,9 @@ public partial class PlayerData : Node
     private Array<int> _completedLevels = new();
     private Array<string> _unlockedTowers = new(){
         "knight",
-        "spearman",
         "wall",
         "goldmine",
         "archer",
-        "fire_trap",
         "caltrop_trap",
     };
 
@@ -78,18 +76,52 @@ public partial class PlayerData : Node
     /// Adds a level number to the completed level numbers array
     /// </summary>
     /// <param name="levelNr">The level number to be saved as a completed level</param>
-    public void AddCompletedLevelNumber(int levelNr)
+    /// <returns>False, if the level was already completed</returns>
+    public bool AddCompletedLevelNumber(int levelNr)
     {
+        if (_completedLevels.Contains(levelNr))
+        {
+            return false;
+        }
         _completedLevels.Add(levelNr);
+        return true;
+    }
+
+    /// <summary>
+    /// Clears the completed levels list
+    /// </summary>
+    public void ResetCompletedLevels()
+    {
+        _completedLevels.Clear();
     }
 
     /// <summary>
     /// Adds a tower type to the unlocked towers array
     /// </summary>
     /// <param name="towerName">The tower name to be saved as an unlocked tower</param>
-    public void AddUnlockedTower(string towerName)
+    /// <returns>False, if the tower was already unlocked</returns>
+    public bool AddUnlockedTower(string towerName)
     {
+        if (_unlockedTowers.Contains(towerName))
+        {
+            return false;
+        }
         _unlockedTowers.Add(towerName);
+        return true;
+    }
+
+    /// <summary>
+    /// Resets the unlocked towers list
+    /// </summary>
+    public void ResetTowers()
+    {
+        _unlockedTowers =  new(){
+            "knight",
+            "wall",
+            "goldmine",
+            "archer",
+            "caltrop_trap",
+        };
     }
 
     /// <summary>
