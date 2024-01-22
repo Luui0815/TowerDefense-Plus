@@ -26,14 +26,7 @@ public partial class LevelSelectionMenu : Node
 	private void CreateLevelButtons()
 	{
 		Container levelButtonContainer = GetNode<Container>("Panel/LevelButtonContainer");
-		StyleBoxTexture normalButtonStyleBox = CreateButtonStyleBox("Stonebutton1.png");
-		StyleBoxTexture pressedButtonStyleBox = CreateButtonStyleBox("StonebuttonPressed.png");
-
-		Font buttonFont = GD.Load<Font>("res://assets/font/HyliaMidevilFont.otf");
-        Theme theme = new()
-        {
-            DefaultFont = buttonFont
-        };
+        Theme theme = GD.Load<Theme>("res://scene/ui/ButtonTheme.tres");
 
         foreach (Level level in Enum.GetValues(typeof(Level))) 
 		{
@@ -50,8 +43,6 @@ public partial class LevelSelectionMenu : Node
 				Text = $"LEVEL {(int)level}",
 				Theme = theme
             };
-            button.AddThemeStyleboxOverride("normal", normalButtonStyleBox);
-			button.AddThemeStyleboxOverride("pressed", pressedButtonStyleBox);
 			button.Pressed += () => OnLevelButtonPressed(level);
 			button.MouseEntered += () => OnLevelButtonMouseEntered(level);
 			button.MouseExited += OnLevelButtonMouseExited;

@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dwp45knbjhjd0"]
+[gd_scene load_steps=9 format=3 uid="uid://dwp45knbjhjd0"]
 
 [ext_resource type="Script" path="res://script/ui/LevelSelectionMenu.cs" id="1_lphdg"]
 [ext_resource type="Texture2D" uid="uid://bc2wdyfemdwjv" path="res://assets/background/DungeonTunnelBackground.png" id="2_yr3va"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="3_ptm43"]
-[ext_resource type="Texture2D" uid="uid://boomb8pebxv8m" path="res://assets/button/Stonebutton1.png" id="4_p32kv"]
-[ext_resource type="Texture2D" uid="uid://ceh7jn57xacd1" path="res://assets/button/StonebuttonPressed.png" id="5_lrgt7"]
+[ext_resource type="Theme" uid="uid://dv64cnath00db" path="res://scene/ui/ButtonTheme.tres" id="4_6mp1b"]
 [ext_resource type="Texture2D" uid="uid://8yd4cvn6ty1u" path="res://assets/background/PixelSchlossDungeoTextfeldHintergrund.png" id="6_fh0ex"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u8ox4"]
@@ -13,32 +12,6 @@ texture = ExtResource("2_yr3va")
 [sub_resource type="LabelSettings" id="LabelSettings_uul3t"]
 font = ExtResource("3_ptm43")
 font_size = 32
-
-[sub_resource type="Theme" id="Theme_j740m"]
-default_font = ExtResource("3_ptm43")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tpp2t"]
-texture = ExtResource("4_p32kv")
-expand_margin_left = 7.0
-expand_margin_right = 7.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2eb6w"]
-texture = ExtResource("5_lrgt7")
-expand_margin_left = 7.0
-expand_margin_right = 7.0
-
-[sub_resource type="Theme" id="Theme_k2awp"]
-default_font = ExtResource("3_ptm43")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3dqsk"]
-texture = ExtResource("4_p32kv")
-expand_margin_left = 7.0
-expand_margin_right = 7.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0dphk"]
-texture = ExtResource("5_lrgt7")
-expand_margin_left = 7.0
-expand_margin_right = 7.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4e568"]
 texture = ExtResource("6_fh0ex")
@@ -77,9 +50,7 @@ offset_top = 316.88
 offset_right = 472.72
 offset_bottom = 322.08
 mouse_default_cursor_shape = 2
-theme = SubResource("Theme_j740m")
-theme_override_styles/normal = SubResource("StyleBoxTexture_tpp2t")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_2eb6w")
+theme = ExtResource("4_6mp1b")
 text = "EINSTELLUNGEN"
 metadata/_edit_group_ = true
 
@@ -95,9 +66,7 @@ offset_top = 316.88
 offset_right = -17.28
 offset_bottom = 322.08
 mouse_default_cursor_shape = 2
-theme = SubResource("Theme_k2awp")
-theme_override_styles/normal = SubResource("StyleBoxTexture_3dqsk")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_0dphk")
+theme = ExtResource("4_6mp1b")
 text = "ZURÜCK"
 metadata/_edit_group_ = true
 
