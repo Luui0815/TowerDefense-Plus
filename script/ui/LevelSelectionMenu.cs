@@ -42,10 +42,11 @@ public partial class LevelSelectionMenu : Node
 				Texture2D previewTexture = GD.Load<Texture2D>($"res://assets/texture/level/LevelPreview{level}.png");
 				_levelPreviewCache.Add(level, previewTexture);
 			}
-
+			bool levelUnlocked = level == Level.One || _playerData.CompletedLevels.Contains(((int)level) - 1);
             Button button = new()
             {
 				CustomMinimumSize = new Vector2(180, 70),
+				Disabled = !levelUnlocked,
 				Text = $"LEVEL {(int)level}",
 				Theme = theme
             };

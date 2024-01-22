@@ -15,6 +15,7 @@ public abstract partial class GameLevel : Node2D
     private readonly MapLane[] _lanes = new MapLane[5];
     private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
+    private PlayerData _playerData;
     private bool _levelStarted = false, _levelCompleted = false;
 
     private Area2D _levelArea;
@@ -66,11 +67,18 @@ public abstract partial class GameLevel : Node2D
         get;
     }
 
+    protected abstract string UnlockedTower
+    {
+        get;
+    }
+
     public override void _Ready()
     {
         Name = "Level";
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
+
+        _playerData = GetNode<PlayerData>("/root/PlayerData");
 
         _levelArea = GetNode<Area2D>("LevelArea");
         _pauseMenu = (PauseMenu)GD.Load<PackedScene>("res://scene/ui/PauseMenu.tscn").Instantiate();
@@ -204,9 +212,19 @@ public abstract partial class GameLevel : Node2D
     private void OnAllEnemiesDefeated()
     {
         GetTree().Paused = true;
-        VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>("res://scene/ui/VictoryScreen.tscn").Instantiate();
-        _menuLayer.AddChild(victoryScreen);
         
+        bool isNewCompletion = _playerData.AddCompletedLevelNumber(LevelNumber);
+        if (isNewCompletion){
+            _playerData.AddUnlockedTower(UnlockedTower);
+            _playerData.Save();
+            //TODO: Show victory screen with new unlocked towers/levels
+            VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>("res://scene/ui/VictoryScreen.tscn").Instantiate();
+            _menuLayer.AddChild(victoryScreen);
+        }else {
+            VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>("res://scene/ui/VictoryScreen.tscn").Instantiate();
+            _menuLayer.AddChild(victoryScreen);
+        }
+
         _levelCompleted = true;
     }
 

@@ -1,13 +1,14 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using TowerDefense;
 
 public partial class PlayerData : Node
 {
     private int _volume = 100;
-    private Array<int> _completedLevels = new();
+    private List<int> _completedLevels = new();
     private Array<string> _unlockedTowers = new(){
         "knight",
         "wall",
@@ -34,7 +35,7 @@ public partial class PlayerData : Node
     /// <summary>
     /// An array containing the numbers of all completed levels
     /// </summary>
-    public Array<int> CompletedLevels
+    public List<int> CompletedLevels
     {
         get
         {
@@ -154,10 +155,15 @@ public partial class PlayerData : Node
             throw new JsonException(errorMsg);
         }
 
-        var dataDict = new Dictionary<string, Variant>((Dictionary)json.Data);
+        var dataDict = new Godot.Collections.Dictionary<string, Variant>((Dictionary)json.Data);
 
         _volume = (int)dataDict["Volume"];
-        _completedLevels = (Array<int>)dataDict["CompletedLevels"];
+        Array<int> savedLevels = (Array<int>)dataDict["CompletedLevels"];
+        _completedLevels.Clear();
+        foreach(int level in savedLevels)
+        {
+            _completedLevels.Add(level);
+        }
 
         Array<string> savedUnlocks = (Array<string>)dataDict["UnlockedTowers"];
         foreach (string unlockedTower in savedUnlocks)
@@ -175,10 +181,15 @@ public partial class PlayerData : Node
     /// <exception cref="System.IO.FileLoadException">When the data file could not be accessed</exception>()
 	public void Save()
     {
-        var dataDict = new Dictionary<string, Variant>()
+        Array<int> saveArray = new Array<int>();
+        foreach(int level in _completedLevels)
+        {
+            saveArray.Add(level);
+        }
+        var dataDict = new Godot.Collections.Dictionary<string, Variant>()
         {
             {"Volume", _volume},
-            {"CompletedLevels", _completedLevels},
+            {"CompletedLevels", saveArray},
             {"UnlockedTowers", _unlockedTowers}
         };
         string jsonData = Json.Stringify(dataDict);
