@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using TowerDefense;
 
@@ -11,11 +12,14 @@ namespace TowerDefense {
 
 public partial class LevelSelectionMenu : Node
 {
+	private static Dictionary<Level, Texture2D> _levelPreviewCache = new Dictionary<Level, Texture2D>();
 	private PlayerData _playerData;
+	private TextureRect _levelPreviewRect;
 
     public override void _Ready()
     {
         _playerData = GetNode<PlayerData>("/root/PlayerData");
+		_levelPreviewRect = GetNode<TextureRect>("Panel/LevelPreviewPanel/LevelPreview");
 		CreateLevelButtons();
     }
 
@@ -33,6 +37,12 @@ public partial class LevelSelectionMenu : Node
 
         foreach (Level level in Enum.GetValues(typeof(Level))) 
 		{
+			if (!_levelPreviewCache.ContainsKey(level))
+			{
+				Texture2D previewTexture = GD.Load<Texture2D>($"res://assets/texture/level/LevelPreview{level}.png");
+				_levelPreviewCache.Add(level, previewTexture);
+			}
+
             Button button = new()
             {
 				CustomMinimumSize = new Vector2(180, 70),
@@ -42,6 +52,8 @@ public partial class LevelSelectionMenu : Node
             button.AddThemeStyleboxOverride("normal", normalButtonStyleBox);
 			button.AddThemeStyleboxOverride("pressed", pressedButtonStyleBox);
 			button.Pressed += () => OnLevelButtonPressed(level);
+			button.MouseEntered += () => OnLevelButtonMouseEntered(level);
+			button.MouseExited += OnLevelButtonMouseExited;
 			levelButtonContainer.AddChild(button);
 		}
 	}
@@ -58,6 +70,22 @@ public partial class LevelSelectionMenu : Node
 		return styleBoxTexture;
     }
 
+	public void OnLevelButtonMouseEntered(Level level)
+	{
+		_levelPreviewRect.Texture = _levelPreviewCache[level];
+	}
+
+	public void OnLevelButtonMouseExited()
+	{
+		_levelPreviewRect.Texture = null;
+	}
+
+	public void OnLevelButtonPressed(Level level)
+	{
+		_playerData.CurrentLevel = level;
+		GetTree().ChangeSceneToFile("res://scene/ui/TowerSelectionMenu.tscn");
+	}
+
     public void OnSettingsButtonPressed()
     {
         OptionMenu optionMenu = (OptionMenu)GD.Load<PackedScene>("res://scene//ui//OptionMenu.tscn").Instantiate();
@@ -67,11 +95,5 @@ public partial class LevelSelectionMenu : Node
 	public void OnGoBackButtonPressed()
 	{
 		GetTree().ChangeSceneToFile("res://scene/ui/MainMenu.tscn");
-	}
-
-	public void OnLevelButtonPressed(Level level)
-	{
-		_playerData.CurrentLevel = level;
-		GetTree().ChangeSceneToFile("res://scene/ui/TowerSelectionMenu.tscn");
 	}
 }
