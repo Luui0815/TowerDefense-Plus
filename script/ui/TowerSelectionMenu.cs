@@ -13,6 +13,7 @@ public partial class TowerSelectionMenu : Node
 
     private Level _levelNumber;
     private int _selectedTowerCount = 0;
+    private SortedSet<string> _availableTowers;
     private SortedSet<string> _selectedTowers;
 
     private Vector2 _position=Vector2.Zero;
@@ -23,6 +24,7 @@ public partial class TowerSelectionMenu : Node
     {
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
         _selectedTowers = new SortedSet<string>(new TowerComparer(towerConfig));
+        _availableTowers = new SortedSet<string>(new TowerComparer(towerConfig));
 
         _playerData = GetNode<PlayerData>("/root/PlayerData");
         _availableTowersContainer = GetNode<Panel>("AvailableTowersContainer");
@@ -90,6 +92,10 @@ public partial class TowerSelectionMenu : Node
     {
         _position = Vector2.Zero;
         foreach (string tower in _playerData.UnlockedTowers)
+        {
+            _availableTowers.Add(tower);
+        }
+        foreach (string tower in _availableTowers)
         {
             TowerSelectionGridItem TowerContainer= CreateTowers(_availableTowersContainer, tower, _playerData.UnlockedTowers.Count);
             TowerContainer.TowerButton.Pressed += () => OnTowerButtonPressed(TowerContainer.TowerButton);
