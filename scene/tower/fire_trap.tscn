@@ -869,7 +869,7 @@ size = Vector2(50, 120)
 script = ExtResource("1_ivqat")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(50, 60.25)
+position = Vector2(50, 65.25)
 scale = Vector2(5, 2.67778)
 sprite_frames = SubResource("SpriteFrames_k5o0w")
 animation = &"idle"

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TowerDefense;
+using static Godot.CameraFeed;
 
 public abstract partial class GameLevel : Node2D
 {
@@ -91,13 +92,44 @@ public abstract partial class GameLevel : Node2D
         {
             MapLane lane = (MapLane)laneScene.Instantiate();
             lane.Init(i, GetFieldTypeRow(i));
+
+            switch (i)
+            {
+                case 0:
+                    {
+                        position.Y = 5;
+                        break;
+                    }
+                case 1:
+                    {
+                        position.Y = 135;
+                        break;
+                    }
+                case 2:
+                    {
+                        position.Y = 280;
+                        break;
+                    }
+                case 3:
+                    {
+                        position.Y = 420;
+                        break;
+                    }
+                case 4:
+                    {
+                        position.Y = 555;
+                        break;
+                    }
+            }
+
             lane.Position = position;
             lane.Name = "MapLane" + i;
             lane.EnemyCrossedLane += OnEnemyCrossedLane;
 
             AddChild(lane);
             _lanes[i] = lane;
-            position.Y += 125;
+
+
         }
 
         foreach (MapLane lane in _lanes)
