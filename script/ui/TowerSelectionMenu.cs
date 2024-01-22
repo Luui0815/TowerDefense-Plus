@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
+using TowerDefense;
 
 public partial class TowerSelectionMenu : Node
 {
@@ -10,7 +11,7 @@ public partial class TowerSelectionMenu : Node
     private Button _startLevelButton;
     private Label _availableTowerNumberDisplay;
 
-    private string _levelNumber;
+    private Level _levelNumber;
     private int _selectedTowerCount = 0;
     private SortedSet<string> _selectedTowers;
 
@@ -30,10 +31,13 @@ public partial class TowerSelectionMenu : Node
         _availableTowerNumberDisplay = GetNode <Label> ("Panel/DisplayAvailableNumber");
 
         //TODO: Remove hardcoded value
-        _levelNumber = _playerData.CurrentLevel.ToString();
+        _levelNumber = _playerData.CurrentLevel;
         _startLevelButton.Disabled = true;
         _availableTowerNumberDisplay.Text = "Noch 4 Türme auswählbar";
         _playerData.Load();
+
+        Label headlineLabel = GetNode<Label>("Panel/MainHeadline");
+        headlineLabel.Text = $"LEVEL {(int)_levelNumber} - TURMAUSWAHL";
 
         CreateAvailableTowers();
     }

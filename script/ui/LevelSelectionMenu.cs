@@ -3,8 +3,8 @@ using TowerDefense;
 
 namespace TowerDefense {
 	public enum Level {
-		One,
-		Two
+		One = 1,
+		Two = 2
 	}
 }
 
