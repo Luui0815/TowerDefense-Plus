@@ -13,6 +13,7 @@ offset_bottom = 125.0
 script = ExtResource("1_lc11e")
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 centered = false
 
 [node name="arrow_spear_ground" type="Area2D" parent="."]
