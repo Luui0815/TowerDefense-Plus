@@ -8,7 +8,7 @@ using TowerDefense;
 public partial class PlayerData : Node
 {
     private int _volume = 100;
-    private List<int> _completedLevels = new();
+    private readonly List<int> _completedLevels = new();
     private Array<string> _unlockedTowers = new(){
         "knight",
         "wall",

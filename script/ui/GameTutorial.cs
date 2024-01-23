@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class GameTutorial : Control
 {
     private static readonly Dictionary<int, Texture2D> _textureCache = new Dictionary<int, Texture2D>();
-    private string[] _tutorialText =
+    private readonly string[] _tutorialText =
         {"Willkommen beim BA Tower Defense Game!\nDiese kleine Einführung soll dem Spieler die grundlegenden Prinzipien, Inhalte und Ziele des Spiels vermitteln.",
          "Tower Defense ist ein Genre von Strategiespielen, in welchem der Spieler eine Verteidigungslinie aufbauen muss, um Wellen von ankommenden Feinden abzuwehren. Die verteidigenden Einheiten werden dabei Türme (englisch: towers) genannt.",
          "In diesem Spiel kann der Spieler zwischen mehreren Leveln auswählen. Sie unterscheiden sich primaer in ihrem Schwierigkeitsgrad. Ziel eines Levels ist, alle Gegnerwellen zu überstehen, ohne dass eine gegnerische Einheit das Schloss auf der linken Seite des Bildschirms erreicht.",
