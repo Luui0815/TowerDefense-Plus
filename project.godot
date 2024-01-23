@@ -31,6 +31,15 @@ mouse_cursor/custom_image="res://assets/texture/mousecursor/MauscourserV1.png"
 
 project/assembly_name="SWE-Tower-Defense"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "yellow",
+"res://scene/": "red",
+"res://script/": "purple",
+"res://theme/": "orange"
+}
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
