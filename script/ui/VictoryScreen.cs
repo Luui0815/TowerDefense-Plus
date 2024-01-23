@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Godot;
+using TowerDefense;
 
 public partial class VictoryScreen : Node
 {
@@ -77,6 +79,25 @@ public partial class VictoryScreen : Node
             gameLevel.QueueFree();
         }
         GetTree().Paused = false;
+    }
+
+    private void OnRepeatButtonPressed()
+    {
+        GameLevel gameLevel = GetNode<GameLevel>("/root/Level");
+        if (gameLevel != null)
+        {
+            SortedSet<string> towerList = gameLevel.SelectedTowers;
+            Level levelNr = (Level) gameLevel.LevelNumber;
+            gameLevel.Name = "OldLevel";
+            gameLevel.QueueFree();
+
+            GetTree().Paused = false;
+
+            PackedScene levelScene = GD.Load<PackedScene>($"res://scene/map/level/Level{levelNr}.tscn");
+            GameLevel newLevel = (GameLevel)levelScene.Instantiate();
+            GetTree().Root.AddChild(newLevel);
+            newLevel.FillTowerContainer(towerList);
+        }
     }
 
     private void OnEndlessModeButtonPressed()

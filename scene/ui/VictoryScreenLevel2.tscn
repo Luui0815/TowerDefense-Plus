@@ -1,12 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://crl43rt34ejll"]
+[gd_scene load_steps=25 format=3 uid="uid://crl43rt34ejll"]
 
 [ext_resource type="Script" path="res://script/ui/VictoryScreen.cs" id="1_f6ced"]
 [ext_resource type="Texture2D" uid="uid://bm358q1cxnq80" path="res://assets/sprites/GoodGuys/Archer/ArcherDeath.png" id="2_6cslh"]
 [ext_resource type="AnimationLibrary" uid="uid://3nt84gbothej" path="res://Properties/Animations/AnimationsDefeatScreenKnight.res" id="3_fx7am"]
 [ext_resource type="AnimationLibrary" uid="uid://b1o53tuuyatl8" path="res://Properties/Animations/AnimationDefeatScreenArcher.res" id="4_tgjq7"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="5_diqhq"]
-[ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://theme/ButtonTheme.tres" id="6_n27d5"]
+[ext_resource type="Theme" uid="uid://s6tlaljytfer" path="res://theme/MenuButtonTheme.tres" id="6_1jaub"]
+[ext_resource type="Theme" uid="uid://dhew23cliqtpr" path="res://theme/EndlessModeButtonTheme.tres" id="7_7x0tk"]
 [ext_resource type="Texture2D" uid="uid://com1sf40hpvl8" path="res://assets/sprites/BadGuys/EvilWizard/Death.png" id="7_fg7g5"]
+[ext_resource type="Theme" uid="uid://om3i3gc6k3vi" path="res://theme/RepeatButtonTheme.tres" id="8_82mb3"]
 [ext_resource type="AnimationLibrary" uid="uid://by2qb7yrh1t0h" path="res://Properties/Animations/AnimationDefeatScreenWizard.res" id="8_iv2ew"]
 [ext_resource type="Texture2D" uid="uid://pdqpr1hpnmm4" path="res://assets/sprites/BadGuys/Skeleton/Skeleton Idle.png" id="9_6pyx0"]
 [ext_resource type="AnimationLibrary" uid="uid://c7x6owdtbsu46" path="res://Properties/Animations/AnimationDefeatScreenSkeleton.res" id="10_itq4j"]
@@ -307,10 +309,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -350.0
+offset_top = -200.0
+offset_right = 350.0
+offset_bottom = 233.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -365,48 +367,65 @@ text = "Sieg
 "
 horizontal_alignment = 1
 
-[node name="MenuButton" type="Button" parent="Panel"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 125.0
-offset_top = 135.0
-offset_right = 325.0
-offset_bottom = 185.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-size_flags_stretch_ratio = 0.0
-theme = ExtResource("6_n27d5")
-text = "Hauptmenü"
-
-[node name="EndlessButton" type="Button" parent="Panel"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -325.0
-offset_top = 135.0
-offset_right = -125.0
-offset_bottom = 185.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-size_flags_stretch_ratio = 0.0
-theme = ExtResource("6_n27d5")
-text = "Endlos-Modus"
-
 [node name="TimerDeathSkeleton" type="Timer" parent="Panel"]
 one_shot = true
+
+[node name="MenuButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 128.5
+offset_right = 40.0
+offset_bottom = 208.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("6_1jaub")
+
+[node name="EndlessButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = 128.5
+offset_right = 150.0
+offset_bottom = 208.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("7_7x0tk")
+
+[node name="RepeatButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 128.5
+offset_right = -70.0
+offset_bottom = 208.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("8_82mb3")
 
 [node name="FallenWizard" type="Sprite2D" parent="Panel"]
 visibility_layer = 4
@@ -461,9 +480,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -150.0
+offset_top = -180.0
 offset_right = 700.0
-offset_bottom = -51.0
+offset_bottom = -81.0
 grow_vertical = 0
 text = "Neuer Turm freigeschaltet: Feuerfalle
 
@@ -474,3 +493,4 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="Panel/MenuButton" to="." method="OnMenuButtonPressed"]
 [connection signal="pressed" from="Panel/EndlessButton" to="." method="OnEndlessModeButtonPressed"]
+[connection signal="pressed" from="Panel/RepeatButton" to="." method="OnRepeatButtonPressed"]
