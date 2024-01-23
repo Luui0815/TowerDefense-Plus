@@ -62,14 +62,14 @@ public partial class TowerSelectionMenu : Node
             _selectedTowersList.First(x => x.TowerButton.Text == clickedButton.Text).QueueFree();
             _selectedTowersList.Remove(_selectedTowersList.First(x=>x.TowerButton.Text== clickedButton.Text));
             foreach (string tower in _selectedTowers)
-                CreateSelectedTowers(tower);
+                CreateSelectedTowers();
         }
         else if (_selectedTowerCount < 4)
         {
             //hier aufgerufen
             _selectedTowers.Add(clickedButton.Text);
             _selectedTowerCount++;
-            CreateSelectedTowers(clickedButton.Text);
+            CreateSelectedTowers();
         }
 
         int towerLeftCount = 4 - _selectedTowerCount;
@@ -102,7 +102,7 @@ public partial class TowerSelectionMenu : Node
         }
     }
 
-    private void CreateSelectedTowers(string newTower)
+    private void CreateSelectedTowers()
     {
         //alle alten Tuerme loeschen
         foreach (TowerSelectionGridItem tower in _selectedTowersList)
