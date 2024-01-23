@@ -243,18 +243,17 @@ public abstract partial class GameLevel : Node2D
     private void OnAllEnemiesDefeated()
     {
         GetTree().Paused = true;
+
+        VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>($"res://scene/ui/VictoryScreenLevel{LevelNumber}.tscn").Instantiate();
         
         bool isNewCompletion = _playerData.AddCompletedLevelNumber(LevelNumber);
         if (isNewCompletion){
             _playerData.AddUnlockedTower(UnlockedTower);
             _playerData.Save();
-            //TODO: Show victory screen with new unlocked towers/levels
-            VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>("res://scene/ui/VictoryScreen.tscn").Instantiate();
-            _menuLayer.AddChild(victoryScreen);
-        }else {
-            VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>("res://scene/ui/VictoryScreen.tscn").Instantiate();
-            _menuLayer.AddChild(victoryScreen);
+            victoryScreen.ShowReward();
         }
+
+        _menuLayer.AddChild(victoryScreen);
 
         _levelCompleted = true;
     }

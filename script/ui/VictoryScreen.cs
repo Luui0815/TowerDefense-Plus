@@ -62,6 +62,12 @@ public partial class VictoryScreen : Node
         skeletonTimer.Start();
     }
 
+    public void ShowReward()
+    {
+        Label rewardLabel = GetNode<Label>("Panel/RewardInformation");
+        rewardLabel.Visible = true;
+    }
+
     private void OnMenuButtonPressed()
     {
         GetTree().ChangeSceneToFile("res://scene/ui/MainMenu.tscn");
