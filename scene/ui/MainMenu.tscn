@@ -85,7 +85,7 @@ theme_override_constants/shadow_offset_y = 5
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("3_2mpoe")
 theme_override_font_sizes/font_size = 35
-text = "Einstellungen"
+text = "EINSTELLUNGEN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
