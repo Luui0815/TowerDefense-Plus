@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://om3i3gc6k3vi"]
+
+[ext_resource type="Texture2D" uid="uid://drue1h2udfwj3" path="res://assets/button/RepeatButtonHover.png" id="1_p35o0"]
+[ext_resource type="Texture2D" uid="uid://bmwddp3plbsfx" path="res://assets/button/RepeatButton.png" id="2_2q4xg"]
+[ext_resource type="Texture2D" uid="uid://dwbeuo7l6386t" path="res://assets/button/RepeatButtonPressed.png" id="3_bv0b1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4uln5"]
+texture = ExtResource("1_p35o0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_auw02"]
+texture = ExtResource("2_2q4xg")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5l8o7"]
+texture = ExtResource("3_bv0b1")
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxTexture_4uln5")
+Button/styles/normal = SubResource("StyleBoxTexture_auw02")
+Button/styles/pressed = SubResource("StyleBoxTexture_5l8o7")
