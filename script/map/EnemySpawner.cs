@@ -130,13 +130,13 @@ public partial class EnemySpawner : Node
                 positionOffset = 48;
                 break;
             case EnemyType.Soldier:
-                positionOffset = 50;
+                positionOffset = 55;
                 break;
             case EnemyType.Pyro:
                 positionOffset = 35;
                 break;
         }
-        enemy.Position = new Vector2(1080, (randomLine * 125) + positionOffset);
+        enemy.Position = new Vector2(1080, ((randomLine * 125) + (randomLine*10)) + positionOffset);
         AddChild(enemy);
         GD.Print($"{enemyType} spawnt auf Lane {lane}");
     }
