@@ -21,11 +21,11 @@ public partial class LevelTwo : GameLevel
 	{
 		get;
 	} = new FieldType[5, 10] {
-		{ FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal },
-		{ FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal },
-		{ FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal },
-		{ FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal },
-		{ FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal }
+		{ FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Disabled, FieldType.Normal, FieldType.Disabled, FieldType.Disabled, FieldType.Normal, FieldType.Normal, FieldType.Disabled },
+		{ FieldType.Normal, FieldType.Normal, FieldType.Disabled, FieldType.Normal, FieldType.Disabled, FieldType.Normal, FieldType.Normal, FieldType.Disabled, FieldType.Normal, FieldType.Disabled },
+		{ FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Disabled, FieldType.Disabled, FieldType.Normal, FieldType.Normal, FieldType.Disabled, FieldType.Normal, FieldType.Disabled },
+		{ FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Disabled, FieldType.Disabled, FieldType.Normal, FieldType.Disabled, FieldType.Normal, FieldType.Disabled },
+		{ FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Disabled, FieldType.Disabled, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Disabled, FieldType.Disabled }
 	};
 
     protected override string UnlockedTower{
