@@ -21,12 +21,10 @@ public partial class GameTutorial : Control
     {
         _infoText = GetNode<Label>("InfoTextLabel");
         _imagePanel = GetNode<TextureRect>("InfoImage");
+        _showPreviousButton = GetNode<Button>("ShowPreviousButton");
+        _showNextButton = GetNode<Button>("ShowNextButton");
 
         _infoText.Text = _tutorialText[_tutorialTextIndex];
-    }
-
-    public override void _Process(double delta)
-    {
     }
 
     private void _on_back_to_main_menu_button_pressed()
@@ -37,18 +35,27 @@ public partial class GameTutorial : Control
     private void OnShowNextButtonPressed()
     {
         if(_tutorialTextIndex < _tutorialText.Length)
-        _tutorialTextIndex++;
-
-        _infoText.Text = _tutorialText[_tutorialTextIndex];
-        //_imagePanel.Texture = Image.LoadFromFile("");
+        {
+            _tutorialTextIndex++;
+            UpdateUserInterface();
+        }
     }
 
     private void OnShowPreviousButtonPressed()
     {
-        if(_tutorialTextIndex > 0)
-        _tutorialTextIndex--;
+        if(_tutorialTextIndex > 0) 
+        {
+            _tutorialTextIndex--;
+            UpdateUserInterface();
+        }
+    }
+
+    private void UpdateUserInterface()
+    {
+        _showPreviousButton.Disabled = _tutorialTextIndex == 0;
+        _showNextButton.Disabled = _tutorialTextIndex == (_tutorialText.Length - 1);
 
         _infoText.Text = _tutorialText[_tutorialTextIndex];
-        //_imagePanel.Texture = Image.LoadFromFile("");
+        //TODO: Load image
     }
 }

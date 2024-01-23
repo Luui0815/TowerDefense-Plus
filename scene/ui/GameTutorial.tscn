@@ -120,6 +120,7 @@ offset_top = 585.0
 offset_right = 1203.0
 offset_bottom = 650.0
 theme = ExtResource("4_kds1t")
+disabled = true
 
 [node name="ShowPreviousLabel" type="Label" parent="ShowPreviousButton"]
 layout_mode = 1
