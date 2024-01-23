@@ -5,7 +5,7 @@ public partial class Goldmine : Defender
     [Signal]
     public delegate void MoneyGeneratedEventHandler(int moneyAmount);
 
-    private int _moneyPerCycle = 150;
+    private int _moneyPerCycle = 200;
     private bool _moneyGenerated = false;
 
     public Goldmine()
