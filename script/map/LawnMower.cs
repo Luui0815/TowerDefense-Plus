@@ -50,7 +50,7 @@ public partial class LawnMower : CharacterBody2D
         }
     }
 
-	public bool ActivateLawnMover
+	public bool LawnMoverActivated
 	{
 		get
 		{
