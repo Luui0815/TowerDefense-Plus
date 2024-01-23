@@ -1,42 +1,13 @@
 using Godot;
-using System;
 
 public partial class OptionMenu : Window
 {
-	private AudioStreamPlayer _audioPlayer;
-	private Timer _volumeTimer;
-	private Label _currentVolumeLabel;
 	private PlayerData _playerData;
-	private int _currentVolume;
-	private double _testSoundLength;
 
 	public override void _Ready()
 	{
-		_audioPlayer = GetNode<AudioStreamPlayer>("TestSoundPlayer");
-		_testSoundLength = _audioPlayer.Stream.GetLength();
-		_volumeTimer = GetNode<Timer>("VolumeTimer");
-		_currentVolumeLabel = GetNode<Label>("CurrentVolumeLabel");
 		_playerData = GetNode<PlayerData>("/root/PlayerData");
-
 		_playerData.Load();
-		HScrollBar volumeScrollbar = GetNode<HScrollBar>("VolumeScrollbar");
-		_currentVolume = _playerData.Volume;
-		volumeScrollbar.SetValueNoSignal(_currentVolume);
-		_currentVolumeLabel.Text = Convert.ToString(_currentVolume);
-	}
-
-	private void OnVolumeScrollbarValueChanged(double value)
-	{
-		_currentVolume = (int)value;
-		_currentVolumeLabel.Text = Convert.ToString(_currentVolume);
-
-		if (!_audioPlayer.Playing && _volumeTimer.TimeLeft == 0)
-		{
-			_audioPlayer.VolumeDb = Mathf.LinearToDb((float)value / 100);
-			_audioPlayer.Playing = true;
-
-			_volumeTimer.Start(_testSoundLength * 2);
-		}
 	}
 
 	private void OnResetButtonPressed()
@@ -44,7 +15,6 @@ public partial class OptionMenu : Window
 		ConfirmationPopup confirmationPopup = (ConfirmationPopup)GD.Load<PackedScene>("res://scene//ui//ConfirmationPopup.tscn").Instantiate();
 		confirmationPopup.Init("Möchtest du wirklich deinen Fortschritt zurücksetzen? Dieser Schritt kann nicht rückgängig gemacht werden", "Fortschritt zurücksetzen");
 		confirmationPopup.Confirmed += () =>  {
-			_playerData.Volume = 100;
 			_playerData.ResetTowers();
 			_playerData.ResetCompletedLevels();
 			_playerData.Save();
@@ -55,9 +25,6 @@ public partial class OptionMenu : Window
 
 	private void OnCloseRequested()
 	{
-		_playerData.Volume = _currentVolume;
-		_playerData.Save();
-
 		QueueFree();
 	}
 

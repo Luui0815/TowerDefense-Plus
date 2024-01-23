@@ -7,7 +7,6 @@ using TowerDefense;
 
 public partial class PlayerData : Node
 {
-    private int _volume = 100;
     private readonly List<int> _completedLevels = new();
     private Array<string> _unlockedTowers = new(){
         "knight",
@@ -16,21 +15,6 @@ public partial class PlayerData : Node
         "archer",
         "caltrop_trap",
     };
-
-    /// <summary>
-    /// The volume set by the player
-    /// </summary>
-    public int Volume
-    {
-        get
-        {
-            return _volume;
-        }
-        set
-        {
-            _volume = Math.Clamp(value, 0, 100);
-        }
-    }
 
     /// <summary>
     /// An array containing the numbers of all completed levels
@@ -157,7 +141,6 @@ public partial class PlayerData : Node
 
         var dataDict = new Godot.Collections.Dictionary<string, Variant>((Dictionary)json.Data);
 
-        _volume = (int)dataDict["Volume"];
         Array<int> savedLevels = (Array<int>)dataDict["CompletedLevels"];
         _completedLevels.Clear();
         foreach(int level in savedLevels)
@@ -188,7 +171,6 @@ public partial class PlayerData : Node
         }
         var dataDict = new Godot.Collections.Dictionary<string, Variant>()
         {
-            {"Volume", _volume},
             {"CompletedLevels", saveArray},
             {"UnlockedTowers", _unlockedTowers}
         };
