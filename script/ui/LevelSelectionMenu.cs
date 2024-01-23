@@ -12,7 +12,7 @@ namespace TowerDefense {
 
 public partial class LevelSelectionMenu : Node
 {
-	private static Dictionary<Level, Texture2D> _levelPreviewCache = new Dictionary<Level, Texture2D>();
+	private static readonly Dictionary<Level, Texture2D> _levelPreviewCache = new Dictionary<Level, Texture2D>();
 	private PlayerData _playerData;
 	private TextureRect _levelPreviewRect;
 
@@ -65,29 +65,23 @@ public partial class LevelSelectionMenu : Node
 		return styleBoxTexture;
     }
 
-	public void OnLevelButtonMouseEntered(Level level)
+	private void OnLevelButtonMouseEntered(Level level)
 	{
 		_levelPreviewRect.Texture = _levelPreviewCache[level];
 	}
 
-	public void OnLevelButtonMouseExited()
+	private void OnLevelButtonMouseExited()
 	{
 		_levelPreviewRect.Texture = null;
 	}
 
-	public void OnLevelButtonPressed(Level level)
+	private void OnLevelButtonPressed(Level level)
 	{
 		_playerData.CurrentLevel = level;
 		GetTree().ChangeSceneToFile("res://scene/ui/TowerSelectionMenu.tscn");
 	}
 
-    public void OnSettingsButtonPressed()
-    {
-        OptionMenu optionMenu = (OptionMenu)GD.Load<PackedScene>("res://scene//ui//OptionMenu.tscn").Instantiate();
-        AddChild(optionMenu);
-    }
-
-	public void OnGoBackButtonPressed()
+	private void OnGoBackButtonPressed()
 	{
 		GetTree().ChangeSceneToFile("res://scene/ui/MainMenu.tscn");
 	}

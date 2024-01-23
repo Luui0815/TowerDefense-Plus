@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwp45knbjhjd0"]
+[gd_scene load_steps=9 format=3 uid="uid://dwp45knbjhjd0"]
 
 [ext_resource type="Script" path="res://script/ui/LevelSelectionMenu.cs" id="1_lphdg"]
 [ext_resource type="Texture2D" uid="uid://bc2wdyfemdwjv" path="res://assets/background/DungeonTunnelBackground.png" id="2_yr3va"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="3_ptm43"]
-[ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://theme/ButtonTheme.tres" id="4_6mp1b"]
 [ext_resource type="Theme" uid="uid://s6tlaljytfer" path="res://theme/MenuButtonTheme.tres" id="5_0bkel"]
 [ext_resource type="Texture2D" uid="uid://8yd4cvn6ty1u" path="res://assets/background/PixelSchlossDungeoTextfeldHintergrund.png" id="6_fh0ex"]
 
@@ -38,22 +37,6 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "LEVELAUSWAHL"
 label_settings = SubResource("LabelSettings_uul3t")
 horizontal_alignment = 1
-
-[node name="OptionButton" type="Button" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.064
-anchor_top = 0.421
-anchor_right = 0.201
-anchor_bottom = 0.511
-offset_left = 468.08
-offset_top = 316.88
-offset_right = 472.72
-offset_bottom = 322.08
-mouse_default_cursor_shape = 2
-theme = ExtResource("4_6mp1b")
-text = "EINSTELLUNGEN"
-metadata/_edit_group_ = true
 
 [node name="GoBackButton" type="Button" parent="Panel"]
 custom_minimum_size = Vector2(80, 80)
@@ -93,5 +76,4 @@ offset_top = 13.0
 offset_right = 394.0
 offset_bottom = 267.0
 
-[connection signal="pressed" from="Panel/OptionButton" to="." method="OnSettingsButtonPressed"]
 [connection signal="pressed" from="Panel/GoBackButton" to="." method="OnGoBackButtonPressed"]
