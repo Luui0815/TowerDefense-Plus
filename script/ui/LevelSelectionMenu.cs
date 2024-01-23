@@ -26,7 +26,7 @@ public partial class LevelSelectionMenu : Node
 	private void CreateLevelButtons()
 	{
 		Container levelButtonContainer = GetNode<Container>("Panel/LevelButtonContainer");
-        Theme theme = GD.Load<Theme>("res://scene/ui/ButtonTheme.tres");
+        Theme theme = GD.Load<Theme>("res://theme/ButtonTheme.tres");
 
         foreach (Level level in Enum.GetValues(typeof(Level))) 
 		{
