@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://script/ui/TowerSelectionMenu.cs" id="1_4u00d"]
 [ext_resource type="Texture2D" uid="uid://bc2wdyfemdwjv" path="res://assets/background/DungeonTunnelBackground.png" id="2_14n1u"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="3_yy0yg"]
-[ext_resource type="Theme" uid="uid://dv64cnath00db" path="res://scene/ui/ButtonTheme.tres" id="4_nqijg"]
+[ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://theme/ButtonTheme.tres" id="4_nqijg"]
 [ext_resource type="Texture2D" uid="uid://8yd4cvn6ty1u" path="res://assets/background/PixelSchlossDungeoTextfeldHintergrund.png" id="6_oiol1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c8uhs"]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://script/ui/MainMenu.cs" id="1_50fbc"]
 [ext_resource type="Texture2D" uid="uid://11c8mm6e5lsy" path="res://assets/background/PixleCastle.png" id="1_lhq8s"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="3_2mpoe"]
-[ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://scene/ui/ButtonTheme.tres" id="3_dwcal"]
+[ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://theme/ButtonTheme.tres" id="3_dwcal"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

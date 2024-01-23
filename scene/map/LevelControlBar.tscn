@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ct4pl4cxo45ho" path="res://assets/texture/map/LevelControlBar.png" id="1_cnujt"]
 [ext_resource type="Script" path="res://script/map/LevelControlBar.cs" id="1_s5i7c"]
-[ext_resource type="Theme" uid="uid://bmdbvi544mbu2" path="res://scene/map/LevelControlBarTheme.tres" id="2_0yxdt"]
+[ext_resource type="Theme" uid="uid://bmdbvi544mbu2" path="res://theme/LevelControlBarTheme.tres" id="2_0yxdt"]
 [ext_resource type="Texture2D" uid="uid://bb77l2iirrjq1" path="res://assets/texture/buttons/PlayButton.png" id="2_kabve"]
 [ext_resource type="Texture2D" uid="uid://4f8mjd6qtq4s" path="res://assets/texture/buttons/Pause_vClickt.png" id="5_1bra5"]
 [ext_resource type="Texture2D" uid="uid://b431exq11y5d3" path="res://assets/texture/map/MoneyControlBar.png" id="5_2grcu"]

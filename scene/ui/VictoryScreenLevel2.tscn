@@ -5,7 +5,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://3nt84gbothej" path="res://Properties/Animations/AnimationsDefeatScreenKnight.res" id="3_fx7am"]
 [ext_resource type="AnimationLibrary" uid="uid://b1o53tuuyatl8" path="res://Properties/Animations/AnimationDefeatScreenArcher.res" id="4_tgjq7"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="5_diqhq"]
-[ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://scene/ui/ButtonTheme.tres" id="6_n27d5"]
+[ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://theme/ButtonTheme.tres" id="6_n27d5"]
 [ext_resource type="Texture2D" uid="uid://com1sf40hpvl8" path="res://assets/sprites/BadGuys/EvilWizard/Death.png" id="7_fg7g5"]
 [ext_resource type="AnimationLibrary" uid="uid://by2qb7yrh1t0h" path="res://Properties/Animations/AnimationDefeatScreenWizard.res" id="8_iv2ew"]
 [ext_resource type="Texture2D" uid="uid://pdqpr1hpnmm4" path="res://assets/sprites/BadGuys/Skeleton/Skeleton Idle.png" id="9_6pyx0"]
