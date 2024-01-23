@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dm85e7ymbwabc"]
+[gd_scene load_steps=22 format=3 uid="uid://dm85e7ymbwabc"]
 
 [ext_resource type="Script" path="res://script/ui/DefeatScreen.cs" id="1_s3abl"]
 [ext_resource type="Texture2D" uid="uid://bslopsooqcvvq" path="res://assets/sprites/GoodGuys/Knight/KnightIdle.png" id="2_kpqsk"]
@@ -6,11 +6,12 @@
 [ext_resource type="AnimationLibrary" uid="uid://3nt84gbothej" path="res://Properties/Animations/AnimationsDefeatScreenKnight.res" id="3_y5dty"]
 [ext_resource type="AnimationLibrary" uid="uid://b1o53tuuyatl8" path="res://Properties/Animations/AnimationDefeatScreenArcher.res" id="4_scsjx"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="5_gehgc"]
-[ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://theme/ButtonTheme.tres" id="7_kmr2c"]
+[ext_resource type="Theme" uid="uid://s6tlaljytfer" path="res://theme/MenuButtonTheme.tres" id="7_k8f2u"]
 [ext_resource type="Texture2D" uid="uid://com1sf40hpvl8" path="res://assets/sprites/BadGuys/EvilWizard/Death.png" id="8_fm8sm"]
 [ext_resource type="AnimationLibrary" uid="uid://by2qb7yrh1t0h" path="res://Properties/Animations/AnimationDefeatScreenWizard.res" id="9_5uu5y"]
 [ext_resource type="Texture2D" uid="uid://pdqpr1hpnmm4" path="res://assets/sprites/BadGuys/Skeleton/Skeleton Idle.png" id="10_68sdn"]
 [ext_resource type="AnimationLibrary" uid="uid://c7x6owdtbsu46" path="res://Properties/Animations/AnimationDefeatScreenSkeleton.res" id="11_g6nkk"]
+[ext_resource type="Theme" uid="uid://om3i3gc6k3vi" path="res://theme/RepeatButtonTheme.tres" id="12_678nm"]
 
 [sub_resource type="Animation" id="Animation_vguxk"]
 length = 0.001
@@ -307,25 +308,33 @@ text = "Niederlage
 "
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Panel"]
-custom_minimum_size = Vector2(200, 50)
+[node name="MainMenuButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = 158.0
-offset_right = 100.0
-offset_bottom = 208.0
+offset_left = 25.0
+offset_top = 135.0
+offset_right = 105.0
+offset_bottom = 215.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
-theme = ExtResource("7_kmr2c")
-text = "Hauptmenü"
+theme = ExtResource("7_k8f2u")
+
+[node name="RepeatButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_left = 270.0
+offset_top = 360.0
+offset_right = 350.0
+offset_bottom = 440.0
+theme = ExtResource("12_678nm")
 
 [node name="VictoriousWizard" type="Sprite2D" parent="Panel"]
 visibility_layer = 4
@@ -377,4 +386,5 @@ libraries = {
 [node name="TimerAttackSkeletonTwo" type="Timer" parent="Panel/VictoriousSkeleton2"]
 one_shot = true
 
-[connection signal="pressed" from="Panel/Button" to="." method="OnMenuButtonPressed"]
+[connection signal="pressed" from="Panel/MainMenuButton" to="." method="OnMenuButtonPressed"]
+[connection signal="pressed" from="Panel/RepeatButton" to="." method="OnRepeatButtonPressed"]

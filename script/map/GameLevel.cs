@@ -17,7 +17,7 @@ public abstract partial class GameLevel : Node2D
     private LevelControlBar _levelControlBar;
     private PlayerData _playerData;
     private bool _levelStarted = false, _levelCompleted = false;
-
+    private SortedSet<string> _selectedTowers;
     private Area2D _levelArea;
     private PauseMenu _pauseMenu;
     private CanvasLayer _menuLayer;
@@ -52,7 +52,14 @@ public abstract partial class GameLevel : Node2D
         }
     }
 
-    protected abstract int LevelNumber
+    public SortedSet<string> SelectedTowers
+    {
+        get {
+            return _selectedTowers;
+        }
+    }
+
+    public abstract int LevelNumber
     {
         get;
     }
@@ -160,6 +167,7 @@ public abstract partial class GameLevel : Node2D
     /// <param name="towerNames">The names of the towers added to the inventory</param>
     public void FillTowerContainer(SortedSet<string> towerNames)
     {
+        _selectedTowers = towerNames;
         PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
         foreach (string towerName in towerNames)

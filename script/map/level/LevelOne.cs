@@ -8,7 +8,7 @@ public partial class LevelOne : GameLevel
 		_currentMoney = 500;
 	}
 
-	protected override int LevelNumber
+	public override int LevelNumber
 	{
 		get;
 	} = 1;
