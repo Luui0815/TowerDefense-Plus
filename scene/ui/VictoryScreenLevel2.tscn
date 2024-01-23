@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d1fd627dmxl35"]
+[gd_scene load_steps=23 format=3 uid="uid://crl43rt34ejll"]
 
 [ext_resource type="Script" path="res://script/ui/VictoryScreen.cs" id="1_f6ced"]
 [ext_resource type="Texture2D" uid="uid://bm358q1cxnq80" path="res://assets/sprites/GoodGuys/Archer/ArcherDeath.png" id="2_6cslh"]

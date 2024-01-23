@@ -3,13 +3,12 @@
 [ext_resource type="Script" path="res://script/ui/GameTutorial.cs" id="1_erwf3"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="2_dq8dm"]
 [ext_resource type="Texture2D" uid="uid://8yd4cvn6ty1u" path="res://assets/background/PixelSchlossDungeoTextfeldHintergrund.png" id="3_q6ajt"]
+[ext_resource type="Theme" uid="uid://s6tlaljytfer" path="res://scene/ui/MenuButtonTheme.tres" id="4_c7oid"]
 [ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://scene/ui/ButtonTheme.tres" id="4_kds1t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u327s"]
 font = ExtResource("2_dq8dm")
 font_size = 32
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cajjm"]
 
 [node name="GameTutorial" type="Control"]
 layout_mode = 3
@@ -49,52 +48,32 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
 offset_left = 33.0
-offset_top = 97.0
+offset_top = 81.0
 offset_right = -30.0
-offset_bottom = 329.24
+offset_bottom = 252.24
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
 label_settings = SubResource("LabelSettings_u327s")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="BackToMainMenuButton" type="Button" parent="."]
-z_index = 1
+[node name="MainMenuButton" type="Button" parent="."]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
-offset_left = 72.0
-offset_top = 588.0
-offset_right = 312.0
-offset_bottom = 653.0
-scale = Vector2(1.1, 1.1)
-theme = ExtResource("4_kds1t")
-
-[node name="BackToMainMenuLabel" type="Label" parent="BackToMainMenuButton"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.058
-offset_left = 34.2727
-offset_top = 15.9091
-offset_right = 25.2728
-offset_bottom = 54.1391
-scale = Vector2(0.75, 0.75)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Zum Hauptmenü"
-label_settings = SubResource("LabelSettings_u327s")
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = 94.0
+offset_top = 566.0
+offset_right = 174.0
+offset_bottom = 646.0
+theme = ExtResource("4_c7oid")
 
 [node name="ShowNextButton" type="Button" parent="."]
 z_index = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.748
-anchor_top = 0.69
-anchor_right = 0.94
-anchor_bottom = 0.766
-offset_left = 0.559937
-offset_top = 0.199951
-offset_right = -0.200073
-offset_bottom = 10.48
+custom_minimum_size = Vector2(245, 65)
+layout_mode = 0
+offset_left = 700.0
+offset_top = 600.0
+offset_right = 945.0
+offset_bottom = 665.0
 theme = ExtResource("4_kds1t")
 
 [node name="ShowNextLabel" type="Label" parent="ShowNextButton"]
@@ -114,11 +93,12 @@ vertical_alignment = 1
 
 [node name="ShowPreviousButton" type="Button" parent="."]
 z_index = 1
+custom_minimum_size = Vector2(245, 65)
 layout_mode = 0
-offset_left = 958.0
-offset_top = 585.0
-offset_right = 1203.0
-offset_bottom = 650.0
+offset_left = 335.0
+offset_top = 600.0
+offset_right = 580.0
+offset_bottom = 665.0
 theme = ExtResource("4_kds1t")
 disabled = true
 
@@ -138,20 +118,27 @@ label_settings = SubResource("LabelSettings_u327s")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PageLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 610.0
+offset_right = 670.0
+offset_bottom = 650.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "0/0
+"
+label_settings = SubResource("LabelSettings_u327s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="InfoImage" type="TextureRect" parent="."]
 z_index = 1
 layout_mode = 0
-offset_left = 379.0
-offset_top = 395.0
-offset_right = 865.0
-offset_bottom = 675.0
+offset_left = 391.0
+offset_top = 285.0
+offset_right = 889.0
+offset_bottom = 565.0
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_cajjm")
-
-[connection signal="pressed" from="BackToMainMenuButton" to="." method="_on_back_to_main_menu_button_pressed"]
+[connection signal="pressed" from="MainMenuButton" to="." method="OnMainMenuButtonPressed"]
 [connection signal="pressed" from="ShowNextButton" to="." method="OnShowNextButtonPressed"]
 [connection signal="pressed" from="ShowPreviousButton" to="." method="OnShowPreviousButtonPressed"]

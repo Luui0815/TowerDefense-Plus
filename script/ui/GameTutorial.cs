@@ -10,11 +10,12 @@ public partial class GameTutorial : Control
          "Wurde ein Level ausgewählt, hat der Spieler eine Auswahl von verschiedenen Einheiten, welche er im Level verwenden kann. Als nächstes werden die wichtigsten Konzepte und Einheitentypen des Spiels erklärt.",
          "1. Geld generieren\nEinheiten in einem Level zu platzieren, kostet je nach Einheit eine Summe an Geld. Diese muss der Spieler primär durch das Platzieren von Goldminen verdienen. Diese generieren in einem bestimmten Intervall Geld.",
          "Jedoch lassen auch besiegte Gegner eine kleinere Menge Geld fallen.\n4-5 Goldminen in einem Level zu platzieren wird empfohlen.",
-         "2. Verteidiger platzieren und Gegner abwehren\n Man kann zwischen zwei Kategorien von Verteidigern unterscheiden: Aktive Verteidiger und passive Verteidiger. Aktive Verteidiger greifen aktiv Feinde mit Geschossen oder im Nahkampf an, wenn diese sich in Reichweite befinden. Passive Verteidiger können Gegner aufhalten oder verlangsamen und die aktiven Verteidiger unterstützen.",
-         "" };
+         "2. Verteidiger platzieren und Gegner abwehren\n Man kann zwischen zwei Kategorien von Verteidigern unterscheiden: Aktive Verteidiger und passive Verteidiger.",
+         "Aktive Verteidiger greifen aktiv Feinde mit Geschossen oder im Nahkampf an, wenn diese sich in Reichweite befinden.",
+         "Passive Verteidiger können Gegner aufhalten oder verlangsamen und die aktiven Verteidiger unterstützen." };
 
     private int _tutorialTextIndex = 0;
-    private Label _infoText;
+    private Label _infoText, _pageLabel;
     private TextureRect _imagePanel;
     private Button _showNextButton, _showPreviousButton;
     public override void _Ready()
@@ -23,11 +24,12 @@ public partial class GameTutorial : Control
         _imagePanel = GetNode<TextureRect>("InfoImage");
         _showPreviousButton = GetNode<Button>("ShowPreviousButton");
         _showNextButton = GetNode<Button>("ShowNextButton");
+        _pageLabel = GetNode<Label>("PageLabel");
 
-        _infoText.Text = _tutorialText[_tutorialTextIndex];
+        UpdateUserInterface();
     }
 
-    private void _on_back_to_main_menu_button_pressed()
+    private void OnMainMenuButtonPressed()
     {
         GetTree().ChangeSceneToFile("res://scene/ui/MainMenu.tscn");
     }
@@ -56,6 +58,7 @@ public partial class GameTutorial : Control
         _showNextButton.Disabled = _tutorialTextIndex == (_tutorialText.Length - 1);
 
         _infoText.Text = _tutorialText[_tutorialTextIndex];
+        _pageLabel.Text = $"{_tutorialTextIndex + 1}/{_tutorialText.Length}";
         //TODO: Load image
     }
 }
