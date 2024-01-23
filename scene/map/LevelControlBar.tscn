@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bb77l2iirrjq1" path="res://assets/texture/buttons/PlayButton.png" id="2_kabve"]
 [ext_resource type="Texture2D" uid="uid://4f8mjd6qtq4s" path="res://assets/texture/buttons/Pause_vClickt.png" id="5_1bra5"]
 [ext_resource type="Texture2D" uid="uid://b431exq11y5d3" path="res://assets/texture/map/MoneyControlBar.png" id="5_2grcu"]
-[ext_resource type="PackedScene" uid="uid://b8fr6r6g0idrn" path="res://scene/ui/Hammer.tscn" id="7_a4rrw"]
+[ext_resource type="PackedScene" path="res://scene/ui/Hammer.tscn" id="7_a4rrw"]
 
 [node name="LevelControlBar" type="Control"]
 layout_mode = 3

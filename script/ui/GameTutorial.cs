@@ -1,8 +1,10 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class GameTutorial : Control
 {
+    private static readonly Dictionary<int, Texture2D> _textureCache = new Dictionary<int, Texture2D>();
     private string[] _tutorialText =
         {"Willkommen beim BA Tower Defense Game!\nDiese kleine Einführung soll dem Spieler die grundlegenden Prinzipien, Inhalte und Ziele des Spiels vermitteln.",
          "Tower Defense ist ein Genre von Strategiespielen, in welchem der Spieler eine Verteidigungslinie aufbauen muss, um Wellen von ankommenden Feinden abzuwehren. Die verteidigenden Einheiten werden dabei Türme (englisch: towers) genannt.",
@@ -25,6 +27,21 @@ public partial class GameTutorial : Control
         _showPreviousButton = GetNode<Button>("ShowPreviousButton");
         _showNextButton = GetNode<Button>("ShowNextButton");
         _pageLabel = GetNode<Label>("PageLabel");
+
+        //Preload page backgrounds to avoid slow loading during page swaps
+        for(int i = 0; i<_tutorialText.Length; i++)
+        {
+            string texturePath = $"res://assets/texture/tutorial/Page{i}.png";
+            if (ResourceLoader.Exists(texturePath))
+            {
+                Texture2D texture = GD.Load<Texture2D>(texturePath); 
+                _textureCache.Add(i, texture);
+            }
+            else
+            {
+                GD.PrintErr($"Tutorial-Bild für Seite {i+1} konnte nicht gefunden werden!");
+            }
+        }
 
         UpdateUserInterface();
     }
@@ -59,6 +76,10 @@ public partial class GameTutorial : Control
 
         _infoText.Text = _tutorialText[_tutorialTextIndex];
         _pageLabel.Text = $"{_tutorialTextIndex + 1}/{_tutorialText.Length}";
-        //TODO: Load image
+
+        if (_textureCache.ContainsKey(_tutorialTextIndex)) 
+        {
+            _imagePanel.Texture = _textureCache[_tutorialTextIndex];
+        }
     }
 }
