@@ -1,16 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://q56k3jimr6xw"]
+[gd_scene load_steps=7 format=3 uid="uid://q56k3jimr6xw"]
 
 [ext_resource type="Script" path="res://script/ui/GameTutorial.cs" id="1_erwf3"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="2_dq8dm"]
 [ext_resource type="Texture2D" uid="uid://8yd4cvn6ty1u" path="res://assets/background/PixelSchlossDungeoTextfeldHintergrund.png" id="3_q6ajt"]
-[ext_resource type="Texture2D" uid="uid://boomb8pebxv8m" path="res://assets/button/Stonebutton1.png" id="4_4dc8g"]
-[ext_resource type="Texture2D" uid="uid://ceh7jn57xacd1" path="res://assets/button/StonebuttonPressed.png" id="5_s8ktf"]
+[ext_resource type="Theme" uid="uid://dv64cnath00db" path="res://scene/ui/ButtonTheme.tres" id="4_kds1t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u327s"]
 font = ExtResource("2_dq8dm")
 font_size = 32
-
-[sub_resource type="Theme" id="Theme_5oc26"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cajjm"]
 
@@ -60,7 +57,7 @@ label_settings = SubResource("LabelSettings_u327s")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="BackToMainMenuButton" type="TextureButton" parent="."]
+[node name="BackToMainMenuButton" type="Button" parent="."]
 z_index = 1
 layout_mode = 0
 offset_left = 72.0
@@ -68,9 +65,7 @@ offset_top = 588.0
 offset_right = 312.0
 offset_bottom = 653.0
 scale = Vector2(1.1, 1.1)
-texture_normal = ExtResource("4_4dc8g")
-texture_pressed = ExtResource("5_s8ktf")
-stretch_mode = 0
+theme = ExtResource("4_kds1t")
 
 [node name="BackToMainMenuLabel" type="Label" parent="BackToMainMenuButton"]
 layout_mode = 1
@@ -88,7 +83,7 @@ label_settings = SubResource("LabelSettings_u327s")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShowNextButton" type="TextureButton" parent="."]
+[node name="ShowNextButton" type="Button" parent="."]
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -100,10 +95,7 @@ offset_left = 0.559937
 offset_top = 0.199951
 offset_right = -0.200073
 offset_bottom = 10.48
-theme = SubResource("Theme_5oc26")
-texture_normal = ExtResource("4_4dc8g")
-texture_pressed = ExtResource("5_s8ktf")
-stretch_mode = 0
+theme = ExtResource("4_kds1t")
 
 [node name="ShowNextLabel" type="Label" parent="ShowNextButton"]
 layout_mode = 1
@@ -120,16 +112,14 @@ label_settings = SubResource("LabelSettings_u327s")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ShowPreviousButton" type="TextureButton" parent="."]
+[node name="ShowPreviousButton" type="Button" parent="."]
 z_index = 1
 layout_mode = 0
 offset_left = 958.0
 offset_top = 585.0
 offset_right = 1203.0
 offset_bottom = 650.0
-texture_normal = ExtResource("4_4dc8g")
-texture_pressed = ExtResource("5_s8ktf")
-stretch_mode = 0
+theme = ExtResource("4_kds1t")
 
 [node name="ShowPreviousLabel" type="Label" parent="ShowPreviousButton"]
 layout_mode = 1
