@@ -48,7 +48,7 @@ namespace TowerDefense
 			{
 				if(Tower is TrapDefence)
 				{
-					caltrop_trap caltrop = (caltrop_trap)Tower;
+					CaltropTrap caltrop = (CaltropTrap)Tower;
 					if(caltrop.IsEnemyInTrap)
 						Tower.EmitSignal(TrapDefence.SignalName.TrapDeleted,Tower.Name);//muss so, da sonst Methode vom enemy in Trap aufgerufen wird, 
                 }                                                                       //wenn der aber nicht drin, baehm Null Pointer

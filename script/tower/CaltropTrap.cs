@@ -1,12 +1,10 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 
-public partial class caltrop_trap : TrapDefence
+public partial class CaltropTrap : TrapDefence
 {
-    private Timer _PauseTimer;
-    private Enemy _EnemyInTrap;
-    public caltrop_trap()
+    private Timer _pauseTimer;
+    private Enemy _enemyInTrap;
+    public CaltropTrap()
     {
         _delay = 15;
         _animationDelay = 1;
@@ -17,8 +15,8 @@ public partial class caltrop_trap : TrapDefence
     public override void _Ready()
     {
         _AttackArea = GetNode<Area2D>("AttackArea");
-        _PauseTimer = GetNode<Timer>("PauseTimer");
-        _PauseTimer.WaitTime = _delay;
+        _pauseTimer = GetNode<Timer>("PauseTimer");
+        _pauseTimer.WaitTime = _delay;
         _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
         _animatedSprite.Play("open");
         _animatedSprite.AnimationLooped += OnAnimationLooped;
@@ -26,9 +24,9 @@ public partial class caltrop_trap : TrapDefence
 
     public override void _Process(double delta)
     {
-        if(_EnemyInTrap!=null && (_EnemyInTrap.Health<=0 || !_EnemyInTrap.IsFreezed()))//evtl. geht das, wenn nicht oben wieder einklammern!
+        if(_enemyInTrap!=null && (_enemyInTrap.Health<=0 || !_enemyInTrap.IsFreezed()))//evtl. geht das, wenn nicht oben wieder einklammern!
         {
-            _EnemyInTrap = null;
+            _enemyInTrap = null;
             _animatedSprite.Play("opening");
             Health--;
         }
@@ -42,7 +40,7 @@ public partial class caltrop_trap : TrapDefence
 
     private void TryToAttack()
     {
-        if (_EnemyInTrap == null)
+        if (_enemyInTrap == null)
         {
             foreach (Node2D area in _AttackArea.GetOverlappingAreas())
             {
@@ -50,12 +48,12 @@ public partial class caltrop_trap : TrapDefence
                 {
                     Enemy enemy = (Enemy)area.GetParent();
 
-                    if (area.Name == "HitboxArea" && enemy.EnemyName != "PyroEnemy" && _PauseTimer.IsStopped())//!_attackedEnemiess.Contains(enemy) &&
+                    if (area.Name == "HitboxArea" && enemy.EnemyName != "PyroEnemy" && _pauseTimer.IsStopped())//!_attackedEnemiess.Contains(enemy) &&
                     {
-                        _EnemyInTrap = (Enemy)area.GetParent();
-                        _EnemyInTrap.AddStatusEffect("caltrop");
-                        _PauseTimer.Start();
-                        TrapDeleted += (Name) => _EnemyInTrap.DeleteTrap(Name);
+                        _enemyInTrap = (Enemy)area.GetParent();
+                        _enemyInTrap.AddStatusEffect("caltrop");
+                        _pauseTimer.Start();
+                        TrapDeleted += (Name) => _enemyInTrap.DeleteTrap(Name);
                         _animatedSprite.Play("closing");
                         break;
                     }
@@ -78,7 +76,7 @@ public partial class caltrop_trap : TrapDefence
     {
         get
         {
-            if (_EnemyInTrap == null)
+            if (_enemyInTrap == null)
                 return false;
             else
                 return true;
