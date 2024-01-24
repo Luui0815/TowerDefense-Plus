@@ -90,5 +90,3 @@ shape = SubResource("RectangleShape2D_3rhau")
 
 [node name="PauseTimer" type="Timer" parent="."]
 one_shot = true
-
-[connection signal="area_entered" from="AttackArea" to="." method="_on_attack_area_area_entered"]
