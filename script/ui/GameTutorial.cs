@@ -14,7 +14,8 @@ public partial class GameTutorial : Control
          "Jedoch lassen auch besiegte Gegner eine kleinere Menge Geld fallen.\n4-5 Goldminen in einem Level zu platzieren wird empfohlen.",
          "2. Verteidiger platzieren und Gegner abwehren\n Man kann zwischen zwei Kategorien von Verteidigern unterscheiden: Aktive Verteidiger und passive Verteidiger.",
          "Aktive Verteidiger greifen aktiv Feinde mit Geschossen oder im Nahkampf an, wenn diese sich in Reichweite befinden.",
-         "Passive Verteidiger können Gegner aufhalten oder verlangsamen und die aktiven Verteidiger unterstützen." };
+         "Passive Verteidiger können Gegner aufhalten oder verlangsamen und die aktiven Verteidiger unterstützen." ,
+         "3. Freischalten zusätzlicher Inhalte\nDurch den Fortschritt, den der Spieler im Spiel erreicht, schaltet er zusätzliche Inhalte für das Spiel frei. Dazu zählen Einheiten, neue Level oder den Endlos-Modus nach Abschluss eines Levels."};
 
     private int _tutorialTextIndex = 0;
     private Label _infoText, _pageLabel;
