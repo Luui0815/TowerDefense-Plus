@@ -26,7 +26,7 @@ public partial class EnemySpawner : Node
         get { return _finished; }
     }
 
-    public EnemySpawner(int levelNr, (int, EnemyType)[] spawnConfig)
+    public EnemySpawner((int, EnemyType)[] spawnConfig)
     {
         _spawnTimes = spawnConfig;
         _spawnTimer = new Timer

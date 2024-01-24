@@ -146,7 +146,7 @@ public abstract partial class GameLevel : Node2D
             }
         }
 
-        _spawner = new(1, SpawnConfig){
+        _spawner = new(SpawnConfig){
             Name = "EnemySpawner",
             ProcessMode = ProcessModeEnum.Pausable
         };
