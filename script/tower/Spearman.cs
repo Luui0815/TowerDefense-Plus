@@ -1,7 +1,7 @@
 using Godot;
 using TowerDefense;
 
-public partial class Spearman : MeleeDefender //so halber Nahkampf
+public partial class Spearman : AttackTower //so halber Nahkampf
 {
     private Enemy _targetEnemy;
     private Area2D _AttackArea2;

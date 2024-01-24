@@ -39,4 +39,8 @@ public abstract partial class Defender : GameEntity
             _HitboxArea.QueueFree();
         _animatedSprite.Play("death");
     }
+
+    public override void Action()
+    {
+    }
 }

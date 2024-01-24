@@ -14,11 +14,6 @@ public partial class caltrop_trap : TrapDefence
         Health = 5;
     }
 
-    public override void Action()
-    {
-
-    }
-
     public override void _Ready()
     {
         _AttackArea = GetNode<Area2D>("AttackArea");

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public  partial class Knight : MeleeDefender
+public  partial class Knight : AttackTower
 {
 	private List<Enemy> _attackableEnemiess = new List<Enemy>();
 

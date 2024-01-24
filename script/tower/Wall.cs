@@ -10,11 +10,6 @@ public partial class Wall : Defender
         Health=50;
     }
 
-    public override void Action()
-    {
-        //Not needed until upgrades are implemented
-    }
-
     public override void _Ready()
 	{
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");

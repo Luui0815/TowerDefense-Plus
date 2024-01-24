@@ -12,12 +12,6 @@ public partial class FireTrap : TrapDefence
 		_actionAnimation = "idle";
 		Health = 6;
 	}
-
-	public override void Action()
-	{
-
-	}
-
 	public override void _Ready()
 	{
 		_AttackArea = GetNode<Area2D>("AttackArea");

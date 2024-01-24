@@ -1,9 +1,10 @@
 using Godot;
 using TowerDefense;
 
-public partial class Archer : RangeDefender
+public partial class Archer : AttackTower
 {
     private Enemy _targetEnemy;
+    private float _arrowVelocity = 5;
     private Mutex m = new Mutex();
     public Archer()
     {
@@ -12,12 +13,7 @@ public partial class Archer : RangeDefender
         _actionAnimation = "idle";
         Health = 6;
         _damage = 2;
-        _ArrowVelocity = 5;
-    }
-
-    public override void Action()
-    {
-
+        _arrowVelocity = 5;
     }
 
     public override void _Ready()
@@ -108,7 +104,7 @@ public partial class Archer : RangeDefender
         TowerProjectile arrow = (TowerProjectile)GD.Load<PackedScene>("res://scene/tower/TowerProjectile.tscn").Instantiate();
         if (_targetEnemy != null && _targetEnemy.Health > 0)
         {
-            arrow.Init(_targetEnemy, _ArrowVelocity, ProjectileType.Arrow, this);
+            arrow.Init(_targetEnemy, _arrowVelocity, ProjectileType.Arrow, this);
             arrow.TargetHit += ArrowHit;
             arrow.Position = new Vector2(GlobalPosition.X + 80, GlobalPosition.Y + 55);
             AddChild(arrow);
