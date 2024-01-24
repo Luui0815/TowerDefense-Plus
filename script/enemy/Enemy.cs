@@ -71,10 +71,10 @@ public abstract partial class Enemy : GameEntity
 		set { _name = value; }
 	}
 
-	public virtual void Init()
-	{
+    public override void Action()
+    {
 
-	}
+    }
 
 	public void DeleteTrap(string trap)
 	{

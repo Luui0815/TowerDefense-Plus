@@ -5,7 +5,6 @@ public partial class Archer : AttackTower
 {
     private Enemy _targetEnemy;
     private float _arrowVelocity = 5;
-    private Mutex m = new Mutex();
     public Archer()
     {
         _delay = 2;

@@ -1,10 +1,9 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 public  partial class Knight : AttackTower
 {
-	private List<Enemy> _attackableEnemiess = new List<Enemy>();
+	private List<Enemy> _attackableEnemiess = new();
 
 	public Knight()
 	{

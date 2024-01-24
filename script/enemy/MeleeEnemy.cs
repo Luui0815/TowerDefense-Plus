@@ -15,10 +15,6 @@ public abstract partial class MeleeEnemy : Enemy
     {
 
 	}
-	public override void Action()
-	{
-
-	}
 
     protected Defender SelectClosestTarget(Area2D _attackRangeArea)
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class FireTrap : TrapDefence
 {
-	private List<Enemy> _attackableEnemiess = new List<Enemy>();
+	private List<Enemy> _attackableEnemiess = new();
 	public FireTrap()
 	{
 		_delay = 15;//nicht benoetigt, da Trap nur Status hinzufuegt
