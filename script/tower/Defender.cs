@@ -6,13 +6,7 @@ public abstract partial class Defender : GameEntity
 	protected string _name;
     protected AnimatedSprite2D _animatedSprite;
 	protected Area2D _HitboxArea;
-    protected bool _DefenderDefeated = false;
-
-    public bool DefenderDefeated
-	{
-        get { return _DefenderDefeated; }
-        set { _DefenderDefeated = value; }
-    }
+    public bool DefenderDefeated = false;
 
     public void Init(string towerName)
 	{
@@ -34,7 +28,7 @@ public abstract partial class Defender : GameEntity
     }
     protected void OnDefenderDefeated()
     {
-        _DefenderDefeated = true;
+        DefenderDefeated = true;
         if(_HitboxArea != null)
             _HitboxArea.QueueFree();
         _animatedSprite.Play("death");
