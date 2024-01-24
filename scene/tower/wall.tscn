@@ -92,15 +92,15 @@ size = Vector2(100, 120)
 [node name="WallDefender" type="Node2D"]
 script = ExtResource("1_urkrg")
 
+[node name="ActionTimer" type="Timer" parent="."]
+
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(13, 8)
+position = Vector2(13, 22)
 scale = Vector2(1.68, 2)
 sprite_frames = SubResource("SpriteFrames_d6id3")
 animation = &"death"
 frame_progress = 0.648247
 centered = false
-
-[node name="ActionTimer" type="Timer" parent="."]
 
 [node name="AnimationTimer" type="Timer" parent="."]
 

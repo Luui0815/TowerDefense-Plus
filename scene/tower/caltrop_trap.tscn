@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dm4pevxatumie"]
 
-[ext_resource type="Script" path="res://script/tower/caltrop_trap.cs" id="1_257yf"]
+[ext_resource type="Script" path="res://script/tower/CaltropTrap.cs" id="1_257yf"]
 [ext_resource type="Texture2D" uid="uid://ch7erbu44087" path="res://assets/texture/tower/animation/caltrop_trap/TrapCloseing.png" id="2_6ddt6"]
 [ext_resource type="Texture2D" uid="uid://gf5wxerv81mp" path="res://assets/texture/tower/animation/caltrop_trap/TrapOpen.png" id="2_ditrf"]
 [ext_resource type="Texture2D" uid="uid://bk1uwxjy7pgnp" path="res://assets/texture/tower/animation/caltrop_trap/SpriteSheetTrap.png" id="4_ocy58"]
