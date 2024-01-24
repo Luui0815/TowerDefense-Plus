@@ -14,8 +14,6 @@ namespace TowerDefense
 	{
 		[Signal]
 		public delegate void DefenderPlacedEventHandler(int cost);
-
-		private static Dictionary<FieldType, Texture2D> _fieldTextureCache = new();
 		private int _fieldNr;
 		private Sprite2D _sprite;
 		private FieldType _fieldType;
@@ -27,16 +25,6 @@ namespace TowerDefense
 			_sprite = GetNode<Sprite2D>("Background");
 			_fieldNr = fieldNumber;
 			_fieldType = fieldType;
-
-			if (!_fieldTextureCache.ContainsKey(fieldType))
-			{
-				_sprite.Texture = GD.Load<Texture2D>($"res://assets/texture/field/{fieldType}.png");
-				_fieldTextureCache.Add(fieldType, _sprite.Texture);
-			}
-			else
-			{
-				_sprite.Texture = _fieldTextureCache[fieldType];
-			}
 		}
 
 		public override bool _CanDropData(Vector2 atPosition, Variant data)

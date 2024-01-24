@@ -11,7 +11,6 @@ public abstract partial class GameLevel : Node2D
     public delegate void MoneyChangedEventHandler(int _actmoney);
 
     protected int _currentMoney = 0;
-    private readonly HashSet<int> _completedLanes = new();
     private readonly MapLane[] _lanes = new MapLane[5];
     private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
@@ -27,14 +26,6 @@ public abstract partial class GameLevel : Node2D
         get
         {
             return _levelStarted;
-        }
-    }
-
-    public MapLane[] Lanes
-    {
-        get
-        {
-            return _lanes;
         }
     }
 
