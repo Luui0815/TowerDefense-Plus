@@ -106,7 +106,7 @@ public partial class EnemySpawner : Node
         for(int i = 0; i < _endlessEnemyAmount; i++) 
         {
             int waitTime = random.Next(1, 2);
-            int enemyId = _endlessEnemyAmount > 19 ? random.Next(1, 6) : random.Next(1, 5); // erst nach 2 Waves koennen giants spawnen
+            int enemyId = _endlessEnemyAmount > 22 ? random.Next(1, 6) : random.Next(1, 5); // erst nach einigen Waves koennen giants spawnen
             _endlessSpawnTimes[i] = (waitTime, (EnemyType) enemyId);
         }
         _endlessEnemyAmount++;

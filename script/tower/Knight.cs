@@ -11,7 +11,7 @@ public  partial class Knight : AttackTower
 		_animationDelay = 1;
 		_actionAnimation = "idle";
 		_damage = 1;
-		Health = 30;
+		Health = 32;
 	}
 	public override void _Ready()
 	{
