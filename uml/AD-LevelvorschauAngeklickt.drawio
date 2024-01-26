@@ -1,0 +1,52 @@
+<mxfile host="Electron" modified="2024-01-26T11:46:35.625Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.21 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="PAD_Zl3mXPJfURLzLnsC" version="22.1.21" type="device">
+  <diagram name="Seite-1" id="qSU0O-EVbq0HCuzVo5mC">
+    <mxGraphModel dx="989" dy="577" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pXO75YiAVBvj5hHbPv8A-1" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#ff0000;" parent="1" vertex="1">
+          <mxGeometry x="350" y="120" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pXO75YiAVBvj5hHbPv8A-2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="pXO75YiAVBvj5hHbPv8A-1" target="pXO75YiAVBvj5hHbPv8A-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="365" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pXO75YiAVBvj5hHbPv8A-3" value="Ausgewähltes Level speichern" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" parent="1" vertex="1">
+          <mxGeometry x="305" y="180" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pXO75YiAVBvj5hHbPv8A-4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="pXO75YiAVBvj5hHbPv8A-3" target="pXO75YiAVBvj5hHbPv8A-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="365" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pXO75YiAVBvj5hHbPv8A-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=#FF0000;endArrow=open;endFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="pXO75YiAVBvj5hHbPv8A-6" target="oxX9g81cn6SHsRCeYV_K-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="365" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pXO75YiAVBvj5hHbPv8A-6" value="Freigeschaltete Türme laden" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" parent="1" vertex="1">
+          <mxGeometry x="305" y="260" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pXO75YiAVBvj5hHbPv8A-8" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#ff0000;" parent="1" vertex="1">
+          <mxGeometry x="350" y="410" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pXO75YiAVBvj5hHbPv8A-11" value="Levelvorschau angeklickt" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="375" y="110" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="oxX9g81cn6SHsRCeYV_K-1" value="Turmvorschau anzeigen" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" parent="1" vertex="1">
+          <mxGeometry x="305" y="340" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oxX9g81cn6SHsRCeYV_K-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;strokeColor=#FF0000;endArrow=open;endFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="oxX9g81cn6SHsRCeYV_K-1" target="pXO75YiAVBvj5hHbPv8A-8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="375" y="350" as="targetPoint" />
+            <mxPoint x="375" y="310" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6dK1tNTOqos58H26Kyb6-1" value="Aktivitätsdiagramm: Level ausgewählt" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="10" y="60" width="710" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
