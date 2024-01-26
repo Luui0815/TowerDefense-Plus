@@ -94,7 +94,7 @@ public abstract partial class GameLevel : Node2D
             {
                 case 0:
                     {
-                        position.Y = 5;
+                        position.Y = 10;
                         break;
                     }
                 case 1:

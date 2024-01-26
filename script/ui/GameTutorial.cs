@@ -8,13 +8,12 @@ public partial class GameTutorial : Control
     private readonly string[] _tutorialText =
         {"Willkommen beim BA Tower Defense Game!\nDiese kleine Einführung soll dem Spieler die grundlegenden Prinzipien, Inhalte und Ziele des Spiels vermitteln.",
          "Tower Defense ist ein Genre von Strategiespielen, in welchem der Spieler eine Verteidigungslinie aufbauen muss, um Wellen von ankommenden Feinden abzuwehren. Die verteidigenden Einheiten werden dabei Türme (englisch: towers) genannt.",
-         "In diesem Spiel kann der Spieler zwischen mehreren Leveln auswählen. Sie unterscheiden sich primaer in ihrem Schwierigkeitsgrad. Ziel eines Levels ist, alle Gegnerwellen zu überstehen, ohne dass eine gegnerische Einheit das Schloss auf der linken Seite des Bildschirms erreicht.",
+         "In diesem Spiel kann der Spieler zwischen mehreren Leveln auswählen. Sie unterscheiden sich primär in ihrem Schwierigkeitsgrad. Ziel eines Levels ist, alle Gegnerwellen zu überstehen, ohne dass eine gegnerische Einheit das Schloss auf der linken Seite des Bildschirms erreicht.",
          "Wurde ein Level ausgewählt, hat der Spieler eine Auswahl von verschiedenen Einheiten, welche er im Level verwenden kann. Als nächstes werden die wichtigsten Konzepte und Einheitentypen des Spiels erklärt.",
-         "1. Geld generieren\nEinheiten in einem Level zu platzieren, kostet je nach Einheit eine Summe an Geld. Diese muss der Spieler primär durch das Platzieren von Goldminen verdienen. Diese generieren in einem bestimmten Intervall Geld.",
-         "Jedoch lassen auch besiegte Gegner eine kleinere Menge Geld fallen.\n4-5 Goldminen in einem Level zu platzieren wird empfohlen.",
+         "1. Geld generieren\nEinheiten in einem Level zu platzieren, kostet je nach Einheit eine Summe an Geld. Diese muss der Spieler primär durch das Platzieren von Goldminen verdienen. Diese generieren in einem bestimmten Intervall Geld.\nJedoch lassen auch besiegte Gegner eine kleinere Menge Geld fallen. 4-5 Goldminen in einem Level zu platzieren wird empfohlen.",
          "2. Verteidiger platzieren und Gegner abwehren\n Man kann zwischen zwei Kategorien von Verteidigern unterscheiden: Aktive Verteidiger und passive Verteidiger.",
-         "Aktive Verteidiger greifen aktiv Feinde mit Geschossen oder im Nahkampf an, wenn diese sich in Reichweite befinden.",
-         "Passive Verteidiger können Gegner aufhalten oder verlangsamen und die aktiven Verteidiger unterstützen." ,
+         "Aktive Verteidiger greifen aktiv Feinde mit Geschossen oder im Nahkampf an, wenn diese sich in Reichweite befinden. Dazu zählen die unten aufgelisteten Einheiten.",
+         "Passive Verteidiger können Gegner aufhalten oder verlangsamen und die aktiven Verteidiger unterstützen. Zu de passiven Verteidigern zählen die unten aufgelisteten Einheiten." ,
          "3. Freischalten zusätzlicher Inhalte\nDurch den Fortschritt, den der Spieler im Spiel erreicht, schaltet er zusätzliche Inhalte für das Spiel frei. Dazu zählen Einheiten, neue Level oder den Endlos-Modus nach Abschluss eines Levels."};
 
     private int _tutorialTextIndex = 0;

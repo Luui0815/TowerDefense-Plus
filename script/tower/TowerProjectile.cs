@@ -86,7 +86,7 @@ namespace TowerDefense
 		{
 			float positionDif = Position.X - _dropPosition.X;
 			int dropDownFactor = Convert.ToInt32(positionDif / 50);
-			_velocity.Y = dropDownFactor + 1;
+			_velocity.Y = dropDownFactor + 2;
 		}
 	}
 }
