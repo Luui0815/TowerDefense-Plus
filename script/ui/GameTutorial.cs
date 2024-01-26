@@ -34,8 +34,11 @@ public partial class GameTutorial : Control
             string texturePath = $"res://assets/texture/tutorial/Page{i}.png";
             if (ResourceLoader.Exists(texturePath))
             {
-                Texture2D texture = GD.Load<Texture2D>(texturePath); 
-                _textureCache.Add(i, texture);
+                if (!_textureCache.ContainsKey(i))
+                {
+                    Texture2D texture = GD.Load<Texture2D>(texturePath); 
+                    _textureCache.Add(i, texture);
+                }
             }
             else
             {
@@ -80,6 +83,10 @@ public partial class GameTutorial : Control
         if (_textureCache.ContainsKey(_tutorialTextIndex)) 
         {
             _imagePanel.Texture = _textureCache[_tutorialTextIndex];
+        }
+        else
+        {
+            _imagePanel.Texture = null;
         }
     }
 }
