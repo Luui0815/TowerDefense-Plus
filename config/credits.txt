@@ -14,3 +14,9 @@ GiantEnemy-Sprites: https://clembod.itch.io/bringer-of-death-free
 SoldierEnemy-Sprites: https://sventhole.itch.io/bandits
 GruntEnemy-Sprites: https://pixramen.itch.io/2d-action-platformer-sci-fi-enemy-xeno-grunt
 Fireball Explosion - Sprite: https://bdragon1727.itch.io/free-effect-bullet-impact-explosion-32x32
+The wild breath of Zelda - Font: https://www.dafont.com/the-wild-breath-of-zelda.font
+Pixel Castle - Background Sprite for MainMenu: https://www.slynyrd.com/blog/2019/4/23/pixelblog-16-medieval-fantasy
+SkeletonEnemy - Sprite Pack: https://jesse-m.itch.io/skeleton-pack
+EvilWizardEnemy - Sprite Pack: https://luizmelo.itch.io/evil-wizard-2
+SpearmanTower - Huntress Sprite Pack: https://luizmelo.itch.io/huntress
+ArcherTower - Huntress 2 Sprite Pack: https://luizmelo.itch.io/huntress-2
