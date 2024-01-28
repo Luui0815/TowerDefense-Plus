@@ -10,10 +10,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 [b]Third-party assets:[/b]
 
-Lorem ipsum dolor sit amet, 
-
-consetetur sadipscing elitr, 
-
-sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
-
-sed diam voluptua.
+GiantEnemy-Sprites: https://clembod.itch.io/bringer-of-death-free
+SoldierEnemy-Sprites: https://sventhole.itch.io/bandits
+GruntEnemy-Sprites: https://pixramen.itch.io/2d-action-platformer-sci-fi-enemy-xeno-grunt
+Fireball Explosion - Sprite: https://bdragon1727.itch.io/free-effect-bullet-impact-explosion-32x32
