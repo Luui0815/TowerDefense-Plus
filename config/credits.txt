@@ -10,13 +10,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 [b]Third-party assets:[/b]
 
-GiantEnemy-Sprites: https://clembod.itch.io/bringer-of-death-free
-SoldierEnemy-Sprites: https://sventhole.itch.io/bandits
-GruntEnemy-Sprites: https://pixramen.itch.io/2d-action-platformer-sci-fi-enemy-xeno-grunt
-Fireball Explosion - Sprite: https://bdragon1727.itch.io/free-effect-bullet-impact-explosion-32x32
-The wild breath of Zelda - Font: https://www.dafont.com/the-wild-breath-of-zelda.font
-Pixel Castle - Background Sprite for MainMenu: https://www.slynyrd.com/blog/2019/4/23/pixelblog-16-medieval-fantasy
-SkeletonEnemy - Sprite Pack: https://jesse-m.itch.io/skeleton-pack
-EvilWizardEnemy - Sprite Pack: https://luizmelo.itch.io/evil-wizard-2
-SpearmanTower - Huntress Sprite Pack: https://luizmelo.itch.io/huntress
-ArcherTower - Huntress 2 Sprite Pack: https://luizmelo.itch.io/huntress-2
+[i]GiantEnemy-Sprites[/i]: https://clembod.itch.io/bringer-of-death-free
+[i]SoldierEnemy-Sprites[/i]: https://sventhole.itch.io/bandits
+[i]GruntEnemy-Sprites[/i]: https://pixramen.itch.io/2d-action-platformer-sci-fi-enemy-xeno-grunt
+[i]Fireball Explosion - Sprite[/i]: https://bdragon1727.itch.io/free-effect-bullet-impact-explosion-32x32
+[i]The wild breath of Zelda - Font[/i]: https://www.dafont.com/the-wild-breath-of-zelda.font
+[i]Pixel Castle - Background Sprite for MainMenu[/i]: https://www.slynyrd.com/blog/2019/4/23/pixelblog-16-medieval-fantasy
+[i]SkeletonEnemy - Sprite Pack[/i]: https://jesse-m.itch.io/skeleton-pack
+[i]EvilWizardEnemy - Sprite Pack[/i]: https://luizmelo.itch.io/evil-wizard-2
+[i]SpearmanTower - Huntress Sprite Pack[/i]: https://luizmelo.itch.io/huntress
+[i]ArcherTower - Huntress 2 Sprite Pack[/i]: https://luizmelo.itch.io/huntress-2
