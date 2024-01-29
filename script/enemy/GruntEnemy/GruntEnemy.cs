@@ -9,7 +9,6 @@ public partial class GruntEnemy : MeleeEnemy
 
     public GruntEnemy()
     {
-        //TODO: Change values
         _delay = 15;
         _animationDelay = 1;
         _actionAnimation = "idle";

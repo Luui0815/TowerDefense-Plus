@@ -13,7 +13,6 @@ public partial class SoldierEnemy : MeleeEnemy
 
     public SoldierEnemy()
     {
-        //TODO: Change values
         _delay = 15;
         _animationDelay = 1;
         _actionAnimation = "idle";

@@ -5,7 +5,7 @@ public partial class Goldmine : Defender
     [Signal]
     public delegate void MoneyGeneratedEventHandler(int moneyAmount);
 
-    private int _moneyPerCycle = 250;
+    private int _moneyPerCycle = 200;
     private bool _moneyGenerated = false;
 
     public Goldmine()
@@ -13,7 +13,6 @@ public partial class Goldmine : Defender
         _delay = 12;
         _animationDelay = 1;
 
-        //TODO: Add action animation
         _actionAnimation = "idle";
         Health = 5;
     }
@@ -23,7 +22,6 @@ public partial class Goldmine : Defender
         base._Ready();
         _actionTimer.Start(_delay);
         _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
-        //_animatedSprite.Play(_actionAnimation);
         _animatedSprite.AnimationLooped += OnAnimationLooped;
     }
 
@@ -31,22 +29,21 @@ public partial class Goldmine : Defender
     {
         if (Health <= 0)
         {
-            Destroy();
+            OnDefenderDefeated();
         }
 
-        if(_moneyGenerated)
-            _animatedSprite.Play("action");
-        else
-            _animatedSprite.Play("idle");
-
+        if(Health > 0)
+        {
+            if (_moneyGenerated)
+                _animatedSprite.Play("action");
+            else
+                _animatedSprite.Play("idle");
+        }
     }
 
     public override void Action()
     {
         _moneyGenerated = true;
-        //wenn man hier die Anmiation abspielen wuerde, geht es nicht
-        //und das ganze in die alte Version aufzurufen dauert
-        //ich weiss auch nicht wie und wann und wo die Action Methode aufgerufen wird
     }
 
     private void OnAnimationLooped()
@@ -56,5 +53,7 @@ public partial class Goldmine : Defender
             _moneyGenerated = false;
             EmitSignal(SignalName.MoneyGenerated, _moneyPerCycle);
         }
+        if (_animatedSprite.Animation == "death")
+            Destroy();
     }
 }

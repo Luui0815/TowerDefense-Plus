@@ -715,7 +715,7 @@ animations = [{
 
 [node name="GiantEnemy" type="CharacterBody2D"]
 position = Vector2(602, 367)
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_pth77")
 
 [node name="GiantEnemy" type="AnimatedSprite2D" parent="."]

@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cph6w2yafda7f"]
+[gd_scene load_steps=8 format=3 uid="uid://cph6w2yafda7f"]
 
 [ext_resource type="Texture2D" uid="uid://ct4pl4cxo45ho" path="res://assets/texture/map/LevelControlBar.png" id="1_cnujt"]
 [ext_resource type="Script" path="res://script/map/LevelControlBar.cs" id="1_s5i7c"]
-[ext_resource type="Theme" uid="uid://bmdbvi544mbu2" path="res://scene/map/LevelControlBarTheme.tres" id="2_0yxdt"]
+[ext_resource type="Theme" uid="uid://bmdbvi544mbu2" path="res://theme/LevelControlBarTheme.tres" id="2_0yxdt"]
 [ext_resource type="Texture2D" uid="uid://bb77l2iirrjq1" path="res://assets/texture/buttons/PlayButton.png" id="2_kabve"]
 [ext_resource type="Texture2D" uid="uid://4f8mjd6qtq4s" path="res://assets/texture/buttons/Pause_vClickt.png" id="5_1bra5"]
 [ext_resource type="Texture2D" uid="uid://b431exq11y5d3" path="res://assets/texture/map/MoneyControlBar.png" id="5_2grcu"]
+[ext_resource type="PackedScene" path="res://scene/ui/Hammer.tscn" id="7_a4rrw"]
 
 [node name="LevelControlBar" type="Control"]
 layout_mode = 3
@@ -91,9 +92,21 @@ theme_override_constants/margin_top = 34
 theme_override_constants/margin_right = 20
 
 [node name="TowerItemContainer" type="VBoxContainer" parent="ControlBar/VBoxContainer/TowerContainer"]
-custom_minimum_size = Vector2(160, 472)
+custom_minimum_size = Vector2(160, 286)
 layout_mode = 2
 theme_override_constants/separation = 72
+
+[node name="HammerContainer" type="MarginContainer" parent="ControlBar/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+
+[node name="CenterContainer" type="CenterContainer" parent="ControlBar/VBoxContainer/HammerContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Hammer" parent="ControlBar/VBoxContainer/HammerContainer/CenterContainer" instance=ExtResource("7_a4rrw")]
+z_index = 0
+layout_mode = 2
 
 [connection signal="pressed" from="ControlBar/VBoxContainer/ButtonContainer/HBoxContainer/StartButton" to="." method="OnStartButtonPressed"]
 [connection signal="pressed" from="ControlBar/VBoxContainer/ButtonContainer/HBoxContainer/PauseButton" to="." method="OnPauseButtonPressed"]

@@ -6,17 +6,17 @@ namespace TowerDefense
 {
 	public enum FieldType
 	{
-		Normal
+		Normal,
+		Disabled
 	}
 
 	public partial class MapField : Control
 	{
 		[Signal]
 		public delegate void DefenderPlacedEventHandler(int cost);
-
-		private static Dictionary<FieldType, Texture2D> _fieldTextureCache = new();
 		private int _fieldNr;
 		private Sprite2D _sprite;
+		private FieldType _fieldType;
 
         public Defender Tower { get; set; }
 
@@ -24,26 +24,20 @@ namespace TowerDefense
 		{
 			_sprite = GetNode<Sprite2D>("Background");
 			_fieldNr = fieldNumber;
-
-			if (!_fieldTextureCache.ContainsKey(fieldType))
-			{
-				_sprite.Texture = GD.Load<Texture2D>($"res://assets/texture/field/{fieldType}.png");
-				_fieldTextureCache.Add(fieldType, _sprite.Texture);
-			}
-			else
-			{
-				_sprite.Texture = _fieldTextureCache[fieldType];
-			}
+			_fieldType = fieldType;
 		}
 
 		public override bool _CanDropData(Vector2 atPosition, Variant data)
 		{
-			//return Tower == null && (string)data != "";
-			string info=(string)data;
-
-			if (info == "hammer" && Tower != null) return true;
-			else if (info != "" && info != "hammer" && Tower == null) return true;
-			else return false;
+			if(_fieldType==FieldType.Normal)
+			{
+                string info = (string)data;
+                if (info == "hammer" && Tower != null) return true;
+                else if (info != "" && info != "hammer" && Tower == null) return true;
+                else return false;
+            }
+			else
+				return false;
 		}
 
 		public override void _DropData(Vector2 atPosition, Variant data)
@@ -54,7 +48,7 @@ namespace TowerDefense
 			{
 				if(Tower is TrapDefence)
 				{
-					caltrop_trap caltrop = (caltrop_trap)Tower;
+					CaltropTrap caltrop = (CaltropTrap)Tower;
 					if(caltrop.IsEnemyInTrap)
 						Tower.EmitSignal(TrapDefence.SignalName.TrapDeleted,Tower.Name);//muss so, da sonst Methode vom enemy in Trap aufgerufen wird, 
                 }                                                                       //wenn der aber nicht drin, baehm Null Pointer

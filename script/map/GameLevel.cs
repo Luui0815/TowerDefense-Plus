@@ -11,12 +11,12 @@ public abstract partial class GameLevel : Node2D
     public delegate void MoneyChangedEventHandler(int _actmoney);
 
     protected int _currentMoney = 0;
-    private readonly HashSet<int> _completedLanes = new();
     private readonly MapLane[] _lanes = new MapLane[5];
     private EnemySpawner _spawner;
     private LevelControlBar _levelControlBar;
+    private PlayerData _playerData;
     private bool _levelStarted = false, _levelCompleted = false;
-
+    private SortedSet<string> _selectedTowers;
     private Area2D _levelArea;
     private PauseMenu _pauseMenu;
     private CanvasLayer _menuLayer;
@@ -26,14 +26,6 @@ public abstract partial class GameLevel : Node2D
         get
         {
             return _levelStarted;
-        }
-    }
-
-    public MapLane[] Lanes
-    {
-        get
-        {
-            return _lanes;
         }
     }
 
@@ -51,12 +43,19 @@ public abstract partial class GameLevel : Node2D
         }
     }
 
-    protected abstract int LevelNumber
+    public SortedSet<string> SelectedTowers
+    {
+        get {
+            return _selectedTowers;
+        }
+    }
+
+    public abstract int LevelNumber
     {
         get;
     }
 
-    protected abstract string[] SpawnConfigs
+    protected abstract (int, EnemyType)[] SpawnConfig
     {
         get;
     }
@@ -66,11 +65,18 @@ public abstract partial class GameLevel : Node2D
         get;
     }
 
+    protected abstract string UnlockedTower
+    {
+        get;
+    }
+
     public override void _Ready()
     {
         Name = "Level";
         _levelControlBar = GetNode<LevelControlBar>("LevelControlBar");
         _levelControlBar.DisplayMoney(CurrentMoney);
+
+        _playerData = GetNode<PlayerData>("/root/PlayerData");
 
         _levelArea = GetNode<Area2D>("LevelArea");
         _pauseMenu = (PauseMenu)GD.Load<PackedScene>("res://scene/ui/PauseMenu.tscn").Instantiate();
@@ -83,14 +89,44 @@ public abstract partial class GameLevel : Node2D
         {
             MapLane lane = (MapLane)laneScene.Instantiate();
             lane.Init(i, GetFieldTypeRow(i));
+
+            switch (i)
+            {
+                case 0:
+                    {
+                        position.Y = 10;
+                        break;
+                    }
+                case 1:
+                    {
+                        position.Y = 135;
+                        break;
+                    }
+                case 2:
+                    {
+                        position.Y = 280;
+                        break;
+                    }
+                case 3:
+                    {
+                        position.Y = 420;
+                        break;
+                    }
+                case 4:
+                    {
+                        position.Y = 555;
+                        break;
+                    }
+            }
+
             lane.Position = position;
             lane.Name = "MapLane" + i;
             lane.EnemyCrossedLane += OnEnemyCrossedLane;
-            //lane.AllEnemiesDefeated += OnAllEnemiesDefeated;
 
             AddChild(lane);
             _lanes[i] = lane;
-            position.Y += 125;
+
+
         }
 
         foreach (MapLane lane in _lanes)
@@ -101,21 +137,7 @@ public abstract partial class GameLevel : Node2D
             }
         }
 
-        //Für Testzwecke Kommentare entfernen
-        /* 
-        SortedSet<string> strings = new SortedSet<string>
-        {
-            "knight",
-            "spearman",
-            "goldmine",
-            "wall",
-            "archer",
-            "fire_trap"
-        };
-        FillTowerContainer(strings);
-        */
-
-        _spawner = new(1){
+        _spawner = new(SpawnConfig){
             Name = "EnemySpawner",
             ProcessMode = ProcessModeEnum.Pausable
         };
@@ -136,6 +158,7 @@ public abstract partial class GameLevel : Node2D
     /// <param name="towerNames">The names of the towers added to the inventory</param>
     public void FillTowerContainer(SortedSet<string> towerNames)
     {
+        _selectedTowers = towerNames;
         PackedScene towerItemScene = GD.Load<PackedScene>("res://scene/map/TowerContainerItem.tscn");
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
         foreach (string towerName in towerNames)
@@ -219,9 +242,18 @@ public abstract partial class GameLevel : Node2D
     private void OnAllEnemiesDefeated()
     {
         GetTree().Paused = true;
-        VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>("res://scene/ui/VictoryScreen.tscn").Instantiate();
-        _menuLayer.AddChild(victoryScreen);
+
+        VictoryScreen victoryScreen = (VictoryScreen)GD.Load<PackedScene>($"res://scene/ui/VictoryScreenLevel{LevelNumber}.tscn").Instantiate();
         
+        bool isNewCompletion = _playerData.AddCompletedLevelNumber(LevelNumber);
+        if (isNewCompletion){
+            _playerData.AddUnlockedTower(UnlockedTower);
+            _playerData.Save();
+            victoryScreen.ShowReward();
+        }
+
+        _menuLayer.AddChild(victoryScreen);
+
         _levelCompleted = true;
     }
 

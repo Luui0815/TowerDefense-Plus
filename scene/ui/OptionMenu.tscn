@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://i4bi2w7f7ydm"]
+[gd_scene load_steps=5 format=3 uid="uid://i4bi2w7f7ydm"]
 
 [ext_resource type="Script" path="res://script/ui/OptionMenu.cs" id="1_0wsbl"]
-[ext_resource type="AudioStream" uid="uid://l6lo2eckjm87" path="res://assets/sound/WindowsTestSound.wav" id="2_wval4"]
+[ext_resource type="Texture2D" uid="uid://ckmi1xgxis0gr" path="res://assets/background/PixelSchlossDungeoWand.jpg" id="2_44lsr"]
+[ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://theme/ButtonTheme.tres" id="5_32lq5"]
+[ext_resource type="Texture2D" uid="uid://dag8q6p2lhgop" path="res://assets/texture/OptionsmenüAmbosHammer.png" id="7_egou1"]
 
 [node name="OptionMenu" type="Window"]
 title = "SPIELEINSTELLUNGEN"
@@ -9,39 +11,13 @@ initial_position = 1
 size = Vector2i(1000, 500)
 script = ExtResource("1_0wsbl")
 
-[node name="VolumeScrollbar" type="HScrollBar" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 190.0
-offset_top = -168.0
-offset_right = 491.0
-offset_bottom = -140.0
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-step = 1.0
-value = 100.0
-
-[node name="VolumeLabel" type="Label" parent="."]
-offset_left = 60.0
-offset_top = 80.0
-offset_right = 167.0
-offset_bottom = 26.0
-theme_override_font_sizes/font_size = 20
-text = "Lautstärke:"
-
-[node name="CurrentVolumeLabel" type="Label" parent="."]
-offset_left = 500.0
-offset_top = 80.0
-offset_right = 540.0
-offset_bottom = 106.0
-theme_override_font_sizes/font_size = 20
-text = "100"
-
-[node name="TestSoundPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_wval4")
-
-[node name="VolumeTimer" type="Timer" parent="."]
-one_shot = true
+texture = ExtResource("2_44lsr")
 
 [node name="CloseButton" type="Button" parent="."]
 anchors_preset = 7
@@ -55,8 +31,26 @@ offset_right = 50.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("5_32lq5")
 text = "Schließen"
 
+[node name="OptionsmenüambosHammer" type="Sprite2D" parent="."]
+position = Vector2(800, 350)
+scale = Vector2(3, 3)
+texture = ExtResource("7_egou1")
+
+[node name="ResetButton" type="Button" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 370.0
+offset_top = -150.0
+offset_right = 620.0
+offset_bottom = -80.0
+grow_vertical = 2
+theme = ExtResource("5_32lq5")
+text = "Fortschritt zurücksetzen"
+
 [connection signal="close_requested" from="." to="." method="OnCloseRequested"]
-[connection signal="value_changed" from="VolumeScrollbar" to="." method="OnVolumeScrollbarValueChanged"]
 [connection signal="pressed" from="CloseButton" to="." method="OnCloseButtonPressed"]
+[connection signal="pressed" from="ResetButton" to="." method="OnResetButtonPressed"]

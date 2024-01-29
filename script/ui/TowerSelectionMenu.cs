@@ -1,38 +1,46 @@
 using Godot;
 using System.Collections.Generic;
+using System.Linq;
+using TowerDefense;
 
 public partial class TowerSelectionMenu : Node
 {
     private PlayerData _playerData;
-    private GridContainer _availableTowersContainer;
-    private GridContainer _selectedTowersContainer;
+    private Panel _availableTowersContainer;
+    private Panel _selectedTowersContainer;
     private Button _startLevelButton;
     private Label _availableTowerNumberDisplay;
 
-    private string _levelNumber;
+    private Level _levelNumber;
     private int _selectedTowerCount = 0;
+    private SortedSet<string> _availableTowers;
     private SortedSet<string> _selectedTowers;
 
+    private Vector2 _position=Vector2.Zero;
+    private List<TowerSelectionGridItem> _selectedTowersList = new();
 
-    // Called when the node enters the scene tree for the first time.
+
     public override void _Ready()
     {
         TowerConfig towerConfig = GetNode<TowerConfig>("/root/TowerConfig");
         _selectedTowers = new SortedSet<string>(new TowerComparer(towerConfig));
+        _availableTowers = new SortedSet<string>(new TowerComparer(towerConfig));
 
         _playerData = GetNode<PlayerData>("/root/PlayerData");
-        _availableTowersContainer = GetNode<GridContainer>("AvailableTowersContainer");
-        _selectedTowersContainer = GetNode<GridContainer>("SelectedTowersContainer");
-        _startLevelButton = GetNode<Button>("StartLevelButton");
-        _availableTowerNumberDisplay = GetNode <Label> ("DisplayAvailableNumber");
+        _availableTowersContainer = GetNode<Panel>("AvailableTowersContainer");
+        _selectedTowersContainer = GetNode<Panel>("SelectedTowersContainer");
+        _startLevelButton = GetNode<Button>("Panel/StartLevelButton");
+        _availableTowerNumberDisplay = GetNode <Label> ("Panel/DisplayAvailableNumber");
 
-        //TODO: Remove hardcoded value
-        _levelNumber = "One";
+        _levelNumber = _playerData.CurrentLevel;
         _startLevelButton.Disabled = true;
         _availableTowerNumberDisplay.Text = "Noch 4 Türme auswählbar";
         _playerData.Load();
 
-        CreateTowerButtons();
+        Label headlineLabel = GetNode<Label>("Panel/MainHeadline");
+        headlineLabel.Text = $"LEVEL {(int)_levelNumber} - TURMAUSWAHL";
+
+        CreateAvailableTowers();
     }
 
     private void OnGoBackButtonPressed()
@@ -49,17 +57,19 @@ public partial class TowerSelectionMenu : Node
 
         if (_selectedTowers.Contains(clickedButton.Text))
         {
-            _selectedTowers.Remove(clickedButton.Text);
             _selectedTowerCount--;
-            _selectedTowersContainer.GetNode(clickedButton.Text).QueueFree();
+            _selectedTowers.Remove(clickedButton.Text);
+            _selectedTowersList.First(x => x.TowerButton.Text == clickedButton.Text).QueueFree();
+            _selectedTowersList.Remove(_selectedTowersList.First(x=>x.TowerButton.Text== clickedButton.Text));
+            foreach (string tower in _selectedTowers)
+                CreateSelectedTowers();
         }
         else if (_selectedTowerCount < 4)
         {
+            //hier aufgerufen
             _selectedTowers.Add(clickedButton.Text);
             _selectedTowerCount++;
-            Label towerLabel = new();
-            towerLabel.Text = towerLabel.Name = clickedButton.Text;
-            _selectedTowersContainer.AddChild(towerLabel);
+            CreateSelectedTowers();
         }
 
         int towerLeftCount = 4 - _selectedTowerCount;
@@ -78,15 +88,55 @@ public partial class TowerSelectionMenu : Node
         QueueFree();
     }
 
-    private void CreateTowerButtons()
+    private void CreateAvailableTowers()
     {
+        _position = Vector2.Zero;
         foreach (string tower in _playerData.UnlockedTowers)
         {
-            Button towerButton = new();
-            towerButton.Text = towerButton.Name = tower;
-            towerButton.Pressed += () => OnTowerButtonPressed(towerButton);
-            _availableTowersContainer.AddChild(towerButton);
+            _availableTowers.Add(tower);
         }
+        foreach (string tower in _availableTowers)
+        {
+            TowerSelectionGridItem TowerContainer= CreateTowers(_availableTowersContainer, tower, _playerData.UnlockedTowers.Count);
+            TowerContainer.TowerButton.Pressed += () => OnTowerButtonPressed(TowerContainer.TowerButton);
+        }
+    }
+
+    private void CreateSelectedTowers()
+    {
+        //alle alten Tuerme loeschen
+        foreach (TowerSelectionGridItem tower in _selectedTowersList)
+        {
+            tower.QueueFree();
+        }
+        _selectedTowersList.Clear();
+
+        _position = Vector2.Zero;
+        //alle Tuerme neu positionieren
+        if(_selectedTowerCount!=0)
+        {
+            foreach (string tower in _selectedTowers)
+            {
+                _selectedTowersList.Add(CreateTowers(_selectedTowersContainer, tower, _selectedTowerCount));
+            }
+        }
+
+    }
+
+    private TowerSelectionGridItem CreateTowers(Panel panel,string tower, int ElementCount)
+    {
+        Vector2 Gap;
+        TowerSelectionGridItem TowerSelection = (TowerSelectionGridItem)GD.Load<PackedScene>("res://scene/ui/TowerSelectionGridItem.tscn").Instantiate();
+        TowerSelection.Init(_selectedTowers.Contains(tower), tower);
+        //Abstand in X-Richtung zwischen den Tuermen berechnen
+        Gap.X = (panel.Size.X - 40 - (100 * ElementCount)) / (ElementCount + 1);
+        //Abstnd oben und unten ermitteln
+        Gap.Y = (panel.Size.Y - 125) / 2;
+        TowerSelection.Position = _position + Gap;
+        panel.AddChild(TowerSelection);
+        _position.X += Gap.X + 100;
+
+        return TowerSelection;
     }
 
     private void CheckStartLevelButton()

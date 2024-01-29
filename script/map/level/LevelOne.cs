@@ -5,22 +5,18 @@ public partial class LevelOne : GameLevel
 {
 	public LevelOne()
 	{
-		//TODO: Change start money
 		_currentMoney = 500;
 	}
 
-	protected override int LevelNumber
+	public override int LevelNumber
 	{
 		get;
 	} = 1;
 
-	//TODO: Configure spawns
-	protected override string[] SpawnConfigs
+	protected override (int, EnemyType)[] SpawnConfig
 	{
 		get;
-	} = new string[3] {
-		"", "", ""
-	};
+	} = new (int, EnemyType)[] { (30, EnemyType.Soldier), (10, EnemyType.Soldier), (6, EnemyType.Knight), (20, EnemyType.Knight), (1, EnemyType.Soldier), (2, EnemyType.Soldier), (2, EnemyType.Knight), (2, EnemyType.Knight), (2, EnemyType.Soldier), (2, EnemyType.Soldier), (12, EnemyType.Soldier), (1, EnemyType.Bandit), (20, EnemyType.Bandit), (1, EnemyType.Knight), (2, EnemyType.Knight), (2, EnemyType.Knight), (2, EnemyType.Soldier), (2, EnemyType.Soldier), (2, EnemyType.Soldier), (2, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight),(1, EnemyType.Soldier), (1, EnemyType.Soldier), (2, EnemyType.Soldier), (2, EnemyType.Soldier), (2, EnemyType.Soldier), (2, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Bandit), (1, EnemyType.Bandit), (30, EnemyType.Bandit), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (1, EnemyType.Knight), (3, EnemyType.Knight), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Soldier), (1, EnemyType.Bandit), (1, EnemyType.Bandit), (1, EnemyType.Bandit), (10, EnemyType.Giant)};
 
 	protected override FieldType[,] FieldTypes
 	{
@@ -33,9 +29,7 @@ public partial class LevelOne : GameLevel
 		{ FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal, FieldType.Normal }
 	};
 
-   /* public override void _Ready()//nur fuer mich besser zum debuggen
-	{
-		SortedSet<string> towerNemes = new SortedSet<string>(new[] { "wall" });
-		FillTowerContainer(towerNemes);
-	}*/
+    protected override string UnlockedTower{
+		get;
+	} = "spearman";
 }

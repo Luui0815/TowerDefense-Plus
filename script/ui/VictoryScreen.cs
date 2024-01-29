@@ -1,11 +1,13 @@
+using System.Collections.Generic;
 using Godot;
+using TowerDefense;
 
 public partial class VictoryScreen : Node
 {
-    private const double knightWaitTime = 1.8;
-    private const double archerWaitTime = 3.6;
-    private const double wizardWaitTime = 4.1;
-    private const double skeletonWaitTime = 2.25;
+    private const double _knightWaitTime = 1.8;
+    private const double _archerWaitTime = 3.6;
+    private const double _wizardWaitTime = 4.1;
+    private const double _skeletonWaitTime = 2.25;
 
     public override void _Ready()
     {
@@ -25,7 +27,7 @@ public partial class VictoryScreen : Node
         skeletonOnePlayer.Play("AnimationDefeatScreenSkeleton/Skeleton1Idle");
         skeletonTwoPlayer.Play("AnimationDefeatScreenSkeleton/Skeleton2Idle");
 
-        knightTimer.WaitTime = knightWaitTime;
+        knightTimer.WaitTime = _knightWaitTime;
         knightTimer.Timeout += () => 
         {
             knightPlayer.Stop(false);
@@ -34,7 +36,7 @@ public partial class VictoryScreen : Node
         };
         knightTimer.Start();
 
-        archerTimer.WaitTime = archerWaitTime;
+        archerTimer.WaitTime = _archerWaitTime;
         archerTimer.Timeout += () => 
         {
             archerPlayer.Stop(false);
@@ -43,7 +45,7 @@ public partial class VictoryScreen : Node
         };
         archerTimer.Start();
 
-        wizardTimer.WaitTime = wizardWaitTime;
+        wizardTimer.WaitTime = _wizardWaitTime;
         wizardTimer.Timeout += () => 
         {
             wizardPlayer.Stop(false);
@@ -51,7 +53,7 @@ public partial class VictoryScreen : Node
         };
         wizardTimer.Start();
 
-        skeletonTimer.WaitTime = skeletonWaitTime;
+        skeletonTimer.WaitTime = _skeletonWaitTime;
         skeletonTimer.Timeout += () =>
         {
             skeletonOnePlayer.Stop(false);
@@ -60,6 +62,12 @@ public partial class VictoryScreen : Node
             skeletonTwoPlayer.Play("AnimationDefeatScreenSkeleton/SkeletonGoingDown");
         };
         skeletonTimer.Start();
+    }
+
+    public void ShowReward()
+    {
+        Label rewardLabel = GetNode<Label>("Panel/RewardInformation");
+        rewardLabel.Visible = true;
     }
 
     private void OnMenuButtonPressed()
@@ -71,6 +79,25 @@ public partial class VictoryScreen : Node
             gameLevel.QueueFree();
         }
         GetTree().Paused = false;
+    }
+
+    private void OnRepeatButtonPressed()
+    {
+        GameLevel gameLevel = GetNode<GameLevel>("/root/Level");
+        if (gameLevel != null)
+        {
+            SortedSet<string> towerList = gameLevel.SelectedTowers;
+            Level levelNr = (Level) gameLevel.LevelNumber;
+            gameLevel.Name = "OldLevel";
+            gameLevel.QueueFree();
+
+            GetTree().Paused = false;
+
+            PackedScene levelScene = GD.Load<PackedScene>($"res://scene/map/level/Level{levelNr}.tscn");
+            GameLevel newLevel = (GameLevel)levelScene.Instantiate();
+            GetTree().Root.AddChild(newLevel);
+            newLevel.FillTowerContainer(towerList);
+        }
     }
 
     private void OnEndlessModeButtonPressed()

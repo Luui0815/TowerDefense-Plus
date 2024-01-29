@@ -1,65 +1,79 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwp45knbjhjd0"]
+[gd_scene load_steps=9 format=3 uid="uid://dwp45knbjhjd0"]
 
 [ext_resource type="Script" path="res://script/ui/LevelSelectionMenu.cs" id="1_lphdg"]
+[ext_resource type="Texture2D" uid="uid://bc2wdyfemdwjv" path="res://assets/background/DungeonTunnelBackground.png" id="2_yr3va"]
+[ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="3_ptm43"]
+[ext_resource type="Theme" uid="uid://s6tlaljytfer" path="res://theme/MenuButtonTheme.tres" id="5_0bkel"]
+[ext_resource type="Texture2D" uid="uid://8yd4cvn6ty1u" path="res://assets/background/PixelSchlossDungeoTextfeldHintergrund.png" id="6_fh0ex"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u8ox4"]
+texture = ExtResource("2_yr3va")
 
 [sub_resource type="LabelSettings" id="LabelSettings_uul3t"]
+font = ExtResource("3_ptm43")
 font_size = 32
-font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4e568"]
+texture = ExtResource("6_fh0ex")
 
 [node name="LevelSelectionMenu" type="Node"]
 script = ExtResource("1_lphdg")
 
-[node name="Label" type="Label" parent="."]
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_u8ox4")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
-offset_bottom = -18.76
+offset_bottom = 3.24
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "LEVELAUSWAHL"
 label_settings = SubResource("LabelSettings_uul3t")
 horizontal_alignment = 1
 
-[node name="OptionButton" type="Button" parent="."]
+[node name="GoBackButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.064
 anchor_top = 0.421
 anchor_right = 0.201
 anchor_bottom = 0.511
-offset_left = 0.0799942
-offset_top = -3.12003
-offset_right = 4.72
-offset_bottom = 2.07999
+offset_left = -21.92
+offset_top = 306.88
+offset_right = -117.28
+offset_bottom = 322.08
 mouse_default_cursor_shape = 2
-text = "EINSTELLUNGEN"
+theme = ExtResource("5_0bkel")
 metadata/_edit_group_ = true
 
-[node name="GoBackButton" type="Button" parent="."]
-anchors_preset = -1
-anchor_left = 0.064
-anchor_top = 0.421
-anchor_right = 0.201
-anchor_bottom = 0.511
-offset_left = -0.920006
-offset_top = 93.88
-offset_right = 3.72
-offset_bottom = 99.08
-mouse_default_cursor_shape = 2
-text = "ZURÜCK"
-metadata/_edit_group_ = true
+[node name="LevelButtonContainer" type="HFlowContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 220.0
+offset_right = 720.0
+offset_bottom = 500.0
 
-[node name="SelectLevel1Button" type="Button" parent="."]
-anchors_preset = -1
-anchor_left = 0.064
-anchor_top = 0.421
-anchor_right = 0.201
-anchor_bottom = 0.511
-offset_left = 465.08
-offset_top = -70.12
-offset_right = 469.72
-offset_bottom = -64.92
-mouse_default_cursor_shape = 2
-text = "LEVEL 1"
-metadata/_edit_group_ = true
+[node name="LevelPreviewPanel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 805.0
+offset_top = 220.0
+offset_right = 1211.0
+offset_bottom = 500.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_4e568")
 
-[connection signal="pressed" from="OptionButton" to="." method="OnSettingsButtonPressed"]
-[connection signal="pressed" from="GoBackButton" to="." method="OnGoBackButtonPressed"]
-[connection signal="pressed" from="SelectLevel1Button" to="." method="OnSelectLevel1ButtonPressed"]
+[node name="LevelPreview" type="TextureRect" parent="Panel/LevelPreviewPanel"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 13.0
+offset_right = 394.0
+offset_bottom = 267.0
+
+[connection signal="pressed" from="Panel/GoBackButton" to="." method="OnGoBackButtonPressed"]

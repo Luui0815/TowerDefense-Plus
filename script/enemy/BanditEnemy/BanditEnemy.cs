@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class BanditEnemy : MeleeEnemy
 {
@@ -9,7 +8,7 @@ public partial class BanditEnemy : MeleeEnemy
 
     public BanditEnemy()
     {
-        //TODO: Change values
+        
         _delay = 15;
         _animationDelay = 1;
         _actionAnimation = "idle";

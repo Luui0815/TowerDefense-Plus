@@ -10,7 +10,6 @@ public partial class PyroEnemy : RangedEnemy
 
     public PyroEnemy()
     {
-        //TODO: Change values and add action animation
         _delay = 2;
         _animationDelay = 1;
         _actionAnimation = "idle";
@@ -80,10 +79,6 @@ public partial class PyroEnemy : RangedEnemy
     {
         if (!EnemyDefeated)
         {
-            //if(IsFreezed())
-            //{
-            //    getStatuseffectDamage();
-            //}
             if (CanAttack())
             {
                 _pyroEnemy.Play("attacking");

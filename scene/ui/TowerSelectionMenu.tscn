@@ -1,86 +1,124 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd6ea5g3ekig2"]
+[gd_scene load_steps=10 format=3 uid="uid://dd6ea5g3ekig2"]
 
 [ext_resource type="Script" path="res://script/ui/TowerSelectionMenu.cs" id="1_4u00d"]
+[ext_resource type="Texture2D" uid="uid://bc2wdyfemdwjv" path="res://assets/background/DungeonTunnelBackground.png" id="2_14n1u"]
+[ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="3_yy0yg"]
+[ext_resource type="Theme" uid="uid://b6u7ornkurlrc" path="res://theme/ButtonTheme.tres" id="4_nqijg"]
+[ext_resource type="Texture2D" uid="uid://8yd4cvn6ty1u" path="res://assets/background/PixelSchlossDungeoTextfeldHintergrund.png" id="6_oiol1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c8uhs"]
+texture = ExtResource("2_14n1u")
 
 [sub_resource type="LabelSettings" id="LabelSettings_0jjxl"]
+font = ExtResource("3_yy0yg")
 font_size = 32
-font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rnm6w"]
+texture = ExtResource("6_oiol1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b52sb"]
+texture = ExtResource("6_oiol1")
 
 [node name="TowerSelectionMenu" type="Node"]
 script = ExtResource("1_4u00d")
 
-[node name="MainHeadline" type="Label" parent="."]
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_c8uhs")
+
+[node name="MainHeadline" type="Label" parent="Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
-offset_bottom = -18.76
-text = "LEVEL 1 - TURMAUSWAHL"
+offset_bottom = -2.76
+text = "LEVEL X - TURMAUSWAHL"
 label_settings = SubResource("LabelSettings_0jjxl")
 horizontal_alignment = 1
 
-[node name="ContainerHeadline" type="Label" parent="."]
+[node name="ContainerHeadline" type="Label" parent="Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
-offset_left = 939.0
-offset_top = 99.0
-offset_right = -7.0
-offset_bottom = 105.24
-text = "Ausgewählte Türme"
+offset_left = 4.0
+offset_top = 81.0
+offset_right = -942.0
+offset_bottom = 87.24
+text = "Ausgewählte Türme:"
 label_settings = SubResource("LabelSettings_0jjxl")
 horizontal_alignment = 1
 
-[node name="DisplayAvailableNumber" type="Label" parent="."]
+[node name="DisplayAvailableNumber" type="Label" parent="Panel"]
+z_index = 2
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.058
-offset_left = 835.0
-offset_top = 578.0
-offset_right = -111.0
-offset_bottom = 584.24
-label_settings = SubResource("LabelSettings_0jjxl")
-horizontal_alignment = 1
-
-[node name="AvailableTowersContainer" type="GridContainer" parent="."]
-offset_left = 3.0
+offset_left = 866.0
 offset_top = 80.0
-offset_right = 899.0
-offset_bottom = 538.0
-columns = 4
+offset_right = -28.0
+offset_bottom = 86.24
+label_settings = SubResource("LabelSettings_0jjxl")
 
-[node name="SelectedTowersContainer" type="GridContainer" parent="."]
-offset_left = 954.0
-offset_top = 146.0
-offset_right = 1257.0
-offset_bottom = 539.0
-
-[node name="GoBackButton" type="Button" parent="."]
+[node name="GoBackButton" type="Button" parent="Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.064
 anchor_top = 0.421
 anchor_right = 0.201
 anchor_bottom = 0.511
-offset_left = 126.08
-offset_top = 282.88
-offset_right = 130.72
-offset_bottom = 288.08
+offset_left = -62.92
+offset_top = 323.88
+offset_right = -58.28
+offset_bottom = 329.08
 mouse_default_cursor_shape = 2
+theme = ExtResource("4_nqijg")
 text = "ZURÜCK"
 metadata/_edit_group_ = true
 
-[node name="StartLevelButton" type="Button" parent="."]
+[node name="StartLevelButton" type="Button" parent="Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.064
 anchor_top = 0.421
 anchor_right = 0.201
 anchor_bottom = 0.511
-offset_left = 464.08
-offset_top = 282.88
-offset_right = 468.72
-offset_bottom = 288.08
+offset_left = 996.08
+offset_top = 319.88
+offset_right = 1000.72
+offset_bottom = 325.08
 mouse_default_cursor_shape = 2
+theme = ExtResource("4_nqijg")
 text = "LEVEL STARTEN"
 metadata/_edit_group_ = true
 
-[connection signal="pressed" from="GoBackButton" to="." method="OnGoBackButtonPressed"]
-[connection signal="pressed" from="StartLevelButton" to="." method="OnStartLevelButtonPressed"]
+[node name="AvailableTowersContainer" type="Panel" parent="."]
+show_behind_parent = true
+clip_contents = true
+anchors_preset = -1
+anchor_right = 0.83
+anchor_bottom = 0.968
+offset_left = 212.0
+offset_top = 447.0
+offset_right = -0.400024
+offset_bottom = 0.039978
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rnm6w")
+
+[node name="SelectedTowersContainer" type="Panel" parent="."]
+show_behind_parent = true
+clip_contents = true
+offset_left = 140.0
+offset_top = 144.0
+offset_right = 1140.0
+offset_bottom = 378.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_b52sb")
+
+[connection signal="pressed" from="Panel/GoBackButton" to="." method="OnGoBackButtonPressed"]
+[connection signal="pressed" from="Panel/StartLevelButton" to="." method="OnStartLevelButtonPressed"]

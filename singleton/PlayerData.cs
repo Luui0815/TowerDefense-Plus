@@ -1,42 +1,25 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Text.Json;
+using TowerDefense;
 
 public partial class PlayerData : Node
 {
-    private int _volume = 100;
-    private Array<int> _completedLevels = new();
+    private readonly List<int> _completedLevels = new();
     private Array<string> _unlockedTowers = new(){
         "knight",
-        "spearman",
         "wall",
         "goldmine",
         "archer",
-        "fire_trap",
         "caltrop_trap",
     };
 
     /// <summary>
-    /// The volume set by the player
-    /// </summary>
-    public int Volume
-    {
-        get
-        {
-            return _volume;
-        }
-        set
-        {
-            _volume = Math.Clamp(value, 0, 100);
-        }
-    }
-
-    /// <summary>
     /// An array containing the numbers of all completed levels
     /// </summary>
-    public Array<int> CompletedLevels
+    public List<int> CompletedLevels
     {
         get
         {
@@ -55,6 +38,13 @@ public partial class PlayerData : Node
         }
     }
 
+    /// <summary>
+    /// The active level
+    /// </summary>
+    public Level CurrentLevel {
+        get; set;
+    }
+
     public override void _Ready()
     {
         if (!FileAccess.FileExists("user://player.dat"))
@@ -71,18 +61,52 @@ public partial class PlayerData : Node
     /// Adds a level number to the completed level numbers array
     /// </summary>
     /// <param name="levelNr">The level number to be saved as a completed level</param>
-    public void AddCompletedLevelNumber(int levelNr)
+    /// <returns>False, if the level was already completed</returns>
+    public bool AddCompletedLevelNumber(int levelNr)
     {
+        if (_completedLevels.Contains(levelNr))
+        {
+            return false;
+        }
         _completedLevels.Add(levelNr);
+        return true;
+    }
+
+    /// <summary>
+    /// Clears the completed levels list
+    /// </summary>
+    public void ResetCompletedLevels()
+    {
+        _completedLevels.Clear();
     }
 
     /// <summary>
     /// Adds a tower type to the unlocked towers array
     /// </summary>
     /// <param name="towerName">The tower name to be saved as an unlocked tower</param>
-    public void AddUnlockedTower(string towerName)
+    /// <returns>False, if the tower was already unlocked</returns>
+    public bool AddUnlockedTower(string towerName)
     {
+        if (_unlockedTowers.Contains(towerName))
+        {
+            return false;
+        }
         _unlockedTowers.Add(towerName);
+        return true;
+    }
+
+    /// <summary>
+    /// Resets the unlocked towers list
+    /// </summary>
+    public void ResetTowers()
+    {
+        _unlockedTowers =  new(){
+            "knight",
+            "wall",
+            "goldmine",
+            "archer",
+            "caltrop_trap",
+        };
     }
 
     /// <summary>
@@ -115,10 +139,14 @@ public partial class PlayerData : Node
             throw new JsonException(errorMsg);
         }
 
-        var dataDict = new Dictionary<string, Variant>((Dictionary)json.Data);
+        var dataDict = new Godot.Collections.Dictionary<string, Variant>((Dictionary)json.Data);
 
-        _volume = (int)dataDict["Volume"];
-        _completedLevels = (Array<int>)dataDict["CompletedLevels"];
+        Array<int> savedLevels = (Array<int>)dataDict["CompletedLevels"];
+        _completedLevels.Clear();
+        foreach(int level in savedLevels)
+        {
+            _completedLevels.Add(level);
+        }
 
         Array<string> savedUnlocks = (Array<string>)dataDict["UnlockedTowers"];
         foreach (string unlockedTower in savedUnlocks)
@@ -136,10 +164,14 @@ public partial class PlayerData : Node
     /// <exception cref="System.IO.FileLoadException">When the data file could not be accessed</exception>()
 	public void Save()
     {
-        var dataDict = new Dictionary<string, Variant>()
+        Array<int> saveArray = new Array<int>();
+        foreach(int level in _completedLevels)
         {
-            {"Volume", _volume},
-            {"CompletedLevels", _completedLevels},
+            saveArray.Add(level);
+        }
+        var dataDict = new Godot.Collections.Dictionary<string, Variant>()
+        {
+            {"CompletedLevels", saveArray},
             {"UnlockedTowers", _unlockedTowers}
         };
         string jsonData = Json.Stringify(dataDict);

@@ -1,11 +1,24 @@
 using Godot;
 using System;
+using TowerDefense;
+
+namespace TowerDefense
+{
+    public enum EnemyType
+    {
+        Soldier,
+        Knight,
+        Bandit,
+        Pyro,
+        Giant
+    }
+}
 
 public partial class EnemySpawner : Node
 {
     private Timer _spawnTimer;
-    private (float, int)[] _spawnTimes, _endlessSpawnTimes;
-    private int _currentSpawnIndex = 0, _endlessEnemyAmount = 15;
+    private (int, EnemyType)[] _spawnTimes, _endlessSpawnTimes;
+    private int _currentSpawnIndex = 0, _endlessEnemyAmount = 17;
     private bool _finished = false;
 
     public bool Finished
@@ -13,17 +26,9 @@ public partial class EnemySpawner : Node
         get { return _finished; }
     }
 
-    // Soldier - 1, Knight - 2, Bandit - 3, Pyro - 4, Giant - 5
-    public EnemySpawner(int levelNr)
+    public EnemySpawner((int, EnemyType)[] spawnConfig)
     {
-        switch (levelNr)
-        {
-            case 1:
-                _spawnTimes = new (float, int)[] { (30, 1), (10, 1), (5, 2), (20, 2), (1, 1), (1, 1), (1, 1), (1, 2), (1, 2), (1, 1), (1, 1), (1,1), (10, 1), (1, 3), (20, 3), (1, 2), (1, 2), (1, 2), (2, 1), (1, 1), (1, 1),(1, 4),(20, 4), (1, 2), (1, 2), (1, 2), (1, 2),(1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 3), (1, 3), (1, 3), (1, 4), (25, 4), (5,5), (4, 5), (0,0)};
-                break;
-            default: break;
-        }
-
+        _spawnTimes = spawnConfig;
         _spawnTimer = new Timer
         {
             Name = "SpawnTimer"
@@ -95,56 +100,44 @@ public partial class EnemySpawner : Node
 
     private void CreateEnemyWaveEndless()
     {
-        _endlessSpawnTimes = new(float,int)[_endlessEnemyAmount];
+        _endlessSpawnTimes = new(int,EnemyType)[_endlessEnemyAmount];
         Random random = new();
 
         for(int i = 0; i < _endlessEnemyAmount; i++) 
         {
-            float waitTime = random.Next(1, 2);
-            int enemyId = _endlessEnemyAmount>16? random.Next(1, 6): random.Next(1, 5); // erst nach 2 Waves koennen giants spawnen
-            _endlessSpawnTimes[i] = (waitTime, enemyId);
+            int waitTime = random.Next(1, 2);
+            int enemyId = _endlessEnemyAmount > 22 ? random.Next(1, 6) : random.Next(1, 5); // erst nach einigen Waves koennen giants spawnen
+            _endlessSpawnTimes[i] = (waitTime, (EnemyType) enemyId);
         }
         _endlessEnemyAmount++;
     }
 
-    private void SpawnEnemy(int enemyId)
+    private void SpawnEnemy(EnemyType enemyType)
     {
-        int random = GD.RandRange(0, 4);
-        int lane = random + 1;
-        Enemy enemy;
-        switch (enemyId)
+        int randomLine = GD.RandRange(0, 4);
+        int lane = randomLine + 1;
+        Enemy enemy = (Enemy)GD.Load<PackedScene>($"res://scene/enemy/{enemyType}Enemy/{enemyType}Enemy.tscn").Instantiate();
+        int positionOffset = 0;
+        switch (enemyType)
         {
-            case 2:
-                enemy = (KnightEnemy)GD.Load<PackedScene>($"res://scene/enemy/KnightEnemy/KnightEnemy.tscn").Instantiate();
-                enemy.Position = new Vector2(1080, (random * 125) + 82);
-                AddChild(enemy);
-                GD.Print("KnightEnemy spawnt auf Lane " + lane);
+            case EnemyType.Knight:
+                positionOffset = 82;
                 break;
-            case 3:
-                enemy = (BanditEnemy)GD.Load<PackedScene>($"res://scene/enemy/BanditEnemy/BanditEnemy.tscn").Instantiate();
-                enemy.Position = new Vector2(1080, (random * 125) + 10);
-                AddChild(enemy);
-                GD.Print("BanditEnemy spawnt auf Lane " + lane);
+            case EnemyType.Bandit:
+                positionOffset = 10;
                 break;
-            case 5:
-                enemy = (GiantEnemy)GD.Load<PackedScene>($"res://scene/enemy/GiantEnemy/GiantEnemy.tscn").Instantiate();
-                enemy.Position = new Vector2(1080, (random * 125) + 48);
-                AddChild(enemy);
-                GD.Print("GiantEnemy spawnt auf Lane " + lane);
+            case EnemyType.Giant:
+                positionOffset = 48;
                 break;
-            case 1:
-                enemy = (SoldierEnemy)GD.Load<PackedScene>($"res://scene/enemy/SoldierEnemy/SoldierEnemy.tscn").Instantiate();
-                enemy.Position = new Vector2(1080, (random * 125) +50);
-                AddChild(enemy);
-                GD.Print("SoldierEnemy spawnt auf Lane " + lane);
+            case EnemyType.Soldier:
+                positionOffset = 55;
                 break;
-            case 4:
-                enemy = (PyroEnemy)GD.Load<PackedScene>($"res://scene/enemy/PyroEnemy/PyroEnemy.tscn").Instantiate();
-                enemy.Position = new Vector2(1080, (random * 125) + 35);
-                AddChild(enemy);
-                GD.Print("PyroEnemy spawnt auf Lane " + lane);
+            case EnemyType.Pyro:
+                positionOffset = 35;
                 break;
-            default: break;
         }
+        enemy.Position = new Vector2(1080, ((randomLine * 125) + (randomLine*10)) + positionOffset);
+        AddChild(enemy);
+        GD.Print($"{enemyType} spawnt auf Lane {lane}");
     }
 }

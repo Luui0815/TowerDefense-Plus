@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://script/map/level/LevelOne.cs" id="1_psca5"]
 [ext_resource type="PackedScene" uid="uid://cph6w2yafda7f" path="res://scene/map/LevelControlBar.tscn" id="2_i75gx"]
-[ext_resource type="PackedScene" uid="uid://b8fr6r6g0idrn" path="res://scene/ui/Hammer.tscn" id="3_dtkpb"]
+[ext_resource type="Texture2D" uid="uid://csu5ch506swn4" path="res://assets/texture/level/LevelOne.png" id="3_r2euu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwy85"]
 size = Vector2(1279, 716)
@@ -16,17 +16,6 @@ process_mode = 1
 z_index = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="Hammer" parent="." instance=ExtResource("3_dtkpb")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 1009.0
-offset_top = 646.0
-offset_right = 1078.0
-offset_bottom = 718.0
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="LevelArea" type="Area2D" parent="."]
 collision_mask = 3
 
@@ -36,6 +25,11 @@ shape = SubResource("RectangleShape2D_bwy85")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
+
+[node name="LevelMap" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_r2euu")
 
 [connection signal="PauseButtonPressed" from="LevelControlBar" to="." method="OnPauseLevelButtonPressed"]
 [connection signal="StartButtonPressed" from="LevelControlBar" to="." method="OnStartLevelButtonPressed"]

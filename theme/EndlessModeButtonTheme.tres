@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dhew23cliqtpr"]
+
+[ext_resource type="Texture2D" uid="uid://ppb12wyp6iff" path="res://assets/button/InfinityModeButtonHover.png" id="1_wg58j"]
+[ext_resource type="Texture2D" uid="uid://b6egw6t2sw58g" path="res://assets/button/InfinityModeButton.png" id="2_ma724"]
+[ext_resource type="Texture2D" uid="uid://t2feaagdfgjp" path="res://assets/button/InfinityModeButtonPressed.png" id="3_sfvf3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3j3w8"]
+texture = ExtResource("1_wg58j")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xx60i"]
+texture = ExtResource("2_ma724")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_okkl8"]
+texture = ExtResource("3_sfvf3")
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxTexture_3j3w8")
+Button/styles/normal = SubResource("StyleBoxTexture_xx60i")
+Button/styles/pressed = SubResource("StyleBoxTexture_okkl8")

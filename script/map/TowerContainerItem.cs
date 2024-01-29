@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public partial class TowerContainerItem : Control
 {
-    private static Dictionary<string, Texture2D> _iconTextureCache = new();
-    private static Dictionary<string, Texture2D> _backgroundTextureCache = new();
+    private static readonly Dictionary<string, Texture2D> _iconTextureCache = new();
+    private static readonly Dictionary<string, Texture2D> _backgroundTextureCache = new();
     private string _towerName;
     private int _towerCost;
     private TextureRect _towerBackground;
@@ -51,7 +51,7 @@ public partial class TowerContainerItem : Control
             ExpandMode = TextureRect.ExpandModeEnum.FitWidth,
             Texture = _iconTextureCache[_towerName]
         };
-        //previewNode.PivotOffset = new Vector2(50,50);TODO: MAuszeiger mittig vom Symbol
+        //TODO: MAuszeiger mittig vom Symbol
         return previewNode;
     }
 

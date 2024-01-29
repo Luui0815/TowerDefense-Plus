@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dm85e7ymbwabc"]
+[gd_scene load_steps=22 format=3 uid="uid://dm85e7ymbwabc"]
 
 [ext_resource type="Script" path="res://script/ui/DefeatScreen.cs" id="1_s3abl"]
 [ext_resource type="Texture2D" uid="uid://bslopsooqcvvq" path="res://assets/sprites/GoodGuys/Knight/KnightIdle.png" id="2_kpqsk"]
@@ -6,12 +6,12 @@
 [ext_resource type="AnimationLibrary" uid="uid://3nt84gbothej" path="res://Properties/Animations/AnimationsDefeatScreenKnight.res" id="3_y5dty"]
 [ext_resource type="AnimationLibrary" uid="uid://b1o53tuuyatl8" path="res://Properties/Animations/AnimationDefeatScreenArcher.res" id="4_scsjx"]
 [ext_resource type="FontFile" uid="uid://vrg0he4meveg" path="res://assets/font/HyliaMidevilFont.otf" id="5_gehgc"]
-[ext_resource type="Texture2D" uid="uid://boomb8pebxv8m" path="res://assets/button/Stonebutton1.png" id="6_4lyb5"]
-[ext_resource type="Texture2D" uid="uid://ceh7jn57xacd1" path="res://assets/button/StonebuttonPressed.png" id="7_afegk"]
+[ext_resource type="Theme" uid="uid://s6tlaljytfer" path="res://theme/MenuButtonTheme.tres" id="7_k8f2u"]
 [ext_resource type="Texture2D" uid="uid://com1sf40hpvl8" path="res://assets/sprites/BadGuys/EvilWizard/Death.png" id="8_fm8sm"]
 [ext_resource type="AnimationLibrary" uid="uid://by2qb7yrh1t0h" path="res://Properties/Animations/AnimationDefeatScreenWizard.res" id="9_5uu5y"]
 [ext_resource type="Texture2D" uid="uid://pdqpr1hpnmm4" path="res://assets/sprites/BadGuys/Skeleton/Skeleton Idle.png" id="10_68sdn"]
 [ext_resource type="AnimationLibrary" uid="uid://c7x6owdtbsu46" path="res://Properties/Animations/AnimationDefeatScreenSkeleton.res" id="11_g6nkk"]
+[ext_resource type="Theme" uid="uid://om3i3gc6k3vi" path="res://theme/RepeatButtonTheme.tres" id="12_678nm"]
 
 [sub_resource type="Animation" id="Animation_vguxk"]
 length = 0.001
@@ -72,20 +72,6 @@ _data = {
 [sub_resource type="Theme" id="Theme_0e8m8"]
 default_font = ExtResource("5_gehgc")
 default_font_size = 60
-
-[sub_resource type="Theme" id="Theme_o8j0w"]
-default_font = ExtResource("5_gehgc")
-default_font_size = 20
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_huhop"]
-texture = ExtResource("6_4lyb5")
-expand_margin_left = 24.0
-expand_margin_top = 18.0
-expand_margin_right = 24.0
-expand_margin_bottom = 18.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y5s3v"]
-texture = ExtResource("7_afegk")
 
 [sub_resource type="Animation" id="Animation_rqi5m"]
 length = 0.001
@@ -322,27 +308,33 @@ text = "Niederlage
 "
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Panel"]
-custom_minimum_size = Vector2(200, 50)
+[node name="MainMenuButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = 25.0
 offset_top = 135.0
-offset_right = 100.0
-offset_bottom = 185.0
+offset_right = 105.0
+offset_bottom = 215.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
-theme = SubResource("Theme_o8j0w")
-theme_override_styles/normal = SubResource("StyleBoxTexture_huhop")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_y5s3v")
-text = "Hauptmenü"
+theme = ExtResource("7_k8f2u")
+
+[node name="RepeatButton" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_left = 270.0
+offset_top = 360.0
+offset_right = 350.0
+offset_bottom = 440.0
+theme = ExtResource("12_678nm")
 
 [node name="VictoriousWizard" type="Sprite2D" parent="Panel"]
 visibility_layer = 4
@@ -394,4 +386,5 @@ libraries = {
 [node name="TimerAttackSkeletonTwo" type="Timer" parent="Panel/VictoriousSkeleton2"]
 one_shot = true
 
-[connection signal="pressed" from="Panel/Button" to="." method="OnMenuButtonPressed"]
+[connection signal="pressed" from="Panel/MainMenuButton" to="." method="OnMenuButtonPressed"]
+[connection signal="pressed" from="Panel/RepeatButton" to="." method="OnRepeatButtonPressed"]

@@ -1,20 +1,14 @@
 using Godot;
-using System;
-using System.Transactions;
 
 public partial class LawnMower : CharacterBody2D
 {
-	private Area2D _HitboxArea;
+	private Area2D _hitboxArea;
 	private AnimatedSprite2D _animatedSprite;
 	private bool _activated;
 
-    public LawnMower() 
-    { 
-        
-    }
 	public override void _Ready()
 	{
-		_HitboxArea = GetNode<Area2D>("HitboxArea");
+		_hitboxArea = GetNode<Area2D>("HitboxArea");
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite");
 		_animatedSprite.Play("idle");
 	}
@@ -39,7 +33,7 @@ public partial class LawnMower : CharacterBody2D
 
 	private void DestroyEnemyUnits()
 	{
-        foreach (Node2D body in _HitboxArea.GetOverlappingAreas())
+        foreach (Node2D body in _hitboxArea.GetOverlappingAreas())
         {
             if (body.GetParent() is Enemy && body.Name == "HitboxArea")
             {
@@ -50,7 +44,7 @@ public partial class LawnMower : CharacterBody2D
         }
     }
 
-	public bool ActivateLawnMover
+	public bool LawnMoverActivated
 	{
 		get
 		{

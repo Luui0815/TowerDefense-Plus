@@ -71,10 +71,10 @@ public abstract partial class Enemy : GameEntity
 		set { _name = value; }
 	}
 
-	public virtual void Init()
-	{
+    public override void Action()
+    {
 
-	}
+    }
 
 	public void DeleteTrap(string trap)
 	{
@@ -178,7 +178,6 @@ public abstract partial class Enemy : GameEntity
 				if (!_TrapDeleted)
 				{
 					Health -= effect.damage;
-					//GD.Print(EnemyName + " HP: " + Health);
 					effect.DelayTimer.Start();
 				}
 			}
@@ -190,9 +189,6 @@ public abstract partial class Enemy : GameEntity
         //check if caltrap effect is theire
         foreach (Statuseffects effect in _statusEffects)
         {
-			//if (effect.DamageTimer == null)
-			//	return false;
-
             if (effect.name == "caltrop" && !effect.DamageTimer.IsStopped())
             {
                 caltrop = true;

@@ -1,12 +1,14 @@
+using System;
 using Godot;
 using TowerDefense;
 
-public partial class Spearman : MeleeDefender //so halber Nahkampf
+public partial class Spearman : AttackTower
 {
     private Enemy _targetEnemy;
-    private Area2D _AttackArea2;
-    private float _SpearVelocity = 5f;
-    private bool _Mode; //false = Melee Mode, true = Distance Mode
+    private Area2D _rangeAttackArea;
+    private float _spearVelocity = 5f;
+    private AttackMode _currentMode;
+    
     public Spearman()
     {
         _delay = 2;
@@ -15,10 +17,17 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
         _damage = 3;
         Health = 10;
     }
+
+    private enum AttackMode
+    {
+        Melee,
+        Range
+    }
+
     public override void _Ready()
     {
         _AttackArea = GetNode<Area2D>("AttackArea1");
-        _AttackArea2 = GetNode<Area2D>("AttackArea2");
+        _rangeAttackArea = GetNode<Area2D>("AttackArea2");
 
         _HitboxArea = GetNode<Area2D>("HitboxArea");
         _AttackTimer = GetNode<Timer>("AttackTimer");
@@ -32,30 +41,28 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
     {
         if (!DefenderDefeated)
         {
-            if (CanAttack() && _Mode==false)
+            if (CanAttack())
             {
-                if(_AttackTimer.IsStopped())
-                    _animatedSprite.Play("attack");
-                Attack(_targetEnemy, 2);
-                _AttackTimer.Start();
-            }
-            else if(CanAttack() && _Mode==true)
-            {
+                string animation = _currentMode == AttackMode.Range ? "spear_attack" : "attack"; 
                 if (_AttackTimer.IsStopped())
-                    _animatedSprite.Play("spear_attack");
-                //SpawnSpear();
+                {
+                    _animatedSprite.Play(animation);
+                }
+
+                if (_currentMode == AttackMode.Melee)
+                {
+                    Attack(_targetEnemy, 2);
+                }
+
                 _AttackTimer.Start();
             }
             else
             {
                 if (_AttackTimer.IsStopped())
+                {
                     _animatedSprite.Play("idle");
+                }
             }
-
-            //else if (_targetEnemy == null) oben war malso
-            //{
-            //    _animatedSprite.Play("idle");
-            //}
 
             if (Health <= 0)
             {
@@ -66,7 +73,7 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
 
     protected Enemy SelectTarget()
     {
-        _Mode = false;
+        _currentMode = AttackMode.Melee;
         Enemy closestTarget = null;
         float closestDistance = float.MaxValue;
 
@@ -88,7 +95,7 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
         }
         if(closestTarget == null)//Fernkampf
         {
-            foreach (Node2D body in _AttackArea2.GetOverlappingAreas())
+            foreach (Node2D body in _rangeAttackArea.GetOverlappingAreas())
             {
                 if (body.Name == "HitboxArea")
                 {
@@ -104,7 +111,7 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
                     }
                 }
             }
-            _Mode= true;
+            _currentMode= AttackMode.Range;
         }
         return (Enemy)closestTarget;
     }
@@ -123,13 +130,6 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
             return false;
     }
 
-    private void OnDefenderDefeated()
-    {
-        _DefenderDefeated = true;
-        _HitboxArea.QueueFree();
-        _animatedSprite.Play("death");
-    }
-
     private void OnAnimationLooped()
     {
         if (_animatedSprite.Animation == "death")
@@ -145,7 +145,7 @@ public partial class Spearman : MeleeDefender //so halber Nahkampf
         TowerProjectile spear = (TowerProjectile)GD.Load<PackedScene>("res://scene/tower/TowerProjectile.tscn").Instantiate();
         if (_targetEnemy != null && _targetEnemy.Health > 0)
         {
-            spear.Init(_targetEnemy, _SpearVelocity, ProjectileType.Spear, this);
+            spear.Init(_targetEnemy, _spearVelocity, ProjectileType.Spear, this);
             spear.TargetHit += ArrowHit;
             spear.Position = new Vector2(GlobalPosition.X - 10, GlobalPosition.Y + 20);
             AddChild(spear);

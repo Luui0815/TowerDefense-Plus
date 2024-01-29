@@ -1,13 +1,85 @@
-[gd_scene load_steps=5 format=3 uid="uid://cst8r3t8rel3i"]
+[gd_scene load_steps=15 format=3 uid="uid://cst8r3t8rel3i"]
 
 [ext_resource type="Script" path="res://script/tower/Wall.cs" id="1_urkrg"]
-[ext_resource type="Texture2D" uid="uid://bsostkeklcsux" path="res://assets/texture/tower/animation/wall/Idle1.png" id="2_15b2a"]
+[ext_resource type="Texture2D" uid="uid://ckfell6x5o4mm" path="res://assets/texture/tower/animation/wall/Stone.png" id="2_6suuw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfg8k"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(128, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3d3l"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(96, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62mhe"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(64, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqxvr"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(32, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ygo6"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(0, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnakq"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(256, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr8i8"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(224, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft2b0"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(192, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xupeb"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(160, 0, 32, 46)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0jos"]
+atlas = ExtResource("2_6suuw")
+region = Rect2(128, 0, 32, 46)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d6id3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_15b2a")
+"texture": SubResource("AtlasTexture_pfg8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3d3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62mhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqxvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ygo6")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnakq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr8i8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft2b0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xupeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0jos")
 }],
 "loop": true,
 "name": &"idle",
@@ -20,14 +92,15 @@ size = Vector2(100, 120)
 [node name="WallDefender" type="Node2D"]
 script = ExtResource("1_urkrg")
 
+[node name="ActionTimer" type="Timer" parent="."]
+
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(13, 8)
+position = Vector2(13, 22)
 scale = Vector2(1.68, 2)
 sprite_frames = SubResource("SpriteFrames_d6id3")
-animation = &"idle"
+animation = &"death"
+frame_progress = 0.648247
 centered = false
-
-[node name="ActionTimer" type="Timer" parent="."]
 
 [node name="AnimationTimer" type="Timer" parent="."]
 

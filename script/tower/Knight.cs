@@ -1,19 +1,17 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
-public  partial class Knight : MeleeDefender
+public  partial class Knight : AttackTower
 {
-	private List<Enemy> _attackableEnemiess = new List<Enemy>();
+	private List<Enemy> _attackableEnemiess = new();
 
 	public Knight()
 	{
-		//TODO: Change values and add action animation
 		_delay = 1.5f;
 		_animationDelay = 1;
 		_actionAnimation = "idle";
 		_damage = 1;
-		Health = 30;
+		Health = 32;
 	}
 	public override void _Ready()
 	{
@@ -83,14 +81,7 @@ public  partial class Knight : MeleeDefender
             }
         }
 	}
-
-	private void OnDefenderDefeated()
-    {
-        _DefenderDefeated = true;
-        _HitboxArea.QueueFree();
-        _animatedSprite.Play("death");
-    }
-
+	
 	private void OnAnimationLooped()
     {
         if (_animatedSprite.Animation == "death")

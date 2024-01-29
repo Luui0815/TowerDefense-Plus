@@ -5,8 +5,8 @@ using TowerDefense;
 public partial class MapLane : Node2D
 {
 	private int _laneNr;
-	private Area2D _LawnMowerArea;
-	private LawnMower _LawnMower;
+	private Area2D _lawnMowerArea;
+	private LawnMower _lawnMower;
 
 	[Signal]
 	public delegate void AllEnemiesDefeatedEventHandler(int laneNr);
@@ -29,7 +29,7 @@ public partial class MapLane : Node2D
 		_laneNr = laneNr;
 
 		PackedScene fieldScene = GD.Load<PackedScene>("res://scene/map/MapField.tscn");
-		Vector2 fieldPosition = new Vector2(80, 0);
+		Vector2 fieldPosition = new Vector2(95.5f, 0);
 		for (int i = 0; i < 10; i++)
 		{
 			MapField field = (MapField)fieldScene.Instantiate();
@@ -44,21 +44,18 @@ public partial class MapLane : Node2D
 
 	public override void _Ready()
 	{
-		_LawnMowerArea = GetNode<Area2D>("LawnMoverArea");
-		_LawnMower =(LawnMower) GetNode<CharacterBody2D>("LawnMower");
+		_lawnMowerArea = GetNode<Area2D>("LawnMoverArea");
+		_lawnMower =(LawnMower) GetNode<CharacterBody2D>("LawnMower");
 	}
 
 	private void _on_lawn_mover_area_area_entered(Area2D area)
     {
-		if (area.GetParent() is Enemy && area.Name == "HitboxArea" && !_LawnMower.ActivateLawnMover)
-		{
-			GD.Print("Enemy hat die heilige Forte erreicht. Starte Gegenangriff!");
-			_LawnMower.ActivateLawnMover=true;
+		if (area.GetParent() is Enemy && area.Name == "HitboxArea") {
+			if (!IsInstanceValid(_lawnMower)) {
+				EmitSignal(SignalName.EnemyCrossedLane, _laneNr);
+			} else if (!_lawnMower.LawnMoverActivated){
+				_lawnMower.LawnMoverActivated=true;
+			}
 		}
-		else if(area.GetParent() is Enemy && area.Name == "HitboxArea")
-        {
-            EmitSignal(SignalName.EnemyCrossedLane, _laneNr);
-            GD.Print("Enemy hat die heilige Forte zerstoert!");
-        }
 	}
 }
