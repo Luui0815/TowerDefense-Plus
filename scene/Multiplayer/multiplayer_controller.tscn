@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxbc20mvu6a3c"]
+
+[ext_resource type="Script" path="res://script/Multiplayer/multiplayer_controller.cs" id="1_as80q"]
+
+[node name="MultiplayerController" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_as80q")
+
+[node name="StartServer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 239.0
+offset_right = 164.0
+offset_bottom = 292.0
+text = "Start Server"
+
+[node name="JoinServer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 240.0
+offset_right = 342.0
+offset_bottom = 293.0
+text = "Join Server"
+
+[node name="Label_Name" type="Label" parent="."]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 63.0
+offset_bottom = 44.0
+text = "Name"
+
+[node name="Eingabe_Name" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 338.0
+offset_bottom = 47.0
+
+[node name="Start_Chat" type="Button" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 243.0
+offset_right = 513.0
+offset_bottom = 295.0
+text = "Start Chat"
+
+[node name="Chat" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 70.0
+offset_right = 1135.0
+offset_bottom = 395.0
+
+[node name="Nachricht" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.039
+anchor_bottom = 0.022
+offset_left = 92.0
+offset_top = 373.0
+offset_right = 361.08
+offset_bottom = 388.16
+
+[node name="Label_Name2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 375.0
+offset_right = 85.0
+offset_bottom = 401.0
+text = "Nachricht"
+
+[node name="Senden" type="Button" parent="."]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 357.0
+offset_right = 548.0
+offset_bottom = 408.0
+text = "Senden"
+
+[connection signal="pressed" from="StartServer" to="." method="_on_start_server_pressed"]
+[connection signal="pressed" from="JoinServer" to="." method="_on_join_server_pressed"]
+[connection signal="pressed" from="Start_Chat" to="." method="_on_start_chat_pressed"]
+[connection signal="pressed" from="Senden" to="." method="_on_senden_pressed"]
