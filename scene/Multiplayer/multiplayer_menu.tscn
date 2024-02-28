@@ -1,0 +1,102 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfo0htod52mlx"]
+
+[ext_resource type="Script" path="res://script/Multiplayer/Multiplayer_Menu.cs" id="1_r1864"]
+
+[node name="Multiplayer_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r1864")
+
+[node name="Starte Server" type="Button" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 350.0
+offset_right = 356.0
+offset_bottom = 397.0
+text = "Starte Server"
+
+[node name="Server beitreten" type="Button" parent="."]
+layout_mode = 0
+offset_left = 626.0
+offset_top = 349.0
+offset_right = 1026.0
+offset_bottom = 396.0
+text = "Server beitereten"
+
+[node name="CB_ServerIsSpieler" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 240.0
+offset_right = 69.0
+offset_bottom = 264.0
+text = "Server ist selbst Spieler"
+
+[node name="CB_ServerIsNotSpieler" type="CheckBox" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.019
+anchor_bottom = 0.149
+offset_left = 44.0
+offset_top = 262.0
+offset_right = 214.68
+offset_bottom = 185.72
+text = "Server ist kein Spieler"
+
+[node name="Label_Server_Port" type="Label" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 197.0
+offset_right = 90.0
+offset_bottom = 220.0
+text = "Port:"
+
+[node name="Eingabe_Server_Port" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 196.0
+offset_right = 183.0
+offset_bottom = 227.0
+
+[node name="Eingabe_IPAdresse" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 827.0
+offset_top = 217.0
+offset_right = 1003.0
+offset_bottom = 248.0
+
+[node name="Label_IPAdresse" type="Label" parent="."]
+layout_mode = 0
+offset_left = 635.0
+offset_top = 220.0
+offset_right = 814.0
+offset_bottom = 243.0
+text = "IP-Adresse des Servers:"
+
+[node name="Label_Client_Port" type="Label" parent="."]
+layout_mode = 0
+offset_left = 638.0
+offset_top = 257.0
+offset_right = 678.0
+offset_bottom = 280.0
+text = "Port:"
+
+[node name="Eingabe_Client_Port" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 828.0
+offset_top = 257.0
+offset_right = 1004.0
+offset_bottom = 288.0
+
+[node name="Label_Fehlermeldungen" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 441.0
+offset_right = 1028.0
+offset_bottom = 464.0
+
+[connection signal="pressed" from="CB_ServerIsSpieler" to="." method="_on_cb_server_is_spieler_pressed"]
+[connection signal="pressed" from="CB_ServerIsNotSpieler" to="." method="_on_cb_server_is_not_spieler_pressed"]
